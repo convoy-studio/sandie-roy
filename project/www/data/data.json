@@ -1,0 +1,15 @@
+{
+    "initialData": {
+        "app_parent": "#app-container"
+    },
+
+    "routing": {
+        "relations-presse": {
+            "files": []
+        },
+
+        "relations-publiques": {
+            "files": []
+        }
+    }
+}

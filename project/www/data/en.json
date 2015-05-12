@@ -1,0 +1,15 @@
+{
+    "global": {
+        "header-title": "this is my header",
+        "footer-title": "this is my footer"
+    },
+
+    "page": {
+        "relations-presse": {
+            "hello": "coucou presse"
+        },
+        "relations-publiques": {
+            "hello": "coucou publiques"
+        }
+    }
+}

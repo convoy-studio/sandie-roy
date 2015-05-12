@@ -1,10 +1,7 @@
-# npm + bower
+# npm + bower + gems
 <code>npm install && bower install</code><br>
-
-# bundle gems
-<code>gem install bundler</code><br>
-<code>bundle install</code><br>
-<code>git add Gemfile Gemfile.lock</code><br>
+<code>sudo gem install compass-rgbapng</code><br>
+<code>sudo gem install breakpoint </code><br>
 
 # yeoman
 You should be inside folder {projectroot}/generator-seatgen<br>
@@ -30,14 +27,3 @@ You should be inside folder {projectroot}/generator-seatgen<br>
 # python
   The python files updateMain.py and updateLoadFiles.py generates filepaths automatically when 
   grunt-watch toggle and updates the files Main.coffee and InitialLoadController.coffee respectively.
-
-# SVG
-Tutorial from http://codyhouse.co/gem/animate-svg-icons-with-css-and-snap/<br>
-- Clean the svg as the tutorial<br>
-- Add it to www/svg<br>
-- Pass it to the scope and inject it in you HTML with mustache <br>
-`<span class="name-btn svg-btn">{{{lineArrowBtn}}}</span>`<br>
-- And style it in the _ui.scss
-
-
-

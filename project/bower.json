@@ -1,0 +1,30 @@
+{
+  "name": "sandie-roy",
+  "version": "0.0.0",
+  "homepage": "",
+  "authors": [
+    "Panagiotis Thomoglou <contact@pa-th.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "www/js/component",
+    "**/component",
+    "component",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "",
+    "signals": "",
+    "hasher": "",
+    "createjs-preloadjs": "",
+    "greensock": "",
+    "mustache.js": "",
+    "jquery-mousewheel": "",
+    "requirejs-plugins": "~1.0.2"
+  }
+}

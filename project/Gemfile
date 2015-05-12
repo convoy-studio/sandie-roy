@@ -1,0 +1,7 @@
+# A sample Gemfile
+source "https://rubygems.org"
+
+gem "sass"
+gem "compass"
+gem "compass-rgbapng"
+gem "breakpoint", "~>2.5.0"

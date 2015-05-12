@@ -1,0 +1,86 @@
+
+@mixin centerAbsolute($width, $height) {
+	@include centerAbsoluteHor($width, $height);
+	@include centerAbsoluteVert($width, $height);
+}
+
+@mixin centerAbsoluteHor($width, $height) {
+	position: absolute;
+	width: $width;
+	height: $height;
+	right: 50%; left: 50%;
+	margin-left:  -($width*0.5);
+	margin-right: -($width*0.5);
+}
+
+@mixin centerAbsoluteVert($width, $height) {
+	position: absolute;
+	width: $width;
+	height: $height;
+	top: 50%; bottom: 50%;
+	margin-top: -($height*0.5);
+	margin-bottom: -($height*0.5);
+}
+
+// grab an svg-png file and translate it to base64
+@mixin inline-image($width, $height, $url) {
+	width: $width;
+    height: $height;
+    @include inline-block;
+
+    background-image: inline-image($url);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+@mixin anim($duration, $delay, $ease, $transform, $originX: 50%, $originY: 50% ) {
+    @include transition-delay($delay);
+    @include transition-duration($duration);
+    @include transition-timing-function($ease);
+    @include transform-origin($originX, $originY);
+    @include transform($transform);
+}
+
+@mixin simpleAnim($duration, $delay, $ease) {
+    @include transition-delay($delay);
+    @include transition-duration($duration);
+    @include transition-timing-function($ease);
+}
+
+// Ems calculator
+@function em($px: $fontBase, $base: $fontBase) {
+  @return #{$px/$base}em;
+  //@return $px;
+}
+
+@mixin animate($animation) {
+  -webkit-animation: #{$animation};
+  -moz-animation: #{$animation};
+  -ms-animation: #{$animation};
+  animation: #{$animation};
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content; 
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  } 
+
+}
+
+@mixin rotate3d($vector-x: $default-vector-x, $vector-y: $default-vector-y, $vector-z: $default-vector-z, $rotate: $default-rotate, $perspective: false) {
+  $trans: rotate3d($vector-x, $vector-y, $vector-z, $rotate);
+  @if $perspective {
+    $trans: perspective($perspective) $trans;
+  }
+  @include transform3d($trans);
+}
+

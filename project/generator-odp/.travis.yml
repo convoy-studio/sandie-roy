@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - '0.10'
+before_install:
+  - currentfolder=${PWD##*/}
+  - if [ "$currentfolder" != 'generator-odp' ]; then cd .. && eval "mv $currentfolder generator-odp" && cd generator-odp; fi
+
