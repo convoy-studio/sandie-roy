@@ -68,7 +68,7 @@ define(["RelationsPresse", "RelationsPubliques"], function(RelationsPresse, Rela
 
     SwitcherService.prototype.pageFilesLoaded = function() {
       var Class, parent;
-      parent = Model.interfaceEl;
+      parent = Model.mainEl;
       Class = require(this.newPage.clazz);
       if (this.newView != null) {
         this.oldView = this.newView;

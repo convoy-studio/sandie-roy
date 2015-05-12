@@ -46,7 +46,7 @@ define ["RelationsPresse", "RelationsPubliques"], (RelationsPresse, RelationsPub
             return
 
         pageFilesLoaded: =>
-            parent = Model.interfaceEl
+            parent = Model.mainEl
 
             # Create Class from hash id 
             Class = require(@newPage.clazz)

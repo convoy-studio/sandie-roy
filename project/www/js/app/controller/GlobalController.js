@@ -11,15 +11,14 @@ define(["Header", "Footer", "hasher"], function(Header, Footer, hasher) {
     }
 
     GlobalController.prototype.setupViews = function() {
-      var footer, header;
+      var header;
       header = new Header("header");
       Model.parentEl.append(header.element);
       header.init();
-      Model.parentEl.append("<div id='interface-container'>");
-      Model.interfaceEl = Model.parentEl.find("#interface-container");
-      footer = new Footer("footer");
-      Model.parentEl.append(footer.element);
-      footer.init();
+      Model.parentEl.append("<div id='main-container'>");
+      Model.mainEl = Model.parentEl.find("#main-container");
+      Model.mainEl.append("<div id='top-static-container'>");
+      Model.topEl = Model.mainEl.find("#top-static-container");
     };
 
     GlobalController.prototype.setupRenderer = function() {
