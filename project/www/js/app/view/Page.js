@@ -25,7 +25,6 @@ define(["View", "signals"], function(View, signals) {
       this.transitionOut = __bind(this.transitionOut, this);
       this.transitionIn = __bind(this.transitionIn, this);
       this.addAnimations = __bind(this.addAnimations, this);
-      this.onPackageReady = __bind(this.onPackageReady, this);
       this.ready = __bind(this.ready, this);
       this.init = __bind(this.init, this);
       Page.__super__.constructor.call(this, id, scope);
@@ -44,10 +43,6 @@ define(["View", "signals"], function(View, signals) {
     };
 
     Page.prototype.ready = function() {
-      this.onPackageReady();
-    };
-
-    Page.prototype.onPackageReady = function() {
       this.initCb();
     };
 
@@ -82,7 +77,14 @@ define(["View", "signals"], function(View, signals) {
       this.transitionOutComplete.dispatch();
     };
 
-    Page.prototype.resize = function() {};
+    Page.prototype.resize = function() {
+      var elementCss;
+      elementCss = {
+        y: Model.windowH,
+        force3D: true
+      };
+      TweenMax.set(this.element, elementCss);
+    };
 
     Page.prototype.destroy = function() {
       Page.__super__.destroy.call(this);

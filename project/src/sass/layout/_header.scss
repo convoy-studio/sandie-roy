@@ -1,8 +1,18 @@
 header#header{
-    position: absolute;
-    top: 0;
-    left: 0;
-    height:80px;
+	@extend .absolute;
+    z-index:99999;
     width: 100%;
-    z-index:999999999;
+
+    .logo {
+    	position: absolute;
+    	$w: 200px;
+    	width: $w;
+    	left: 50%;
+    	margin-left: -$w/2;
+		top: 22px;
+
+		svg path {
+			fill: $white;
+		}
+    }
 }

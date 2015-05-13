@@ -1,54 +1,13 @@
-img {
-    width: 100%;
-}
-
-a:-moz-focus-inner {
-    border: 0;
-    outline: none;
-}
-
-a:focus {
-    border: 0;
-    outline: none;
-}
-
-// for firefox image scale smoothing
-img {
-    -ms-interpolation-mode: bicubic;
-}
-// for ie
-img {
-    background: transparent;
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF)"; /* IE8 */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);   /* IE6 & 7 */
-    zoom: 1;
-}
-html {
+html, body {
     background-color: $white;
+    padding: 0;
+    margin: 0;
     width: 100%;
     height: 100%;
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
-* {
-    @include backface-visibility(hidden);
-    @include user-select(none);
-    @include transform-style(flat);
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    -webkit-user-drag: none;
+    overflow: hidden !important;
+    font-family: "medium";
 }
 
-*, *:before, *:after {
-    box-sizing: inherit;
-}
-
-svg, svg * {
-    @include backface-visibility(visible);
-}
-
-.clear-float {
-    clear: both;
-}
 #app-container  {
     // font smoothing
     -webkit-font-smoothing: antialiased;
@@ -62,9 +21,24 @@ svg, svg * {
     font-size: 12px;
     color: $black;
 
+    position: absolute;
     width: 100%;
     height: 100%;
     overflow-x: hidden;
     overflow-y: visible;
 }
 
+#main-container {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+}
+
+.page {
+    overflow: hidden;
+    width: 100%;
+    height: 4585px;
+    z-index: 4;
+    position: absolute;
+}

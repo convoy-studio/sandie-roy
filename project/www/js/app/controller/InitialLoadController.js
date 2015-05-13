@@ -26,6 +26,12 @@ define([], function() {
           id: "pages-loader-partial",
           src: "partial/layout/pages-loader.html"
         }, {
+          id: "timeline-menu-partial",
+          src: "partial/layout/timeline-menu.html"
+        }, {
+          id: "top-container-partial",
+          src: "partial/layout/top-container.html"
+        }, {
           id: "relations-presse-partial",
           src: "partial/page/relations-presse.html"
         }, {
@@ -36,8 +42,24 @@ define([], function() {
           src: "svg/awwwards-logo.svg",
           type: createjs.LoadQueue.TEXT
         }, {
+          id: "logo-svg",
+          src: "svg/logo.svg",
+          type: createjs.LoadQueue.TEXT
+        }, {
+          id: "about-hd-image",
+          src: "image/global/about-hd.jpg"
+        }, {
           id: "blank-image",
           src: "image/global/blank.gif"
+        }, {
+          id: "production-hd-image",
+          src: "image/global/production-hd.jpg"
+        }, {
+          id: "relations-presse-hd-image",
+          src: "image/global/relations-presse-hd.jpg"
+        }, {
+          id: "relations-publiques-hd-image",
+          src: "image/global/relations-publiques-hd.jpg"
         }
       ];
       return Loader.load(manifest, this.callback);

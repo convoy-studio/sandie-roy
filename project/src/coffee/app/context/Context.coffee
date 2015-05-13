@@ -11,6 +11,8 @@ define [], () ->
 
             Switcher.init()
             
+            Router.setupRouting()
+                        
             # Init DOM
             Controller.setupViews()
 

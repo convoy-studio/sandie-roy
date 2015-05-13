@@ -7,9 +7,7 @@ define ["View"], (View) ->
         constructor: (id, scope) ->
 
             scope = {}
-            scope.headerTitle = Model.content["header-title"]
-            scope.awwwardsLogo = Loader.getSvg "awwwards-logo"
-            
+            scope.logo = Loader.getSvg "logo"
 
             super(id, scope)
 

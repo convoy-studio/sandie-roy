@@ -6,9 +6,11 @@
 
     "page": {
         "relations-presse": {
+            "title": "relations presse",
             "hello": "coucou presse"
         },
         "relations-publiques": {
+            "title": "relations publiques",
             "hello": "coucou publiques"
         }
     }

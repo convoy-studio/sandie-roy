@@ -1,55 +1,27 @@
-@include font-face('museo',
+@include font-face('bold',
       font-files(
-            'museo/museosans-300-webfont.woff', woff,
-            'museo/museosans-300-webfont.ttf', ttf,
-            'museo/museosans-300-webfont.svg', svg),
-            'museo/museosans-300-webfont.eot');
+            'cadiz/Cadiz-Bold_gdi.woff', woff,
+            'cadiz/Cadiz-Bold_gdi.ttf', ttf,
+            'cadiz/Cadiz-Bold_gdi.svg', svg),
+            'cadiz/Cadiz-Bold_gdi.eot');
 
-@include font-face('museo100',
+@include font-face('boldItalic',
       font-files(
-            'museo/museosans-100-webfont.woff', woff,
-            'museo/museosans-100-webfont.ttf', ttf,
-            'museo/museosans-100-webfont.svg', svg),
-            'museo/museosans-100-webfont.eot');
+            'cadiz/Cadiz-BoldItalic_gdi.woff', woff,
+            'cadiz/Cadiz-BoldItalic_gdi.ttf', ttf,
+            'cadiz/Cadiz-BoldItalic_gdi.svg', svg),
+            'cadiz/Cadiz-BoldItalic_gdi.eot');
 
-@include font-face('museo500',
+@include font-face('medium',
       font-files(
-            'museo/museosans_500-webfont.woff', woff,
-            'museo/museosans_500-webfont.ttf', ttf,
-            'museo/museosans_500-webfont.svg', svg),
-            'museo/museosans_500-webfont.eot');
+            'cadiz/Cadiz-Medium_gdi.woff', woff,
+            'cadiz/Cadiz-Medium_gdi.ttf', ttf,
+            'cadiz/Cadiz-Medium_gdi.svg', svg),
+            'cadiz/Cadiz-Medium_gdi.eot');
 
-@include font-face('museo700',
+@include font-face('mediumItalic',
       font-files(
-            'museo/museosans_700-webfont.woff', woff,
-            'museo/museosans_700-webfont.ttf', ttf,
-            'museo/museosans_700-webfont.svg', svg),
-            'museo/museosans_700-webfont.eot');
-
-@include font-face('museo500italic',
-      font-files(
-            'museo/museosans_500_italic-webfont.woff', woff,
-            'museo/museosans_500_italic-webfont.ttf', ttf,
-            'museo/museosans_500_italic-webfont.svg', svg),
-            'museo/museosans_500_italic-webfont.eot');
-
-@include font-face('fournierblack',
-      font-files(
-            'fournier/fournier_odp_tex_serif-bk-webfont.woff', woff,
-            'fournier/fournier_odp_tex_serif-bk-webfont.ttf', ttf,
-            'fournier/fournier_odp_tex_serif-bk-webfont.svg', svg),
-            'fournier/fournier_odp_tex_serif-bk-webfont.eot');
-
-@include font-face('fourniergoth',
-      font-files(
-            'fournier/fournier_odp_gothic-bk-webfont.woff', woff,
-            'fournier/fournier_odp_gothic-bk-webfont.ttf', ttf,
-            'fournier/fournier_odp_gothic-bk-webfont.svg', svg),
-            'fournier/fournier_odp_gothic-bk-webfont.eot');
-
-@include font-face('icons',
-      font-files(
-            'icons/icons-webfont.woff', woff,
-            'icons/icons-webfont.ttf', ttf,
-            'icons/icons-webfont.svg', svg),
-            'icons/icons-webfont.eot');
+            'cadiz/Cadiz-MediumItalic_gdi.woff', woff,
+            'cadiz/Cadiz-MediumItalic_gdi.ttf', ttf,
+            'cadiz/Cadiz-MediumItalic_gdi.svg', svg),
+            'cadiz/Cadiz-MediumItalic_gdi.eot');

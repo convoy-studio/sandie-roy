@@ -11,8 +11,7 @@ define(["View"], function(View) {
     function Header(id, scope) {
       this.init = __bind(this.init, this);
       scope = {};
-      scope.headerTitle = Model.content["header-title"];
-      scope.awwwardsLogo = Loader.getSvg("awwwards-logo");
+      scope.logo = Loader.getSvg("logo");
       Header.__super__.constructor.call(this, id, scope);
     }
 

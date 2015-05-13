@@ -25,10 +25,6 @@ define ["View", "signals"], (View, signals) ->
             return
 
         ready: =>
-            @onPackageReady()
-            return
-
-        onPackageReady: =>
             @initCb()
             return
 
@@ -60,6 +56,13 @@ define ["View", "signals"], (View, signals) ->
             return
 
         resize: =>
+
+            elementCss = 
+                y: Model.windowH
+                force3D: true
+
+            TweenMax.set @element, elementCss
+
             return
 
         destroy: =>

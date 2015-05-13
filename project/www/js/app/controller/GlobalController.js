@@ -1,6 +1,6 @@
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-define(["Header", "Footer", "hasher"], function(Header, Footer, hasher) {
+define(["Header", "Footer", "hasher", "TopContainer"], function(Header, Footer, hasher, TopContainer) {
   "use strict";
   var GlobalController;
   GlobalController = (function() {
@@ -11,7 +11,7 @@ define(["Header", "Footer", "hasher"], function(Header, Footer, hasher) {
     }
 
     GlobalController.prototype.setupViews = function() {
-      var header;
+      var header, topContainer;
       header = new Header("header");
       Model.parentEl.append(header.element);
       header.init();
@@ -19,6 +19,10 @@ define(["Header", "Footer", "hasher"], function(Header, Footer, hasher) {
       Model.mainEl = Model.parentEl.find("#main-container");
       Model.mainEl.append("<div id='top-static-container'>");
       Model.topEl = Model.mainEl.find("#top-static-container");
+      topContainer = new TopContainer("top-container");
+      Model.topEl.append(topContainer.element);
+      topContainer.element = Model.topEl;
+      topContainer.init();
     };
 
     GlobalController.prototype.setupRenderer = function() {
@@ -26,7 +30,6 @@ define(["Header", "Footer", "hasher"], function(Header, Footer, hasher) {
     };
 
     GlobalController.prototype.startRouting = function() {
-      Router.setupRouting();
       Router.configHasher();
     };
 

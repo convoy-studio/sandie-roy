@@ -1,0 +1,41 @@
+#top-static-container {
+
+    @extend .absolute;
+    @extend .full;
+    background-color: $white;
+
+    .pages-preview-container {
+        @extend .full;
+    }
+
+    .preview-container {
+        @extend .full;
+        @extend .absolute;
+    }
+
+    .background-container {
+        @extend .full;
+        @include background-size(cover);
+        background-position: 50% 50%;
+    }
+
+    .title {
+        @extend .absolute;
+        font-size: 122px;
+        color: $white;
+    }
+
+    #timeline-menu-view {
+        @extend .absolute;
+        color: $white;
+        z-index: 1;
+        font-size: 20px;
+        li {
+            @include inline-block;
+            margin-right: 20px;
+        }
+        li:last-child {
+            margin-right: 0px;   
+        }
+    }
+}

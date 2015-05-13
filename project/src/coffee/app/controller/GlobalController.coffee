@@ -1,4 +1,4 @@
-define ["Header", "Footer", "hasher"], (Header, Footer, hasher) ->
+define ["Header", "Footer", "hasher", "TopContainer"], (Header, Footer, hasher, TopContainer) ->
 
     "use strict"
     
@@ -15,9 +15,13 @@ define ["Header", "Footer", "hasher"], (Header, Footer, hasher) ->
             Model.parentEl.append("<div id='main-container'>")
             Model.mainEl = Model.parentEl.find("#main-container")
 
-
             Model.mainEl.append("<div id='top-static-container'>")
             Model.topEl = Model.mainEl.find("#top-static-container")
+
+            topContainer = new TopContainer("top-container")
+            Model.topEl.append topContainer.element
+            topContainer.element = Model.topEl
+            topContainer.init()
 
             # # Footer
             # footer = new Footer("footer")
@@ -32,7 +36,6 @@ define ["Header", "Footer", "hasher"], (Header, Footer, hasher) ->
 
         startRouting: =>
             # All ready for routing
-            Router.setupRouting()
             Router.configHasher()
             return
 

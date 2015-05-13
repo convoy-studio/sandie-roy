@@ -11,6 +11,7 @@ define([], function() {
 
     Context.prototype.launchApp = function() {
       Switcher.init();
+      Router.setupRouting();
       Controller.setupViews();
       Controller.setupRenderer();
       Controller.startRouting();
