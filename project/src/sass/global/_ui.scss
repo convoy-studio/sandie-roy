@@ -69,3 +69,61 @@ a {
     top:0;
     left:0;
 }
+.centered-holder {
+    width: $min-middle-width;
+    position: absolute;
+    left: 50%;
+    margin-left: -$min-middle-width/2;
+}
+.centered-text-parent {
+    @extend .full;
+    display: table;
+}
+p.centered-text-child {
+    display: table-cell; 
+    vertical-align: middle; 
+    text-align: center; 
+}
+.part-holder {
+    position: relative;
+    background-color: $white;
+
+    &.part-photo {
+        > div {
+            position: absolute;
+        }
+    }
+    .title {
+        font-size: 72px;
+    }
+    .paragraph {
+        width: 680px;
+        font-size: 24px;
+        margin-left: $gridPartW + $gridMargin;
+        line-height: 30px;
+    }
+    .visual-container {
+        width: 940px;
+        height: 670px;
+        @include background-size(cover);
+        background-position: 50% 50%;
+    }
+
+    &.left {
+        .visual-container {
+            left: 0;
+        }
+    }
+    &.right {
+        .visual-container {
+            right: 0;
+        }
+        .title {
+            margin-left: $gridPartW + $gridMargin;
+        }
+    }
+}
+.top-paragraph {
+    font-size: 48px;
+    line-height: 57px;
+}

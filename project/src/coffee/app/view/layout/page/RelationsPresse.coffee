@@ -9,6 +9,8 @@ define ["Page"], (Page) ->
             # scope.blank = Loader.getImageURL("blank")
             # scope.imgA = Loader.getImageURL(id + "-imageA")
 
+            scope.pathId = id
+
             super(id, scope)
 
         init: (cb)=>

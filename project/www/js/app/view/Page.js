@@ -43,6 +43,22 @@ define(["View", "signals"], function(View, signals) {
     };
 
     Page.prototype.ready = function() {
+      var $photoPart, $photoParts, i, p, photoPart, _i, _len;
+      this.partHolders = this.element.find(".part-holder");
+      $photoParts = this.element.find(".part-photo");
+      this.photoParts = [];
+      for (i = _i = 0, _len = $photoParts.length; _i < _len; i = ++_i) {
+        photoPart = $photoParts[i];
+        $photoPart = $(photoPart);
+        p = {};
+        p.el = $photoPart.get(0);
+        p.align = Util.IsEven(i) ? "left" : "right";
+        $photoPart.addClass(p.align);
+        p.titleEl = $photoPart.find(".title").parent().get(0);
+        p.visualContainerEl = $photoPart.find(".visual-container").get(0);
+        p.paragraphEl = $photoPart.find(".paragraph").parent().get(0);
+        this.photoParts.push(p);
+      }
       this.initCb();
     };
 
@@ -78,12 +94,36 @@ define(["View", "signals"], function(View, signals) {
     };
 
     Page.prototype.resize = function() {
-      var elementCss;
-      elementCss = {
-        y: Model.windowH,
-        force3D: true
+      var baseLineNum, basePhotoH, bottomVisualPos, elementCss, moreLines, paragraphFontSize, paragraphH, paragraphLineNum, paragraphY, partHolderCss, photo, titleH, titleY, visualH, visualY, _i, _len, _ref;
+      baseLineNum = 3;
+      basePhotoH = 670;
+      _ref = this.photoParts;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        photo = _ref[_i];
+        paragraphH = photo.paragraphEl.clientHeight;
+        titleH = photo.titleEl.clientHeight;
+        paragraphFontSize = parseInt($(photo.paragraphEl).css("font-size").replace(/[^-\d\.]/g, ''));
+        paragraphLineNum = parseInt(paragraphH / paragraphFontSize);
+        moreLines = paragraphLineNum - baseLineNum;
+        visualH = basePhotoH - (moreLines * paragraphFontSize);
+        visualY = (Model.windowH >> 1) - (visualH >> 1) - 40;
+        titleY = (visualY >> 1) - (titleH >> 1);
+        bottomVisualPos = visualY + visualH;
+        paragraphY = bottomVisualPos + ((Model.windowH - bottomVisualPos) >> 1) - (paragraphH >> 1);
+        photo.visualContainerEl.style.height = visualH + "px";
+        photo.visualContainerEl.style.top = visualY + "px";
+        photo.titleEl.style.top = titleY + "px";
+        photo.paragraphEl.style.top = paragraphY + "px";
+      }
+      partHolderCss = {
+        width: Model.windowW,
+        height: Model.windowH
       };
-      TweenMax.set(this.element, elementCss);
+      elementCss = {
+        top: Model.windowH
+      };
+      this.partHolders.css(partHolderCss);
+      this.element.css(elementCss);
     };
 
     Page.prototype.destroy = function() {

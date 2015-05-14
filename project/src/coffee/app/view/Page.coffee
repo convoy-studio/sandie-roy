@@ -25,6 +25,21 @@ define ["View", "signals"], (View, signals) ->
             return
 
         ready: =>
+            @partHolders = @element.find(".part-holder")
+
+            $photoParts = @element.find(".part-photo")
+            @photoParts = []
+            for photoPart, i in $photoParts
+                $photoPart = $(photoPart)
+                p = {}
+                p.el = $photoPart.get(0) 
+                p.align = if Util.IsEven(i) then "left" else "right"
+                $photoPart.addClass p.align
+                p.titleEl = $photoPart.find(".title").parent().get(0)
+                p.visualContainerEl = $photoPart.find(".visual-container").get(0)
+                p.paragraphEl = $photoPart.find(".paragraph").parent().get(0)
+                @photoParts.push p
+
             @initCb()
             return
 
@@ -57,11 +72,35 @@ define ["View", "signals"], (View, signals) ->
 
         resize: =>
 
-            elementCss = 
-                y: Model.windowH
-                force3D: true
+            baseLineNum = 3
+            basePhotoH = 670
 
-            TweenMax.set @element, elementCss
+            for photo in @photoParts
+                paragraphH = photo.paragraphEl.clientHeight
+                titleH = photo.titleEl.clientHeight
+                paragraphFontSize = parseInt $(photo.paragraphEl).css("font-size").replace(/[^-\d\.]/g, '')
+                paragraphLineNum = parseInt paragraphH / paragraphFontSize
+                moreLines = paragraphLineNum - baseLineNum
+                visualH = basePhotoH - (moreLines * paragraphFontSize)
+                visualY = (Model.windowH >> 1) - (visualH >> 1) - 40
+                titleY = (visualY >> 1) - (titleH >> 1)
+                bottomVisualPos = visualY + visualH
+                paragraphY = bottomVisualPos + ((Model.windowH - bottomVisualPos) >> 1) - (paragraphH >> 1)
+
+                photo.visualContainerEl.style.height = visualH + "px"
+                photo.visualContainerEl.style.top = visualY + "px"
+                photo.titleEl.style.top = titleY + "px"
+                photo.paragraphEl.style.top = paragraphY + "px"
+
+            partHolderCss =  
+                width: Model.windowW
+                height: Model.windowH
+
+            elementCss = 
+                top: Model.windowH
+
+            @partHolders.css partHolderCss
+            @element.css elementCss
 
             return
 

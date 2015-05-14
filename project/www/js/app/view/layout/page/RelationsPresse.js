@@ -18,6 +18,7 @@ define(["Page"], function(Page) {
       this.addAnimations = __bind(this.addAnimations, this);
       this.ready = __bind(this.ready, this);
       this.init = __bind(this.init, this);
+      scope.pathId = id;
       RelationsPresse.__super__.constructor.call(this, id, scope);
     }
 

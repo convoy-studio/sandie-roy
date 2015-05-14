@@ -13,6 +13,9 @@ define ["Page"], (Page) ->
             # scope.twitterIcon = Loader.getSvg "twitter-circle-icon"
             # scope.facebookIcon = Loader.getSvg "facebook-circle-icon"
             # scope.emailIcon = Loader.getSvg "email-circle-icon"
+
+            scope.pathId = id
+            
             super(id, scope)
 
         init: (cb)=>

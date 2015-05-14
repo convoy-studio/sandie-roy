@@ -1,3 +1,21 @@
 <div id="relations-presse" class="page">
-	{{hello}}
+
+
+	<div class="part-holder">
+		
+		<div class="centered-text-parent centered-holder">
+			<p class="centered-text-child top-paragraph bold">{{{agence-top-title}}}</p>
+		</div>
+
+	</div>
+
+
+	{{#photo-part}}
+	<div class="part-holder part-photo">
+		<div class="centered-holder"><div class="title bold">{{title}}</div></div>
+		<div class="visual-container" style="background-image: url(image/page/{{pathId}}/{{id}}.jpg);"></div>
+		<div class="centered-holder"><div class="paragraph">{{{paragraph}}}</div></div>
+	</div>
+	{{/photo-part}}
+
 </div>
