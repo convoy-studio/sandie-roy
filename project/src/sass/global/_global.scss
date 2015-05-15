@@ -18,7 +18,7 @@ html, body {
     cursor: default;
 
     // overall text params
-    font-size: 12px;
+    font-size: $globalFontSize;
     color: $black;
 
     position: absolute;

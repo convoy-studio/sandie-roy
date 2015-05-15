@@ -32,6 +32,12 @@ define([], function() {
           id: "top-container-partial",
           src: "partial/layout/top-container.html"
         }, {
+          id: "about-partial",
+          src: "partial/page/about.html"
+        }, {
+          id: "production-partial",
+          src: "partial/page/production.html"
+        }, {
           id: "relations-presse-partial",
           src: "partial/page/relations-presse.html"
         }, {

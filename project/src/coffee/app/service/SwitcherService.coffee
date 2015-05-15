@@ -1,5 +1,5 @@
 # Define start - generated content
-define ["RelationsPresse", "RelationsPubliques"], (RelationsPresse, RelationsPubliques) ->
+define ["RelationsPresse", "RelationsPubliques", "About", "Production"], (RelationsPresse, RelationsPubliques, About, Production) ->
 # Define end - generated content
 
     class SwitcherService

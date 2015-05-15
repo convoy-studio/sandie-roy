@@ -1,7 +1,33 @@
 {
     "global": {
         "header-title": "this is my header",
-        "footer-title": "this is my footer"
+        "footer-title": "this is my footer",
+        "fr": "fr",
+        "en": "en",
+        "menu": "menu",
+        "contact": "contact",
+        "social": {
+            "contact": {
+                "name": "contact",
+                "url": ""
+            },
+            "tumblr": {
+                "name": "tumblr",
+                "url": "http://google.com" 
+            },
+            "facebook": {
+                "name": "facebook",
+                "url": "http://google.com" 
+            },
+            "twitter": {
+                "name": "twitter",
+                "url": "http://google.com" 
+            },
+            "instagram": {
+                "name": "instagram",
+                "url": "http://google.com" 
+            }
+        }
     },
 
     "page": {
@@ -27,6 +53,46 @@
         "relations-publiques": {
             "title": "relations publiques",
             "agence-top-title": "L’agence Sandie Roy Paris assure grâce à son reseau media des retombées produit et institutionnelles nombreuses et qualitatives dans les médias print et les webzines. ",
+            "photo-part": [
+                {
+                    "id": "evenements",
+                    "title": "événements",
+                    "paragraph": "L’agence Sandie Roy Paris conçoit des événements sur mesure dédiés à la presse et aux influenceurs : cocktail parties, présentation presse, dîners presse, voyages de presse, inaugurations boutiques..."
+                },{
+                    "id": "partenariats",
+                    "title": "partenariats",
+                    "paragraph": "Grâce à son réseau mode et grand public, l’agence Sandie Roy Paris croise et mixe la mode à d’autres secteurs pour faire rayonner plus largement l’image et la valeur des marques."
+                },{
+                    "id": "edition",
+                    "title": "édition",
+                    "paragraph": "L’agence Sandie Roy Paris propose à ses clients ses services de conseil, conception et production de lookbooks, catalogues et campagnes de publicité."
+                }
+            ]
+        },
+
+        "production": {
+            "title": "production",
+            "agence-top-title": "Production",
+            "photo-part": [
+                {
+                    "id": "evenements",
+                    "title": "événements",
+                    "paragraph": "L’agence Sandie Roy Paris conçoit des événements sur mesure dédiés à la presse et aux influenceurs : cocktail parties, présentation presse, dîners presse, voyages de presse, inaugurations boutiques..."
+                },{
+                    "id": "partenariats",
+                    "title": "partenariats",
+                    "paragraph": "Grâce à son réseau mode et grand public, l’agence Sandie Roy Paris croise et mixe la mode à d’autres secteurs pour faire rayonner plus largement l’image et la valeur des marques."
+                },{
+                    "id": "edition",
+                    "title": "édition",
+                    "paragraph": "L’agence Sandie Roy Paris propose à ses clients ses services de conseil, conception et production de lookbooks, catalogues et campagnes de publicité."
+                }
+            ]
+        },
+
+        "about": {
+            "title": "about",
+            "agence-top-title": "About",
             "photo-part": [
                 {
                     "id": "evenements",

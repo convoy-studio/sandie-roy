@@ -10,6 +10,14 @@
 
         "relations-publiques": {
             "files": []
+        },
+
+        "production": {
+            "files": []
+        },
+
+        "about": {
+            "files": []
         }
         
     }

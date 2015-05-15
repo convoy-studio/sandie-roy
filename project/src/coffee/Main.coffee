@@ -52,6 +52,8 @@ require.config(
         TimelineMenu: "app/view/layout/module/TimelineMenu"
         TopContainer: "app/view/layout/module/TopContainer"
         VideoLayer: "app/view/layout/module/VideoLayer"
+        About: "app/view/layout/page/About"
+        Production: "app/view/layout/page/Production"
         RelationsPresse: "app/view/layout/page/RelationsPresse"
         RelationsPubliques: "app/view/layout/page/RelationsPubliques"
 

@@ -74,6 +74,7 @@ define ["View", "signals"], (View, signals) ->
 
             baseLineNum = 3
             basePhotoH = 670
+            maxVisualH = 1020
 
             for photo in @photoParts
                 paragraphH = photo.paragraphEl.clientHeight
@@ -82,6 +83,7 @@ define ["View", "signals"], (View, signals) ->
                 paragraphLineNum = parseInt paragraphH / paragraphFontSize
                 moreLines = paragraphLineNum - baseLineNum
                 visualH = basePhotoH - (moreLines * paragraphFontSize)
+                visualH = (Model.windowH / maxVisualH) * visualH
                 visualY = (Model.windowH >> 1) - (visualH >> 1) - 40
                 titleY = (visualY >> 1) - (titleH >> 1)
                 bottomVisualPos = visualY + visualH

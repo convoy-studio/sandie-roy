@@ -85,6 +85,8 @@ p.centered-text-child {
     text-align: center; 
 }
 .part-holder {
+    $visualW: 940px;
+
     position: relative;
     background-color: $white;
 
@@ -103,23 +105,46 @@ p.centered-text-child {
         line-height: 30px;
     }
     .visual-container {
-        width: 940px;
+        width: $visualW;
         height: 670px;
         @include background-size(cover);
         background-position: 50% 50%;
+        position: relative;
     }
 
+    $visualMarginLeft: -$gridPartW - ($gridMargin / 2);
     &.left {
-        .visual-container {
-            left: 0;
+        .visual-parent {
+            margin-left: $visualMarginLeft * 3;
         }
     }
     &.right {
-        .visual-container {
-            right: 0;
+        .visual-parent {
+            margin-left: $visualMarginLeft;
         }
         .title {
             margin-left: $gridPartW + $gridMargin;
+        }
+    }
+
+    @include breakpoint(max-width $min-middle-width) {
+        &.left , &.right {
+            .centered-holder {
+                left: 0; 
+                margin-left: 0;
+                width: 100%;
+            }
+            .visual-parent {
+                width: $min-middle-width;
+                position: absolute;
+                left: 50%;
+                margin-left: -$min-middle-width/2;
+            }
+            .title, .paragraph {
+                margin-left: 0px;
+                padding: 0 40px;
+                width: 90%;
+            }
         }
     }
 }

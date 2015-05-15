@@ -1,4 +1,58 @@
 <header id="header">
 	<div class="logo">{{{logo}}}</div>
+
+	<div class="menu-btn btn">
+		
+		<div class="burger-container">
+			<div class="line l-0"></div>
+			<div class="line l-1"></div>
+			<div class="line l-2"></div>
+		</div>
+
+		<div class="menu-txt bold">{{menuBtnTxt}}</div>
+
+	</div>
+
+	<div class="lang-container">
+		
+		<div class="fr-lang bold btn">{{fr}}</div>
+		<div class="middle-line">–</div>
+		<div class="en-lang bold btn">{{en}}</div>
+
+	</div>
+
+	<div class="menu-container">
+		
+		<ul class="link-menu bold btn">
+			
+			{{#menu}}
+			<li>
+				<a href="#/{{id}}">
+					<div class="name">{{name}}</div>
+					{{^isLast}}
+					<div class="separator"></div>
+					{{/isLast}}
+				</a>
+			</li>
+			{{/menu}}
+
+		</ul>
+
+		<ul class="share-menu normal btn">
+			
+			{{#share}}
+			<li>
+				<a target="_blank" href="{{url}}">
+					<div class="name">{{name}}</div>
+				</a>
+			</li>
+			{{/share}}
+
+		</ul>
+
+		<div class="background"></div>
+
+	</div>
+
 </header>
 

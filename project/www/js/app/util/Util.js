@@ -35,6 +35,7 @@ define([], function() {
       this.ConvertToSlug = __bind(this.ConvertToSlug, this);
       this.ToggleVisibility = __bind(this.ToggleVisibility, this);
       this.RadiansToDegrees = __bind(this.RadiansToDegrees, this);
+      this.TranformArrayFromMiddleAndOut = __bind(this.TranformArrayFromMiddleAndOut, this);
       this.DegreesToRadians = __bind(this.DegreesToRadians, this);
       this.JqueryObjToString = __bind(this.JqueryObjToString, this);
       this.RenderPartial = __bind(this.RenderPartial, this);
@@ -55,6 +56,20 @@ define([], function() {
 
     Util.prototype.DegreesToRadians = function(degrees) {
       return degrees * (Math.PI / 180);
+    };
+
+    Util.prototype.TranformArrayFromMiddleAndOut = function(array) {
+      var i, j, newArray;
+      newArray = [];
+      i = Math.ceil(array.length / 2);
+      j = i - 1;
+      while (j >= 0) {
+        newArray.push(array[j--]);
+        if (i < array.length) {
+          newArray.push(array[i++]);
+        }
+      }
+      return newArray;
     };
 
     Util.prototype.RadiansToDegrees = function(radians) {

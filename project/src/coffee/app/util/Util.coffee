@@ -18,6 +18,15 @@ define [], () ->
         DegreesToRadians: (degrees) =>
             return degrees * (Math.PI / 180)
 
+        TranformArrayFromMiddleAndOut: (array)=>
+            newArray = []
+            i = Math.ceil(array.length/2)
+            j = i - 1
+            while j >= 0
+                newArray.push(array[j--])
+                if i < array.length then newArray.push(array[i++])
+            return newArray
+
         RadiansToDegrees: (radians) =>
             return radians * (180 / Math.PI)
 

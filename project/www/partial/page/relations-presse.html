@@ -12,9 +12,15 @@
 
 	{{#photo-part}}
 	<div class="part-holder part-photo">
-		<div class="centered-holder"><div class="title bold">{{title}}</div></div>
-		<div class="visual-container" style="background-image: url(image/page/{{pathId}}/{{id}}.jpg);"></div>
-		<div class="centered-holder"><div class="paragraph">{{{paragraph}}}</div></div>
+		<div class="centered-holder">
+			<div class="title bold">{{title}}</div>
+		</div>
+		<div class="centered-holder visual-parent">
+			<div class="visual-container" style="background-image: url(image/page/{{pathId}}/{{id}}.jpg);"></div>
+		</div>
+		<div class="centered-holder">
+			<div class="paragraph">{{{paragraph}}}</div>
+		</div>
 	</div>
 	{{/photo-part}}
 

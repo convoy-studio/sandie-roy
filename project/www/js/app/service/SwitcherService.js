@@ -1,6 +1,6 @@
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-define(["RelationsPresse", "RelationsPubliques"], function(RelationsPresse, RelationsPubliques) {
+define(["RelationsPresse", "RelationsPubliques", "About", "Production"], function(RelationsPresse, RelationsPubliques, About, Production) {
   var SwitcherService;
   SwitcherService = (function() {
     function SwitcherService() {
