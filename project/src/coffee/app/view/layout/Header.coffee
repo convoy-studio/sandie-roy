@@ -37,6 +37,10 @@ define ["View"], (View) ->
             @menuIsOpened = false
 
             Signal.onResize.add(@onResize)
+            Signal.onPartPageTransitionInCompleted.add @onPartPageTransitionInCompleted
+            Signal.onPartPageTransitionOut.add @onPartPageTransitionOut
+            Signal.onRouteChanged.add @onRouteChanged
+            Signal.onHomePage.add @onHomePage
 
             TweenMax.delayedCall 0.1, @ready
 
@@ -62,10 +66,6 @@ define ["View"], (View) ->
             delay = 0.1
             @menuTl = new TimelineMax()
             @menuTl.from $background, 1, { y:-backgroundH, force3D:true, ease:Expo.easeInOut }, 0
-            @menuTl.to $menuBtn, 1, { color: "#000", force3D:true, ease:Power2.easeInOut }, delay + 0
-            @menuTl.to $lines, 1, { backgroundColor: "#000", force3D:true, ease:Power2.easeInOut }, delay + 0
-            @menuTl.to $logoPath, 1, { fill: "#000", force3D:true, ease:Power2.easeInOut }, delay + 0
-            @menuTl.to $langContainer, 1, { color: "#000", force3D:true, ease:Power2.easeInOut }, delay + 0
             @menuTl.staggerFrom $linksName, 1, { y:-20, opacity:0, rotationX:-90, transformOrigin: "50% 50% -30px", force3D:true, ease:Power2.easeInOut }, 0.02, delay + 0.1
             @menuTl.staggerFrom $linksSeparator, 1, { y:0, rotationX:-90, transformOrigin: "50% 50% -30px", force3D:true, ease:Power2.easeInOut }, 0.02, delay + 0.1
             @menuTl.staggerFrom $sharerName, 1, { y:-20, rotationX:-90, transformOrigin: "50% 50% -30px", opacity:0, force3D:true, ease:Power2.easeInOut }, 0.02, delay + 0.1
@@ -80,30 +80,63 @@ define ["View"], (View) ->
             @burgerTl.to $menuTxt, 0.8, { y:-20, opacity:0, rotationX:-90, transformOrigin: "50% 50% -30px", force3D:true, ease:Expo.easeInOut }, burgerDelay + 0
             @burgerTl.pause(0)
 
+            @stateTl = new TimelineMax()
+            @stateTl.to $menuBtn, 1, { color: "#000", force3D:true, ease:Power2.easeInOut }, 0
+            @stateTl.to $lines, 1, { backgroundColor: "#000", force3D:true, ease:Power2.easeInOut }, 0
+            @stateTl.to $logoPath, 1, { fill: "#000", force3D:true, ease:Power2.easeInOut }, 0
+            @stateTl.to $langContainer, 1, { color: "#000", force3D:true, ease:Power2.easeInOut }, 0
+            @stateTl.pause(0)
+
             $menuBtn.on "click", @onMenuClicked
 
             @onResize()
             return
 
+        onPartPageTransitionInCompleted: =>
+            @stateTl.play()
+            return
+
+        onPartPageTransitionOut: =>
+            return
+
+        onRouteChanged: =>
+            if @menuIsOpened
+                @closeMenu()
+                @menuIsOpened = false
+            return
+
+        onHomePage: =>
+            if @menuIsOpened
+                @closeMenu()
+                @menuIsOpened = false
+            else
+                if @stateTl? then @stateTl.timeScale(1.6).reverse()
+            return
+
         onMenuClicked: (e)=>
             e.preventDefault()
+            @toggleMenu()
+            return
 
+        toggleMenu: =>
             if @menuIsOpened
                 @closeMenu()
                 @menuIsOpened = false
             else
                 @openMenu()
                 @menuIsOpened = true
-
             return
 
         openMenu: =>
             @menuTl.timeScale(1.2).play()
+            @stateTl.timeScale(1.2).play()
             @burgerTl.timeScale(1).play()
             return
 
         closeMenu: =>
             @menuTl.timeScale(1.6).reverse()
+            console.log Model.newHash, "close menu"
+            if Model.newHash is "home" then @stateTl.timeScale(1.6).reverse()
             @burgerTl.timeScale(1.4).reverse()
             return
 

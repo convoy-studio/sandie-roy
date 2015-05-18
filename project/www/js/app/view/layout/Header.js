@@ -12,7 +12,12 @@ define(["View"], function(View) {
       this.onResize = __bind(this.onResize, this);
       this.closeMenu = __bind(this.closeMenu, this);
       this.openMenu = __bind(this.openMenu, this);
+      this.toggleMenu = __bind(this.toggleMenu, this);
       this.onMenuClicked = __bind(this.onMenuClicked, this);
+      this.onHomePage = __bind(this.onHomePage, this);
+      this.onRouteChanged = __bind(this.onRouteChanged, this);
+      this.onPartPageTransitionOut = __bind(this.onPartPageTransitionOut, this);
+      this.onPartPageTransitionInCompleted = __bind(this.onPartPageTransitionInCompleted, this);
       this.ready = __bind(this.ready, this);
       this.init = __bind(this.init, this);
       var k, l, menu, page, share, v, _i, _len, _ref, _ref1;
@@ -47,6 +52,10 @@ define(["View"], function(View) {
     Header.prototype.init = function() {
       this.menuIsOpened = false;
       Signal.onResize.add(this.onResize);
+      Signal.onPartPageTransitionInCompleted.add(this.onPartPageTransitionInCompleted);
+      Signal.onPartPageTransitionOut.add(this.onPartPageTransitionOut);
+      Signal.onRouteChanged.add(this.onRouteChanged);
+      Signal.onHomePage.add(this.onHomePage);
       TweenMax.delayedCall(0.1, this.ready);
     };
 
@@ -72,26 +81,6 @@ define(["View"], function(View) {
         force3D: true,
         ease: Expo.easeInOut
       }, 0);
-      this.menuTl.to($menuBtn, 1, {
-        color: "#000",
-        force3D: true,
-        ease: Power2.easeInOut
-      }, delay + 0);
-      this.menuTl.to($lines, 1, {
-        backgroundColor: "#000",
-        force3D: true,
-        ease: Power2.easeInOut
-      }, delay + 0);
-      this.menuTl.to($logoPath, 1, {
-        fill: "#000",
-        force3D: true,
-        ease: Power2.easeInOut
-      }, delay + 0);
-      this.menuTl.to($langContainer, 1, {
-        color: "#000",
-        force3D: true,
-        ease: Power2.easeInOut
-      }, delay + 0);
       this.menuTl.staggerFrom($linksName, 1, {
         y: -20,
         opacity: 0,
@@ -152,12 +141,62 @@ define(["View"], function(View) {
         ease: Expo.easeInOut
       }, burgerDelay + 0);
       this.burgerTl.pause(0);
+      this.stateTl = new TimelineMax();
+      this.stateTl.to($menuBtn, 1, {
+        color: "#000",
+        force3D: true,
+        ease: Power2.easeInOut
+      }, 0);
+      this.stateTl.to($lines, 1, {
+        backgroundColor: "#000",
+        force3D: true,
+        ease: Power2.easeInOut
+      }, 0);
+      this.stateTl.to($logoPath, 1, {
+        fill: "#000",
+        force3D: true,
+        ease: Power2.easeInOut
+      }, 0);
+      this.stateTl.to($langContainer, 1, {
+        color: "#000",
+        force3D: true,
+        ease: Power2.easeInOut
+      }, 0);
+      this.stateTl.pause(0);
       $menuBtn.on("click", this.onMenuClicked);
       this.onResize();
     };
 
+    Header.prototype.onPartPageTransitionInCompleted = function() {
+      this.stateTl.play();
+    };
+
+    Header.prototype.onPartPageTransitionOut = function() {};
+
+    Header.prototype.onRouteChanged = function() {
+      if (this.menuIsOpened) {
+        this.closeMenu();
+        this.menuIsOpened = false;
+      }
+    };
+
+    Header.prototype.onHomePage = function() {
+      if (this.menuIsOpened) {
+        this.closeMenu();
+        this.menuIsOpened = false;
+      } else {
+        if (this.stateTl != null) {
+          this.stateTl.timeScale(1.6).reverse();
+        }
+      }
+    };
+
     Header.prototype.onMenuClicked = function(e) {
       e.preventDefault();
+      this.toggleMenu();
+    };
+
+    Header.prototype.toggleMenu = function() {
       if (this.menuIsOpened) {
         this.closeMenu();
         this.menuIsOpened = false;
@@ -169,11 +208,16 @@ define(["View"], function(View) {
 
     Header.prototype.openMenu = function() {
       this.menuTl.timeScale(1.2).play();
+      this.stateTl.timeScale(1.2).play();
       this.burgerTl.timeScale(1).play();
     };
 
     Header.prototype.closeMenu = function() {
       this.menuTl.timeScale(1.6).reverse();
+      console.log(Model.newHash, "close menu");
+      if (Model.newHash === "home") {
+        this.stateTl.timeScale(1.6).reverse();
+      }
       this.burgerTl.timeScale(1.4).reverse();
     };
 

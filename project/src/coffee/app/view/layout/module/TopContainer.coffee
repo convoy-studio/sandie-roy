@@ -16,7 +16,6 @@ define ["View", "TimelineMenu"], (View, TimelineMenu) ->
 
             @timelineMenu = new TimelineMenu("timeline-menu")
             @element.append @timelineMenu.element
-            @timelineMenu.init()
 
             @previews = []
             $previewContainers = @element.find(".preview-container")
@@ -25,6 +24,9 @@ define ["View", "TimelineMenu"], (View, TimelineMenu) ->
                 p.el = preview
                 p.titleEl = $(preview).find(".title").get(0)
                 @previews.push p
+
+            @timelineMenu.previews = @previews
+            @timelineMenu.init()
 
             @onResize()
             return

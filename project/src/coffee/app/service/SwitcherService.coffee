@@ -95,6 +95,7 @@ define ["RelationsPresse", "RelationsPubliques", "About", "Production"], (Relati
             return view
 
         destroyViews: =>
+            console.log @hist, @hist.length
             destroyArray = @hist.splice(0, @hist.length-1)
             for i in [0..destroyArray.length-1]
                 view = destroyArray[i]

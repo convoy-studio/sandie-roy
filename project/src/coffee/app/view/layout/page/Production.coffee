@@ -1,8 +1,8 @@
-define ["Page"], (Page) ->
+define ["PartsPage"], (PartsPage) ->
 
     "use strict"
     
-    class Production extends Page
+    class Production extends PartsPage
 
         constructor: (id, scope) ->
 

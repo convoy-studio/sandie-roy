@@ -6,6 +6,7 @@ html, body {
     height: 100%;
     font-family: "medium";
     overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 #app-container  {
@@ -23,7 +24,7 @@ html, body {
 
     position: absolute;
     width: 100%;
-    height: 2000px;
+    height: 100%;
 }
 
 #main-container {
@@ -35,8 +36,14 @@ html, body {
 
 .page {
     width: 100%;
-    height: 100%;
     z-index: 4;
     position: absolute;
     background-color: $white;
+}
+
+.parts-page {
+    position: absolute;
+    .part-holder {
+        // position: absolute;
+    }
 }

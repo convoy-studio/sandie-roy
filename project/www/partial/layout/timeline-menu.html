@@ -3,7 +3,17 @@
 	<ul>
 		{{#previews}}
 		<li class="bold btn" id="{{id}}">
-			{{{scope.title}}}
+
+			<div class="menu-titles-holder">
+				<div class="title-top menu-title">{{{scope.title}}}</div>
+				<div class="title-bottom menu-title">{{{scope.title}}}</div>
+			</div>
+
+			<div class="lines-holder relative">
+				<div class="line-top line"></div>
+				<div class="line-bottom line"></div>
+			</div>
+
 		</li>
 		{{/previews}}
 	</ul>

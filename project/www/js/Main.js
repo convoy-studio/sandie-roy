@@ -44,6 +44,7 @@ require.config({
     View: "app/view/View",
     Footer: "app/view/layout/Footer",
     Header: "app/view/layout/Header",
+    PartsPage: "app/view/layout/PartsPage",
     TimelineMenu: "app/view/layout/module/TimelineMenu",
     TopContainer: "app/view/layout/module/TopContainer",
     VideoLayer: "app/view/layout/module/VideoLayer",

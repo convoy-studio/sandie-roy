@@ -26,7 +26,6 @@ define(["View", "TimelineMenu"], function(View, TimelineMenu) {
       var $previewContainers, p, preview, _i, _len;
       this.timelineMenu = new TimelineMenu("timeline-menu");
       this.element.append(this.timelineMenu.element);
-      this.timelineMenu.init();
       this.previews = [];
       $previewContainers = this.element.find(".preview-container");
       for (_i = 0, _len = $previewContainers.length; _i < _len; _i++) {
@@ -36,6 +35,8 @@ define(["View", "TimelineMenu"], function(View, TimelineMenu) {
         p.titleEl = $(preview).find(".title").get(0);
         this.previews.push(p);
       }
+      this.timelineMenu.previews = this.previews;
+      this.timelineMenu.init();
       this.onResize();
     };
 

@@ -21,6 +21,8 @@ define ["View", "signals"], (View, signals) ->
             @transitionInComplete = new signals.Signal()
             @transitionOutComplete = new signals.Signal()
 
+            Signal.onHomePage.add @onHomePage
+
             TweenMax.delayedCall 0, @ready
             return
 
@@ -67,46 +69,23 @@ define ["View", "signals"], (View, signals) ->
             return
 
         transitionOutCompleted: =>
+            # console.log "transitionOutCompleted", Model.newHash
             @transitionOutComplete.dispatch()
             return
 
+        onHomePage: =>
+            bottomContainerH = 0
+            Model.parentEl.css
+                height: bottomContainerH
+
+            @transitionOut()
+            return
+
         resize: =>
-
-            baseLineNum = 3
-            basePhotoH = 670
-            maxVisualH = 1020
-
-            for photo in @photoParts
-                paragraphH = photo.paragraphEl.clientHeight
-                titleH = photo.titleEl.clientHeight
-                paragraphFontSize = parseInt $(photo.paragraphEl).css("font-size").replace(/[^-\d\.]/g, '')
-                paragraphLineNum = parseInt paragraphH / paragraphFontSize
-                moreLines = paragraphLineNum - baseLineNum
-                visualH = basePhotoH - (moreLines * paragraphFontSize)
-                visualH = (Model.windowH / maxVisualH) * visualH
-                visualY = (Model.windowH >> 1) - (visualH >> 1) - 40
-                titleY = (visualY >> 1) - (titleH >> 1)
-                bottomVisualPos = visualY + visualH
-                paragraphY = bottomVisualPos + ((Model.windowH - bottomVisualPos) >> 1) - (paragraphH >> 1)
-
-                photo.visualContainerEl.style.height = visualH + "px"
-                photo.visualContainerEl.style.top = visualY + "px"
-                photo.titleEl.style.top = titleY + "px"
-                photo.paragraphEl.style.top = paragraphY + "px"
-
-            partHolderCss =  
-                width: Model.windowW
-                height: Model.windowH
-
-            elementCss = 
-                top: Model.windowH
-
-            @partHolders.css partHolderCss
-            @element.css elementCss
-
             return
 
         destroy: =>
+            console.log "destroy"
             super()
             Signal.onResize.remove(@resize)
             @transitionInComplete.removeAll()

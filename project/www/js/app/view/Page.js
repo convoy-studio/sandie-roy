@@ -19,6 +19,7 @@ define(["View", "signals"], function(View, signals) {
     function Page(id, scope) {
       this.destroy = __bind(this.destroy, this);
       this.resize = __bind(this.resize, this);
+      this.onHomePage = __bind(this.onHomePage, this);
       this.transitionOutCompleted = __bind(this.transitionOutCompleted, this);
       this.transitionInCompleted = __bind(this.transitionInCompleted, this);
       this.continueToTransitionOut = __bind(this.continueToTransitionOut, this);
@@ -39,6 +40,7 @@ define(["View", "signals"], function(View, signals) {
       });
       this.transitionInComplete = new signals.Signal();
       this.transitionOutComplete = new signals.Signal();
+      Signal.onHomePage.add(this.onHomePage);
       TweenMax.delayedCall(0, this.ready);
     };
 
@@ -93,42 +95,19 @@ define(["View", "signals"], function(View, signals) {
       this.transitionOutComplete.dispatch();
     };
 
-    Page.prototype.resize = function() {
-      var baseLineNum, basePhotoH, bottomVisualPos, elementCss, maxVisualH, moreLines, paragraphFontSize, paragraphH, paragraphLineNum, paragraphY, partHolderCss, photo, titleH, titleY, visualH, visualY, _i, _len, _ref;
-      baseLineNum = 3;
-      basePhotoH = 670;
-      maxVisualH = 1020;
-      _ref = this.photoParts;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        photo = _ref[_i];
-        paragraphH = photo.paragraphEl.clientHeight;
-        titleH = photo.titleEl.clientHeight;
-        paragraphFontSize = parseInt($(photo.paragraphEl).css("font-size").replace(/[^-\d\.]/g, ''));
-        paragraphLineNum = parseInt(paragraphH / paragraphFontSize);
-        moreLines = paragraphLineNum - baseLineNum;
-        visualH = basePhotoH - (moreLines * paragraphFontSize);
-        visualH = (Model.windowH / maxVisualH) * visualH;
-        visualY = (Model.windowH >> 1) - (visualH >> 1) - 40;
-        titleY = (visualY >> 1) - (titleH >> 1);
-        bottomVisualPos = visualY + visualH;
-        paragraphY = bottomVisualPos + ((Model.windowH - bottomVisualPos) >> 1) - (paragraphH >> 1);
-        photo.visualContainerEl.style.height = visualH + "px";
-        photo.visualContainerEl.style.top = visualY + "px";
-        photo.titleEl.style.top = titleY + "px";
-        photo.paragraphEl.style.top = paragraphY + "px";
-      }
-      partHolderCss = {
-        width: Model.windowW,
-        height: Model.windowH
-      };
-      elementCss = {
-        top: Model.windowH
-      };
-      this.partHolders.css(partHolderCss);
-      this.element.css(elementCss);
+    Page.prototype.onHomePage = function() {
+      var bottomContainerH;
+      bottomContainerH = 0;
+      Model.parentEl.css({
+        height: bottomContainerH
+      });
+      this.transitionOut();
     };
 
+    Page.prototype.resize = function() {};
+
     Page.prototype.destroy = function() {
+      console.log("destroy");
       Page.__super__.destroy.call(this);
       Signal.onResize.remove(this.resize);
       this.transitionInComplete.removeAll();

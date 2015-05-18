@@ -1,8 +1,8 @@
-define ["Page"], (Page) ->
+define ["PartsPage"], (PartsPage) ->
 
     "use strict"
     
-    class RelationsPresse extends Page
+    class RelationsPresse extends PartsPage
 
         constructor: (id, scope) ->
 

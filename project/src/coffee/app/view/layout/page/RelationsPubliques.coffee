@@ -1,6 +1,6 @@
-define ["Page"], (Page) ->
+define ["PartsPage"], (PartsPage) ->
 
-    class RelationsPubliques extends Page
+    class RelationsPubliques extends PartsPage
 
         constructor: (id, scope) ->
             # scope.logoSimple = Loader.getSvg "logo-simple"

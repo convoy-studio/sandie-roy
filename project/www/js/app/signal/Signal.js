@@ -6,31 +6,13 @@ define(["signals"], function(signals) {
 
     Signal.prototype.onRouteChanged = new signals.Signal();
 
-    Signal.prototype.cameraStateChanged = new signals.Signal();
+    Signal.prototype.onPartPageTransitionIn = new signals.Signal();
 
-    Signal.prototype.colorStateChanged = new signals.Signal();
+    Signal.prototype.onPartPageTransitionInCompleted = new signals.Signal();
 
-    Signal.prototype.timelineStateChanged = new signals.Signal();
+    Signal.prototype.onPartPageTransitionOut = new signals.Signal();
 
-    Signal.prototype.pauseContent = new signals.Signal();
-
-    Signal.prototype.thumbChoosed = new signals.Signal();
-
-    Signal.prototype.captureUploadCompleted = new signals.Signal();
-
-    Signal.prototype.captureStarted = new signals.Signal();
-
-    Signal.prototype.captureDataEnded = new signals.Signal();
-
-    Signal.prototype.resetExperience = new signals.Signal();
-
-    Signal.prototype.changeHeaderState = new signals.Signal();
-
-    Signal.prototype.continuePredefinedEditor = new signals.Signal();
-
-    Signal.prototype.startNewXPSession = new signals.Signal();
-
-    Signal.prototype.instruments = {};
+    Signal.prototype.onHomePage = new signals.Signal();
 
     function Signal() {}
 

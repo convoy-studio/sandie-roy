@@ -56,6 +56,12 @@ define(["hasher"], function(hasher) {
       var newHashFounded, r, _i, _len, _ref;
       Model.gallery = void 0;
       newHashFounded = false;
+      if (newHash === "home") {
+        Model.newHash = "home";
+        newHashFounded = true;
+        Signal.onHomePage.dispatch();
+        return;
+      }
       _ref = Model.routing;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         r = _ref[_i];

@@ -36,6 +36,13 @@ define ["hasher"], (hasher) ->
             Model.gallery = undefined
             newHashFounded = false
 
+            # console.log "newHash =", Model.newHash
+            if newHash is "home"
+                Model.newHash = "home"
+                newHashFounded = true
+                Signal.onHomePage.dispatch()
+                return
+            
             for r in Model.routing
                 if newHash is r.route
                     Model.newHash = r.route
@@ -48,7 +55,6 @@ define ["hasher"], (hasher) ->
             return
 
         pageChanged: =>
-            # console.log "newHash =", Model.newHash
             Signal.onRouteChanged.dispatch()
             return
 

@@ -1,8 +1,9 @@
 #top-static-container {
 
-    @extend .absolute;
     @extend .full;
     background-color: $white;
+    z-index: 5;
+    position: fixed;
 
     .pages-preview-container {
         @extend .full;
@@ -36,6 +37,29 @@
         }
         li:last-child {
             margin-right: 0px;   
+        }
+
+        .line {
+            width: 100%;
+            height: 3px;
+            background-color: $white;
+            position: absolute;
+            top: 2px;
+        }
+
+        .menu-titles-holder {
+            position: relative;
+            > div {
+                @include nowrap;
+            }
+        }
+
+        .title-bottom {
+            @include opacity(0.4);
+        }
+
+        .line-bottom {
+            @include opacity(0.4);   
         }
     }
 }
