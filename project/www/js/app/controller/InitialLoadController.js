@@ -29,11 +29,11 @@ define([], function() {
           id: "timeline-menu-partial",
           src: "partial/layout/timeline-menu.html"
         }, {
-          id: "top-container-partial",
-          src: "partial/layout/top-container.html"
-        }, {
           id: "about-partial",
           src: "partial/page/about.html"
+        }, {
+          id: "home-partial",
+          src: "partial/page/home.html"
         }, {
           id: "production-partial",
           src: "partial/page/production.html"

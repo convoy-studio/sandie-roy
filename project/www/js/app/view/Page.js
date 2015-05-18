@@ -19,7 +19,6 @@ define(["View", "signals"], function(View, signals) {
     function Page(id, scope) {
       this.destroy = __bind(this.destroy, this);
       this.resize = __bind(this.resize, this);
-      this.onHomePage = __bind(this.onHomePage, this);
       this.transitionOutCompleted = __bind(this.transitionOutCompleted, this);
       this.transitionInCompleted = __bind(this.transitionInCompleted, this);
       this.continueToTransitionOut = __bind(this.continueToTransitionOut, this);
@@ -40,7 +39,6 @@ define(["View", "signals"], function(View, signals) {
       });
       this.transitionInComplete = new signals.Signal();
       this.transitionOutComplete = new signals.Signal();
-      Signal.onHomePage.add(this.onHomePage);
       TweenMax.delayedCall(0, this.ready);
     };
 
@@ -93,15 +91,6 @@ define(["View", "signals"], function(View, signals) {
 
     Page.prototype.transitionOutCompleted = function() {
       this.transitionOutComplete.dispatch();
-    };
-
-    Page.prototype.onHomePage = function() {
-      var bottomContainerH;
-      bottomContainerH = 0;
-      Model.parentEl.css({
-        height: bottomContainerH
-      });
-      this.transitionOut();
     };
 
     Page.prototype.resize = function() {};

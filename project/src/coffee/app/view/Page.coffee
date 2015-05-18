@@ -21,8 +21,6 @@ define ["View", "signals"], (View, signals) ->
             @transitionInComplete = new signals.Signal()
             @transitionOutComplete = new signals.Signal()
 
-            Signal.onHomePage.add @onHomePage
-
             TweenMax.delayedCall 0, @ready
             return
 
@@ -71,14 +69,6 @@ define ["View", "signals"], (View, signals) ->
         transitionOutCompleted: =>
             # console.log "transitionOutCompleted", Model.newHash
             @transitionOutComplete.dispatch()
-            return
-
-        onHomePage: =>
-            bottomContainerH = 0
-            Model.parentEl.css
-                height: bottomContainerH
-
-            @transitionOut()
             return
 
         resize: =>

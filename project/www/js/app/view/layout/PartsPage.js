@@ -11,10 +11,6 @@ define(["Page", "signals"], function(Page, signals) {
     function PartsPage(id, scope) {
       this.destroy = __bind(this.destroy, this);
       this.resize = __bind(this.resize, this);
-      this.transitionOutCompleted = __bind(this.transitionOutCompleted, this);
-      this.transitionOut = __bind(this.transitionOut, this);
-      this.transitionInCompleted = __bind(this.transitionInCompleted, this);
-      this.transitionIn = __bind(this.transitionIn, this);
       this.addAnimations = __bind(this.addAnimations, this);
       this.ready = __bind(this.ready, this);
       this.init = __bind(this.init, this);
@@ -38,32 +34,6 @@ define(["Page", "signals"], function(Page, signals) {
         ease: Expo.easeInOut
       }, 0);
       this.tl.pause(0);
-    };
-
-    PartsPage.prototype.transitionIn = function() {
-      this.element.css({
-        "z-index": 6
-      });
-      this.tl.timeScale(1.2);
-      this.tl.tweenTo(this.tl.duration());
-      Signal.onPartPageTransitionIn.dispatch();
-    };
-
-    PartsPage.prototype.transitionInCompleted = function() {
-      PartsPage.__super__.transitionInCompleted.call(this);
-      Signal.onPartPageTransitionInCompleted.dispatch();
-    };
-
-    PartsPage.prototype.transitionOut = function() {
-      Signal.onPartPageTransitionOut.dispatch();
-      PartsPage.__super__.transitionOut.call(this);
-    };
-
-    PartsPage.prototype.transitionOutCompleted = function() {
-      PartsPage.__super__.transitionOutCompleted.call(this);
-      this.element.css({
-        "z-index": 4
-      });
     };
 
     PartsPage.prototype.resize = function() {

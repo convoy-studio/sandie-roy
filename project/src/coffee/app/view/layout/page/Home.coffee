@@ -1,18 +1,13 @@
-define ["View", "TimelineMenu"], (View, TimelineMenu) ->
+define ["Page", "TimelineMenu"], (Page, TimelineMenu) ->
 
-    class TopContainer extends View
+    class Home extends Page
 
         constructor: (id, scope) ->
             scope = {}
-            scope.previews = Model.routing
+            scope.previews = Model.routing.slice(0, Model.routing.length-1)
             super(id, scope)
 
-        init: =>
-            Signal.onResize.add @onResize, @
-            TweenMax.delayedCall 0.1, @onReady
-            return
-
-        onReady: =>
+        ready: =>
 
             @timelineMenu = new TimelineMenu("timeline-menu")
             @element.append @timelineMenu.element
@@ -28,11 +23,11 @@ define ["View", "TimelineMenu"], (View, TimelineMenu) ->
             @timelineMenu.previews = @previews
             @timelineMenu.init()
 
-            @onResize()
+            super()
+
             return
 
-        onResize: =>
-
+        resize: =>
             elementCss = 
                 width: Model.windowW
                 height: Model.windowH
@@ -48,7 +43,8 @@ define ["View", "TimelineMenu"], (View, TimelineMenu) ->
             return
 
         destroy: =>
+            @timelineMenu.destroy()
             super()
             return
 
-    return TopContainer
+    return Home

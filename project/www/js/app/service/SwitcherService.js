@@ -1,6 +1,6 @@
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-define(["RelationsPresse", "RelationsPubliques", "About", "Production"], function(RelationsPresse, RelationsPubliques, About, Production) {
+define(["RelationsPresse", "RelationsPubliques", "About", "Production", "Home"], function(RelationsPresse, RelationsPubliques, About, Production, Home) {
   var SwitcherService;
   SwitcherService = (function() {
     function SwitcherService() {
@@ -115,7 +115,6 @@ define(["RelationsPresse", "RelationsPubliques", "About", "Production"], functio
 
     SwitcherService.prototype.destroyViews = function() {
       var destroyArray, i, view, _i, _ref;
-      console.log(this.hist, this.hist.length);
       destroyArray = this.hist.splice(0, this.hist.length - 1);
       for (i = _i = 0, _ref = destroyArray.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
         view = destroyArray[i];

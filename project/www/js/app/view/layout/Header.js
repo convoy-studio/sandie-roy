@@ -20,16 +20,16 @@ define(["View"], function(View) {
       this.onPartPageTransitionInCompleted = __bind(this.onPartPageTransitionInCompleted, this);
       this.ready = __bind(this.ready, this);
       this.init = __bind(this.init, this);
-      var k, l, menu, page, share, v, _i, _len, _ref, _ref1;
+      var k, l, menu, page, previews, share, v, _i, _len, _ref;
       scope = {};
       scope.logo = Loader.getSvg("logo");
       scope.fr = Model.content.fr;
       scope.en = Model.content.en;
       scope.menuBtnTxt = Model.content.menu;
+      previews = Model.routing.slice(0, Model.routing.length - 1);
       menu = [];
-      _ref = Model.routing;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        page = _ref[_i];
+      for (_i = 0, _len = previews.length; _i < _len; _i++) {
+        page = previews[_i];
         l = {};
         l.id = page.id;
         l.name = page.scope.title;
@@ -39,9 +39,9 @@ define(["View"], function(View) {
       menu[menu.length - 1].isLast = true;
       scope.menu = menu;
       share = [];
-      _ref1 = Model.content.social;
-      for (k in _ref1) {
-        v = _ref1[k];
+      _ref = Model.content.social;
+      for (k in _ref) {
+        v = _ref[k];
         v.name = Util.CapitalizeFirstLetter(v.name);
         share.push(v);
       }
@@ -54,7 +54,6 @@ define(["View"], function(View) {
       Signal.onResize.add(this.onResize);
       Signal.onPartPageTransitionInCompleted.add(this.onPartPageTransitionInCompleted);
       Signal.onPartPageTransitionOut.add(this.onPartPageTransitionOut);
-      Signal.onRouteChanged.add(this.onRouteChanged);
       Signal.onHomePage.add(this.onHomePage);
       TweenMax.delayedCall(0.1, this.ready);
     };
@@ -164,6 +163,8 @@ define(["View"], function(View) {
       }, 0);
       this.stateTl.pause(0);
       $menuBtn.on("click", this.onMenuClicked);
+      Signal.onRouteChanged.add(this.onRouteChanged);
+      this.onRouteChanged();
       this.onResize();
     };
 
@@ -177,6 +178,11 @@ define(["View"], function(View) {
       if (this.menuIsOpened) {
         this.closeMenu();
         this.menuIsOpened = false;
+      }
+      if (Model.newHash === "home") {
+        this.stateTl.reverse();
+      } else {
+        this.stateTl.play();
       }
     };
 

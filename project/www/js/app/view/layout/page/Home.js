@@ -2,8 +2,7 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(["Page", "SplitText"], function(Page, SplitText) {
-  "use strict";
+define(["Page", "TimelineMenu"], function(Page, TimelineMenu) {
   var Home;
   Home = (function(_super) {
     __extends(Home, _super);
@@ -11,51 +10,51 @@ define(["Page", "SplitText"], function(Page, SplitText) {
     function Home(id, scope) {
       this.destroy = __bind(this.destroy, this);
       this.resize = __bind(this.resize, this);
-      this.transitionOutCompleted = __bind(this.transitionOutCompleted, this);
-      this.transitionInCompleted = __bind(this.transitionInCompleted, this);
-      this.transitionOut = __bind(this.transitionOut, this);
-      this.transitionIn = __bind(this.transitionIn, this);
-      this.addAnimations = __bind(this.addAnimations, this);
       this.ready = __bind(this.ready, this);
-      this.init = __bind(this.init, this);
-      scope.blank = Loader.getImageURL("blank");
-      scope.imgA = Loader.getImageURL(id + "-imageA");
+      scope = {};
+      scope.previews = Model.routing.slice(0, Model.routing.length - 1);
       Home.__super__.constructor.call(this, id, scope);
     }
 
-    Home.prototype.init = function(cb) {
-      return Home.__super__.init.call(this, cb);
-    };
-
     Home.prototype.ready = function() {
+      var $previewContainers, p, preview, _i, _len;
+      this.timelineMenu = new TimelineMenu("timeline-menu");
+      this.element.append(this.timelineMenu.element);
+      this.previews = [];
+      $previewContainers = this.element.find(".preview-container");
+      for (_i = 0, _len = $previewContainers.length; _i < _len; _i++) {
+        preview = $previewContainers[_i];
+        p = {};
+        p.el = preview;
+        p.titleEl = $(preview).find(".title").get(0);
+        this.previews.push(p);
+      }
+      this.timelineMenu.previews = this.previews;
+      this.timelineMenu.init();
       Home.__super__.ready.call(this);
     };
 
-    Home.prototype.addAnimations = function() {
-      Home.__super__.addAnimations.call(this);
-    };
-
-    Home.prototype.transitionIn = function() {
-      Home.__super__.transitionIn.call(this);
-    };
-
-    Home.prototype.transitionOut = function() {
-      Home.__super__.transitionOut.call(this);
-    };
-
-    Home.prototype.transitionInCompleted = function() {
-      Home.__super__.transitionInCompleted.call(this);
-    };
-
-    Home.prototype.transitionOutCompleted = function() {
-      Home.__super__.transitionOutCompleted.call(this);
-    };
-
     Home.prototype.resize = function() {
-      Home.__super__.resize.call(this);
+      var elementCss, preview, titleCss, _i, _len, _ref;
+      elementCss = {
+        width: Model.windowW,
+        height: Model.windowH
+      };
+      this.element.css(elementCss);
+      this.timelineMenu.onResize();
+      _ref = this.previews;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        preview = _ref[_i];
+        titleCss = {
+          top: (Model.windowH >> 1) - (preview.titleEl.offsetHeight >> 1),
+          left: (Model.windowW >> 1) - (preview.titleEl.offsetWidth >> 1)
+        };
+        TweenMax.set(preview.titleEl, titleCss);
+      }
     };
 
     Home.prototype.destroy = function() {
+      this.timelineMenu.destroy();
       Home.__super__.destroy.call(this);
     };
 

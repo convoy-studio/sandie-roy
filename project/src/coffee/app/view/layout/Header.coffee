@@ -12,8 +12,9 @@ define ["View"], (View) ->
             scope.en = Model.content.en
             scope.menuBtnTxt = Model.content.menu
 
+            previews = Model.routing.slice(0, Model.routing.length-1)
             menu = []
-            for page in Model.routing
+            for page in previews
                 l = {}
                 l.id = page.id
                 l.name = page.scope.title
@@ -39,7 +40,6 @@ define ["View"], (View) ->
             Signal.onResize.add(@onResize)
             Signal.onPartPageTransitionInCompleted.add @onPartPageTransitionInCompleted
             Signal.onPartPageTransitionOut.add @onPartPageTransitionOut
-            Signal.onRouteChanged.add @onRouteChanged
             Signal.onHomePage.add @onHomePage
 
             TweenMax.delayedCall 0.1, @ready
@@ -88,6 +88,8 @@ define ["View"], (View) ->
             @stateTl.pause(0)
 
             $menuBtn.on "click", @onMenuClicked
+            Signal.onRouteChanged.add @onRouteChanged
+            @onRouteChanged()
 
             @onResize()
             return
@@ -103,6 +105,10 @@ define ["View"], (View) ->
             if @menuIsOpened
                 @closeMenu()
                 @menuIsOpened = false
+            if Model.newHash is "home"
+                @stateTl.reverse()
+            else 
+                @stateTl.play()
             return
 
         onHomePage: =>

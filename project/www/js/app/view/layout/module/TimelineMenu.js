@@ -13,35 +13,38 @@ define(["View"], function(View) {
 
     TimelineMenu.prototype.currentSlide = -1;
 
+    TimelineMenu.prototype.firstLoad = true;
+
     function TimelineMenu(id, scope) {
+      this.destroy = __bind(this.destroy, this);
       this.onResize = __bind(this.onResize, this);
       this.onClick = __bind(this.onClick, this);
       this.onLeave = __bind(this.onLeave, this);
       this.onEnter = __bind(this.onEnter, this);
-      this.onHomePage = __bind(this.onHomePage, this);
-      this.onPartPageTransitionOut = __bind(this.onPartPageTransitionOut, this);
-      this.onPartPageTransitionIn = __bind(this.onPartPageTransitionIn, this);
       this.changeSlide = __bind(this.changeSlide, this);
       this.getRect = __bind(this.getRect, this);
       this.addAnimations = __bind(this.addAnimations, this);
+      this.ready = __bind(this.ready, this);
       this.init = __bind(this.init, this);
       scope = {};
-      scope.previews = Model.routing;
+      scope.previews = Model.routing.slice(0, Model.routing.length - 1);
       TimelineMenu.__super__.constructor.call(this, id, scope);
     }
 
     TimelineMenu.prototype.init = function() {
-      var $item, $li, $lines, $menuTitles, $titleTop, i, item, o, titleH, titleW, _i, _len;
-      Signal.onPartPageTransitionIn.add(this.onPartPageTransitionIn);
-      Signal.onPartPageTransitionOut.add(this.onPartPageTransitionOut);
-      Signal.onHomePage.add(this.onHomePage);
-      $li = this.element.find("li");
-      $li.on("mouseenter", this.onEnter);
-      $li.on("mouseleave", this.onLeave);
-      $li.on("click", this.onClick);
+      TweenMax.delayedCall(0.1, this.ready);
+    };
+
+    TimelineMenu.prototype.ready = function() {
+      var $item, $lines, $menuTitles, $titleTop, i, item, o, titleH, titleW, _i, _len, _ref;
+      this.li = this.element.find("li");
+      this.li.on("mouseenter", this.onEnter);
+      this.li.on("mouseleave", this.onLeave);
+      this.li.on("click", this.onClick);
       this.items = [];
-      for (i = _i = 0, _len = $li.length; _i < _len; i = ++_i) {
-        item = $li[i];
+      _ref = this.li;
+      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+        item = _ref[i];
         o = {};
         o.preview = this.previews[i];
         $item = $(item);
@@ -135,66 +138,70 @@ define(["View"], function(View) {
       if (this.currentSlide < 0) {
         this.currentSlide = this.items.length - 1;
       }
-      TweenMax.delayedCall(this.slideDelay, this.changeSlide);
       previous = this.items[this.currentSlide - 1];
       next = this.items[this.currentSlide];
       if (previous == null) {
         previous = this.items[this.items.length - 1];
       }
-      TweenMax.delayedCall(0.1, function() {
-        if (previous != null) {
-          return previous.tl.tweenFromTo("transition-out", "transition-finished");
-        }
-      });
-      next.tl.tweenFromTo("transition-in", "transition-out");
-    };
-
-    TimelineMenu.prototype.onPartPageTransitionIn = function() {
-      console.log("onPartPageTransitionIn", Model.newHash);
-      TweenMax.killDelayedCallsTo(this.changeSlide);
-    };
-
-    TimelineMenu.prototype.onPartPageTransitionOut = function() {
-      console.log("onPartPageTransitionOut", Model.newHash);
-    };
-
-    TimelineMenu.prototype.onHomePage = function() {
-      console.log("onHomePage", Model.newHash);
-      this.changeSlide();
+      if (this.firstLoad) {
+        previous.tl.pause("transition-finished");
+        next.tl.pause("transition-out");
+        TweenMax.delayedCall(this.slideDelay * 0.5, this.changeSlide);
+      } else {
+        TweenMax.delayedCall(0.1, function() {
+          if (previous != null) {
+            return previous.tl.tweenFromTo("transition-out", "transition-finished");
+          }
+        });
+        next.tl.tweenFromTo("transition-in", "transition-out");
+        TweenMax.delayedCall(this.slideDelay, this.changeSlide);
+      }
+      this.firstLoad = false;
     };
 
     TimelineMenu.prototype.onEnter = function(e) {
       var $target, id;
+      e.preventDefault();
       $target = $(e.currentTarget);
       id = $target.attr("id");
     };
 
     TimelineMenu.prototype.onLeave = function(e) {
       var $target, id;
+      e.preventDefault();
       $target = $(e.currentTarget);
       id = $target.attr("id");
     };
 
     TimelineMenu.prototype.onClick = function(e) {
       var $target, id;
+      e.preventDefault();
       $target = $(e.currentTarget);
       id = $target.attr("id");
       Router.sendTo(id);
     };
 
     TimelineMenu.prototype.onResize = function() {
-      var elementCss, i, item, tween, _i, _len, _ref;
-      _ref = this.items;
-      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
-        item = _ref[i];
-        tween = item.tl.getTweensOf(item.preview.el)[1];
-        tween.vars.x = Model.windowW;
-      }
+      var elementCss;
       elementCss = {
         left: (Model.windowW >> 1) - (this.element.width() >> 1),
         top: Model.windowH - this.element.height() - 40
       };
       this.element.css(elementCss);
+    };
+
+    TimelineMenu.prototype.destroy = function() {
+      var i, item, _i, _len, _ref;
+      TweenMax.killDelayedCallsTo(this.changeSlide);
+      _ref = this.items;
+      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+        item = _ref[i];
+        item.tl.clear();
+      }
+      this.li.off("mouseenter", this.onEnter);
+      this.li.off("mouseleave", this.onLeave);
+      this.li.off("click", this.onClick);
+      TimelineMenu.__super__.destroy.call(this);
     };
 
     return TimelineMenu;

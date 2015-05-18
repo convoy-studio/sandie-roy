@@ -5,25 +5,26 @@ define ["View"], (View) ->
         previews: undefined
         slideDelay: 6
         currentSlide: -1
+        firstLoad: true
 
         constructor: (id, scope) ->
             scope = {}
-            scope.previews = Model.routing
+            scope.previews = Model.routing.slice(0, Model.routing.length-1)
 
             super(id, scope)
 
         init: =>
-            Signal.onPartPageTransitionIn.add @onPartPageTransitionIn
-            Signal.onPartPageTransitionOut.add @onPartPageTransitionOut
-            Signal.onHomePage.add @onHomePage
+            TweenMax.delayedCall 0.1, @ready
+            return
 
-            $li = @element.find("li")
-            $li.on "mouseenter", @onEnter
-            $li.on "mouseleave", @onLeave
-            $li.on "click", @onClick
+        ready: =>
+            @li = @element.find("li")
+            @li.on "mouseenter", @onEnter
+            @li.on "mouseleave", @onLeave
+            @li.on "click", @onClick
 
             @items = []
-            for item, i in $li
+            for item, i in @li
                 o = {}
                 o.preview = @previews[i]
                 $item = $(item)
@@ -82,7 +83,6 @@ define ["View"], (View) ->
             if @currentSlide > @items.length-1 then @currentSlide = 0
             if @currentSlide < 0 then @currentSlide = @items.length-1
 
-            TweenMax.delayedCall @slideDelay, @changeSlide
 
             previous = @items[@currentSlide-1]
             next = @items[@currentSlide]
@@ -90,39 +90,34 @@ define ["View"], (View) ->
             if !previous?
                 previous = @items[@items.length-1]
 
-            TweenMax.delayedCall 0.1, =>
-                if previous? then previous.tl.tweenFromTo("transition-out", "transition-finished")
-            next.tl.tweenFromTo("transition-in", "transition-out")
+            if @firstLoad
+                previous.tl.pause("transition-finished")
+                next.tl.pause("transition-out")
+                TweenMax.delayedCall @slideDelay*0.5, @changeSlide
+            else
+                TweenMax.delayedCall 0.1, =>
+                    if previous? then previous.tl.tweenFromTo("transition-out", "transition-finished")
+                next.tl.tweenFromTo("transition-in", "transition-out")
+                TweenMax.delayedCall @slideDelay, @changeSlide
 
-            return
+            @firstLoad = false
 
-        onPartPageTransitionIn: =>
-            console.log "onPartPageTransitionIn", Model.newHash
-            TweenMax.killDelayedCallsTo @changeSlide
-            # for item, i in @items
-            #     item.tl.pause(0)
-            return
-
-        onPartPageTransitionOut: =>
-            console.log "onPartPageTransitionOut", Model.newHash
-            return
-
-        onHomePage: =>
-            console.log "onHomePage", Model.newHash
-            @changeSlide()
             return
 
         onEnter: (e) =>
+            e.preventDefault()
             $target = $(e.currentTarget)
             id = $target.attr("id")
             return
 
         onLeave: (e) =>
+            e.preventDefault()
             $target = $(e.currentTarget)
             id = $target.attr("id")
             return
 
         onClick: (e) =>
+            e.preventDefault()
             $target = $(e.currentTarget)
             id = $target.attr("id")
             Router.sendTo id
@@ -130,17 +125,30 @@ define ["View"], (View) ->
 
         onResize: =>
 
-            # update the x pos value 
-            for item, i in @items
-                tween = item.tl.getTweensOf(item.preview.el)[1]
-                # console.log tween
-                tween.vars.x = Model.windowW
+            # if @items?
+
+            #     # update the x pos value 
+            #     for item, i in @items
+            #         if item.tl?
+            #         tween = item.tl.getTweensOf(item.preview.el)[1]
+            #         # console.log tween
+            #         tween.vars.x = Model.windowW
 
             elementCss = 
                 left: (Model.windowW >> 1) - (@element.width() >> 1)
                 top: Model.windowH - @element.height() - 40
 
             @element.css elementCss
+            return
+
+        destroy: =>
+            TweenMax.killDelayedCallsTo @changeSlide
+            for item, i in @items
+                item.tl.clear()
+            @li.off "mouseenter", @onEnter
+            @li.off "mouseleave", @onLeave
+            @li.off "click", @onClick
+            super()
             return
 
     return TimelineMenu

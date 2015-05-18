@@ -108,6 +108,11 @@
                     "paragraph": "L’agence Sandie Roy Paris propose à ses clients ses services de conseil, conception et production de lookbooks, catalogues et campagnes de publicité."
                 }
             ]
+        },
+
+        "home": {
+            "title": "about",
+            "agence-top-title": "About"
         }
     }
 }

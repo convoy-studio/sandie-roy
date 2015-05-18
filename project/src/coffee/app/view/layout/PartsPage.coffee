@@ -20,29 +20,18 @@ define ["Page", "signals"], (Page, signals) ->
             @tl.pause(0)
             return
 
-        transitionIn: =>
-            @element.css
-                "z-index": 6
-            @tl.timeScale(1.2)
-            @tl.tweenTo(@tl.duration())
-            Signal.onPartPageTransitionIn.dispatch()
-            return
+        # transitionIn: =>
+        #     # @element.css
+        #     #     "z-index": 6
+        #     @tl.timeScale(1.2)
+        #     @tl.tweenTo(@tl.duration())
+        #     return
 
-        transitionInCompleted: =>
-            super()
-            Signal.onPartPageTransitionInCompleted.dispatch()
-            return
-
-        transitionOut: =>
-            Signal.onPartPageTransitionOut.dispatch()
-            super()
-            return
-
-        transitionOutCompleted: =>
-            super()
-            @element.css
-                "z-index": 4
-            return
+        # transitionOutCompleted: =>
+        #     super()
+        #     # @element.css
+        #     #     "z-index": 4
+        #     return
 
         resize: =>
 
