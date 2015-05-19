@@ -84,10 +84,13 @@ p.centered-text-child {
     vertical-align: middle; 
     text-align: center; 
 }
+.parts-wrapper {
+    @extend .absolute;
+}
 .part-holder {
     $visualW: 940px;
 
-    position: relative;
+    position: absolute;
     background-color: $white;
 
     &.part-photo {
@@ -97,6 +100,8 @@ p.centered-text-child {
     }
     .title {
         font-size: 72px;
+        text-transform: lowercase;
+        @include nowrap;
     }
     .paragraph {
         width: 680px;

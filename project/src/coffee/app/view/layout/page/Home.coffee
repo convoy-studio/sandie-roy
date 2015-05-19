@@ -40,6 +40,10 @@ define ["Page", "TimelineMenu"], (Page, TimelineMenu) ->
                     top: (Model.windowH >> 1) - (preview.titleEl.offsetHeight >> 1)
                     left: (Model.windowW >> 1) - (preview.titleEl.offsetWidth >> 1)
                 TweenMax.set preview.titleEl, titleCss
+
+            bottomContainerH = 0
+            Model.parentEl.css
+                height: bottomContainerH
             return
 
         destroy: =>

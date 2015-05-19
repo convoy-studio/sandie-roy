@@ -33,20 +33,20 @@
     "page": {
         "relations-presse": {
             "title": "relations presse",
-            "agence-top-title": "L’agence Sandie Roy Paris assure grâce à son reseau media des retombées produit et institutionnelles nombreuses et qualitatives dans les médias print et les webzines. ",
+            "agence-top-title": "L’agence Sandie Roy Paris assure grâce à son réseau media des retombées produit et institutionnelles nombreuses et qualitatives dans les media print et les webzines.",
             "photo-part": [
                 {
                     "id": "evenements",
-                    "title": "événements",
-                    "paragraph": "L’agence Sandie Roy Paris conçoit des événements sur mesure dédiés à la presse et aux influenceurs : cocktail parties, présentation presse, dîners presse, voyages de presse, inaugurations boutiques..."
+                    "title": "RELATIONS PRESSE PRODUITS",
+                    "paragraph": "L’agence Sandie Roy Paris assure la visibilité des marques via le placement de produits et l’envoi communiqués de presse, lookbooks et infos produit à une base de contacts ciblés."
                 },{
                     "id": "partenariats",
-                    "title": "partenariats",
-                    "paragraph": "Grâce à son réseau mode et grand public, l’agence Sandie Roy Paris croise et mixe la mode à d’autres secteurs pour faire rayonner plus largement l’image et la valeur des marques."
+                    "title": "RELATIONS PRESSE INSTITUTIONNELLES",
+                    "paragraph": "L’agence Sandie Roy Paris met en œuvre des campagnes de relations presse institutionnelles : sagas de marque, articles de fond, portraits, rendez-vous one-to-one, conférences de presse."
                 },{
                     "id": "edition",
-                    "title": "édition",
-                    "paragraph": "L’agence Sandie Roy Paris propose à ses clients ses services de conseil, conception et production de lookbooks, catalogues et campagnes de publicité."
+                    "title": "RELATIONS PRESSE DIGITALES",
+                    "paragraph": "L’agence Sandie Roy propose un service de communication digitale ciblant les webzines grâce au placement de produits, news, interviews et sagas de marques."
                 }
             ]
         },
@@ -56,16 +56,16 @@
             "photo-part": [
                 {
                     "id": "evenements",
-                    "title": "événements",
-                    "paragraph": "L’agence Sandie Roy Paris conçoit des événements sur mesure dédiés à la presse et aux influenceurs : cocktail parties, présentation presse, dîners presse, voyages de presse, inaugurations boutiques..."
+                    "title": "RELATIONS BLOGUEURS",
+                    "paragraph": "L’agence Sandie Roy Paris génère des parutions de qualité sur les blogs influents grâce à des opérations spéciales et partenariats sur-mesure."
                 },{
                     "id": "partenariats",
-                    "title": "partenariats",
-                    "paragraph": "Grâce à son réseau mode et grand public, l’agence Sandie Roy Paris croise et mixe la mode à d’autres secteurs pour faire rayonner plus largement l’image et la valeur des marques."
+                    "title": "RELATIONS INFLUENCEURS",
+                    "paragraph": "L’agence Sandie Roy Paris fédère autour de ses clients un réseau d’influenceurs, via du placement de produit et des invitations à des évènements ciblés."
                 },{
                     "id": "edition",
-                    "title": "édition",
-                    "paragraph": "L’agence Sandie Roy Paris propose à ses clients ses services de conseil, conception et production de lookbooks, catalogues et campagnes de publicité."
+                    "title": "RÉSEAUX SOCIAUX",
+                    "paragraph": "L’agence Sandie Roy Paris obtient une visibilité importante pour ses clients sur les réseaux sociaux via son réseau d’influenceurs, blogueurs et media."
                 }
             ]
         },
@@ -92,20 +92,25 @@
 
         "about": {
             "title": "about",
-            "agence-top-title": "About",
+            "agence-top-title": "SANDIE ROY PARIS ENERGISE LES MARQUES",
+            "title-b": "L’agence Sandie Roy Paris est une maison de communication experte en mode luxe et marques grand public, des créateurs émérgents aux marques internationales.",
+            "small-title-a": "L’agence",
+            "small-title-b": "L’équipe",
+            "small-paragraph-a": "L’agence est située au cœur de Paris dans le quartier stratégique du réseau media et tendances et dispose d’un vaste showroom dans le cadre exclusif d’un appartement.",
+            "small-paragraph-b": "Sandie Roy a constitué une équipe de personnalités multiples issues du luxe, de la communication, de la culture ou de l’art, dotées de compétences variées et qui travaillent de façon transversale dans l’échange et la pluridisciplinarité. L’équipe est organisée par pôle de compétences et accompagnée dans des missions plus spécifiques par des consultants.",
             "photo-part": [
                 {
                     "id": "evenements",
-                    "title": "événements",
+                    "title": "ÉVÈNEMENTS",
                     "paragraph": "L’agence Sandie Roy Paris conçoit des événements sur mesure dédiés à la presse et aux influenceurs : cocktail parties, présentation presse, dîners presse, voyages de presse, inaugurations boutiques..."
-                },{
-                    "id": "partenariats",
-                    "title": "partenariats",
-                    "paragraph": "Grâce à son réseau mode et grand public, l’agence Sandie Roy Paris croise et mixe la mode à d’autres secteurs pour faire rayonner plus largement l’image et la valeur des marques."
                 },{
                     "id": "edition",
                     "title": "édition",
                     "paragraph": "L’agence Sandie Roy Paris propose à ses clients ses services de conseil, conception et production de lookbooks, catalogues et campagnes de publicité."
+                },{
+                    "id": "partenariats",
+                    "title": "PARTENARIATS",
+                    "paragraph": "Grâce à son réseau mode et grand public, l’agence Sandie Roy Paris croise et mixe la mode à d’autres secteurs pour faire rayonner plus largement l’image et la valeur des marques."
                 }
             ]
         },

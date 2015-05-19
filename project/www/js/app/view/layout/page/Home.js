@@ -35,7 +35,7 @@ define(["Page", "TimelineMenu"], function(Page, TimelineMenu) {
     };
 
     Home.prototype.resize = function() {
-      var elementCss, preview, titleCss, _i, _len, _ref;
+      var bottomContainerH, elementCss, preview, titleCss, _i, _len, _ref;
       elementCss = {
         width: Model.windowW,
         height: Model.windowH
@@ -51,6 +51,10 @@ define(["Page", "TimelineMenu"], function(Page, TimelineMenu) {
         };
         TweenMax.set(preview.titleEl, titleCss);
       }
+      bottomContainerH = 0;
+      Model.parentEl.css({
+        height: bottomContainerH
+      });
     };
 
     Home.prototype.destroy = function() {

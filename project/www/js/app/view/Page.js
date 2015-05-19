@@ -66,7 +66,8 @@ define(["View", "signals"], function(View, signals) {
       this.tl.fromTo(this.element, 1, {
         opacity: 0
       }, {
-        opacity: 1
+        opacity: 1,
+        ease: Expo.easeInOut
       }, 0);
       this.tl.pause(0);
     };

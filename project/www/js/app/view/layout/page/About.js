@@ -19,6 +19,8 @@ define(["Page"], function(Page) {
       this.ready = __bind(this.ready, this);
       this.init = __bind(this.init, this);
       scope.pathId = id;
+      scope.imagePath = "image/page/" + scope.pathId + "/";
+      console.log(scope.pathId);
       About.__super__.constructor.call(this, id, scope);
     }
 

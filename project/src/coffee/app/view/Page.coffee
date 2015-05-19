@@ -44,7 +44,7 @@ define ["View", "signals"], (View, signals) ->
             return
 
         addAnimations: =>
-            @tl.fromTo(@element, 1, { opacity:0 }, { opacity:1 }, 0)
+            @tl.fromTo @element, 1, { opacity:0 }, { opacity:1, ease:Expo.easeInOut }, 0
             @tl.pause(0)
             return
 

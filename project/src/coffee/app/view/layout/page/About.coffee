@@ -7,6 +7,8 @@ define ["Page"], (Page) ->
         constructor: (id, scope) ->
 
             scope.pathId = id
+            scope.imagePath = "image/page/" + scope.pathId + "/"
+            console.log scope.pathId
 
             super(id, scope)
 

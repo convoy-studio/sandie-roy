@@ -14,10 +14,7 @@ define(["View"], function(View) {
       this.openMenu = __bind(this.openMenu, this);
       this.toggleMenu = __bind(this.toggleMenu, this);
       this.onMenuClicked = __bind(this.onMenuClicked, this);
-      this.onHomePage = __bind(this.onHomePage, this);
       this.onRouteChanged = __bind(this.onRouteChanged, this);
-      this.onPartPageTransitionOut = __bind(this.onPartPageTransitionOut, this);
-      this.onPartPageTransitionInCompleted = __bind(this.onPartPageTransitionInCompleted, this);
       this.ready = __bind(this.ready, this);
       this.init = __bind(this.init, this);
       var k, l, menu, page, previews, share, v, _i, _len, _ref;
@@ -52,19 +49,17 @@ define(["View"], function(View) {
     Header.prototype.init = function() {
       this.menuIsOpened = false;
       Signal.onResize.add(this.onResize);
-      Signal.onPartPageTransitionInCompleted.add(this.onPartPageTransitionInCompleted);
-      Signal.onPartPageTransitionOut.add(this.onPartPageTransitionOut);
-      Signal.onHomePage.add(this.onHomePage);
       TweenMax.delayedCall(0.1, this.ready);
     };
 
     Header.prototype.ready = function() {
-      var $background, $langContainer, $lines, $linksName, $linksSeparator, $logoPath, $menuBtn, $menuTxt, $sharerName, backgroundH, burgerDelay, delay, posY;
+      var $backContainer, $background, $langContainer, $lines, $linksName, $linksSeparator, $logoPath, $menuBtn, $menuTxt, $sharerName, backgroundH, burgerDelay, delay, posY;
       CSSPlugin.defaultTransformPerspective = 600;
       this.linkMenu = this.element.find("ul.link-menu");
       this.shareMenu = this.element.find("ul.share-menu");
       $menuBtn = this.element.find(".menu-btn");
       $background = this.element.find(".background");
+      $backContainer = this.element.find(".back-container");
       $lines = this.element.find(".line");
       $logoPath = this.element.find(".logo svg path");
       $langContainer = this.element.find(".lang-container");
@@ -162,38 +157,34 @@ define(["View"], function(View) {
         ease: Power2.easeInOut
       }, 0);
       this.stateTl.pause(0);
+      this.backgroundTween = TweenMax.fromTo($backContainer, 1, {
+        scaleY: 0
+      }, {
+        scaleY: 1,
+        transformOrigin: "50% 0%",
+        force3D: true,
+        ease: Expo.easeInOut
+      });
+      this.backgroundTween.pause(0);
       $menuBtn.on("click", this.onMenuClicked);
       Signal.onRouteChanged.add(this.onRouteChanged);
       this.onRouteChanged();
       this.onResize();
     };
 
-    Header.prototype.onPartPageTransitionInCompleted = function() {
-      this.stateTl.play();
-    };
-
-    Header.prototype.onPartPageTransitionOut = function() {};
-
     Header.prototype.onRouteChanged = function() {
+      var $background;
+      $background = this.element.find(".background");
       if (this.menuIsOpened) {
         this.closeMenu();
         this.menuIsOpened = false;
       }
       if (Model.newHash === "home") {
+        this.backgroundTween.reverse();
         this.stateTl.reverse();
       } else {
+        this.backgroundTween.play();
         this.stateTl.play();
-      }
-    };
-
-    Header.prototype.onHomePage = function() {
-      if (this.menuIsOpened) {
-        this.closeMenu();
-        this.menuIsOpened = false;
-      } else {
-        if (this.stateTl != null) {
-          this.stateTl.timeScale(1.6).reverse();
-        }
       }
     };
 
@@ -220,7 +211,6 @@ define(["View"], function(View) {
 
     Header.prototype.closeMenu = function() {
       this.menuTl.timeScale(1.6).reverse();
-      console.log(Model.newHash, "close menu");
       if (Model.newHash === "home") {
         this.stateTl.timeScale(1.6).reverse();
       }

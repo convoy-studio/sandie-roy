@@ -38,10 +38,6 @@ define ["View"], (View) ->
             @menuIsOpened = false
 
             Signal.onResize.add(@onResize)
-            Signal.onPartPageTransitionInCompleted.add @onPartPageTransitionInCompleted
-            Signal.onPartPageTransitionOut.add @onPartPageTransitionOut
-            Signal.onHomePage.add @onHomePage
-
             TweenMax.delayedCall 0.1, @ready
 
             return
@@ -54,6 +50,7 @@ define ["View"], (View) ->
 
             $menuBtn = @element.find(".menu-btn")
             $background = @element.find(".background")
+            $backContainer = @element.find(".back-container")
             $lines = @element.find(".line")
             $logoPath = @element.find(".logo svg path")
             $langContainer = @element.find(".lang-container")
@@ -87,6 +84,9 @@ define ["View"], (View) ->
             @stateTl.to $langContainer, 1, { color: "#000", force3D:true, ease:Power2.easeInOut }, 0
             @stateTl.pause(0)
 
+            @backgroundTween = TweenMax.fromTo $backContainer, 1, { scaleY:0 }, { scaleY:1, transformOrigin:"50% 0%", force3D:true, ease:Expo.easeInOut }
+            @backgroundTween.pause(0)
+
             $menuBtn.on "click", @onMenuClicked
             Signal.onRouteChanged.add @onRouteChanged
             @onRouteChanged()
@@ -94,29 +94,17 @@ define ["View"], (View) ->
             @onResize()
             return
 
-        onPartPageTransitionInCompleted: =>
-            @stateTl.play()
-            return
-
-        onPartPageTransitionOut: =>
-            return
-
         onRouteChanged: =>
+            $background = @element.find(".background")
             if @menuIsOpened
                 @closeMenu()
                 @menuIsOpened = false
             if Model.newHash is "home"
+                @backgroundTween.reverse()
                 @stateTl.reverse()
             else 
+                @backgroundTween.play()
                 @stateTl.play()
-            return
-
-        onHomePage: =>
-            if @menuIsOpened
-                @closeMenu()
-                @menuIsOpened = false
-            else
-                if @stateTl? then @stateTl.timeScale(1.6).reverse()
             return
 
         onMenuClicked: (e)=>
@@ -141,7 +129,6 @@ define ["View"], (View) ->
 
         closeMenu: =>
             @menuTl.timeScale(1.6).reverse()
-            console.log Model.newHash, "close menu"
             if Model.newHash is "home" then @stateTl.timeScale(1.6).reverse()
             @burgerTl.timeScale(1.4).reverse()
             return
