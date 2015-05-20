@@ -29,12 +29,12 @@ define(["hasher"], function(hasher) {
             scope = vs;
           }
         }
-        routes.push(this.createRoute(k, k, scope, v.files));
+        routes.push(this.createRoute(k, k, scope, v.files, v["global-color"]));
       }
       Model.routing = routes;
     };
 
-    RouterService.prototype.createRoute = function(id, route, scope, files) {
+    RouterService.prototype.createRoute = function(id, route, scope, files, color) {
       var r;
       r = {};
       r.id = id;
@@ -42,6 +42,7 @@ define(["hasher"], function(hasher) {
       r.route = route;
       r.scope = scope;
       r.files = files;
+      r.color = color;
       return r;
     };
 

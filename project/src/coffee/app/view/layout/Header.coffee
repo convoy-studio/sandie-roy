@@ -38,6 +38,7 @@ define ["View"], (View) ->
             @menuIsOpened = false
 
             Signal.onResize.add(@onResize)
+            Signal.onColorStateChanged.add(@onColorStateChanged)
             TweenMax.delayedCall 0.1, @ready
 
             return
@@ -92,6 +93,8 @@ define ["View"], (View) ->
             @onRouteChanged()
 
             @onResize()
+
+            TweenMax.fromTo @element, 1, {opacity:0, y:-100, }, { opacity:1, y:0, force3D:true, ease:Expo.easeInOut }
             return
 
         onRouteChanged: =>
@@ -112,6 +115,17 @@ define ["View"], (View) ->
             @toggleMenu()
             return
 
+        onColorStateChanged: =>
+            if @stateTl?
+                switch Model.colorState
+                    when "white"
+                        @stateTl.play()
+                        break
+                    when "black"
+                        if !@menuIsOpened then @stateTl.reverse()
+                        break
+            return
+
         toggleMenu: =>
             if @menuIsOpened
                 @closeMenu()
@@ -129,7 +143,11 @@ define ["View"], (View) ->
 
         closeMenu: =>
             @menuTl.timeScale(1.6).reverse()
-            if Model.newHash is "home" then @stateTl.timeScale(1.6).reverse()
+            if Model.newHash is "home"
+                if Model.colorState is "white"
+                    @stateTl.play()
+                else
+                    @stateTl.timeScale(1.6).reverse()
             @burgerTl.timeScale(1.4).reverse()
             return
 

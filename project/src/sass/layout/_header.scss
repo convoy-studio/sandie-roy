@@ -4,6 +4,7 @@ header#header{
     width: 100%;
     $menuH: 250px;
     $topMargin: 40px;
+    @include opacity(0);
 
     .back-container {
     	width: 100%;

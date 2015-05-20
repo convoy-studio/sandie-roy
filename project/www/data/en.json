@@ -36,15 +36,15 @@
             "agence-top-title": "L’agence Sandie Roy Paris assure grâce à son réseau media des retombées produit et institutionnelles nombreuses et qualitatives dans les media print et les webzines.",
             "photo-part": [
                 {
-                    "id": "evenements",
+                    "id": "relation-presse-produit",
                     "title": "RELATIONS PRESSE PRODUITS",
                     "paragraph": "L’agence Sandie Roy Paris assure la visibilité des marques via le placement de produits et l’envoi communiqués de presse, lookbooks et infos produit à une base de contacts ciblés."
                 },{
-                    "id": "partenariats",
+                    "id": "relation-presse-institutionelle",
                     "title": "RELATIONS PRESSE INSTITUTIONNELLES",
                     "paragraph": "L’agence Sandie Roy Paris met en œuvre des campagnes de relations presse institutionnelles : sagas de marque, articles de fond, portraits, rendez-vous one-to-one, conférences de presse."
                 },{
-                    "id": "edition",
+                    "id": "relation-presse-digitale",
                     "title": "RELATIONS PRESSE DIGITALES",
                     "paragraph": "L’agence Sandie Roy propose un service de communication digitale ciblant les webzines grâce au placement de produits, news, interviews et sagas de marques."
                 }
@@ -55,15 +55,15 @@
             "agence-top-title": "L’agence Sandie Roy Paris assure grâce à son reseau media des retombées produit et institutionnelles nombreuses et qualitatives dans les médias print et les webzines. ",
             "photo-part": [
                 {
-                    "id": "evenements",
+                    "id": "relation-blogger",
                     "title": "RELATIONS BLOGUEURS",
                     "paragraph": "L’agence Sandie Roy Paris génère des parutions de qualité sur les blogs influents grâce à des opérations spéciales et partenariats sur-mesure."
                 },{
-                    "id": "partenariats",
+                    "id": "relation-influencer",
                     "title": "RELATIONS INFLUENCEURS",
                     "paragraph": "L’agence Sandie Roy Paris fédère autour de ses clients un réseau d’influenceurs, via du placement de produit et des invitations à des évènements ciblés."
                 },{
-                    "id": "edition",
+                    "id": "reseaux-sociaux",
                     "title": "RÉSEAUX SOCIAUX",
                     "paragraph": "L’agence Sandie Roy Paris obtient une visibilité importante pour ses clients sur les réseaux sociaux via son réseau d’influenceurs, blogueurs et media."
                 }

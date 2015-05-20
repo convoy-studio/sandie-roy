@@ -13,6 +13,7 @@ define(["View"], function(View) {
       this.closeMenu = __bind(this.closeMenu, this);
       this.openMenu = __bind(this.openMenu, this);
       this.toggleMenu = __bind(this.toggleMenu, this);
+      this.onColorStateChanged = __bind(this.onColorStateChanged, this);
       this.onMenuClicked = __bind(this.onMenuClicked, this);
       this.onRouteChanged = __bind(this.onRouteChanged, this);
       this.ready = __bind(this.ready, this);
@@ -49,6 +50,7 @@ define(["View"], function(View) {
     Header.prototype.init = function() {
       this.menuIsOpened = false;
       Signal.onResize.add(this.onResize);
+      Signal.onColorStateChanged.add(this.onColorStateChanged);
       TweenMax.delayedCall(0.1, this.ready);
     };
 
@@ -170,6 +172,15 @@ define(["View"], function(View) {
       Signal.onRouteChanged.add(this.onRouteChanged);
       this.onRouteChanged();
       this.onResize();
+      TweenMax.fromTo(this.element, 1, {
+        opacity: 0,
+        y: -100
+      }, {
+        opacity: 1,
+        y: 0,
+        force3D: true,
+        ease: Expo.easeInOut
+      });
     };
 
     Header.prototype.onRouteChanged = function() {
@@ -193,6 +204,21 @@ define(["View"], function(View) {
       this.toggleMenu();
     };
 
+    Header.prototype.onColorStateChanged = function() {
+      if (this.stateTl != null) {
+        switch (Model.colorState) {
+          case "white":
+            this.stateTl.play();
+            break;
+          case "black":
+            if (!this.menuIsOpened) {
+              this.stateTl.reverse();
+            }
+            break;
+        }
+      }
+    };
+
     Header.prototype.toggleMenu = function() {
       if (this.menuIsOpened) {
         this.closeMenu();
@@ -212,7 +238,11 @@ define(["View"], function(View) {
     Header.prototype.closeMenu = function() {
       this.menuTl.timeScale(1.6).reverse();
       if (Model.newHash === "home") {
-        this.stateTl.timeScale(1.6).reverse();
+        if (Model.colorState === "white") {
+          this.stateTl.play();
+        } else {
+          this.stateTl.timeScale(1.6).reverse();
+        }
       }
       this.burgerTl.timeScale(1.4).reverse();
     };

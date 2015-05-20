@@ -25,3 +25,23 @@
             'cadiz/Cadiz-MediumItalic_gdi.ttf', ttf,
             'cadiz/Cadiz-MediumItalic_gdi.svg', svg),
             'cadiz/Cadiz-MediumItalic_gdi.eot');
+
+
+#font-charger {
+      left: -10000px;
+      top: -10000px;
+      position: absolute;
+      @include opacity(0);
+      #bold {
+            font-family: 'bold';
+      }
+      #boldItalic {
+            font-family: 'boldItalic';
+      }
+      #medium {
+            font-family: 'medium';
+      }
+      #mediumItalic {
+            font-family: 'mediumItalic';
+      }
+}

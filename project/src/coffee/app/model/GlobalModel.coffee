@@ -20,6 +20,7 @@ define [], () ->
         newHash: undefined
         windowW: 0
         windowH: 0
+        colorState: "white"
 
         constructor: () ->
 

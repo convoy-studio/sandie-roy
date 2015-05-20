@@ -12,6 +12,7 @@ define ["signals"], (signals) ->
         onPartPageTransitionInCompleted: new signals.Signal()
         onPartPageTransitionOut: new signals.Signal()
         onHomePage: new signals.Signal()
+        onColorStateChanged: new signals.Signal()
 
         constructor: () ->
 

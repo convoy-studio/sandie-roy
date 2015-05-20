@@ -9,7 +9,7 @@ define(["View"], function(View) {
 
     TimelineMenu.prototype.previews = void 0;
 
-    TimelineMenu.prototype.slideDelay = 6;
+    TimelineMenu.prototype.slideDelay = 4;
 
     TimelineMenu.prototype.currentSlide = -1;
 
@@ -21,6 +21,7 @@ define(["View"], function(View) {
       this.onClick = __bind(this.onClick, this);
       this.onLeave = __bind(this.onLeave, this);
       this.onEnter = __bind(this.onEnter, this);
+      this.updateColorState = __bind(this.updateColorState, this);
       this.changeSlide = __bind(this.changeSlide, this);
       this.getRect = __bind(this.getRect, this);
       this.addAnimations = __bind(this.addAnimations, this);
@@ -41,6 +42,8 @@ define(["View"], function(View) {
       this.li.on("mouseenter", this.onEnter);
       this.li.on("mouseleave", this.onLeave);
       this.li.on("click", this.onClick);
+      this.titlesLinesTop = $("#timeline-menu-view .menu-title, #timeline-menu-view .line");
+      this.slideTitles = $(".pages-preview-container .title");
       this.items = [];
       _ref = this.li;
       for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
@@ -53,6 +56,7 @@ define(["View"], function(View) {
         $lines = $item.find(".line");
         titleW = $titleTop.width();
         titleH = $titleTop.height();
+        o.color = o.preview.el.getAttribute("color");
         o.liEl = item;
         o.titleW = $titleTop.width();
         o.titleH = $titleTop.height();
@@ -68,26 +72,34 @@ define(["View"], function(View) {
         });
         this.items[i] = o;
       }
-      console.log(this.items);
       this.addAnimations();
       this.changeSlide();
     };
 
     TimelineMenu.prototype.addAnimations = function() {
-      var i, item, tl, _i, _len, _ref;
+      var elInTween, elOutTween, i, item, tl, _i, _len, _ref;
       _ref = this.items;
       for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
         item = _ref[i];
         tl = new TimelineMax();
         item.tl = tl;
-        tl.add("transition-in");
-        tl.from(item.preview.el, 1, {
+        elInTween = TweenMax.from(item.preview.el, 1, {
           x: Model.windowW,
-          scaleX: 0,
+          scaleX: 0.6,
           transformOrigin: "0% 0%",
           force3D: true,
           ease: Expo.easeInOut
-        }, 0);
+        });
+        elOutTween = TweenMax.to(item.preview.el, 1, {
+          x: -Model.windowW,
+          transformOrigin: "0% 100%",
+          force3D: true,
+          ease: Expo.easeInOut
+        });
+        item.elInTween = elInTween;
+        item.elOutTween = elOutTween;
+        tl.add("transition-in");
+        tl.add(elInTween, 0);
         tl.from(item.lines[0], this.slideDelay, {
           scaleX: 0,
           transformOrigin: "0% 0%",
@@ -102,12 +114,7 @@ define(["View"], function(View) {
           ease: Linear.easeNone
         }, 0);
         tl.add("transition-out");
-        tl.to(item.preview.el, 1, {
-          scaleX: 0,
-          transformOrigin: "0% 100%",
-          force3D: true,
-          ease: Expo.easeInOut
-        }, "transition-out");
+        tl.add(elOutTween, "transition-out");
         tl.to(item.lines[0], 1, {
           scaleX: 0,
           transformOrigin: "100% 0%",
@@ -140,6 +147,7 @@ define(["View"], function(View) {
       }
       previous = this.items[this.currentSlide - 1];
       next = this.items[this.currentSlide];
+      this.updateColorState(next.color);
       if (previous == null) {
         previous = this.items[this.items.length - 1];
       }
@@ -157,6 +165,21 @@ define(["View"], function(View) {
         TweenMax.delayedCall(this.slideDelay, this.changeSlide);
       }
       this.firstLoad = false;
+    };
+
+    TimelineMenu.prototype.updateColorState = function(color) {
+      Model.colorState = color;
+      switch (color) {
+        case "white":
+          this.titlesLinesTop.addClass("black");
+          this.slideTitles.addClass("black");
+          break;
+        case "black":
+          this.titlesLinesTop.removeClass("black");
+          this.slideTitles.removeClass("black");
+          break;
+      }
+      Signal.onColorStateChanged.dispatch();
     };
 
     TimelineMenu.prototype.onEnter = function(e) {

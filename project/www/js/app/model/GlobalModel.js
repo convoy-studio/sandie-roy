@@ -34,6 +34,8 @@ define([], function() {
 
     GlobalModel.prototype.windowH = 0;
 
+    GlobalModel.prototype.colorState = "white";
+
     function GlobalModel() {}
 
     return GlobalModel;
