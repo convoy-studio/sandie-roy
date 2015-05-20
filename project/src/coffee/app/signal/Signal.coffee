@@ -14,6 +14,8 @@ define ["signals"], (signals) ->
         onHomePage: new signals.Signal()
         onColorStateChanged: new signals.Signal()
 
+        contactClicked: new signals.Signal()
+
         constructor: () ->
 
     return Signal

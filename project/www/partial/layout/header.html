@@ -47,10 +47,14 @@
 		<ul class="share-menu normal btn">
 			
 			{{#share}}
-			<li>
+			<li id="{{id}}">
+				{{#btnMode}}
 				<a target="_blank" href="{{url}}">
+				{{/btnMode}}
 					<div class="name">{{name}}</div>
+				{{#btnMode}}
 				</a>
+				{{/btnMode}}
 			</li>
 			{{/share}}
 

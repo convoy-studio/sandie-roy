@@ -50,6 +50,7 @@ require.config(
         Footer: "app/view/layout/Footer"
         Header: "app/view/layout/Header"
         PartsPage: "app/view/layout/PartsPage"
+        Contact: "app/view/layout/module/Contact"
         TimelineMenu: "app/view/layout/module/TimelineMenu"
         VideoLayer: "app/view/layout/module/VideoLayer"
         About: "app/view/layout/page/About"

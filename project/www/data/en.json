@@ -27,6 +27,12 @@
                 "name": "instagram",
                 "url": "http://google.com" 
             }
+        },
+        "contact": {
+            "address": "54 Rue Étienne Marcel, 75002 Paris",
+            "tel": "01 42 21 07 04",
+            "mail": "contact@sandieroy.fr",
+            "google-maps-url": "https://www.google.fr/maps/place/54+Rue+Etienne+Marcel,+75002+Paris/@48.8658125,2.3418903,17z/data=!4m2!3m1!1s0x47e66e232fa3e1b3:0x3d3f95615090e377"
         }
     },
 

@@ -1,6 +1,6 @@
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-define(["Header", "Footer", "hasher"], function(Header, Footer, hasher) {
+define(["Header", "Footer", "hasher", "Contact"], function(Header, Footer, hasher, Contact) {
   "use strict";
   var GlobalController;
   GlobalController = (function() {

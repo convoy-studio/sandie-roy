@@ -17,6 +17,9 @@ define([], function() {
       basePath = Model.imageBasePath;
       manifest = [
         {
+          id: "contact-partial",
+          src: "partial/layout/contact.html"
+        }, {
           id: "footer-partial",
           src: "partial/layout/footer.html"
         }, {

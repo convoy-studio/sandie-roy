@@ -22,7 +22,7 @@ define(["View"], function(View) {
       this.onTopMenuMouseEnter = __bind(this.onTopMenuMouseEnter, this);
       this.ready = __bind(this.ready, this);
       this.init = __bind(this.init, this);
-      var k, l, menu, page, previews, share, v, _i, _len, _ref;
+      var i, k, l, menu, page, previews, share, v, _i, _len, _ref;
       scope = {};
       scope.logo = Loader.getSvg("logo");
       scope.fr = Model.content.fr;
@@ -41,11 +41,15 @@ define(["View"], function(View) {
       menu[menu.length - 1].isLast = true;
       scope.menu = menu;
       share = [];
+      i = 0;
       _ref = Model.content.social;
       for (k in _ref) {
         v = _ref[k];
+        v.id = Util.ConvertToSlug(v.name);
         v.name = Util.CapitalizeFirstLetter(v.name);
+        v.btnMode = i === 0 ? false : true;
         share.push(v);
+        i += 1;
       }
       scope.share = share;
       Header.__super__.constructor.call(this, id, scope);
@@ -59,7 +63,8 @@ define(["View"], function(View) {
     };
 
     Header.prototype.ready = function() {
-      var $backContainer, $background, $langContainer, $lines, $linksName, $linksSeparator, $logoPath, $menuBtn, $menuTxt, $sharerName, backgroundH, burgerDelay, delay, posY;
+      var $backContainer, $background, $contact, $langContainer, $lines, $linksName, $linksSeparator, $logoPath, $menuBtn, $menuTxt, $sharerName, backgroundH, burgerDelay, delay, posY,
+        _this = this;
       CSSPlugin.defaultTransformPerspective = 600;
       this.linkMenu = this.element.find("ul.link-menu");
       this.shareMenu = this.element.find("ul.share-menu");
@@ -173,6 +178,11 @@ define(["View"], function(View) {
         ease: Expo.easeInOut
       });
       this.backgroundTween.pause(0);
+      $contact = this.element.find("li#contact");
+      $contact.on("click", function(e) {
+        e.preventDefault();
+        Signal.contactClicked.dispatch();
+      });
       this.menuLi.on("mouseenter", this.onTopMenuMouseEnter);
       this.menuLi.on("mouseleave", this.onTopMenuMouseLeave);
       $menuBtn.on("click", this.onMenuClicked);

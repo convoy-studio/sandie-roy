@@ -16,6 +16,8 @@ define(["signals"], function(signals) {
 
     Signal.prototype.onColorStateChanged = new signals.Signal();
 
+    Signal.prototype.contactClicked = new signals.Signal();
+
     function Signal() {}
 
     return Signal;

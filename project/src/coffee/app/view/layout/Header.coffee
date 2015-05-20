@@ -25,10 +25,13 @@ define ["View"], (View) ->
             scope.menu = menu
 
             share = []
+            i = 0
             for k, v of Model.content.social
+                v.id = Util.ConvertToSlug v.name
                 v.name = Util.CapitalizeFirstLetter v.name
+                v.btnMode = if i is 0 then false else true
                 share.push v
-
+                i += 1
             scope.share = share
 
             super(id, scope)
@@ -89,6 +92,12 @@ define ["View"], (View) ->
 
             @backgroundTween = TweenMax.fromTo $backContainer, 1, { scaleY:0 }, { scaleY:1, transformOrigin:"50% 0%", force3D:true, ease:Expo.easeInOut }
             @backgroundTween.pause(0)
+
+            $contact = @element.find("li#contact")
+            $contact.on "click", (e)=>
+                e.preventDefault()
+                Signal.contactClicked.dispatch()
+                return
 
             @menuLi.on "mouseenter", @onTopMenuMouseEnter
             @menuLi.on "mouseleave", @onTopMenuMouseLeave
