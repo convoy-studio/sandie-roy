@@ -15,7 +15,11 @@ define(["View"], function(View) {
       this.toggleMenu = __bind(this.toggleMenu, this);
       this.onColorStateChanged = __bind(this.onColorStateChanged, this);
       this.onMenuClicked = __bind(this.onMenuClicked, this);
+      this.hightlightLi = __bind(this.hightlightLi, this);
+      this.resetLiHightlight = __bind(this.resetLiHightlight, this);
       this.onRouteChanged = __bind(this.onRouteChanged, this);
+      this.onTopMenuMouseLeave = __bind(this.onTopMenuMouseLeave, this);
+      this.onTopMenuMouseEnter = __bind(this.onTopMenuMouseEnter, this);
       this.ready = __bind(this.ready, this);
       this.init = __bind(this.init, this);
       var k, l, menu, page, previews, share, v, _i, _len, _ref;
@@ -59,6 +63,7 @@ define(["View"], function(View) {
       CSSPlugin.defaultTransformPerspective = 600;
       this.linkMenu = this.element.find("ul.link-menu");
       this.shareMenu = this.element.find("ul.share-menu");
+      this.menuLi = this.element.find(".menu-container .link-menu li");
       $menuBtn = this.element.find(".menu-btn");
       $background = this.element.find(".background");
       $backContainer = this.element.find(".back-container");
@@ -168,6 +173,8 @@ define(["View"], function(View) {
         ease: Expo.easeInOut
       });
       this.backgroundTween.pause(0);
+      this.menuLi.on("mouseenter", this.onTopMenuMouseEnter);
+      this.menuLi.on("mouseleave", this.onTopMenuMouseLeave);
       $menuBtn.on("click", this.onMenuClicked);
       Signal.onRouteChanged.add(this.onRouteChanged);
       this.onRouteChanged();
@@ -183,6 +190,26 @@ define(["View"], function(View) {
       });
     };
 
+    Header.prototype.onTopMenuMouseEnter = function(e) {
+      var target;
+      e.preventDefault();
+      target = e.currentTarget;
+      if ($(target).hasClass("active")) {
+        return;
+      }
+      target.classList.add("mouse-over");
+    };
+
+    Header.prototype.onTopMenuMouseLeave = function(e) {
+      var target;
+      e.preventDefault();
+      target = e.currentTarget;
+      if ($(target).hasClass("active")) {
+        return;
+      }
+      target.classList.remove("mouse-over");
+    };
+
     Header.prototype.onRouteChanged = function() {
       var $background;
       $background = this.element.find(".background");
@@ -196,6 +223,32 @@ define(["View"], function(View) {
       } else {
         this.backgroundTween.play();
         this.stateTl.play();
+      }
+      this.resetLiHightlight();
+      this.hightlightLi();
+    };
+
+    Header.prototype.resetLiHightlight = function() {
+      var li, _i, _len, _ref;
+      _ref = this.menuLi;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        li = _ref[_i];
+        li.classList.remove("mouse-over");
+        li.classList.remove("active");
+      }
+    };
+
+    Header.prototype.hightlightLi = function() {
+      var id, li, _i, _len, _ref;
+      _ref = this.menuLi;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        li = _ref[_i];
+        id = li.id;
+        if (id === Model.newHash) {
+          li.classList.add("mouse-over");
+          li.classList.add("active");
+          break;
+        }
       }
     };
 

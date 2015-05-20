@@ -49,6 +49,8 @@ define ["View"], (View) ->
             @linkMenu = @element.find("ul.link-menu")
             @shareMenu = @element.find("ul.share-menu")
 
+            @menuLi = @element.find(".menu-container .link-menu li")
+
             $menuBtn = @element.find(".menu-btn")
             $background = @element.find(".background")
             $backContainer = @element.find(".back-container")
@@ -88,6 +90,8 @@ define ["View"], (View) ->
             @backgroundTween = TweenMax.fromTo $backContainer, 1, { scaleY:0 }, { scaleY:1, transformOrigin:"50% 0%", force3D:true, ease:Expo.easeInOut }
             @backgroundTween.pause(0)
 
+            @menuLi.on "mouseenter", @onTopMenuMouseEnter
+            @menuLi.on "mouseleave", @onTopMenuMouseLeave
             $menuBtn.on "click", @onMenuClicked
             Signal.onRouteChanged.add @onRouteChanged
             @onRouteChanged()
@@ -95,6 +99,20 @@ define ["View"], (View) ->
             @onResize()
 
             TweenMax.fromTo @element, 1, {opacity:0, y:-100, }, { opacity:1, y:0, force3D:true, ease:Expo.easeInOut }
+            return
+
+        onTopMenuMouseEnter: (e)=>
+            e.preventDefault()
+            target = e.currentTarget
+            if $(target).hasClass("active") then return
+            target.classList.add("mouse-over")
+            return
+
+        onTopMenuMouseLeave: (e)=>
+            e.preventDefault()
+            target = e.currentTarget
+            if $(target).hasClass("active") then return
+            target.classList.remove("mouse-over")
             return
 
         onRouteChanged: =>
@@ -108,6 +126,24 @@ define ["View"], (View) ->
             else 
                 @backgroundTween.play()
                 @stateTl.play()
+
+            @resetLiHightlight()
+            @hightlightLi()
+            return
+
+        resetLiHightlight: =>
+            for li in @menuLi
+                li.classList.remove "mouse-over"
+                li.classList.remove "active"
+            return
+
+        hightlightLi: =>
+            for li in @menuLi
+                id = li.id
+                if id is Model.newHash
+                    li.classList.add "mouse-over"
+                    li.classList.add "active"
+                    break
             return
 
         onMenuClicked: (e)=>

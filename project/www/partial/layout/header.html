@@ -29,9 +29,12 @@
 		<ul class="link-menu bold btn">
 			
 			{{#menu}}
-			<li>
+			<li id="{{id}}">
 				<a href="#/{{id}}">
-					<div class="name">{{name}}</div>
+					<div class="name">
+						<div class="name-txt">{{name}}</div>
+						<div class="horiz-line horiz-top"></div>
+					</div>
 					{{^isLast}}
 					<div class="separator"></div>
 					{{/isLast}}
