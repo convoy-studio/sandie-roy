@@ -10,6 +10,7 @@ define(["View"], function(View) {
 
     function Header(id, scope) {
       this.onResize = __bind(this.onResize, this);
+      this.onMenuReverseComplete = __bind(this.onMenuReverseComplete, this);
       this.closeMenu = __bind(this.closeMenu, this);
       this.openMenu = __bind(this.openMenu, this);
       this.toggleMenu = __bind(this.toggleMenu, this);
@@ -18,8 +19,6 @@ define(["View"], function(View) {
       this.hightlightLi = __bind(this.hightlightLi, this);
       this.resetLiHightlight = __bind(this.resetLiHightlight, this);
       this.onRouteChanged = __bind(this.onRouteChanged, this);
-      this.onTopMenuMouseLeave = __bind(this.onTopMenuMouseLeave, this);
-      this.onTopMenuMouseEnter = __bind(this.onTopMenuMouseEnter, this);
       this.ready = __bind(this.ready, this);
       this.init = __bind(this.init, this);
       var i, k, l, menu, page, previews, share, v, _i, _len, _ref;
@@ -63,15 +62,15 @@ define(["View"], function(View) {
     };
 
     Header.prototype.ready = function() {
-      var $backContainer, $background, $contact, $langContainer, $lines, $linksName, $linksSeparator, $logoPath, $menuBtn, $menuTxt, $sharerName, backgroundH, burgerDelay, delay, posY,
+      var $background, $contact, $langContainer, $lines, $linksName, $linksSeparator, $logoPath, $menuBtn, $menuTxt, $sharerName, backgroundH, burgerDelay, delay, posY,
         _this = this;
       CSSPlugin.defaultTransformPerspective = 600;
       this.linkMenu = this.element.find("ul.link-menu");
       this.shareMenu = this.element.find("ul.share-menu");
       this.menuLi = this.element.find(".menu-container .link-menu li");
+      this.menuContainer = this.element.find(".menu-container");
       $menuBtn = this.element.find(".menu-btn");
       $background = this.element.find(".background");
-      $backContainer = this.element.find(".back-container");
       $lines = this.element.find(".line");
       $logoPath = this.element.find(".logo svg path");
       $langContainer = this.element.find(".lang-container");
@@ -81,7 +80,9 @@ define(["View"], function(View) {
       $sharerName = Util.TranformArrayFromMiddleAndOut(this.element.find(".share-menu .name"));
       backgroundH = $background.height();
       delay = 0.1;
-      this.menuTl = new TimelineMax();
+      this.menuTl = new TimelineMax({
+        onReverseComplete: this.onMenuReverseComplete
+      });
       this.menuTl.from($background, 1, {
         y: -backgroundH,
         force3D: true,
@@ -169,22 +170,12 @@ define(["View"], function(View) {
         ease: Power2.easeInOut
       }, 0);
       this.stateTl.pause(0);
-      this.backgroundTween = TweenMax.fromTo($backContainer, 1, {
-        scaleY: 0
-      }, {
-        scaleY: 1,
-        transformOrigin: "50% 0%",
-        force3D: true,
-        ease: Expo.easeInOut
-      });
-      this.backgroundTween.pause(0);
       $contact = this.element.find("li#contact");
       $contact.on("click", function(e) {
         e.preventDefault();
         Signal.contactClicked.dispatch();
+        _this.closeMenu();
       });
-      this.menuLi.on("mouseenter", this.onTopMenuMouseEnter);
-      this.menuLi.on("mouseleave", this.onTopMenuMouseLeave);
       $menuBtn.on("click", this.onMenuClicked);
       Signal.onRouteChanged.add(this.onRouteChanged);
       this.onRouteChanged();
@@ -200,26 +191,6 @@ define(["View"], function(View) {
       });
     };
 
-    Header.prototype.onTopMenuMouseEnter = function(e) {
-      var target;
-      e.preventDefault();
-      target = e.currentTarget;
-      if ($(target).hasClass("active")) {
-        return;
-      }
-      target.classList.add("mouse-over");
-    };
-
-    Header.prototype.onTopMenuMouseLeave = function(e) {
-      var target;
-      e.preventDefault();
-      target = e.currentTarget;
-      if ($(target).hasClass("active")) {
-        return;
-      }
-      target.classList.remove("mouse-over");
-    };
-
     Header.prototype.onRouteChanged = function() {
       var $background;
       $background = this.element.find(".background");
@@ -228,10 +199,8 @@ define(["View"], function(View) {
         this.menuIsOpened = false;
       }
       if (Model.newHash === "home") {
-        this.backgroundTween.reverse();
         this.stateTl.reverse();
       } else {
-        this.backgroundTween.play();
         this.stateTl.play();
       }
       this.resetLiHightlight();
@@ -285,20 +254,20 @@ define(["View"], function(View) {
     Header.prototype.toggleMenu = function() {
       if (this.menuIsOpened) {
         this.closeMenu();
-        this.menuIsOpened = false;
       } else {
         this.openMenu();
-        this.menuIsOpened = true;
       }
     };
 
     Header.prototype.openMenu = function() {
+      this.menuIsOpened = true;
       this.menuTl.timeScale(1.2).play();
       this.stateTl.timeScale(1.2).play();
       this.burgerTl.timeScale(1).play();
     };
 
     Header.prototype.closeMenu = function() {
+      this.menuIsOpened = false;
       this.menuTl.timeScale(1.6).reverse();
       if (Model.newHash === "home") {
         if (Model.colorState === "white") {
@@ -309,6 +278,8 @@ define(["View"], function(View) {
       }
       this.burgerTl.timeScale(1.4).reverse();
     };
+
+    Header.prototype.onMenuReverseComplete = function() {};
 
     Header.prototype.onResize = function() {
       var linkMenuCss, shareMenuCss;

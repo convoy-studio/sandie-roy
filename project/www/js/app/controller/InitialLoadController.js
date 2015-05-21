@@ -47,8 +47,8 @@ define([], function() {
           id: "relations-publiques-partial",
           src: "partial/page/relations-publiques.html"
         }, {
-          id: "awwwards-logo-svg",
-          src: "svg/awwwards-logo.svg",
+          id: "close-svg",
+          src: "svg/close.svg",
           type: createjs.LoadQueue.TEXT
         }, {
           id: "logo-svg",

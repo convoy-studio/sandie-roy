@@ -76,10 +76,12 @@ define ["View"], (View) ->
                 tl.add "transition-in"
                 tl.add elInTween, 0
                 tl.from item.lines[0], @slideDelay, { scaleX:0, transformOrigin:"0% 0%", force3D:true, ease:Linear.easeNone }, 0
+                tl.from item.lines[1], @slideDelay, { scaleX:0, transformOrigin:"0% 0%", force3D:true, ease:Linear.easeNone }, 0
                 tl.fromTo item.titles[0], @slideDelay, { clip:@getRect(0, 0, item.titleH, 0) }, { clip:@getRect(0, item.titleW, item.titleH, 0), force3D:true, ease:Linear.easeNone }, 0
                 tl.add "transition-out"
                 tl.add elOutTween, "transition-out"
                 tl.to item.lines[0], 1, { scaleX:0, transformOrigin:"100% 0%", force3D:true, ease:Expo.easeOut }, "transition-out"
+                tl.to item.lines[1], 1, { scaleX:0, transformOrigin:"100% 0%", force3D:true, ease:Expo.easeOut }, "transition-out"
                 tl.to item.titles[0], 1, { clip:@getRect(0, item.titleW, item.titleH, item.titleW), force3D:true, ease:Expo.easeOut }, "transition-out"
                 tl.add "transition-finished"
                 tl.pause(0)

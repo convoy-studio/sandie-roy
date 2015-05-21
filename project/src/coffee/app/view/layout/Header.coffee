@@ -53,10 +53,10 @@ define ["View"], (View) ->
             @shareMenu = @element.find("ul.share-menu")
 
             @menuLi = @element.find(".menu-container .link-menu li")
+            @menuContainer = @element.find(".menu-container")
 
             $menuBtn = @element.find(".menu-btn")
             $background = @element.find(".background")
-            $backContainer = @element.find(".back-container")
             $lines = @element.find(".line")
             $logoPath = @element.find(".logo svg path")
             $langContainer = @element.find(".lang-container")
@@ -67,7 +67,7 @@ define ["View"], (View) ->
             backgroundH = $background.height()
 
             delay = 0.1
-            @menuTl = new TimelineMax()
+            @menuTl = new TimelineMax({onReverseComplete:@onMenuReverseComplete})
             @menuTl.from $background, 1, { y:-backgroundH, force3D:true, ease:Expo.easeInOut }, 0
             @menuTl.staggerFrom $linksName, 1, { y:-20, opacity:0, rotationX:-90, transformOrigin: "50% 50% -30px", force3D:true, ease:Power2.easeInOut }, 0.02, delay + 0.1
             @menuTl.staggerFrom $linksSeparator, 1, { y:0, rotationX:-90, transformOrigin: "50% 50% -30px", force3D:true, ease:Power2.easeInOut }, 0.02, delay + 0.1
@@ -90,38 +90,21 @@ define ["View"], (View) ->
             @stateTl.to $langContainer, 1, { color: "#000", force3D:true, ease:Power2.easeInOut }, 0
             @stateTl.pause(0)
 
-            @backgroundTween = TweenMax.fromTo $backContainer, 1, { scaleY:0 }, { scaleY:1, transformOrigin:"50% 0%", force3D:true, ease:Expo.easeInOut }
-            @backgroundTween.pause(0)
-
             $contact = @element.find("li#contact")
             $contact.on "click", (e)=>
                 e.preventDefault()
                 Signal.contactClicked.dispatch()
+                @closeMenu()
                 return
 
-            @menuLi.on "mouseenter", @onTopMenuMouseEnter
-            @menuLi.on "mouseleave", @onTopMenuMouseLeave
             $menuBtn.on "click", @onMenuClicked
             Signal.onRouteChanged.add @onRouteChanged
             @onRouteChanged()
 
             @onResize()
 
-            TweenMax.fromTo @element, 1, {opacity:0, y:-100, }, { opacity:1, y:0, force3D:true, ease:Expo.easeInOut }
-            return
-
-        onTopMenuMouseEnter: (e)=>
-            e.preventDefault()
-            target = e.currentTarget
-            if $(target).hasClass("active") then return
-            target.classList.add("mouse-over")
-            return
-
-        onTopMenuMouseLeave: (e)=>
-            e.preventDefault()
-            target = e.currentTarget
-            if $(target).hasClass("active") then return
-            target.classList.remove("mouse-over")
+            # TweenMax.set @menuContainer, { scaleY:0 }
+            TweenMax.fromTo @element, 1, {opacity:0, y:-100 }, { opacity:1, y:0, force3D:true, ease:Expo.easeInOut }
             return
 
         onRouteChanged: =>
@@ -130,10 +113,8 @@ define ["View"], (View) ->
                 @closeMenu()
                 @menuIsOpened = false
             if Model.newHash is "home"
-                @backgroundTween.reverse()
                 @stateTl.reverse()
             else 
-                @backgroundTween.play()
                 @stateTl.play()
 
             @resetLiHightlight()
@@ -174,19 +155,20 @@ define ["View"], (View) ->
         toggleMenu: =>
             if @menuIsOpened
                 @closeMenu()
-                @menuIsOpened = false
             else
                 @openMenu()
-                @menuIsOpened = true
             return
 
         openMenu: =>
+            # TweenMax.set @menuContainer, { y:1 }
+            @menuIsOpened = true
             @menuTl.timeScale(1.2).play()
             @stateTl.timeScale(1.2).play()
             @burgerTl.timeScale(1).play()
             return
 
         closeMenu: =>
+            @menuIsOpened = false
             @menuTl.timeScale(1.6).reverse()
             if Model.newHash is "home"
                 if Model.colorState is "white"
@@ -194,6 +176,10 @@ define ["View"], (View) ->
                 else
                     @stateTl.timeScale(1.6).reverse()
             @burgerTl.timeScale(1.4).reverse()
+            return
+
+        onMenuReverseComplete: =>
+            # TweenMax.set @menuContainer, { scaleY:0 }
             return
 
         onResize: =>

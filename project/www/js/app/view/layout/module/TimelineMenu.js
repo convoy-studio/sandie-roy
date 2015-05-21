@@ -106,6 +106,12 @@ define(["View"], function(View) {
           force3D: true,
           ease: Linear.easeNone
         }, 0);
+        tl.from(item.lines[1], this.slideDelay, {
+          scaleX: 0,
+          transformOrigin: "0% 0%",
+          force3D: true,
+          ease: Linear.easeNone
+        }, 0);
         tl.fromTo(item.titles[0], this.slideDelay, {
           clip: this.getRect(0, 0, item.titleH, 0)
         }, {
@@ -116,6 +122,12 @@ define(["View"], function(View) {
         tl.add("transition-out");
         tl.add(elOutTween, "transition-out");
         tl.to(item.lines[0], 1, {
+          scaleX: 0,
+          transformOrigin: "100% 0%",
+          force3D: true,
+          ease: Expo.easeOut
+        }, "transition-out");
+        tl.to(item.lines[1], 1, {
           scaleX: 0,
           transformOrigin: "100% 0%",
           force3D: true,

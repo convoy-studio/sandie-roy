@@ -6,7 +6,7 @@
 		text-transform: lowercase;
 		font-size: 100px;
 		line-height: 93px;
-		padding: 0 17%;
+		padding: 0 21.4%;
 	}
 	.centered-holder {
 		position: relative;
@@ -18,6 +18,9 @@
 		@extend .bold;
 		font-size: 72px;
 		left: ($gridPartW * 2) + ($gridMargin * 2);
+	}
+	p {
+		z-index: 1;
 	}
 	p.middle-paragraph {
 		font-size: 48px;

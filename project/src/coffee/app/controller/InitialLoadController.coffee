@@ -28,7 +28,7 @@ define [], () ->
                 { id: "production-partial", src: "partial/page/production.html" }
                 { id: "relations-presse-partial", src: "partial/page/relations-presse.html" }
                 { id: "relations-publiques-partial", src: "partial/page/relations-publiques.html" }
-                { id: "awwwards-logo-svg", src: "svg/awwwards-logo.svg", type:createjs.LoadQueue.TEXT }
+                { id: "close-svg", src: "svg/close.svg", type:createjs.LoadQueue.TEXT }
                 { id: "logo-svg", src: "svg/logo.svg", type:createjs.LoadQueue.TEXT }
                 { id: "about-hd-image", src: "image/global/about-hd.jpg" }
                 { id: "blank-image", src: "image/global/blank.gif" }

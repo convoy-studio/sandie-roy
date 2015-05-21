@@ -1,9 +1,21 @@
 <div id="contact-view">
 	<div class="back"></div>
-	<div class="middle-container centered-text-parent">
-		<p class="centered-text-child">
-			<a target="_blank" href="{{google-maps-url}}">{{{address}}}</a><br>
-			{{tel}} – <a href="mailto:{{mail}}">{{mail}}</a>
-		</p>
+	<div class="logo">{{{logo}}}</div>
+	<div class="close-btn btn">{{{closeIcon}}}</div>
+	<div class="middle-container">
+		<div class="top-holder">
+			<a target="_blank" href="{{google-maps-url}}">
+				<div class="address">{{{address}}}</div>
+				<div class="link-line"></div>
+			</a>
+		</div>
+		<br>
+		<div class="tel">{{tel}} – </div>
+		<div class="bottom-holder">
+			<a href="mailto:{{mail}}">
+				<div>{{mail}}</div>
+				<div class="link-line"></div>
+			</a>
+		</div>
 	</div>
 </div>

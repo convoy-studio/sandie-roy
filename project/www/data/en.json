@@ -43,15 +43,15 @@
             "photo-part": [
                 {
                     "id": "relation-presse-produit",
-                    "title": "RELATIONS PRESSE PRODUITS",
+                    "title": "PRODUITS",
                     "paragraph": "L’agence Sandie Roy Paris assure la visibilité des marques via le placement de produits et l’envoi communiqués de presse, lookbooks et infos produit à une base de contacts ciblés."
                 },{
                     "id": "relation-presse-institutionelle",
-                    "title": "RELATIONS PRESSE INSTITUTIONNELLES",
+                    "title": "INSTITUTIONNELLES",
                     "paragraph": "L’agence Sandie Roy Paris met en œuvre des campagnes de relations presse institutionnelles : sagas de marque, articles de fond, portraits, rendez-vous one-to-one, conférences de presse."
                 },{
                     "id": "relation-presse-digitale",
-                    "title": "RELATIONS PRESSE DIGITALES",
+                    "title": "DIGITALES",
                     "paragraph": "L’agence Sandie Roy propose un service de communication digitale ciblant les webzines grâce au placement de produits, news, interviews et sagas de marques."
                 }
             ]
@@ -98,7 +98,7 @@
 
         "about": {
             "title": "about",
-            "agence-top-title": "SANDIE ROY PARIS ENERGISE LES MARQUES",
+            "agence-top-title": "SANDIE ROY ENERGISE<br>LES MARQUES",
             "title-b": "L’agence Sandie Roy Paris est une maison de communication experte en mode luxe et marques grand public, des créateurs émérgents aux marques internationales.",
             "small-title-a": "L’agence",
             "small-title-b": "L’équipe",

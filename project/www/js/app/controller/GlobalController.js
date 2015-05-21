@@ -11,12 +11,15 @@ define(["Header", "Footer", "hasher", "Contact"], function(Header, Footer, hashe
     }
 
     GlobalController.prototype.setupViews = function() {
-      var header;
+      var contact, header;
       header = new Header("header");
       Model.parentEl.append(header.element);
       header.init();
       Model.parentEl.append("<div id='main-container'>");
       Model.mainEl = Model.parentEl.find("#main-container");
+      contact = new Contact("contact", Model.content.contact);
+      Model.parentEl.append(contact.element);
+      contact.init();
     };
 
     GlobalController.prototype.setupRenderer = function() {
