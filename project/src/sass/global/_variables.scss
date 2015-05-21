@@ -15,6 +15,10 @@ $mobile-land: min-width 321px;
 $tablet-port: (min-width 768px) (max-width 1024px) (orientation portrait);
 $tablet-land: (min-width 768px) (max-width 1024px) (orientation landscape);
 
+
+$breakpoints: (phone: 375px, tablet: 750px, desktop: 1024px, middleW:$min-middle-width);
+
+
 // Color
 $white: #ffffff;
 $black: #000000;

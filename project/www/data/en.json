@@ -98,12 +98,12 @@
 
         "about": {
             "title": "about",
-            "agence-top-title": "SANDIE ROY ENERGISE<br>LES MARQUES",
+            "agence-top-title": "SANDIE ROY<br>ENERGISE<br>LES MARQUES",
             "title-b": "L’agence Sandie Roy Paris est une maison de communication experte en mode luxe et marques grand public, des créateurs émérgents aux marques internationales.",
             "small-title-a": "L’agence",
             "small-title-b": "L’équipe",
             "small-paragraph-a": "L’agence est située au cœur de Paris dans le quartier stratégique du réseau media et tendances et dispose d’un vaste showroom dans le cadre exclusif d’un appartement.",
-            "small-paragraph-b": "Sandie Roy a constitué une équipe de personnalités multiples issues du luxe, de la communication, de la culture ou de l’art, dotées de compétences variées et qui travaillent de façon transversale dans l’échange et la pluridisciplinarité. L’équipe est organisée par pôle de compétences et accompagnée dans des missions plus spécifiques par des consultants.",
+            "small-paragraph-b": "Sandie Roy a constitué une<br>équipe de personnalités multiples<br>issues du luxe, de la communication,<br>de la culture ou de l’art, dotées de<br>compétences variées et qui travaillent<br>de façon transversale dans l’échange<br>et la pluridisciplinarité. L’équipe est<br>organisée par pôle de compétences et<br>accompagnée dans des missions plus<br>spécifiques par des consultants.",
             "photo-part": [
                 {
                     "id": "evenements",
@@ -118,7 +118,22 @@
                     "title": "PARTENARIATS",
                     "paragraph": "Grâce à son réseau mode et grand public, l’agence Sandie Roy Paris croise et mixe la mode à d’autres secteurs pour faire rayonner plus largement l’image et la valeur des marques."
                 }
-            ]
+            ],
+            "equipe": {
+                "p0": "<span>Fondatrice et Directrice</span><br>Sandie Roy",
+                "p1": "<span>Directrice Presse & Clientele</span><br>Marjorie Jacquet",
+                "p2": "<span>Directrice Marketing & Communication</span><br>Cristel Proust",
+                "p3": "<span>Consultante Presse & Lifestyle</span><br>Anne-Christine Fossati",
+                "p4": "<span>Consultante Presse</span><br>Lucie Chabrillat",
+                "p5": "<span>Consultante Presse</span><br>Cinzia Ricciardi",
+                "p6": "<span>Consultante Presse</span><br>Nathalie Veigas",
+                "p7": "<span>Assistante de Direction</span><br>Naima Boutroue",
+                "p8": "<span>Assistant Presse</span><br>Romain Rigault",
+                "p9": "<span>Assistante Marketing & Production</span><br>Daphnée Davoise",
+                "p10": "<span>Digitale Manager</span><br>Mimo Havstad",
+                "p11": "<span>Showroom Manager<br>& Assistante Presse</span><br>Marie Guy Dussaut",
+                "p12": "<span>Partenariats et<br>Placement de Produits</span><br>Yannick Do"
+            }
         },
 
         "home": {

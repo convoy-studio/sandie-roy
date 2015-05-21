@@ -103,6 +103,9 @@ define ["View"], (View) ->
 
             @onResize()
 
+            @menuContainer.css
+                "display": "none"
+
             # TweenMax.set @menuContainer, { scaleY:0 }
             TweenMax.fromTo @element, 1, {opacity:0, y:-100 }, { opacity:1, y:0, force3D:true, ease:Expo.easeInOut }
             return
@@ -160,7 +163,9 @@ define ["View"], (View) ->
             return
 
         openMenu: =>
-            # TweenMax.set @menuContainer, { y:1 }
+            @menuContainer.css
+                "display": "block"
+            @onResize()
             @menuIsOpened = true
             @menuTl.timeScale(1.2).play()
             @stateTl.timeScale(1.2).play()
@@ -180,6 +185,8 @@ define ["View"], (View) ->
 
         onMenuReverseComplete: =>
             # TweenMax.set @menuContainer, { scaleY:0 }
+            @menuContainer.css
+                "display": "none"
             return
 
         onResize: =>

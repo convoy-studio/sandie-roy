@@ -1,4 +1,4 @@
-define ["View", "signals"], (View, signals) ->
+define ["View", "signals", "Hammer"], (View, signals, Hammer) ->
 
     "use strict"
     
@@ -13,6 +13,7 @@ define ["View", "signals"], (View, signals) ->
             super(id, scope)
 
         init: (cb)=>
+
             @initCb = cb
             Signal.onResize.add(@resize)
 
@@ -25,6 +26,8 @@ define ["View", "signals"], (View, signals) ->
             return
 
         ready: =>
+            @hammertime = new Hammer(@element.get(0))
+
             @partHolders = @element.find(".part-holder")
 
             $photoParts = @element.find(".part-photo")
@@ -40,7 +43,9 @@ define ["View", "signals"], (View, signals) ->
                 p.paragraphEl = $photoPart.find(".paragraph").parent().get(0)
                 @photoParts.push p
 
+            @centeredHolder = @element.find(".centered-holder")
             @initCb()
+
             return
 
         addAnimations: =>
@@ -67,11 +72,18 @@ define ["View", "signals"], (View, signals) ->
             return
 
         transitionOutCompleted: =>
-            # console.log "transitionOutCompleted", Model.newHash
             @transitionOutComplete.dispatch()
             return
 
         resize: =>
+
+            if Model.windowW > 901
+                @centeredHolder.css
+                    "margin-left": -(@centeredHolder.width() >> 1)
+            else
+                @centeredHolder.css
+                    "margin-left": 0
+
             return
 
         destroy: =>

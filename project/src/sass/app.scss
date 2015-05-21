@@ -11,7 +11,8 @@
 @import "compass/css3/user-interface";
 @import "compass/typography/text/nowrap";
 @import "compass/layout";
-@import "breakpoint";
+
+@import "../../www/component/include-media/dist/_include-media.scss";
 
 @import "global/_ease-pack.scss";
 @import "global/_variables.scss";

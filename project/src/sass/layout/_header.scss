@@ -76,7 +76,7 @@ header#header{
 				@include anim(0.2s, 0s, $easeInOutExpo, scale(1,1), 50%, 50% );
 				@include opacity(0);
 			}
-    		&:hover {
+    		&:hover, &.mouse-over {
     			.horiz-line {
 					@include anim(0.6s, 0s, $easeOutExpo, scale(1,1), 50%, 50% );
 					@include opacity(1);

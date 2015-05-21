@@ -2,7 +2,7 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(["Page", "signals", "MouseWheel"], function(Page, signals, wheel) {
+define(["Page", "signals", "MouseWheel", "Hammer"], function(Page, signals, wheel, Hammer) {
   "use strict";
   var PartsPage;
   PartsPage = (function(_super) {
@@ -19,6 +19,7 @@ define(["Page", "signals", "MouseWheel"], function(Page, signals, wheel) {
       this.resize = __bind(this.resize, this);
       this.changeSection = __bind(this.changeSection, this);
       this.onMouseWheel = __bind(this.onMouseWheel, this);
+      this.onSwipe = __bind(this.onSwipe, this);
       this.reArrangeIndex = __bind(this.reArrangeIndex, this);
       this.addAnimations = __bind(this.addAnimations, this);
       this.transitionOut = __bind(this.transitionOut, this);
@@ -35,6 +36,12 @@ define(["Page", "signals", "MouseWheel"], function(Page, signals, wheel) {
     PartsPage.prototype.ready = function() {
       var i, o, part, _i, _len, _ref;
       PartsPage.__super__.ready.call(this);
+      this.hammertime.get("swipe").set({
+        direction: Hammer.DIRECTION_VERTICAL,
+        threshold: 5,
+        velocity: 0.5
+      });
+      this.hammertime.on("swipeup swipedown", this.onSwipe);
       this.parts = this.element.find(".part-holder");
       this.currentZIndex = this.parts.length - 1;
       this.partsTweens = [];
@@ -91,6 +98,20 @@ define(["Page", "signals", "MouseWheel"], function(Page, signals, wheel) {
         });
         j -= 1;
       }
+    };
+
+    PartsPage.prototype.onSwipe = function(e) {
+      var dir;
+      e.preventDefault();
+      switch (e.type) {
+        case "swipeup":
+          dir = 1;
+          break;
+        case "swipedown":
+          dir = -1;
+          break;
+      }
+      this.changeSection(dir);
     };
 
     PartsPage.prototype.onMouseWheel = function(e) {
@@ -173,7 +194,16 @@ define(["Page", "signals", "MouseWheel"], function(Page, signals, wheel) {
       baseLineNum = 3;
       basePhotoH = 670;
       maxVisualH = 1020;
-      offset = 50;
+      offset = 40;
+      partHolderCss = {
+        width: Model.windowW,
+        height: Model.windowH
+      };
+      this.partHolders.css(partHolderCss);
+      bottomContainerH = 0;
+      Model.parentEl.css({
+        height: bottomContainerH
+      });
       _ref = this.photoParts;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         photo = _ref[_i];
@@ -185,7 +215,7 @@ define(["Page", "signals", "MouseWheel"], function(Page, signals, wheel) {
         visualH = basePhotoH - (moreLines * paragraphFontSize);
         visualH = (Model.windowH / maxVisualH) * visualH;
         visualH -= offset + 60;
-        visualY = (Model.windowH >> 1) - (visualH >> 1) + offset - 20;
+        visualY = (Model.windowH >> 1) - (visualH >> 1) + offset - 50;
         titleY = (visualY >> 1) - (titleH >> 1) + offset;
         bottomVisualPos = visualY + visualH;
         paragraphY = bottomVisualPos + ((Model.windowH - bottomVisualPos) >> 1) - (paragraphH >> 1);
@@ -194,15 +224,6 @@ define(["Page", "signals", "MouseWheel"], function(Page, signals, wheel) {
         photo.titleEl.style.top = titleY + "px";
         photo.paragraphEl.style.top = paragraphY + "px";
       }
-      partHolderCss = {
-        width: Model.windowW,
-        height: Model.windowH
-      };
-      this.partHolders.css(partHolderCss);
-      bottomContainerH = 0;
-      Model.parentEl.css({
-        height: bottomContainerH
-      });
     };
 
     PartsPage.prototype.destroy = function() {

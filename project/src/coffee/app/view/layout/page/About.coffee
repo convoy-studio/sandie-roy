@@ -16,6 +16,13 @@ define ["Page"], (Page) ->
             super(cb)
 
         ready: =>
+
+            @personPhoto = @element.find(".equipe img")
+            @personInfos = @element.find(".equipe .person-info")
+
+
+            # console.log @personInfos, @personPhoto
+
             super()
             return
 
@@ -41,6 +48,20 @@ define ["Page"], (Page) ->
 
         resize: =>
             super()
+
+            # for photo, i in @personPhoto
+            #     $photo = $(photo)
+            #     $info = $(@personInfos[i])
+
+            #     infoCss = 
+            #         left: $photo.position().left
+            #         top: $photo.position().top + $photo.height() + 10
+            #         width: $photo.width()
+
+            #     $info.css infoCss
+
+            #     # console.log $info.width()
+
             return
 
         destroy: =>

@@ -30,11 +30,7 @@ define [], () ->
                 { id: "relations-publiques-partial", src: "partial/page/relations-publiques.html" }
                 { id: "close-svg", src: "svg/close.svg", type:createjs.LoadQueue.TEXT }
                 { id: "logo-svg", src: "svg/logo.svg", type:createjs.LoadQueue.TEXT }
-                { id: "about-hd-image", src: "image/global/about-hd.jpg" }
                 { id: "blank-image", src: "image/global/blank.gif" }
-                { id: "production-hd-image", src: "image/global/production-hd.jpg" }
-                { id: "relations-presse-hd-image", src: "image/global/relations-presse-hd.jpg" }
-                { id: "relations-publiques-hd-image", src: "image/global/relations-publiques-hd.jpg" }
                 # Partials end
 
             ]

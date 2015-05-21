@@ -88,6 +88,7 @@ define(["View"], function(View) {
         display: "block",
         opacity: 1
       });
+      this.onResize();
       this.tl.timeScale(1.2).play();
     };
 

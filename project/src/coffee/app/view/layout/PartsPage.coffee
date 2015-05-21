@@ -1,4 +1,4 @@
-define ["Page", "signals", "MouseWheel"], (Page, signals, wheel) ->
+define ["Page", "signals", "MouseWheel", "Hammer"], (Page, signals, wheel, Hammer) ->
 
     "use strict"
     
@@ -17,6 +17,13 @@ define ["Page", "signals", "MouseWheel"], (Page, signals, wheel) ->
 
         ready: =>
             super()
+
+            @hammertime.get("swipe").set
+                direction: Hammer.DIRECTION_VERTICAL
+                threshold: 5
+                velocity: 0.5
+            @hammertime.on "swipeup swipedown", @onSwipe
+
             @parts = @element.find(".part-holder")
             @currentZIndex = @parts.length-1
             @partsTweens = []
@@ -53,6 +60,18 @@ define ["Page", "signals", "MouseWheel"], (Page, signals, wheel) ->
                 $part.css
                     "z-index": j
                 j -= 1
+            return
+
+        onSwipe: (e)=>
+            e.preventDefault()
+            switch e.type
+                when "swipeup"
+                    dir = 1
+                    break
+                when "swipedown"
+                    dir = -1
+                    break
+            @changeSection(dir)    
             return
 
         onMouseWheel: (e)=>
@@ -101,26 +120,8 @@ define ["Page", "signals", "MouseWheel"], (Page, signals, wheel) ->
             baseLineNum = 3
             basePhotoH = 670
             maxVisualH = 1020
-            offset = 50
+            offset = 40
 
-            for photo in @photoParts
-                paragraphH = photo.paragraphEl.clientHeight
-                titleH = photo.titleEl.clientHeight
-                paragraphFontSize = parseInt $(photo.paragraphEl).css("font-size").replace(/[^-\d\.]/g, '')
-                paragraphLineNum = parseInt paragraphH / paragraphFontSize
-                moreLines = paragraphLineNum - baseLineNum
-                visualH = basePhotoH - (moreLines * paragraphFontSize)
-                visualH = (Model.windowH / maxVisualH) * visualH
-                visualH -= offset + 60
-                visualY = (Model.windowH >> 1) - (visualH >> 1) + offset - 20
-                titleY = (visualY >> 1) - (titleH >> 1) + offset
-                bottomVisualPos = visualY + visualH
-                paragraphY = bottomVisualPos + ((Model.windowH - bottomVisualPos) >> 1) - (paragraphH >> 1)
-
-                photo.visualContainerEl.style.height = visualH + "px"
-                photo.visualContainerEl.style.top = visualY + "px"
-                photo.titleEl.style.top = titleY + "px"
-                photo.paragraphEl.style.top = paragraphY + "px"
 
             partHolderCss =  
                 width: Model.windowW
@@ -132,6 +133,25 @@ define ["Page", "signals", "MouseWheel"], (Page, signals, wheel) ->
             bottomContainerH = 0
             Model.parentEl.css
                 height: bottomContainerH
+
+            for photo in @photoParts
+                paragraphH = photo.paragraphEl.clientHeight
+                titleH = photo.titleEl.clientHeight
+                paragraphFontSize = parseInt $(photo.paragraphEl).css("font-size").replace(/[^-\d\.]/g, '')
+                paragraphLineNum = parseInt paragraphH / paragraphFontSize
+                moreLines = paragraphLineNum - baseLineNum
+                visualH = basePhotoH - (moreLines * paragraphFontSize)
+                visualH = (Model.windowH / maxVisualH) * visualH
+                visualH -= offset + 60
+                visualY = (Model.windowH >> 1) - (visualH >> 1) + offset - 50
+                titleY = (visualY >> 1) - (titleH >> 1) + offset
+                bottomVisualPos = visualY + visualH
+                paragraphY = bottomVisualPos + ((Model.windowH - bottomVisualPos) >> 1) - (paragraphH >> 1)
+
+                photo.visualContainerEl.style.height = visualH + "px"
+                photo.visualContainerEl.style.top = visualY + "px"
+                photo.titleEl.style.top = titleY + "px"
+                photo.paragraphEl.style.top = paragraphY + "px"
 
             return
 

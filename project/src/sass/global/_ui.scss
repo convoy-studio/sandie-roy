@@ -37,6 +37,41 @@ img {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);   /* IE6 & 7 */
     zoom: 1;
 }
+.size0 {
+    font-size: 100px;
+    line-height: 93px;
+    @include media("<=phone") {
+        font-size: 43px;
+        line-height: 47px;
+    }
+}
+.size1 {
+    font-size: 72px;
+    line-height: 80px;
+    @include media("<=phone") {
+        font-size: 46px;
+    }
+}
+.size2 {
+    font-size: 48px;
+    line-height: 62px;
+    @include media("<=phone") {
+        font-size: 40px;
+        line-height: 46px;
+    }
+}
+.size3 {
+    font-size: 30px;
+    line-height: 42px;
+    @include media("<=phone") {
+        font-size: 18px;
+        line-height: 26px;
+    }
+}
+.size4 {
+    font-size: 14px;
+    line-height: 20px;
+}
 a {
     color: $white;
     text-decoration: none;
@@ -70,10 +105,16 @@ a {
     left:0;
 }
 .centered-holder {
-    width: $min-middle-width;
+    width: 100%;
+    max-width: $min-middle-width;
     position: absolute;
     left: 50%;
     margin-left: -$min-middle-width/2;
+
+    @include media("<=middleW") {
+        left: auto;
+        margin-left: 0;
+    }
 }
 .centered-text-parent {
     @extend .full;
@@ -112,15 +153,14 @@ p.centered-text-child {
         }
     }
     .title {
-        font-size: 72px;
+        @extend .size1;
         text-transform: lowercase;
         @include nowrap;
     }
     .paragraph {
+        @extend .size3;
         width: 680px;
-        font-size: 24px;
         margin-left: $gridPartW + $gridMargin;
-        line-height: 30px;
     }
     .visual-container {
         width: $visualW;
@@ -145,7 +185,7 @@ p.centered-text-child {
         }
     }
 
-    @include breakpoint(max-width $min-middle-width) {
+    @include media("<=middleW") {
         &.left , &.right {
             .centered-holder {
                 left: 0; 
@@ -167,8 +207,10 @@ p.centered-text-child {
     }
 }
 .top-paragraph {
-    font-size: 48px;
-    line-height: 57px;
+    width: 100%;
+    max-width: $min-middle-width;
+    @extend .size2;
+    padding: 20px;
 }
 
 #contact-view {

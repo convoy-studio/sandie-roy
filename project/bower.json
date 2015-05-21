@@ -25,6 +25,8 @@
     "greensock": "",
     "mustache.js": "",
     "jquery-mousewheel": "",
-    "requirejs-plugins": "~1.0.2"
+    "requirejs-plugins": "~1.0.2",
+    "hammer.js": "~2.0.4",
+    "include-media": "~1.1.2"
   }
 }

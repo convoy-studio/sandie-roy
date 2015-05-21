@@ -51,6 +51,7 @@ define ["View"], (View) ->
             @element.css
                 display: "block"
                 opacity: 1
+            @onResize()
             @tl.timeScale(1.2).play()
             return
 

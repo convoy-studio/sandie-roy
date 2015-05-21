@@ -29,6 +29,8 @@ define(["Page"], function(Page) {
     };
 
     About.prototype.ready = function() {
+      this.personPhoto = this.element.find(".equipe img");
+      this.personInfos = this.element.find(".equipe .person-info");
       About.__super__.ready.call(this);
     };
 

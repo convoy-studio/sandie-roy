@@ -2,7 +2,7 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(["View", "signals"], function(View, signals) {
+define(["View", "signals", "Hammer"], function(View, signals, Hammer) {
   "use strict";
   var Page;
   Page = (function(_super) {
@@ -44,6 +44,7 @@ define(["View", "signals"], function(View, signals) {
 
     Page.prototype.ready = function() {
       var $photoPart, $photoParts, i, p, photoPart, _i, _len;
+      this.hammertime = new Hammer(this.element.get(0));
       this.partHolders = this.element.find(".part-holder");
       $photoParts = this.element.find(".part-photo");
       this.photoParts = [];
@@ -59,6 +60,7 @@ define(["View", "signals"], function(View, signals) {
         p.paragraphEl = $photoPart.find(".paragraph").parent().get(0);
         this.photoParts.push(p);
       }
+      this.centeredHolder = this.element.find(".centered-holder");
       this.initCb();
     };
 
@@ -94,7 +96,17 @@ define(["View", "signals"], function(View, signals) {
       this.transitionOutComplete.dispatch();
     };
 
-    Page.prototype.resize = function() {};
+    Page.prototype.resize = function() {
+      if (Model.windowW > 901) {
+        this.centeredHolder.css({
+          "margin-left": -(this.centeredHolder.width() >> 1)
+        });
+      } else {
+        this.centeredHolder.css({
+          "margin-left": 0
+        });
+      }
+    };
 
     Page.prototype.destroy = function() {
       console.log("destroy");

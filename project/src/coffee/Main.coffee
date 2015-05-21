@@ -11,10 +11,9 @@ require.config(
         Mustache: "../component/mustache.js/mustache"
         TweenMax: "../component/greensock/src/minified/TweenMax.min"
         TweenLite: "../component/greensock/src/minified/TweenLite.min"
-        TimelineMax: "../component/greensock/src/minified/TimelineMax.min"
-        TimelineLite: "../component/greensock/src/minified/TimelineLite.min"
         SplitText: "../component/greensock/SplitText"
         MouseWheel: "../component/jquery-mousewheel/jquery.mousewheel.min"
+        Hammer: "../component/hammer.js/hammer"
 
         Draggable: "../component/greensock/Draggable"
         ThrowPropsPlugin: "../component/greensock/ThrowPropsPlugin.min"

@@ -180,6 +180,9 @@ define(["View"], function(View) {
       Signal.onRouteChanged.add(this.onRouteChanged);
       this.onRouteChanged();
       this.onResize();
+      this.menuContainer.css({
+        "display": "none"
+      });
       TweenMax.fromTo(this.element, 1, {
         opacity: 0,
         y: -100
@@ -260,6 +263,10 @@ define(["View"], function(View) {
     };
 
     Header.prototype.openMenu = function() {
+      this.menuContainer.css({
+        "display": "block"
+      });
+      this.onResize();
       this.menuIsOpened = true;
       this.menuTl.timeScale(1.2).play();
       this.stateTl.timeScale(1.2).play();
@@ -279,7 +286,11 @@ define(["View"], function(View) {
       this.burgerTl.timeScale(1.4).reverse();
     };
 
-    Header.prototype.onMenuReverseComplete = function() {};
+    Header.prototype.onMenuReverseComplete = function() {
+      this.menuContainer.css({
+        "display": "none"
+      });
+    };
 
     Header.prototype.onResize = function() {
       var linkMenuCss, shareMenuCss;
