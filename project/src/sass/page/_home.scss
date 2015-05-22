@@ -30,7 +30,7 @@
 
     .title {
         @extend .absolute;
-        font-size: 122px;
+        @extend .sizeHome;
         color: $white;
         text-align: center;
     }

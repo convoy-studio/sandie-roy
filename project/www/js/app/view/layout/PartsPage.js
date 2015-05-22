@@ -188,7 +188,6 @@ define(["Page", "signals", "MouseWheel", "Hammer"], function(Page, signals, whee
         paragraphLineNum = parseInt(paragraphH / paragraphFontSize);
         moreLines = paragraphLineNum - baseLineNum;
         photoH = basePhotoH * scale;
-        console.log(moreLines * paragraphFontSize);
         visualH = photoH - offset - 20;
         visualY = (Model.windowH >> 1) - (visualH >> 1) - 20;
         titleY = (visualY >> 1) - (titleH >> 1) + offset;

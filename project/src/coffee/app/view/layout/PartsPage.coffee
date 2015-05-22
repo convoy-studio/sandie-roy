@@ -136,8 +136,6 @@ define ["Page", "signals", "MouseWheel", "Hammer"], (Page, signals, wheel, Hamme
                 moreLines = paragraphLineNum - baseLineNum
 
                 photoH = basePhotoH * scale
-                console.log moreLines * paragraphFontSize
-                # photoH += moreLines * paragraphFontSize
                 visualH = photoH - offset - 20
                 visualY = (Model.windowH >> 1) - (visualH >> 1) - 20
                 titleY = ((visualY >> 1) - (titleH >> 1) + offset)

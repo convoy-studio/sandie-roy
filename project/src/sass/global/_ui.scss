@@ -37,6 +37,12 @@ img {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);   /* IE6 & 7 */
     zoom: 1;
 }
+.sizeHome {
+    font-size: 122px;
+    @include media("<=tablet") {
+        font-size: 50px;
+    }
+}
 .size0 {
     font-size: 100px;
     line-height: 93px;
@@ -55,9 +61,13 @@ img {
 .size2 {
     font-size: 48px;
     line-height: 62px;
+    @include media("<=tablet") {
+        font-size: 35px;
+        line-height: 56px;
+    }
     @include media("<=phone") {
-        font-size: 40px;
-        line-height: 46px;
+        font-size: 25px;
+        line-height: 37px;
     }
 }
 .size3 {
@@ -75,10 +85,21 @@ img {
 .size5 {
     font-size: 18px;
     line-height: 28px;
+    @include media("<=tablet") {
+        font-size: 16px;
+        line-height: 22px;
+    }
+    @include media("<=phone") {
+        font-size: 12px;
+        line-height: 16px;
+    }
 }
 .size6 {
     font-size: 48px;
     line-height: 80px;
+    @include media("<=phone") {
+        font-size: 26px;
+    }
 }
 a {
     color: $white;
@@ -145,6 +166,9 @@ p.centered-text-child {
     svg path {
         fill: $white;
     }
+    @include media("<=tablet") {
+        display: none;
+    }
 }
 .parts-wrapper {
     @extend .absolute;
@@ -207,13 +231,13 @@ p.centered-text-child {
             .visual-parent {
                 width: $min-middle-width;
                 position: absolute;
-                left: 50%;
-                margin-left: -$min-middle-width/2;
+                left: 0%;
+                margin-left: 0;
             }
             .title, .paragraph {
                 margin-left: 0px;
                 padding: 0 40px;
-                width: 90%;
+                width: 80%;
             }
         }
     }
@@ -223,6 +247,9 @@ p.centered-text-child {
     max-width: $min-middle-width;
     @extend .size2;
     padding: 20px;
+    @include media("<=tablet") {
+        padding-top: 80px;
+    }
 }
 
 #contact-view {

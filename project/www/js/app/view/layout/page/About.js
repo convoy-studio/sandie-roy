@@ -2,7 +2,7 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(["Page"], function(Page) {
+define(["PartsPage"], function(PartsPage) {
   "use strict";
   var About;
   About = (function(_super) {
@@ -20,7 +20,6 @@ define(["Page"], function(Page) {
       this.init = __bind(this.init, this);
       scope.pathId = id;
       scope.imagePath = "image/page/" + scope.pathId + "/";
-      console.log(scope.pathId);
       About.__super__.constructor.call(this, id, scope);
     }
 
@@ -29,8 +28,6 @@ define(["Page"], function(Page) {
     };
 
     About.prototype.ready = function() {
-      this.personPhoto = this.element.find(".equipe img");
-      this.personInfos = this.element.find(".equipe .person-info");
       About.__super__.ready.call(this);
     };
 
@@ -64,6 +61,6 @@ define(["Page"], function(Page) {
 
     return About;
 
-  })(Page);
+  })(PartsPage);
   return About;
 });

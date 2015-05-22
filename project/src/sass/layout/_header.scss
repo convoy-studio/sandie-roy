@@ -11,7 +11,7 @@ header#header{
 
     	position: absolute;
 		right: 30px;
-		top: $topMargin - 6px;
+		top: $topMargin;
 		color: $white;
 		z-index: 1;
 
@@ -58,6 +58,11 @@ header#header{
     		z-index: 1;
     		top: 50%;
     		margin-top: -($fontSize/2) + ($topMargin/2);
+
+            @include media("<=tablet") {
+                text-align: center;
+                margin-top: -30px;
+            }
     	}
 
     	ul.share-menu {
