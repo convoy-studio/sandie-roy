@@ -4,9 +4,8 @@ define ["Page", "signals", "MouseWheel", "Hammer"], (Page, signals, wheel, Hamme
     
     class PartsPage extends Page
 
-        currentZIndex: 0
-        currentSection: 0
         transitionRunning: false
+        currentSection: 0
 
         constructor: (id, scope) ->
             super(id, scope)
@@ -25,19 +24,14 @@ define ["Page", "signals", "MouseWheel", "Hammer"], (Page, signals, wheel, Hamme
             @hammertime.on "swipeup swipedown", @onSwipe
 
             @parts = @element.find(".part-holder")
-            @currentZIndex = @parts.length-1
             @partsTweens = []
             for part, i in @parts
                 o = {}
                 o.el = part
-                o.tweenTop = undefined
-                o.tweenDown = undefined
-                o.tweenCenter = undefined
                 @partsTweens[i] = o
             return
 
         transitionIn: =>
-            @reArrangeIndex()
             $(window).on 'mousewheel', @onMouseWheel
             super()
             return
@@ -51,15 +45,6 @@ define ["Page", "signals", "MouseWheel", "Hammer"], (Page, signals, wheel, Hamme
             @tl.fromTo @element, 0.6, { opacity:0 }, { opacity:1, force3D:true, ease:Expo.easeInOut }, 0
             @tl.fromTo @element, 1, { y:Model.windowH + 10 }, { y:0, force3D:true, ease:Expo.easeInOut }, 0.3
             @tl.pause(0)
-            return
-
-        reArrangeIndex: =>
-            j = @parts.length-1
-            for part, i in @parts
-                $part = $(part)
-                $part.css
-                    "z-index": j
-                j -= 1
             return
 
         onSwipe: (e)=>
@@ -83,72 +68,83 @@ define ["Page", "signals", "MouseWheel", "Hammer"], (Page, signals, wheel, Hamme
 
         changeSection: (dir)=>
             @currentSection += dir
-            if @currentSection < 0 then @currentSection = @partsTweens.length-1
-            if @currentSection > @partsTweens.length-1 then @currentSection = 0
+            # if @currentSection < 0 then @currentSection = @partsTweens.length-1
+            # if @currentSection > @partsTweens.length-1 then @currentSection = 0
             @transitionRunning = true
 
-            if dir is 1
-                inTweenIndex = @currentSection
-                outTweenIndex = if @currentSection-1 < 0 then @partsTweens.length-1 else @currentSection-1
-            else 
-                inTweenIndex = @currentSection
-                outTweenIndex = if @currentSection+1 > @partsTweens.length-1 then 0 else @currentSection+1
-
-            if dir is 1
-                inEl = @partsTweens[inTweenIndex].el
-                outEl = @partsTweens[outTweenIndex].el
-                outEl.style.zIndex = 4
-                inEl.style.zIndex = 5
-                TweenMax.fromTo outEl, 1, { y:0 }, { y:Model.windowH, force3D:true, ease:Expo.easeInOut }
-                TweenMax.fromTo inEl, 1, { y:Model.windowH }, { y:0, force3D:true, ease:Expo.easeOut, onComplete: =>
-                    @transitionRunning = false
-                }
+            if @currentSection < 0
+                @currentSection = 0
+                @launchBounceForceTween(0)
+                @runScrollDelayedCall()
+            else if @currentSection > @partsTweens.length-1
+                @currentSection = @partsTweens.length-1
+                @launchBounceForceTween(@currentPageYPos)
+                @runScrollDelayedCall()
             else
-                inEl = @partsTweens[inTweenIndex].el
-                outEl = @partsTweens[outTweenIndex].el
-                outEl.style.zIndex = 4
-                inEl.style.zIndex = 5
-                TweenMax.fromTo outEl, 1, { y:0 }, { y:-Model.windowH, force3D:true, ease:Expo.easeInOut }
-                TweenMax.fromTo inEl, 1, { y:-Model.windowH }, { y:0, force3D:true, ease:Expo.easeOut, onComplete: =>
-                    @transitionRunning = false
-                }
+                @runScrollDelayedCall()
+                TweenMax.to @element, 0.8, { y:-Model.windowH * @currentSection, force3D:true, ease:Expo.easeInOut }
 
+            @currentPageYPos = -Model.windowH * @currentSection
+
+            return
+
+        launchBounceForceTween: (yPos)=>
+            offset = 40
+            TweenMax.to @element, 0.4, { y:yPos - offset, force3D:true, ease:Expo.easeOut }
+            TweenMax.to @element, 0.4, { delay:0.2, y:yPos, force3D:true, ease:Back.easeOut}
+            return
+
+        runScrollDelayedCall: =>
+            TweenMax.killDelayedCallsTo @activateScroll
+            TweenMax.delayedCall 1.2, @activateScroll
+            return
+
+        activateScroll: =>
+            @transitionRunning = false
             return
 
         resize: =>
 
             baseLineNum = 3
-            basePhotoH = 670
+            basePhotoH = 667
             maxVisualH = 1020
             offset = 40
 
+            for part, i in @partHolders
+                $part = $(part)
+                partHolderCss =  
+                    top: Model.windowH * i
+                    width: Model.windowW
+                    height: Model.windowH
+                $part.css partHolderCss
 
-            partHolderCss =  
-                width: Model.windowW
-                height: Model.windowH
-
-            @partHolders.css partHolderCss
-
-            # bottomContainerH = @partHolders.length * Model.windowH
             bottomContainerH = 0
             Model.parentEl.css
                 height: bottomContainerH
 
+            TweenMax.set @element, { y:-@currentSection*Model.windowH, force3D:true }
+
+            scale = (Model.windowH / 1100) * 1
+            scale = Math.min(scale, 1)
+
             for photo in @photoParts
                 paragraphH = photo.paragraphEl.clientHeight
                 titleH = photo.titleEl.clientHeight
+
                 paragraphFontSize = parseInt $(photo.paragraphEl).css("font-size").replace(/[^-\d\.]/g, '')
                 paragraphLineNum = parseInt paragraphH / paragraphFontSize
                 moreLines = paragraphLineNum - baseLineNum
-                visualH = basePhotoH - (moreLines * paragraphFontSize)
-                visualH = (Model.windowH / maxVisualH) * visualH
-                visualH -= offset + 60
-                visualY = (Model.windowH >> 1) - (visualH >> 1) + offset - 50
-                titleY = (visualY >> 1) - (titleH >> 1) + offset
-                bottomVisualPos = visualY + visualH
+
+                photoH = basePhotoH * scale
+                console.log moreLines * paragraphFontSize
+                # photoH += moreLines * paragraphFontSize
+                visualH = photoH - offset - 20
+                visualY = (Model.windowH >> 1) - (visualH >> 1) - 20
+                titleY = ((visualY >> 1) - (titleH >> 1) + offset)
+                bottomVisualPos = visualY + photoH
                 paragraphY = bottomVisualPos + ((Model.windowH - bottomVisualPos) >> 1) - (paragraphH >> 1)
 
-                photo.visualContainerEl.style.height = visualH + "px"
+                TweenMax.set photo.visualContainerEl, { scale:scale, force3D: true, transformOrigin:"0% 0%" }
                 photo.visualContainerEl.style.top = visualY + "px"
                 photo.titleEl.style.top = titleY + "px"
                 photo.paragraphEl.style.top = paragraphY + "px"

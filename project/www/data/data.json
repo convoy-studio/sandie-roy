@@ -5,22 +5,18 @@
 
     "routing": {
         "relations-presse": {
-            "global-color": "black",
             "files": []
         },
 
         "relations-publiques": {
-            "global-color": "black",
             "files": []
         },
 
         "production": {
-            "global-color": "black",
             "files": []
         },
 
         "about": {
-            "global-color": "white",
             "files": []
         },
 

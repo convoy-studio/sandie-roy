@@ -14,7 +14,7 @@
         @extend .absolute;
 
         .title {
-            text-transform: uppercase;
+            text-transform: lowercase;
             &.black {
                 @include simpleAnim(.4s, .2s, $easeInOutExpo);
                 color: #000;

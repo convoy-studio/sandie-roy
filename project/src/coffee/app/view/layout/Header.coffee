@@ -4,6 +4,8 @@ define ["View"], (View) ->
     
     class Header extends View
 
+        menuOpenTime: 2
+
         constructor: (id, scope) ->
 
             scope = {}
@@ -41,7 +43,6 @@ define ["View"], (View) ->
             @menuIsOpened = false
 
             Signal.onResize.add(@onResize)
-            Signal.onColorStateChanged.add(@onColorStateChanged)
             TweenMax.delayedCall 0.1, @ready
 
             return
@@ -106,7 +107,6 @@ define ["View"], (View) ->
             @menuContainer.css
                 "display": "none"
 
-            # TweenMax.set @menuContainer, { scaleY:0 }
             TweenMax.fromTo @element, 1, {opacity:0, y:-100 }, { opacity:1, y:0, force3D:true, ease:Expo.easeInOut }
             return
 
@@ -144,17 +144,6 @@ define ["View"], (View) ->
             @toggleMenu()
             return
 
-        onColorStateChanged: =>
-            if @stateTl?
-                switch Model.colorState
-                    when "white"
-                        @stateTl.play()
-                        break
-                    when "black"
-                        if !@menuIsOpened then @stateTl.reverse()
-                        break
-            return
-
         toggleMenu: =>
             if @menuIsOpened
                 @closeMenu()
@@ -170,21 +159,34 @@ define ["View"], (View) ->
             @menuTl.timeScale(1.2).play()
             @stateTl.timeScale(1.2).play()
             @burgerTl.timeScale(1).play()
+
+            @element.on "mouseenter", @menuContainerMouseEnter
+            @element.on "mouseleave", @menuContainerMouseLeft
             return
 
         closeMenu: =>
+            TweenMax.killDelayedCallsTo @closeMenu
+            @element.off "mouseleave", @menuContainerMouseLeft
+            @element.off "mouseenter", @menuContainerMouseEnter
             @menuIsOpened = false
             @menuTl.timeScale(1.6).reverse()
             if Model.newHash is "home"
-                if Model.colorState is "white"
-                    @stateTl.play()
-                else
-                    @stateTl.timeScale(1.6).reverse()
+                @stateTl.timeScale(1.6).reverse()
             @burgerTl.timeScale(1.4).reverse()
             return
 
+        menuContainerMouseLeft: (e)=>
+            e.preventDefault()
+            TweenMax.killDelayedCallsTo @closeMenu
+            TweenMax.delayedCall @menuOpenTime, @closeMenu
+            return
+
+        menuContainerMouseEnter: (e)=>
+            e.preventDefault()
+            TweenMax.killDelayedCallsTo @closeMenu
+            return
+
         onMenuReverseComplete: =>
-            # TweenMax.set @menuContainer, { scaleY:0 }
             @menuContainer.css
                 "display": "none"
             return

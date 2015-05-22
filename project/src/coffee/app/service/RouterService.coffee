@@ -12,18 +12,17 @@ define ["hasher"], (hasher) ->
                 for ks, vs of Model.pageScope
                     if k is ks
                         scope = vs
-                routes.push @createRoute(k, k, scope, v.files, v["global-color"])
+                routes.push @createRoute(k, k, scope, v.files)
             Model.routing = routes
             return
 
-        createRoute: (id, route, scope, files, color)=>
+        createRoute: (id, route, scope, files)=>
             r = {}
             r.id = id
             r.clazz = Util.ConvertToClassName id
             r.route = route
             r.scope = scope
             r.files = files
-            r.color = color
             return r
 
         configHasher: =>

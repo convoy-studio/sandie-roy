@@ -21,7 +21,6 @@ define(["View"], function(View) {
       this.onClick = __bind(this.onClick, this);
       this.onLeave = __bind(this.onLeave, this);
       this.onEnter = __bind(this.onEnter, this);
-      this.updateColorState = __bind(this.updateColorState, this);
       this.changeSlide = __bind(this.changeSlide, this);
       this.getRect = __bind(this.getRect, this);
       this.addAnimations = __bind(this.addAnimations, this);
@@ -37,7 +36,7 @@ define(["View"], function(View) {
     };
 
     TimelineMenu.prototype.ready = function() {
-      var $item, $lines, $menuTitles, $titleTop, i, item, o, titleH, titleW, _i, _len, _ref;
+      var $item, $titleTop, i, item, o, titleH, titleW, _i, _len, _ref;
       this.li = this.element.find("li");
       this.li.on("mouseenter", this.onEnter);
       this.li.on("mouseleave", this.onLeave);
@@ -45,31 +44,19 @@ define(["View"], function(View) {
       this.titlesLinesTop = $("#timeline-menu-view .menu-title, #timeline-menu-view .line");
       this.slideTitles = $(".pages-preview-container .title");
       this.items = [];
-      _ref = this.li;
+      _ref = this.previews;
       for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
         item = _ref[i];
         o = {};
         o.preview = this.previews[i];
         $item = $(item);
         $titleTop = $item.find(".title-top");
-        $menuTitles = $item.find(".menu-title");
-        $lines = $item.find(".line");
         titleW = $titleTop.width();
         titleH = $titleTop.height();
         o.color = o.preview.el.getAttribute("color");
         o.liEl = item;
         o.titleW = $titleTop.width();
         o.titleH = $titleTop.height();
-        o.titlesHolder = $item.find(".menu-titles-holder");
-        o.titles = $menuTitles;
-        o.lines = $lines;
-        o.titlesHolder.css({
-          width: titleW,
-          height: titleH
-        });
-        $menuTitles.css({
-          position: "absolute"
-        });
         this.items[i] = o;
       }
       this.addAnimations();
@@ -83,61 +70,26 @@ define(["View"], function(View) {
         item = _ref[i];
         tl = new TimelineMax();
         item.tl = tl;
-        elInTween = TweenMax.from(item.preview.el, 1, {
+        elInTween = TweenMax.from(item.preview.el, 1.4, {
           x: Model.windowW,
-          scaleX: 0.6,
+          opacity: 0,
           transformOrigin: "0% 0%",
           force3D: true,
-          ease: Expo.easeInOut
+          ease: Power3.easeInOut
         });
-        elOutTween = TweenMax.to(item.preview.el, 1, {
+        elOutTween = TweenMax.to(item.preview.el, 1.4, {
           x: -Model.windowW,
+          opacity: 0,
           transformOrigin: "0% 100%",
           force3D: true,
-          ease: Expo.easeInOut
+          ease: Power3.easeInOut
         });
         item.elInTween = elInTween;
         item.elOutTween = elOutTween;
         tl.add("transition-in");
         tl.add(elInTween, 0);
-        tl.from(item.lines[0], this.slideDelay, {
-          scaleX: 0,
-          transformOrigin: "0% 0%",
-          force3D: true,
-          ease: Linear.easeNone
-        }, 0);
-        tl.from(item.lines[1], this.slideDelay, {
-          scaleX: 0,
-          transformOrigin: "0% 0%",
-          force3D: true,
-          ease: Linear.easeNone
-        }, 0);
-        tl.fromTo(item.titles[0], this.slideDelay, {
-          clip: this.getRect(0, 0, item.titleH, 0)
-        }, {
-          clip: this.getRect(0, item.titleW, item.titleH, 0),
-          force3D: true,
-          ease: Linear.easeNone
-        }, 0);
         tl.add("transition-out");
         tl.add(elOutTween, "transition-out");
-        tl.to(item.lines[0], 1, {
-          scaleX: 0,
-          transformOrigin: "100% 0%",
-          force3D: true,
-          ease: Expo.easeOut
-        }, "transition-out");
-        tl.to(item.lines[1], 1, {
-          scaleX: 0,
-          transformOrigin: "100% 0%",
-          force3D: true,
-          ease: Expo.easeOut
-        }, "transition-out");
-        tl.to(item.titles[0], 1, {
-          clip: this.getRect(0, item.titleW, item.titleH, item.titleW),
-          force3D: true,
-          ease: Expo.easeOut
-        }, "transition-out");
         tl.add("transition-finished");
         tl.pause(0);
       }
@@ -148,8 +100,7 @@ define(["View"], function(View) {
     };
 
     TimelineMenu.prototype.changeSlide = function() {
-      var next, previous,
-        _this = this;
+      var next, previous;
       this.currentSlide += 1;
       if (this.currentSlide > this.items.length - 1) {
         this.currentSlide = 0;
@@ -159,39 +110,23 @@ define(["View"], function(View) {
       }
       previous = this.items[this.currentSlide - 1];
       next = this.items[this.currentSlide];
-      this.updateColorState(next.color);
       if (previous == null) {
         previous = this.items[this.items.length - 1];
       }
+      previous.preview.el.style.zIndex = 4;
+      next.preview.el.style.zIndex = 5;
       if (this.firstLoad) {
         previous.tl.pause("transition-finished");
         next.tl.pause("transition-out");
         TweenMax.delayedCall(this.slideDelay * 0.5, this.changeSlide);
       } else {
-        TweenMax.delayedCall(0.1, function() {
-          if (previous != null) {
-            return previous.tl.tweenFromTo("transition-out", "transition-finished");
-          }
-        });
+        if (previous != null) {
+          previous.tl.tweenFromTo("transition-out", "transition-finished");
+        }
         next.tl.tweenFromTo("transition-in", "transition-out");
         TweenMax.delayedCall(this.slideDelay, this.changeSlide);
       }
       this.firstLoad = false;
-    };
-
-    TimelineMenu.prototype.updateColorState = function(color) {
-      Model.colorState = color;
-      switch (color) {
-        case "white":
-          this.titlesLinesTop.addClass("black");
-          this.slideTitles.addClass("black");
-          break;
-        case "black":
-          this.titlesLinesTop.removeClass("black");
-          this.slideTitles.removeClass("black");
-          break;
-      }
-      Signal.onColorStateChanged.dispatch();
     };
 
     TimelineMenu.prototype.onEnter = function(e) {

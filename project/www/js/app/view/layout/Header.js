@@ -8,13 +8,16 @@ define(["View"], function(View) {
   Header = (function(_super) {
     __extends(Header, _super);
 
+    Header.prototype.menuOpenTime = 2;
+
     function Header(id, scope) {
       this.onResize = __bind(this.onResize, this);
       this.onMenuReverseComplete = __bind(this.onMenuReverseComplete, this);
+      this.menuContainerMouseEnter = __bind(this.menuContainerMouseEnter, this);
+      this.menuContainerMouseLeft = __bind(this.menuContainerMouseLeft, this);
       this.closeMenu = __bind(this.closeMenu, this);
       this.openMenu = __bind(this.openMenu, this);
       this.toggleMenu = __bind(this.toggleMenu, this);
-      this.onColorStateChanged = __bind(this.onColorStateChanged, this);
       this.onMenuClicked = __bind(this.onMenuClicked, this);
       this.hightlightLi = __bind(this.hightlightLi, this);
       this.resetLiHightlight = __bind(this.resetLiHightlight, this);
@@ -57,7 +60,6 @@ define(["View"], function(View) {
     Header.prototype.init = function() {
       this.menuIsOpened = false;
       Signal.onResize.add(this.onResize);
-      Signal.onColorStateChanged.add(this.onColorStateChanged);
       TweenMax.delayedCall(0.1, this.ready);
     };
 
@@ -239,21 +241,6 @@ define(["View"], function(View) {
       this.toggleMenu();
     };
 
-    Header.prototype.onColorStateChanged = function() {
-      if (this.stateTl != null) {
-        switch (Model.colorState) {
-          case "white":
-            this.stateTl.play();
-            break;
-          case "black":
-            if (!this.menuIsOpened) {
-              this.stateTl.reverse();
-            }
-            break;
-        }
-      }
-    };
-
     Header.prototype.toggleMenu = function() {
       if (this.menuIsOpened) {
         this.closeMenu();
@@ -271,19 +258,31 @@ define(["View"], function(View) {
       this.menuTl.timeScale(1.2).play();
       this.stateTl.timeScale(1.2).play();
       this.burgerTl.timeScale(1).play();
+      this.element.on("mouseenter", this.menuContainerMouseEnter);
+      this.element.on("mouseleave", this.menuContainerMouseLeft);
     };
 
     Header.prototype.closeMenu = function() {
+      TweenMax.killDelayedCallsTo(this.closeMenu);
+      this.element.off("mouseleave", this.menuContainerMouseLeft);
+      this.element.off("mouseenter", this.menuContainerMouseEnter);
       this.menuIsOpened = false;
       this.menuTl.timeScale(1.6).reverse();
       if (Model.newHash === "home") {
-        if (Model.colorState === "white") {
-          this.stateTl.play();
-        } else {
-          this.stateTl.timeScale(1.6).reverse();
-        }
+        this.stateTl.timeScale(1.6).reverse();
       }
       this.burgerTl.timeScale(1.4).reverse();
+    };
+
+    Header.prototype.menuContainerMouseLeft = function(e) {
+      e.preventDefault();
+      TweenMax.killDelayedCallsTo(this.closeMenu);
+      TweenMax.delayedCall(this.menuOpenTime, this.closeMenu);
+    };
+
+    Header.prototype.menuContainerMouseEnter = function(e) {
+      e.preventDefault();
+      TweenMax.killDelayedCallsTo(this.closeMenu);
     };
 
     Header.prototype.onMenuReverseComplete = function() {

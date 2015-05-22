@@ -8,19 +8,19 @@ define(["Page", "signals", "MouseWheel", "Hammer"], function(Page, signals, whee
   PartsPage = (function(_super) {
     __extends(PartsPage, _super);
 
-    PartsPage.prototype.currentZIndex = 0;
+    PartsPage.prototype.transitionRunning = false;
 
     PartsPage.prototype.currentSection = 0;
-
-    PartsPage.prototype.transitionRunning = false;
 
     function PartsPage(id, scope) {
       this.destroy = __bind(this.destroy, this);
       this.resize = __bind(this.resize, this);
+      this.activateScroll = __bind(this.activateScroll, this);
+      this.runScrollDelayedCall = __bind(this.runScrollDelayedCall, this);
+      this.launchBounceForceTween = __bind(this.launchBounceForceTween, this);
       this.changeSection = __bind(this.changeSection, this);
       this.onMouseWheel = __bind(this.onMouseWheel, this);
       this.onSwipe = __bind(this.onSwipe, this);
-      this.reArrangeIndex = __bind(this.reArrangeIndex, this);
       this.addAnimations = __bind(this.addAnimations, this);
       this.transitionOut = __bind(this.transitionOut, this);
       this.transitionIn = __bind(this.transitionIn, this);
@@ -43,22 +43,17 @@ define(["Page", "signals", "MouseWheel", "Hammer"], function(Page, signals, whee
       });
       this.hammertime.on("swipeup swipedown", this.onSwipe);
       this.parts = this.element.find(".part-holder");
-      this.currentZIndex = this.parts.length - 1;
       this.partsTweens = [];
       _ref = this.parts;
       for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
         part = _ref[i];
         o = {};
         o.el = part;
-        o.tweenTop = void 0;
-        o.tweenDown = void 0;
-        o.tweenCenter = void 0;
         this.partsTweens[i] = o;
       }
     };
 
     PartsPage.prototype.transitionIn = function() {
-      this.reArrangeIndex();
       $(window).on('mousewheel', this.onMouseWheel);
       PartsPage.__super__.transitionIn.call(this);
     };
@@ -86,20 +81,6 @@ define(["Page", "signals", "MouseWheel", "Hammer"], function(Page, signals, whee
       this.tl.pause(0);
     };
 
-    PartsPage.prototype.reArrangeIndex = function() {
-      var $part, i, j, part, _i, _len, _ref;
-      j = this.parts.length - 1;
-      _ref = this.parts;
-      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
-        part = _ref[i];
-        $part = $(part);
-        $part.css({
-          "z-index": j
-        });
-        j -= 1;
-      }
-    };
-
     PartsPage.prototype.onSwipe = function(e) {
       var dir;
       e.preventDefault();
@@ -125,101 +106,99 @@ define(["Page", "signals", "MouseWheel", "Hammer"], function(Page, signals, whee
     };
 
     PartsPage.prototype.changeSection = function(dir) {
-      var inEl, inTweenIndex, outEl, outTweenIndex,
-        _this = this;
       this.currentSection += dir;
-      if (this.currentSection < 0) {
-        this.currentSection = this.partsTweens.length - 1;
-      }
-      if (this.currentSection > this.partsTweens.length - 1) {
-        this.currentSection = 0;
-      }
       this.transitionRunning = true;
-      if (dir === 1) {
-        inTweenIndex = this.currentSection;
-        outTweenIndex = this.currentSection - 1 < 0 ? this.partsTweens.length - 1 : this.currentSection - 1;
+      if (this.currentSection < 0) {
+        this.currentSection = 0;
+        this.launchBounceForceTween(0);
+        this.runScrollDelayedCall();
+      } else if (this.currentSection > this.partsTweens.length - 1) {
+        this.currentSection = this.partsTweens.length - 1;
+        this.launchBounceForceTween(this.currentPageYPos);
+        this.runScrollDelayedCall();
       } else {
-        inTweenIndex = this.currentSection;
-        outTweenIndex = this.currentSection + 1 > this.partsTweens.length - 1 ? 0 : this.currentSection + 1;
-      }
-      if (dir === 1) {
-        inEl = this.partsTweens[inTweenIndex].el;
-        outEl = this.partsTweens[outTweenIndex].el;
-        outEl.style.zIndex = 4;
-        inEl.style.zIndex = 5;
-        TweenMax.fromTo(outEl, 1, {
-          y: 0
-        }, {
-          y: Model.windowH,
+        this.runScrollDelayedCall();
+        TweenMax.to(this.element, 0.8, {
+          y: -Model.windowH * this.currentSection,
           force3D: true,
           ease: Expo.easeInOut
         });
-        TweenMax.fromTo(inEl, 1, {
-          y: Model.windowH
-        }, {
-          y: 0,
-          force3D: true,
-          ease: Expo.easeOut,
-          onComplete: function() {
-            return _this.transitionRunning = false;
-          }
-        });
-      } else {
-        inEl = this.partsTweens[inTweenIndex].el;
-        outEl = this.partsTweens[outTweenIndex].el;
-        outEl.style.zIndex = 4;
-        inEl.style.zIndex = 5;
-        TweenMax.fromTo(outEl, 1, {
-          y: 0
-        }, {
-          y: -Model.windowH,
-          force3D: true,
-          ease: Expo.easeInOut
-        });
-        TweenMax.fromTo(inEl, 1, {
-          y: -Model.windowH
-        }, {
-          y: 0,
-          force3D: true,
-          ease: Expo.easeOut,
-          onComplete: function() {
-            return _this.transitionRunning = false;
-          }
-        });
       }
+      this.currentPageYPos = -Model.windowH * this.currentSection;
+    };
+
+    PartsPage.prototype.launchBounceForceTween = function(yPos) {
+      var offset;
+      offset = 40;
+      TweenMax.to(this.element, 0.4, {
+        y: yPos - offset,
+        force3D: true,
+        ease: Expo.easeOut
+      });
+      TweenMax.to(this.element, 0.4, {
+        delay: 0.2,
+        y: yPos,
+        force3D: true,
+        ease: Back.easeOut
+      });
+    };
+
+    PartsPage.prototype.runScrollDelayedCall = function() {
+      TweenMax.killDelayedCallsTo(this.activateScroll);
+      TweenMax.delayedCall(1.2, this.activateScroll);
+    };
+
+    PartsPage.prototype.activateScroll = function() {
+      this.transitionRunning = false;
     };
 
     PartsPage.prototype.resize = function() {
-      var baseLineNum, basePhotoH, bottomContainerH, bottomVisualPos, maxVisualH, moreLines, offset, paragraphFontSize, paragraphH, paragraphLineNum, paragraphY, partHolderCss, photo, titleH, titleY, visualH, visualY, _i, _len, _ref;
+      var $part, baseLineNum, basePhotoH, bottomContainerH, bottomVisualPos, i, maxVisualH, moreLines, offset, paragraphFontSize, paragraphH, paragraphLineNum, paragraphY, part, partHolderCss, photo, photoH, scale, titleH, titleY, visualH, visualY, _i, _j, _len, _len1, _ref, _ref1;
       baseLineNum = 3;
-      basePhotoH = 670;
+      basePhotoH = 667;
       maxVisualH = 1020;
       offset = 40;
-      partHolderCss = {
-        width: Model.windowW,
-        height: Model.windowH
-      };
-      this.partHolders.css(partHolderCss);
+      _ref = this.partHolders;
+      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+        part = _ref[i];
+        $part = $(part);
+        partHolderCss = {
+          top: Model.windowH * i,
+          width: Model.windowW,
+          height: Model.windowH
+        };
+        $part.css(partHolderCss);
+      }
       bottomContainerH = 0;
       Model.parentEl.css({
         height: bottomContainerH
       });
-      _ref = this.photoParts;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        photo = _ref[_i];
+      TweenMax.set(this.element, {
+        y: -this.currentSection * Model.windowH,
+        force3D: true
+      });
+      scale = (Model.windowH / 1100) * 1;
+      scale = Math.min(scale, 1);
+      _ref1 = this.photoParts;
+      for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+        photo = _ref1[_j];
         paragraphH = photo.paragraphEl.clientHeight;
         titleH = photo.titleEl.clientHeight;
         paragraphFontSize = parseInt($(photo.paragraphEl).css("font-size").replace(/[^-\d\.]/g, ''));
         paragraphLineNum = parseInt(paragraphH / paragraphFontSize);
         moreLines = paragraphLineNum - baseLineNum;
-        visualH = basePhotoH - (moreLines * paragraphFontSize);
-        visualH = (Model.windowH / maxVisualH) * visualH;
-        visualH -= offset + 60;
-        visualY = (Model.windowH >> 1) - (visualH >> 1) + offset - 50;
+        photoH = basePhotoH * scale;
+        console.log(moreLines * paragraphFontSize);
+        visualH = photoH - offset - 20;
+        visualY = (Model.windowH >> 1) - (visualH >> 1) - 20;
         titleY = (visualY >> 1) - (titleH >> 1) + offset;
-        bottomVisualPos = visualY + visualH;
+        bottomVisualPos = visualY + photoH;
         paragraphY = bottomVisualPos + ((Model.windowH - bottomVisualPos) >> 1) - (paragraphH >> 1);
-        photo.visualContainerEl.style.height = visualH + "px";
+        TweenMax.set(photo.visualContainerEl, {
+          scale: scale,
+          force3D: true,
+          transformOrigin: "0% 0%"
+        });
         photo.visualContainerEl.style.top = visualY + "px";
         photo.titleEl.style.top = titleY + "px";
         photo.paragraphEl.style.top = paragraphY + "px";
