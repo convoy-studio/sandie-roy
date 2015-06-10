@@ -84,14 +84,14 @@ img {
 }
 .size5 {
     font-size: 18px;
-    line-height: 28px;
+    line-height: 24px;
     @include media("<=tablet") {
         font-size: 16px;
-        line-height: 22px;
+        line-height: 20px;
     }
     @include media("<=phone") {
         font-size: 12px;
-        line-height: 16px;
+        line-height: 12px;
     }
 }
 .size6 {
@@ -145,6 +145,21 @@ a {
         margin-left: 0;
     }
 }
+div.centered-holder-paragraph {
+    width: 100%;
+    max-width: $min-middle-width-paragraph;
+    position: absolute;
+    left: 50%;
+    margin-left: -$min-middle-width-paragraph/2;
+
+    @include media("<=tablet") {
+        left: auto;
+        margin-left: 0;
+        max-width: none;
+        position: relative;
+
+    }
+}
 .centered-text-parent {
     @extend .full;
     display: table;
@@ -160,7 +175,7 @@ p.centered-text-child {
     width: $w;
     left: 50%;
     margin-left: -$w/2;
-    top: $topMargin;
+    top: $topMargin - 10px;
     z-index: 1;
 
     svg path {
@@ -174,9 +189,12 @@ p.centered-text-child {
     @extend .absolute;
 }
 .part-holder {
-    $visualW: 940px;
+    $visualW: $min-middle-width;
+    $basePhotoW: 1400px;
+    $basePhotoH: 934px;
 
     position: absolute;
+    overflow: hidden;
     background-color: $white;
 
     .centered-holder:first-child {
@@ -192,54 +210,20 @@ p.centered-text-child {
         @extend .size6;
         text-transform: lowercase;
         @include nowrap;
+        text-align: center;
+        color: white;
     }
     .paragraph {
         @extend .size5;
-        width: 680px;
-        margin-left: $gridPartW + $gridMargin;
+        width: 100%;
+        text-align: center;
     }
     .visual-container {
-        width: $visualW;
-        height: 670px;
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
+        width: $basePhotoW;
+        height: $basePhotoH;
+        // background-position: 50% 50%;
+        // background-repeat: no-repeat;
         position: relative;
-    }
-
-    $visualMarginLeft: -$gridPartW - ($gridMargin / 2);
-    &.left {
-        .visual-parent {
-            margin-left: $visualMarginLeft * 3;
-        }
-    }
-    &.right {
-        .visual-parent {
-            margin-left: $visualMarginLeft;
-        }
-        .title {
-            margin-left: $gridPartW + $gridMargin;
-        }
-    }
-
-    @include media("<=middleW") {
-        &.left , &.right {
-            .centered-holder {
-                left: 0; 
-                margin-left: 0;
-                width: 100%;
-            }
-            .visual-parent {
-                width: $min-middle-width;
-                position: absolute;
-                left: 0%;
-                margin-left: 0;
-            }
-            .title, .paragraph {
-                margin-left: 0px;
-                padding: 0 40px;
-                width: 80%;
-            }
-        }
     }
 }
 .top-paragraph {
@@ -313,6 +297,38 @@ p.centered-text-child {
         z-index: 1;
         > * {
             @include inline-block;
+        }
+    }
+}
+
+#sub-side-menu {
+    position: fixed;
+    z-index: 999;
+    left: -20px;
+    .circle-wrapper {
+        position: relative;
+        & > div {
+            position: absolute;
+        }
+    }
+    .menu-circle {
+        $radius: 8px;
+        width: $radius;
+        position: relative;
+        top: 0;
+        left: 8px;
+    }
+    .bottom-circle, .top-circle {
+        @include anim(0.6s, 0s, $easeOutExpo, scale(1, 1), 50%, 50%);
+        @include opacity(0.4);
+    }
+    .circle-wrapper {
+        padding: 12px;
+    }
+    .circle-wrapper.active, .circle-wrapper:hover {
+        .top-circle {
+            @include anim(0.6s, 0s, $easeOutExpo, scale(1.4, 1.4), 50%, 50%);
+            @include opacity(1);
         }
     }
 }

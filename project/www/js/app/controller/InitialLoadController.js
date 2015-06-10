@@ -17,6 +17,9 @@ define([], function() {
       basePath = Model.imageBasePath;
       manifest = [
         {
+          id: "sub-side-menu-partial",
+          src: "partial/sub-side-menu.html"
+        }, {
           id: "contact-partial",
           src: "partial/layout/contact.html"
         }, {
@@ -46,6 +49,10 @@ define([], function() {
         }, {
           id: "relations-publiques-partial",
           src: "partial/page/relations-publiques.html"
+        }, {
+          id: "circle-svg",
+          src: "svg/circle.svg",
+          type: createjs.LoadQueue.TEXT
         }, {
           id: "close-svg",
           src: "svg/close.svg",

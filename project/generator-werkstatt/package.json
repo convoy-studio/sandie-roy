@@ -1,5 +1,7 @@
 {
   "name": "package",
   "version": "0.0.0",
-  "dependencies": {}
+  "dependencies": {
+    "yeoman-generator": "^0.20.1"
+  }
 }

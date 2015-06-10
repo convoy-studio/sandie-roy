@@ -45,6 +45,7 @@ require.config({
     Header: "app/view/layout/Header",
     PartsPage: "app/view/layout/PartsPage",
     Contact: "app/view/layout/module/Contact",
+    SubSideMenu: "app/view/layout/module/SubSideMenu",
     TimelineMenu: "app/view/layout/module/TimelineMenu",
     VideoLayer: "app/view/layout/module/VideoLayer",
     About: "app/view/layout/page/About",

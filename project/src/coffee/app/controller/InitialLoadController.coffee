@@ -18,6 +18,7 @@ define [], () ->
                 
                 # Partials start
                 # Generated from updateLoadFiles.py
+                { id: "sub-side-menu-partial", src: "partial/sub-side-menu.html" }
                 { id: "contact-partial", src: "partial/layout/contact.html" }
                 { id: "footer-partial", src: "partial/layout/footer.html" }
                 { id: "header-partial", src: "partial/layout/header.html" }
@@ -28,6 +29,7 @@ define [], () ->
                 { id: "production-partial", src: "partial/page/production.html" }
                 { id: "relations-presse-partial", src: "partial/page/relations-presse.html" }
                 { id: "relations-publiques-partial", src: "partial/page/relations-publiques.html" }
+                { id: "circle-svg", src: "svg/circle.svg", type:createjs.LoadQueue.TEXT }
                 { id: "close-svg", src: "svg/close.svg", type:createjs.LoadQueue.TEXT }
                 { id: "logo-svg", src: "svg/logo.svg", type:createjs.LoadQueue.TEXT }
                 { id: "blank-image", src: "image/global/blank.gif" }

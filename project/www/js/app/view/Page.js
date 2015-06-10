@@ -109,7 +109,6 @@ define(["View", "signals", "Hammer"], function(View, signals, Hammer) {
     };
 
     Page.prototype.destroy = function() {
-      console.log("destroy");
       Page.__super__.destroy.call(this);
       Signal.onResize.remove(this.resize);
       this.transitionInComplete.removeAll();

@@ -6,9 +6,6 @@ define ["PartsPage"], (PartsPage) ->
 
         constructor: (id, scope) ->
 
-            # scope.blank = Loader.getImageURL("blank")
-            # scope.imgA = Loader.getImageURL(id + "-imageA")
-
             scope.pathId = id
 
             super(id, scope)

@@ -1,4 +1,4 @@
-define ["Page", "signals", "MouseWheel", "Hammer"], (Page, signals, wheel, Hammer) ->
+define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], (Page, signals, wheel, Hammer, SubSideMenu) ->
 
     "use strict"
     
@@ -29,6 +29,13 @@ define ["Page", "signals", "MouseWheel", "Hammer"], (Page, signals, wheel, Hamme
                 o = {}
                 o.el = part
                 @partsTweens[i] = o
+
+            subSideScope = {num:@partsTweens.length}
+            @subSideMenu = new SubSideMenu("sub-side-menu", subSideScope)
+            @element.parent().append @subSideMenu.element
+            @subSideMenu.onSideMenuClicked = @onSideMenuClicked
+            @subSideMenu.init()
+
             return
 
         transitionIn: =>
@@ -44,6 +51,7 @@ define ["Page", "signals", "MouseWheel", "Hammer"], (Page, signals, wheel, Hamme
         addAnimations: =>
             @tl.fromTo @element, 0.6, { opacity:0 }, { opacity:1, force3D:true, ease:Expo.easeInOut }, 0
             @tl.fromTo @element, 1, { y:Model.windowH + 10 }, { y:0, force3D:true, ease:Expo.easeInOut }, 0.3
+            @tl.to @subSideMenu.element, 1, { x:40, force3D:true, ease:Expo.easeInOut }, 1
             @tl.pause(0)
             return
 
@@ -51,23 +59,30 @@ define ["Page", "signals", "MouseWheel", "Hammer"], (Page, signals, wheel, Hamme
             e.preventDefault()
             switch e.type
                 when "swipeup"
-                    dir = 1
+                    @increaseSectionIndex()
                     break
                 when "swipedown"
-                    dir = -1
+                    @decreaseSectionIndex()
                     break
-            @changeSection(dir)    
+            @changeSection()    
+            return
+
+        increaseSectionIndex: =>
+            @currentSection += 1
+            return
+
+        decreaseSectionIndex: =>
+            @currentSection -= 1
             return
 
         onMouseWheel: (e)=>
             e.preventDefault()
             if @transitionRunning then return
-            dir = if e.deltaY < 0 then 1 else -1
-            @changeSection(dir)
+            if e.deltaY < 0 then @increaseSectionIndex() else @decreaseSectionIndex()
+            @changeSection()
             return
 
-        changeSection: (dir)=>
-            @currentSection += dir
+        changeSection: =>
             # if @currentSection < 0 then @currentSection = @partsTweens.length-1
             # if @currentSection > @partsTweens.length-1 then @currentSection = 0
             @transitionRunning = true
@@ -85,7 +100,13 @@ define ["Page", "signals", "MouseWheel", "Hammer"], (Page, signals, wheel, Hamme
                 TweenMax.to @element, 0.8, { y:-Model.windowH * @currentSection, force3D:true, ease:Expo.easeInOut }
 
             @currentPageYPos = -Model.windowH * @currentSection
+            @subSideMenu.updateMenu(@currentSection)
 
+            return
+
+        onSideMenuClicked: (index)=>
+            @currentSection = index
+            @changeSection()
             return
 
         launchBounceForceTween: (yPos)=>
@@ -106,9 +127,9 @@ define ["Page", "signals", "MouseWheel", "Hammer"], (Page, signals, wheel, Hamme
         resize: =>
 
             baseLineNum = 3
-            basePhotoH = 667
-            maxVisualH = 1020
-            offset = 40
+            basePhotoW = 1400
+            basePhotoH = 934
+            offset = 60
 
             for part, i in @partHolders
                 $part = $(part)
@@ -124,8 +145,8 @@ define ["Page", "signals", "MouseWheel", "Hammer"], (Page, signals, wheel, Hamme
 
             TweenMax.set @element, { y:-@currentSection*Model.windowH, force3D:true }
 
-            scale = (Model.windowH / 1100) * 1
-            scale = Math.min(scale, 1)
+            scale = (Model.windowH / basePhotoW) * 1
+            ratio = Model.windowW / Model.windowH
 
             for photo in @photoParts
                 paragraphH = photo.paragraphEl.clientHeight
@@ -136,20 +157,26 @@ define ["Page", "signals", "MouseWheel", "Hammer"], (Page, signals, wheel, Hamme
                 moreLines = paragraphLineNum - baseLineNum
 
                 photoH = basePhotoH * scale
-                visualH = photoH - offset - 20
-                visualY = (Model.windowH >> 1) - (visualH >> 1) - 20
-                titleY = ((visualY >> 1) - (titleH >> 1) + offset)
+                photoW = basePhotoW * scale
+                visualH = photoH
+                visualX = (Model.windowW >> 1) - (photoW >> 1)
+                visualY = if Model.windowH < basePhotoH then 100 else (Model.windowH >> 1) - (photoH >> 1) - offset
+                titleY = ((visualY) + (visualH >> 1) - (titleH >> 1))
                 bottomVisualPos = visualY + photoH
                 paragraphY = bottomVisualPos + ((Model.windowH - bottomVisualPos) >> 1) - (paragraphH >> 1)
 
                 TweenMax.set photo.visualContainerEl, { scale:scale, force3D: true, transformOrigin:"0% 0%" }
+                photo.visualContainerEl.style.left = visualX + "px"
                 photo.visualContainerEl.style.top = visualY + "px"
                 photo.titleEl.style.top = titleY + "px"
                 photo.paragraphEl.style.top = paragraphY + "px"
 
+            @subSideMenu.resize()
+
             return
 
         destroy: =>
+            @subSideMenu.destroy()
             super()
             return
 

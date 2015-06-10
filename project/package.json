@@ -25,5 +25,8 @@
     "grunt-shell": "^0.7.0",
     "grunt-svgmin": "^0.4.0",
     "grunt-text-replace": "^0.3.11"
+  },
+  "dependencies": {
+    "yeoman-generator": "^0.20.1"
   }
 }

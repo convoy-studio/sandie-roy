@@ -87,7 +87,6 @@ define ["View", "signals", "Hammer"], (View, signals, Hammer) ->
             return
 
         destroy: =>
-            console.log "destroy"
             super()
             Signal.onResize.remove(@resize)
             @transitionInComplete.removeAll()
