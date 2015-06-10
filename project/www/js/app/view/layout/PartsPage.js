@@ -12,9 +12,20 @@ define(["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], function(Page
 
     PartsPage.prototype.currentSection = 0;
 
+    PartsPage.prototype.baseLineNum = 3;
+
+    PartsPage.prototype.basePhotoW = 1400;
+
+    PartsPage.prototype.basePhotoH = 934;
+
+    PartsPage.prototype.photoOffset = 60;
+
     function PartsPage(id, scope) {
       this.destroy = __bind(this.destroy, this);
       this.resize = __bind(this.resize, this);
+      this.resizePhotoParts = __bind(this.resizePhotoParts, this);
+      this.positionCurrentSection = __bind(this.positionCurrentSection, this);
+      this.resizePartsHolder = __bind(this.resizePartsHolder, this);
       this.activateScroll = __bind(this.activateScroll, this);
       this.runScrollDelayedCall = __bind(this.runScrollDelayedCall, this);
       this.launchBounceForceTween = __bind(this.launchBounceForceTween, this);
@@ -182,12 +193,8 @@ define(["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], function(Page
       this.transitionRunning = false;
     };
 
-    PartsPage.prototype.resize = function() {
-      var $part, baseLineNum, basePhotoH, basePhotoW, bottomContainerH, bottomVisualPos, i, moreLines, offset, paragraphFontSize, paragraphH, paragraphLineNum, paragraphY, part, partHolderCss, photo, photoH, photoW, ratio, scale, titleH, titleY, visualH, visualX, visualY, _i, _j, _len, _len1, _ref, _ref1;
-      baseLineNum = 3;
-      basePhotoW = 1400;
-      basePhotoH = 934;
-      offset = 60;
+    PartsPage.prototype.resizePartsHolder = function() {
+      var $part, i, part, partHolderCss, _i, _len, _ref;
       _ref = this.partHolders;
       for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
         part = _ref[i];
@@ -199,29 +206,31 @@ define(["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], function(Page
         };
         $part.css(partHolderCss);
       }
-      bottomContainerH = 0;
-      Model.parentEl.css({
-        height: bottomContainerH
-      });
+    };
+
+    PartsPage.prototype.positionCurrentSection = function() {
       TweenMax.set(this.element, {
         y: -this.currentSection * Model.windowH,
         force3D: true
       });
-      scale = (Model.windowH / basePhotoW) * 1;
-      ratio = Model.windowW / Model.windowH;
-      _ref1 = this.photoParts;
-      for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-        photo = _ref1[_j];
+    };
+
+    PartsPage.prototype.resizePhotoParts = function() {
+      var bottomVisualPos, moreLines, paragraphFontSize, paragraphH, paragraphLineNum, paragraphY, photo, photoH, photoW, scale, titleH, titleY, visualH, visualX, visualY, _i, _len, _ref;
+      scale = (Model.windowH / this.basePhotoW) * 1;
+      _ref = this.photoParts;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        photo = _ref[_i];
         paragraphH = photo.paragraphEl.clientHeight;
         titleH = photo.titleEl.clientHeight;
         paragraphFontSize = parseInt($(photo.paragraphEl).css("font-size").replace(/[^-\d\.]/g, ''));
         paragraphLineNum = parseInt(paragraphH / paragraphFontSize);
-        moreLines = paragraphLineNum - baseLineNum;
-        photoH = basePhotoH * scale;
-        photoW = basePhotoW * scale;
+        moreLines = paragraphLineNum - this.baseLineNum;
+        photoH = this.basePhotoH * scale;
+        photoW = this.basePhotoW * scale;
         visualH = photoH;
         visualX = (Model.windowW >> 1) - (photoW >> 1);
-        visualY = Model.windowH < basePhotoH ? 100 : (Model.windowH >> 1) - (photoH >> 1) - offset;
+        visualY = Model.windowH < this.basePhotoH ? 100 : (Model.windowH >> 1) - (photoH >> 1) - this.photoOffset;
         titleY = visualY + (visualH >> 1) - (titleH >> 1);
         bottomVisualPos = visualY + photoH;
         paragraphY = bottomVisualPos + ((Model.windowH - bottomVisualPos) >> 1) - (paragraphH >> 1);
@@ -235,6 +244,12 @@ define(["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], function(Page
         photo.titleEl.style.top = titleY + "px";
         photo.paragraphEl.style.top = paragraphY + "px";
       }
+    };
+
+    PartsPage.prototype.resize = function() {
+      this.resizePartsHolder();
+      this.positionCurrentSection();
+      this.resizePhotoParts();
       this.subSideMenu.resize();
     };
 

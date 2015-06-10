@@ -9,6 +9,10 @@ define ["PartsPage"], (PartsPage) ->
             scope.pathId = id
             scope.imagePath = "image/page/" + scope.pathId + "/"
 
+            console.log scope
+
+
+
             super(id, scope)
 
         init: (cb)=>
@@ -39,7 +43,9 @@ define ["PartsPage"], (PartsPage) ->
             return
 
         resize: =>
-            super()
+            @resizePartsHolder()
+            @positionCurrentSection()
+            @subSideMenu.resize()
             return
 
         destroy: =>
@@ -47,4 +53,3 @@ define ["PartsPage"], (PartsPage) ->
             return
 
     return About
-

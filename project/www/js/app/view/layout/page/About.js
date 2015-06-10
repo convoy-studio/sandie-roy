@@ -20,6 +20,7 @@ define(["PartsPage"], function(PartsPage) {
       this.init = __bind(this.init, this);
       scope.pathId = id;
       scope.imagePath = "image/page/" + scope.pathId + "/";
+      console.log(scope);
       About.__super__.constructor.call(this, id, scope);
     }
 
@@ -52,7 +53,9 @@ define(["PartsPage"], function(PartsPage) {
     };
 
     About.prototype.resize = function() {
-      About.__super__.resize.call(this);
+      this.resizePartsHolder();
+      this.positionCurrentSection();
+      this.subSideMenu.resize();
     };
 
     About.prototype.destroy = function() {

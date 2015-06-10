@@ -6,6 +6,10 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], (Page, signal
 
         transitionRunning: false
         currentSection: 0
+        baseLineNum: 3
+        basePhotoW: 1400
+        basePhotoH: 934
+        photoOffset: 60
 
         constructor: (id, scope) ->
             super(id, scope)
@@ -16,7 +20,6 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], (Page, signal
 
         ready: =>
             super()
-
             @hammertime.get("swipe").set
                 direction: Hammer.DIRECTION_VERTICAL
                 threshold: 5
@@ -124,13 +127,7 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], (Page, signal
             @transitionRunning = false
             return
 
-        resize: =>
-
-            baseLineNum = 3
-            basePhotoW = 1400
-            basePhotoH = 934
-            offset = 60
-
+        resizePartsHolder: => 
             for part, i in @partHolders
                 $part = $(part)
                 partHolderCss =  
@@ -138,29 +135,27 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], (Page, signal
                     width: Model.windowW
                     height: Model.windowH
                 $part.css partHolderCss
+            return
 
-            bottomContainerH = 0
-            Model.parentEl.css
-                height: bottomContainerH
-
+        positionCurrentSection: =>
             TweenMax.set @element, { y:-@currentSection*Model.windowH, force3D:true }
+            return
 
-            scale = (Model.windowH / basePhotoW) * 1
-            ratio = Model.windowW / Model.windowH
-
+        resizePhotoParts: =>
+            scale = (Model.windowH / @basePhotoW) * 1
             for photo in @photoParts
                 paragraphH = photo.paragraphEl.clientHeight
                 titleH = photo.titleEl.clientHeight
 
                 paragraphFontSize = parseInt $(photo.paragraphEl).css("font-size").replace(/[^-\d\.]/g, '')
                 paragraphLineNum = parseInt paragraphH / paragraphFontSize
-                moreLines = paragraphLineNum - baseLineNum
+                moreLines = paragraphLineNum - @baseLineNum
 
-                photoH = basePhotoH * scale
-                photoW = basePhotoW * scale
+                photoH = @basePhotoH * scale
+                photoW = @basePhotoW * scale
                 visualH = photoH
                 visualX = (Model.windowW >> 1) - (photoW >> 1)
-                visualY = if Model.windowH < basePhotoH then 100 else (Model.windowH >> 1) - (photoH >> 1) - offset
+                visualY = if Model.windowH < @basePhotoH then 100 else (Model.windowH >> 1) - (photoH >> 1) - @photoOffset
                 titleY = ((visualY) + (visualH >> 1) - (titleH >> 1))
                 bottomVisualPos = visualY + photoH
                 paragraphY = bottomVisualPos + ((Model.windowH - bottomVisualPos) >> 1) - (paragraphH >> 1)
@@ -170,9 +165,13 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], (Page, signal
                 photo.visualContainerEl.style.top = visualY + "px"
                 photo.titleEl.style.top = titleY + "px"
                 photo.paragraphEl.style.top = paragraphY + "px"
+            return
 
+        resize: =>
+            @resizePartsHolder()
+            @positionCurrentSection()
+            @resizePhotoParts()
             @subSideMenu.resize()
-
             return
 
         destroy: =>

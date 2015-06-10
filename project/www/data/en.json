@@ -119,21 +119,61 @@
                     "paragraph": "Grâce à son réseau mode et grand public, l’agence Sandie Roy Paris croise et mixe la mode à d’autres secteurs pour faire rayonner plus largement l’image et la valeur des marques."
                 }
             ],
-            "equipe": {
-                "p0": "<span>Fondatrice et Directrice</span><br>Sandie Roy",
-                "p1": "<span>Directrice Presse & Clientele</span><br>Marjorie Jacquet",
-                "p2": "<span>Directrice Marketing & Communication</span><br>Cristel Proust",
-                "p3": "<span>Consultante Presse & Lifestyle</span><br>Anne-Christine Fossati",
-                "p4": "<span>Consultante Presse</span><br>Lucie Chabrillat",
-                "p5": "<span>Consultante Presse</span><br>Cinzia Ricciardi",
-                "p6": "<span>Consultante Presse</span><br>Nathalie Veigas",
-                "p7": "<span>Assistante de Direction</span><br>Naima Boutroue",
-                "p8": "<span>Assistant Presse</span><br>Romain Rigault",
-                "p9": "<span>Assistante Marketing & Production</span><br>Daphnée Davoise",
-                "p10": "<span>Digitale Manager</span><br>Mimo Havstad",
-                "p11": "<span>Showroom Manager<br>& Assistante Presse</span><br>Marie Guy Dussaut",
-                "p12": "<span>Partenariats et<br>Placement de Produits</span><br>Yannick Do"
-            }
+            "equipe": [
+                {
+                    "name": "Sandie Roy",
+                    "position": "Fondatrice et Directrice",
+                    "infos": ""
+                },{
+                    "name": "Marjorie Jacquet",
+                    "position": "Directrice Presse & Clientele",
+                    "infos": ""
+                },{
+                    "name": "Cristel Proust",
+                    "position": "Directrice Marketing & Communication",
+                    "infos": ""
+                },{
+                    "name": "Anne-Christine Fossati",
+                    "position": "Consultante Presse & Lifestyle",
+                    "infos": ""
+                },{
+                    "name": "Lucie Chabrillat",
+                    "position": "Consultante Presse",
+                    "infos": ""
+                },{
+                    "name": "Cinzia Ricciardi",
+                    "position": "Consultante Presse",
+                    "infos": ""
+                },{
+                    "name": "Nathalie Veigas",
+                    "position": "Consultante Presse",
+                    "infos": ""
+                },{
+                    "name": "Naima Boutroue",
+                    "position": "Assistante de Direction",
+                    "infos": ""
+                },{
+                    "name": "Romain Rigault",
+                    "position": "Assistant Presse",
+                    "infos": ""
+                },{
+                    "name": "Daphnée Davoise",
+                    "position": "Assistante Marketing & Production",
+                    "infos": ""
+                },{
+                    "name": "Mimo Havstad",
+                    "position": "Digitale Manager",
+                    "infos": ""
+                },{
+                    "name": "Marie Guy Dussaut",
+                    "position": "Showroom Manager<br>& Assistante Presse",
+                    "infos": ""
+                },{
+                    "name": "Yannick Do",
+                    "position": "Partenariats et<br>Placement de Produits",
+                    "infos": ""
+                }
+            ]
         },
 
         "home": {
