@@ -40,6 +40,13 @@ define([], function() {
 
     GlobalModel.prototype.gridMargin = 15;
 
+    GlobalModel.prototype.personBaseSize = {
+      w: 400,
+      h: 320
+    };
+
+    GlobalModel.prototype.mobile = 750;
+
     function GlobalModel() {}
 
     return GlobalModel;

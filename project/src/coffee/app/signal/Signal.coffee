@@ -14,6 +14,8 @@ define ["signals"], (signals) ->
         onHomePage: new signals.Signal()
 
         contactClicked: new signals.Signal()
+        slideshowOpen: new signals.Signal()
+        slideshowClose: new signals.Signal()
 
         constructor: () ->
 

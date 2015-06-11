@@ -16,6 +16,10 @@ define(["signals"], function(signals) {
 
     Signal.prototype.contactClicked = new signals.Signal();
 
+    Signal.prototype.slideshowOpen = new signals.Signal();
+
+    Signal.prototype.slideshowClose = new signals.Signal();
+
     function Signal() {}
 
     return Signal;

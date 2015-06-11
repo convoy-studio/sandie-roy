@@ -1,6 +1,6 @@
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-define(["Header", "Footer", "hasher", "Contact"], function(Header, Footer, hasher, Contact) {
+define(["Header", "hasher", "Contact", "Slideshow"], function(Header, hasher, Contact, Slideshow) {
   "use strict";
   var GlobalController;
   GlobalController = (function() {
@@ -11,7 +11,7 @@ define(["Header", "Footer", "hasher", "Contact"], function(Header, Footer, hashe
     }
 
     GlobalController.prototype.setupViews = function() {
-      var contact, header;
+      var contact, header, slideshow;
       header = new Header("header");
       Model.parentEl.append(header.element);
       header.init();
@@ -20,6 +20,9 @@ define(["Header", "Footer", "hasher", "Contact"], function(Header, Footer, hashe
       contact = new Contact("contact", Model.content.contact);
       Model.parentEl.append(contact.element);
       contact.init();
+      slideshow = new Slideshow("slideshow");
+      Model.parentEl.append(slideshow.element);
+      slideshow.init();
     };
 
     GlobalController.prototype.setupRenderer = function() {

@@ -24,6 +24,12 @@ define [], () ->
         gridPartW: 214
         gridMargin: 15
 
+        personBaseSize:
+            w:400
+            h:320
+
+        mobile: 750
+
         constructor: () ->
 
     return GlobalModel 

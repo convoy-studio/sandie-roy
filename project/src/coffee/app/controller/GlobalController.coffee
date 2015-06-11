@@ -1,4 +1,4 @@
-define ["Header", "Footer", "hasher", "Contact"], (Header, Footer, hasher, Contact) ->
+define ["Header", "hasher", "Contact", "Slideshow"], (Header, hasher, Contact, Slideshow) ->
 
     "use strict"
     
@@ -19,10 +19,9 @@ define ["Header", "Footer", "hasher", "Contact"], (Header, Footer, hasher, Conta
             Model.parentEl.append contact.element
             contact.init()
 
-            # # Footer
-            # footer = new Footer("footer")
-            # Model.parentEl.append footer.element
-            # footer.init()
+            slideshow = new Slideshow("slideshow")
+            Model.parentEl.append slideshow.element
+            slideshow.init()
 
             return
 
