@@ -1,4 +1,64 @@
 #about.page {
+
+
+	.person-holder {
+		position: absolute;
+		.person-visual {
+			$w: 400px;
+			$h: 320px;
+			width: $w;
+			height: $h;
+			position: relative;
+			& > * {
+				position: absolute;
+			}
+		}
+		.lines-holder {
+			$lineSize: 4px;
+			width: 100%;
+			height: 100%;
+			z-index: 2;
+			.line {
+				position: absolute;
+				background-color: black;
+				&.left {
+					width: $lineSize;
+					height: 100%;
+					left: 0;
+				}
+				&.top {
+					width: 100%;
+					height: $lineSize;
+					top: 0;
+				}
+				&.right {
+					width: $lineSize;
+					height: 100%;
+					right: 0;
+				}
+				&.bottom {
+					width: 100%;
+					height: $lineSize;
+					bottom: 0;
+				}
+			}
+		}
+		.info-container {
+			background-color: white;
+			font-size: 18px;
+			line-height: 24px;
+			p {
+				padding: 40px;
+			}
+		}
+		.bottom-titles {
+			text-align: center;
+			font-size: 14px;
+			line-height: 18px;
+			margin-top: 10px;
+		}
+	}
+
 	// $typeAimgW: 444px;
 	// $portraitImgW: 319px;
 	// .top-paragraph {

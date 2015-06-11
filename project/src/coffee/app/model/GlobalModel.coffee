@@ -21,6 +21,8 @@ define [], () ->
         windowW: 0
         windowH: 0
         colorState: "white"
+        gridPartW: 214
+        gridMargin: 15
 
         constructor: () ->
 

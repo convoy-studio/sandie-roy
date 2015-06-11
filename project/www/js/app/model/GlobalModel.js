@@ -36,6 +36,10 @@ define([], function() {
 
     GlobalModel.prototype.colorState = "white";
 
+    GlobalModel.prototype.gridPartW = 214;
+
+    GlobalModel.prototype.gridMargin = 15;
+
     function GlobalModel() {}
 
     return GlobalModel;

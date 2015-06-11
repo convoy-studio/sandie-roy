@@ -119,61 +119,76 @@
                     "paragraph": "Grâce à son réseau mode et grand public, l’agence Sandie Roy Paris croise et mixe la mode à d’autres secteurs pour faire rayonner plus largement l’image et la valeur des marques."
                 }
             ],
-            "equipe": [
-                {
+            "equipe": {
+                "sandie": {
                     "name": "Sandie Roy",
                     "position": "Fondatrice et Directrice",
-                    "infos": ""
-                },{
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc vel augue lacinia, ultrices quam non, aliquam mi. Phasellus vitae tempor nibh. Proin porttitor nec dolor et suscipit."
+                },
+                "marjorie": {
                     "name": "Marjorie Jacquet",
                     "position": "Directrice Presse & Clientele",
-                    "infos": ""
-                },{
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc vel augue lacinia, ultrices quam non, aliquam mi. Phasellus vitae tempor nibh. Proin porttitor nec dolor et suscipit."
+                },
+                "cristel": {
+                    "align": ["center", 20],
                     "name": "Cristel Proust",
                     "position": "Directrice Marketing & Communication",
-                    "infos": ""
-                },{
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc vel augue lacinia, ultrices quam non, aliquam mi. Phasellus vitae tempor nibh. Proin porttitor nec dolor et suscipit."
+                },
+                "anne-christine": {
                     "name": "Anne-Christine Fossati",
                     "position": "Consultante Presse & Lifestyle",
-                    "infos": ""
-                },{
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc vel augue lacinia, ultrices quam non, aliquam mi. Phasellus vitae tempor nibh. Proin porttitor nec dolor et suscipit."
+                },
+                "lucie": {
+                    "align": ["left", 40],
                     "name": "Lucie Chabrillat",
                     "position": "Consultante Presse",
-                    "infos": ""
-                },{
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc vel augue lacinia, ultrices quam non, aliquam mi. Phasellus vitae tempor nibh. Proin porttitor nec dolor et suscipit."
+                },
+                "cinzia": {
                     "name": "Cinzia Ricciardi",
                     "position": "Consultante Presse",
-                    "infos": ""
-                },{
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc vel augue lacinia, ultrices quam non, aliquam mi. Phasellus vitae tempor nibh. Proin porttitor nec dolor et suscipit."
+                },
+                "nathalie": {
                     "name": "Nathalie Veigas",
                     "position": "Consultante Presse",
-                    "infos": ""
-                },{
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc vel augue lacinia, ultrices quam non, aliquam mi. Phasellus vitae tempor nibh. Proin porttitor nec dolor et suscipit."
+                },
+                "naima": {
+                    "align": ["right", 30],
                     "name": "Naima Boutroue",
                     "position": "Assistante de Direction",
-                    "infos": ""
-                },{
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc vel augue lacinia, ultrices quam non, aliquam mi. Phasellus vitae tempor nibh. Proin porttitor nec dolor et suscipit."
+                },
+                "romain": {
                     "name": "Romain Rigault",
                     "position": "Assistant Presse",
-                    "infos": ""
-                },{
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc vel augue lacinia, ultrices quam non, aliquam mi. Phasellus vitae tempor nibh. Proin porttitor nec dolor et suscipit."
+                },
+                "daphnee": {
                     "name": "Daphnée Davoise",
                     "position": "Assistante Marketing & Production",
-                    "infos": ""
-                },{
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc vel augue lacinia, ultrices quam non, aliquam mi. Phasellus vitae tempor nibh. Proin porttitor nec dolor et suscipit."
+                },
+                "mimo": {
                     "name": "Mimo Havstad",
                     "position": "Digitale Manager",
-                    "infos": ""
-                },{
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc vel augue lacinia, ultrices quam non, aliquam mi. Phasellus vitae tempor nibh. Proin porttitor nec dolor et suscipit."
+                },
+                "marie": {
                     "name": "Marie Guy Dussaut",
                     "position": "Showroom Manager<br>& Assistante Presse",
-                    "infos": ""
-                },{
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc vel augue lacinia, ultrices quam non, aliquam mi. Phasellus vitae tempor nibh. Proin porttitor nec dolor et suscipit."
+                },
+                "yannick": {
                     "name": "Yannick Do",
                     "position": "Partenariats et<br>Placement de Produits",
-                    "infos": ""
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc vel augue lacinia, ultrices quam non, aliquam mi. Phasellus vitae tempor nibh. Proin porttitor nec dolor et suscipit."
                 }
-            ]
+            }
         },
 
         "home": {

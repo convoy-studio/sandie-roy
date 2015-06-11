@@ -18,6 +18,7 @@ define [], () ->
                 
                 # Partials start
                 # Generated from updateLoadFiles.py
+                { id: "slideshow-partial", src: "partial/slideshow.html" }
                 { id: "sub-side-menu-partial", src: "partial/sub-side-menu.html" }
                 { id: "contact-partial", src: "partial/layout/contact.html" }
                 { id: "footer-partial", src: "partial/layout/footer.html" }
