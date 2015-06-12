@@ -60,7 +60,7 @@ define ["View"], (View) ->
             for item in @items
                 html += '
                     <div class="item-wrapper btn">
-                        <img src="' + @folderUrl + item.id + ".jpg" + '">
+                        <img lazy-src="' + @folderUrl + item.id + ".jpg" + '" src="' + Model.blankImg + '">
                         <div class="down-text">' + item.text + '</div>
                     </div>
                 '
@@ -91,6 +91,24 @@ define ["View"], (View) ->
             @element.off "click", @onClicked
             return
 
+        updateImgSources: =>
+            currentItem = @items[@currentIndex]
+            previousItem = @items[@currentIndex-1]
+            nextItem = @items[@currentIndex+1]
+            @switchSrcs(currentItem)
+            @switchSrcs(previousItem)
+            @switchSrcs(nextItem)
+            return
+
+        switchSrcs: (item)=>
+            if !item? then return
+            $part = $(item.el)
+            $imgSrcs = $part.find("img[lazy-src]")
+            for imgSrc in $imgSrcs
+                src = imgSrc.getAttribute("lazy-src")
+                imgSrc.setAttribute("src", src)
+            return
+
         onClicked: (e)=>
             if TweenMax.isTweening @middleContainer then return
             mouse = @getMousePosByClickEvent(e)
@@ -112,8 +130,10 @@ define ["View"], (View) ->
 
         tweenItemToIndex: (force)=>
             item = @items[@currentIndex]
+
             time = if force then 0 else 0.7
             @tween = TweenMax.to @middleContainer, time, { x:item.centerPosX, force3D:true, ease:Expo.easeInOut }
+            @updateImgSources()
             return
 
         onComplete: =>

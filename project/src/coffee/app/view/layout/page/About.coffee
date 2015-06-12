@@ -19,6 +19,7 @@ define ["PartsPage"], (PartsPage) ->
                 v.index = i
                 i += 1
 
+            i = 0
             for k, v of scope.agence
                 parentId = "agence"
                 v.rawEl = @getPersonHolderHTML(k, v, scope.imagePath, parentId)
@@ -28,11 +29,11 @@ define ["PartsPage"], (PartsPage) ->
             super(id, scope)
 
         getPersonHolderHTML: (id, scope, imagePath, parentId)=>
-            imgURL = imagePath + id + ".jpg"
+            imgURL = imagePath + parentId + "/nd/" + id + ".jpg"
             html = '
                 <div data-parentid="' + parentId + '" id="' + id + '" class="person-holder btn">
                     <div class="person-visual">
-                        <img src="' + imgURL + '">
+                        <img lazy-src="' + imgURL + '" src="' + Model.blankImg + '">
                         <div class="lines-holder">
                             <div class="line left"></div>
                             <div class="line top"></div>
@@ -92,6 +93,12 @@ define ["PartsPage"], (PartsPage) ->
 
                 tl.pause(0)
 
+            @mergedScope = {}
+            for k, v of @scope.equipe
+                @mergedScope[k] = v
+            for k, v of @scope.agence
+                @mergedScope[k] = v
+            
             super()
             return
 
@@ -114,10 +121,11 @@ define ["PartsPage"], (PartsPage) ->
             for k, v of @scope[parentId]
                 item = {}
                 item.id = k
-                item.text = "<p>" + v.name + " – " + v.position.replace("<br>", " ") + "</p>"
+                separator = if v.position.length > 1 then " – " else " "
+                item.text = "<p>" + v.name + separator + v.position.replace("<br>", " ") + "</p>"
                 slideshowScope.push item
 
-            Signal.slideshowOpen.dispatch index, slideshowScope, @scope.imagePath + "hd/"
+            Signal.slideshowOpen.dispatch index, slideshowScope, @scope.imagePath + parentId + "/hd/"
             return
 
         addAnimations: =>
@@ -152,7 +160,7 @@ define ["PartsPage"], (PartsPage) ->
             personH = @personBaseSize.h * scale
 
             i = 0
-            for k, v of @scope.equipe
+            for k, v of @mergedScope
                 if v.el?
                     personVisualCss = 
                         width: personW
@@ -181,34 +189,6 @@ define ["PartsPage"], (PartsPage) ->
                     TweenMax.set v.el, personCss
                     i += 1
 
-            for k, v of @scope.agence
-                if v.el?
-                    personVisualCss = 
-                        width: personW
-                        height: personH
-                    v.width = personW
-                    v.height = personH
-
-                    personCss = {}  
-                    margin = 20
-                    if Model.windowW < @mobile
-                        alignV = (v.height * i) + (i * margin * 2.6)
-                    else
-                        alignV = Model.windowH * (parseInt(v.align[1], 10) * 0.01)
-                    alignH = if Model.windowW < @mobile then "center" else v.align[0]
-
-                    if alignH is "left"
-                        personCss.left = (Model.windowW >> 1) - (v.width >> 1) - (v.width) - margin
-                    else if alignH is "right"
-                        personCss.left = (Model.windowW >> 1) + (v.width >> 1) + margin
-                    else 
-                        personCss.left = (Model.windowW >> 1) - (v.width >> 1)
-
-                    personCss.top = alignV
-
-                    TweenMax.set v.visualEl, personVisualCss
-                    TweenMax.set v.el, personCss
-                    i += 1
             return
 
         positionWrappers: =>
@@ -236,6 +216,8 @@ define ["PartsPage"], (PartsPage) ->
             return
 
         destroy: =>
+            for k, v of @mergedScope
+                v.tl.clear()
             super()
             return
 

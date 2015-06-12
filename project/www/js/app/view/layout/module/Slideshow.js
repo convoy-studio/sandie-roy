@@ -19,6 +19,8 @@ define(["View"], function(View) {
       this.decrease = __bind(this.decrease, this);
       this.increase = __bind(this.increase, this);
       this.onClicked = __bind(this.onClicked, this);
+      this.switchSrcs = __bind(this.switchSrcs, this);
+      this.updateImgSources = __bind(this.updateImgSources, this);
       this.close = __bind(this.close, this);
       this.open = __bind(this.open, this);
       this.toggle = __bind(this.toggle, this);
@@ -104,7 +106,7 @@ define(["View"], function(View) {
         item = _ref[_i];
         html += '\
                     <div class="item-wrapper btn">\
-                        <img src="' + this.folderUrl + item.id + ".jpg" + '">\
+                        <img lazy-src="' + this.folderUrl + item.id + ".jpg" + '" src="' + Model.blankImg + '">\
                         <div class="down-text">' + item.text + '</div>\
                     </div>\
                 ';
@@ -137,6 +139,30 @@ define(["View"], function(View) {
       this.toCloseEl.off("click", this.onCloseClicked);
       this.tl.timeScale(1.6).reverse();
       this.element.off("click", this.onClicked);
+    };
+
+    Slideshow.prototype.updateImgSources = function() {
+      var currentItem, nextItem, previousItem;
+      currentItem = this.items[this.currentIndex];
+      previousItem = this.items[this.currentIndex - 1];
+      nextItem = this.items[this.currentIndex + 1];
+      this.switchSrcs(currentItem);
+      this.switchSrcs(previousItem);
+      this.switchSrcs(nextItem);
+    };
+
+    Slideshow.prototype.switchSrcs = function(item) {
+      var $imgSrcs, $part, imgSrc, src, _i, _len;
+      if (item == null) {
+        return;
+      }
+      $part = $(item.el);
+      $imgSrcs = $part.find("img[lazy-src]");
+      for (_i = 0, _len = $imgSrcs.length; _i < _len; _i++) {
+        imgSrc = $imgSrcs[_i];
+        src = imgSrc.getAttribute("lazy-src");
+        imgSrc.setAttribute("src", src);
+      }
     };
 
     Slideshow.prototype.onClicked = function(e) {
@@ -176,6 +202,7 @@ define(["View"], function(View) {
         force3D: true,
         ease: Expo.easeInOut
       });
+      this.updateImgSources();
     };
 
     Slideshow.prototype.onComplete = function() {

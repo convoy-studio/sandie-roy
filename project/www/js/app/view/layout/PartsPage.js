@@ -30,6 +30,7 @@ define(["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], function(Page
       this.runScrollDelayedCall = __bind(this.runScrollDelayedCall, this);
       this.launchBounceForceTween = __bind(this.launchBounceForceTween, this);
       this.onSideMenuClicked = __bind(this.onSideMenuClicked, this);
+      this.updateImgSources = __bind(this.updateImgSources, this);
       this.changeSection = __bind(this.changeSection, this);
       this.onMouseWheel = __bind(this.onMouseWheel, this);
       this.decreaseSectionIndex = __bind(this.decreaseSectionIndex, this);
@@ -40,6 +41,7 @@ define(["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], function(Page
       this.transitionIn = __bind(this.transitionIn, this);
       this.ready = __bind(this.ready, this);
       this.init = __bind(this.init, this);
+      scope.blankImg = Model.blankImg;
       PartsPage.__super__.constructor.call(this, id, scope);
     }
 
@@ -161,6 +163,18 @@ define(["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], function(Page
       }
       this.currentPageYPos = -Model.windowH * this.currentSection;
       this.subSideMenu.updateMenu(this.currentSection);
+      this.updateImgSources();
+    };
+
+    PartsPage.prototype.updateImgSources = function() {
+      var $imgSrcs, $part, imgSrc, src, _i, _len;
+      $part = $(this.parts[this.currentSection]);
+      $imgSrcs = $part.find("img[lazy-src]");
+      for (_i = 0, _len = $imgSrcs.length; _i < _len; _i++) {
+        imgSrc = $imgSrcs[_i];
+        src = imgSrc.getAttribute("lazy-src");
+        imgSrc.setAttribute("src", src);
+      }
     };
 
     PartsPage.prototype.onSideMenuClicked = function(index) {

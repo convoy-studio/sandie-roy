@@ -39,6 +39,7 @@ define(["PartsPage"], function(PartsPage) {
         v.index = i;
         i += 1;
       }
+      i = 0;
       _ref1 = scope.agence;
       for (k in _ref1) {
         v = _ref1[k];
@@ -52,11 +53,11 @@ define(["PartsPage"], function(PartsPage) {
 
     About.prototype.getPersonHolderHTML = function(id, scope, imagePath, parentId) {
       var html, imgURL;
-      imgURL = imagePath + id + ".jpg";
+      imgURL = imagePath + parentId + "/nd/" + id + ".jpg";
       html = '\
                 <div data-parentid="' + parentId + '" id="' + id + '" class="person-holder btn">\
                     <div class="person-visual">\
-                        <img src="' + imgURL + '">\
+                        <img lazy-src="' + imgURL + '" src="' + Model.blankImg + '">\
                         <div class="lines-holder">\
                             <div class="line left"></div>\
                             <div class="line top"></div>\
@@ -82,7 +83,7 @@ define(["PartsPage"], function(PartsPage) {
     };
 
     About.prototype.ready = function() {
-      var $holder, $img, $infoContainer, $infoP, $lines, $personHolders, holder, id, parentId, scope, tl, _i, _len;
+      var $holder, $img, $infoContainer, $infoP, $lines, $personHolders, holder, id, k, parentId, scope, tl, v, _i, _len, _ref, _ref1;
       this.holderWrappers = this.element.find(".holder-wrapper");
       $personHolders = this.element.find(".person-holder");
       $personHolders.on("mouseenter", this.onPersonMouseEnter);
@@ -152,6 +153,17 @@ define(["PartsPage"], function(PartsPage) {
         }, 0.4);
         tl.pause(0);
       }
+      this.mergedScope = {};
+      _ref = this.scope.equipe;
+      for (k in _ref) {
+        v = _ref[k];
+        this.mergedScope[k] = v;
+      }
+      _ref1 = this.scope.agence;
+      for (k in _ref1) {
+        v = _ref1[k];
+        this.mergedScope[k] = v;
+      }
       About.__super__.ready.call(this);
     };
 
@@ -168,7 +180,7 @@ define(["PartsPage"], function(PartsPage) {
     };
 
     About.prototype.onPersonClicked = function(e) {
-      var index, item, k, parentId, scope, slideshowScope, v, _ref;
+      var index, item, k, parentId, scope, separator, slideshowScope, v, _ref;
       scope = this.getPersonScopeByTarget(e.currentTarget);
       index = scope.index;
       parentId = scope.parentId;
@@ -178,10 +190,11 @@ define(["PartsPage"], function(PartsPage) {
         v = _ref[k];
         item = {};
         item.id = k;
-        item.text = "<p>" + v.name + " – " + v.position.replace("<br>", " ") + "</p>";
+        separator = v.position.length > 1 ? " – " : " ";
+        item.text = "<p>" + v.name + separator + v.position.replace("<br>", " ") + "</p>";
         slideshowScope.push(item);
       }
-      Signal.slideshowOpen.dispatch(index, slideshowScope, this.scope.imagePath + "hd/");
+      Signal.slideshowOpen.dispatch(index, slideshowScope, this.scope.imagePath + parentId + "/hd/");
     };
 
     About.prototype.addAnimations = function() {
@@ -211,46 +224,15 @@ define(["PartsPage"], function(PartsPage) {
     };
 
     About.prototype.positionPersons = function() {
-      var alignH, alignV, i, k, margin, personCss, personH, personVisualCss, personW, scale, v, _ref, _ref1;
+      var alignH, alignV, i, k, margin, personCss, personH, personVisualCss, personW, scale, v, _ref;
       scale = (Model.windowW / 1360) * 1;
       scale = Math.max(scale, 0.5);
       personW = this.personBaseSize.w * scale;
       personH = this.personBaseSize.h * scale;
       i = 0;
-      _ref = this.scope.equipe;
+      _ref = this.mergedScope;
       for (k in _ref) {
         v = _ref[k];
-        if (v.el != null) {
-          personVisualCss = {
-            width: personW,
-            height: personH
-          };
-          v.width = personW;
-          v.height = personH;
-          personCss = {};
-          margin = 20;
-          if (Model.windowW < this.mobile) {
-            alignV = (v.height * i) + (i * margin * 2.6);
-          } else {
-            alignV = Model.windowH * (parseInt(v.align[1], 10) * 0.01);
-          }
-          alignH = Model.windowW < this.mobile ? "center" : v.align[0];
-          if (alignH === "left") {
-            personCss.left = (Model.windowW >> 1) - (v.width >> 1) - v.width - margin;
-          } else if (alignH === "right") {
-            personCss.left = (Model.windowW >> 1) + (v.width >> 1) + margin;
-          } else {
-            personCss.left = (Model.windowW >> 1) - (v.width >> 1);
-          }
-          personCss.top = alignV;
-          TweenMax.set(v.visualEl, personVisualCss);
-          TweenMax.set(v.el, personCss);
-          i += 1;
-        }
-      }
-      _ref1 = this.scope.agence;
-      for (k in _ref1) {
-        v = _ref1[k];
         if (v.el != null) {
           personVisualCss = {
             width: personW,
@@ -315,6 +297,12 @@ define(["PartsPage"], function(PartsPage) {
     };
 
     About.prototype.destroy = function() {
+      var k, v, _ref;
+      _ref = this.mergedScope;
+      for (k in _ref) {
+        v = _ref[k];
+        v.tl.clear();
+      }
       About.__super__.destroy.call(this);
     };
 

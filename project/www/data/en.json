@@ -121,7 +121,7 @@
             ],
             "agence-promo": {
                 "id": "sandie",
-                "title": "Lorem ipsum",
+                "title": "L’agence",
                 "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
             },
             "agence": {
@@ -129,42 +129,42 @@
                     "align": ["center", 20],
                     "name": "Espace showroom",
                     "position": "",
-                    "infos": ""
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                 },
                 "display": {
-                    "align": ["center", 20],
+                    "align": ["right", 30],
                     "name": "Display",
                     "position": "",
-                    "infos": ""
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                 },
                 "entree": {
                     "align": ["left", 40],
                     "name": "Entreé privative",
-                    "position": "Consultante Presse",
+                    "position": "",
                     "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                 },
                 "interview": {
                     "align": ["left", 40],
                     "name": "Espace interview",
                     "position": "",
-                    "infos": ""
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                 },
                 "accessoires": {
                     "align": ["right", 30],
                     "name": "Display accessoires",
                     "position": "",
-                    "infos": ""
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                 },
                 "showroom2": {
-                    "align": ["right", 30],
+                    "align": ["center", 20],
                     "name": "Espace showroom",
                     "position": "",
-                    "infos": ""
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                 }
             },
             "equipe-promo": {
                 "id": "sandie",
-                "title": "Sandie Roy",
+                "title": "L’équipe",
                 "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
             },
             "equipe": {

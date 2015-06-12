@@ -23,6 +23,7 @@ define [], () ->
         colorState: "white"
         gridPartW: 214
         gridMargin: 15
+        blankImg: "//:0"
 
         personBaseSize:
             w:400

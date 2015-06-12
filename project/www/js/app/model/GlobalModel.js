@@ -40,6 +40,8 @@ define([], function() {
 
     GlobalModel.prototype.gridMargin = 15;
 
+    GlobalModel.prototype.blankImg = "//:0";
+
     GlobalModel.prototype.personBaseSize = {
       w: 400,
       h: 320

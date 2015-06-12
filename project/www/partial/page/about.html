@@ -12,7 +12,7 @@
 		</div>
 		<div class="visual-parent">
 			<div class="visual-container">
-				<img src="image/page/{{pathId}}/agence-promo.jpg">
+				<img lazy-src="image/page/{{pathId}}/agence/promo.jpg" src="{{blankImg}}">
 			</div>
 		</div>
 		<div class="centered-holder-paragraph">
@@ -20,13 +20,21 @@
 		</div>
 	</div>
 
-	<!-- <div class="part-holder">
+	<div class="part-holder">
 		<div class="holder-wrapper">
 			{{{agence.showroom.rawEl}}}
 			{{{agence.display.rawEl}}}
 			{{{agence.entree.rawEl}}}
 		</div>
-	</div> -->
+	</div>
+
+	<div class="part-holder">
+		<div class="holder-wrapper">
+			{{{agence.interview.rawEl}}}
+			{{{agence.accessoires.rawEl}}}
+			{{{agence.showroom2.rawEl}}}
+		</div>
+	</div>
 
 
 	<div class="part-holder part-photo">
@@ -35,7 +43,7 @@
 		</div>
 		<div class="visual-parent">
 			<div class="visual-container">
-				<img src="image/page/{{pathId}}/equipe-promo.jpg">
+				<img lazy-src="image/page/{{pathId}}/equipe/promo.jpg"  src="{{blankImg}}">
 			</div>
 		</div>
 		<div class="centered-holder-paragraph">

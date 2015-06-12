@@ -12,6 +12,9 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], (Page, signal
         photoOffset: 60
 
         constructor: (id, scope) ->
+
+            scope.blankImg = Model.blankImg
+
             super(id, scope)
 
         init: (cb)=>
@@ -105,6 +108,16 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], (Page, signal
             @currentPageYPos = -Model.windowH * @currentSection
             @subSideMenu.updateMenu(@currentSection)
 
+            @updateImgSources()
+
+            return
+
+        updateImgSources: =>
+            $part = $(@parts[@currentSection])
+            $imgSrcs = $part.find("img[lazy-src]")
+            for imgSrc in $imgSrcs
+                src = imgSrc.getAttribute("lazy-src")
+                imgSrc.setAttribute("src", src)
             return
 
         onSideMenuClicked: (index)=>
