@@ -42,6 +42,8 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], (Page, signal
             @subSideMenu.onSideMenuClicked = @onSideMenuClicked
             @subSideMenu.init()
 
+            @updateImgSources()
+
             return
 
         transitionIn: =>
@@ -113,11 +115,12 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], (Page, signal
             return
 
         updateImgSources: =>
-            $part = $(@parts[@currentSection])
-            $imgSrcs = $part.find("img[lazy-src]")
-            for imgSrc in $imgSrcs
-                src = imgSrc.getAttribute("lazy-src")
-                imgSrc.setAttribute("src", src)
+            currentItem = @parts[@currentSection]
+            previousItem = @parts[@currentSection-1]
+            nextItem = @parts[@currentSection+1]
+            Util.SwitchImgLazySrcs(currentItem)
+            Util.SwitchImgLazySrcs(previousItem)
+            Util.SwitchImgLazySrcs(nextItem)
             return
 
         onSideMenuClicked: (index)=>

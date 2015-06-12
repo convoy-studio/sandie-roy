@@ -15,6 +15,7 @@ define([], function() {
       this.Rand = __bind(this.Rand, this);
       this.GetImgNativeSize = __bind(this.GetImgNativeSize, this);
       this.SecondsToMinutes = __bind(this.SecondsToMinutes, this);
+      this.SwitchImgLazySrcs = __bind(this.SwitchImgLazySrcs, this);
       this.ToFixed = __bind(this.ToFixed, this);
       this.Norm = __bind(this.Norm, this);
       this.Lerp = __bind(this.Lerp, this);
@@ -200,6 +201,20 @@ define([], function() {
 
     Util.prototype.ToFixed = function(number, factor) {
       return Math.round(number * factor) / factor;
+    };
+
+    Util.prototype.SwitchImgLazySrcs = function(item) {
+      var $imgSrcs, $part, imgSrc, src, _i, _len;
+      if (item == null) {
+        return;
+      }
+      $part = $(item);
+      $imgSrcs = $part.find("img[lazy-src]");
+      for (_i = 0, _len = $imgSrcs.length; _i < _len; _i++) {
+        imgSrc = $imgSrcs[_i];
+        src = imgSrc.getAttribute("lazy-src");
+        imgSrc.setAttribute("src", src);
+      }
     };
 
     Util.prototype.SecondsToMinutes = function(time) {

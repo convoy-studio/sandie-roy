@@ -220,7 +220,7 @@ module.exports = (grunt) ->
     # CLEAN folders & files
     clean:
       beforedeploy: ["deploy"]
-      deploy: ["deploy/www/js/Main.js", "deploy/www/php/capture", "deploy/www/js/scripts.js", "deploy/www/component", "deploy/www/image/normal", "deploy/www/image/retina"]
+      deploy: ["deploy/www/js/app", "deploy/www/js/Main.js", "deploy/www/php/capture", "deploy/www/js/scripts.js", "deploy/www/component", "deploy/www/image/normal", "deploy/www/image/retina"]
       # deploy: ["deploy/www/image/normal", "deploy/www/image/retina"]
       php: ["deploy/www/php/helper", "deploy/www/php/carParser.php", "deploy/www/php/globalParser.php"]
 

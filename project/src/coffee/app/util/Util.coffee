@@ -115,6 +115,15 @@ define [], () ->
         ToFixed: (number, factor) =>
             return Math.round(number * factor)/factor
 
+        SwitchImgLazySrcs: (item)=>
+            if !item? then return
+            $part = $(item)
+            $imgSrcs = $part.find("img[lazy-src]")
+            for imgSrc in $imgSrcs
+                src = imgSrc.getAttribute("lazy-src")
+                imgSrc.setAttribute("src", src)
+            return
+
         SecondsToMinutes: (time) =>
             minutes = Math.floor(time / 60)
             seconds = Math.round(time - minutes * 60)

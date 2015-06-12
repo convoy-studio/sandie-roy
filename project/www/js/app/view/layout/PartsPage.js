@@ -74,6 +74,7 @@ define(["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], function(Page
       this.element.parent().append(this.subSideMenu.element);
       this.subSideMenu.onSideMenuClicked = this.onSideMenuClicked;
       this.subSideMenu.init();
+      this.updateImgSources();
     };
 
     PartsPage.prototype.transitionIn = function() {
@@ -167,14 +168,13 @@ define(["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], function(Page
     };
 
     PartsPage.prototype.updateImgSources = function() {
-      var $imgSrcs, $part, imgSrc, src, _i, _len;
-      $part = $(this.parts[this.currentSection]);
-      $imgSrcs = $part.find("img[lazy-src]");
-      for (_i = 0, _len = $imgSrcs.length; _i < _len; _i++) {
-        imgSrc = $imgSrcs[_i];
-        src = imgSrc.getAttribute("lazy-src");
-        imgSrc.setAttribute("src", src);
-      }
+      var currentItem, nextItem, previousItem;
+      currentItem = this.parts[this.currentSection];
+      previousItem = this.parts[this.currentSection - 1];
+      nextItem = this.parts[this.currentSection + 1];
+      Util.SwitchImgLazySrcs(currentItem);
+      Util.SwitchImgLazySrcs(previousItem);
+      Util.SwitchImgLazySrcs(nextItem);
     };
 
     PartsPage.prototype.onSideMenuClicked = function(index) {

@@ -95,18 +95,10 @@ define ["View"], (View) ->
             currentItem = @items[@currentIndex]
             previousItem = @items[@currentIndex-1]
             nextItem = @items[@currentIndex+1]
-            @switchSrcs(currentItem)
-            @switchSrcs(previousItem)
-            @switchSrcs(nextItem)
-            return
 
-        switchSrcs: (item)=>
-            if !item? then return
-            $part = $(item.el)
-            $imgSrcs = $part.find("img[lazy-src]")
-            for imgSrc in $imgSrcs
-                src = imgSrc.getAttribute("lazy-src")
-                imgSrc.setAttribute("src", src)
+            Util.SwitchImgLazySrcs(currentItem.el)
+            Util.SwitchImgLazySrcs(if previousItem? then previousItem.el else undefined)
+            Util.SwitchImgLazySrcs(if nextItem? then nextItem.el else undefined)
             return
 
         onClicked: (e)=>
