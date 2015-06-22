@@ -82,6 +82,7 @@ define ["View"], (View) ->
             @tl.timeScale(1.2).play()
             @tweenItemToIndex(true)
             @element.on "click", @onClicked
+            $(document).bind "keyup", @onKeyPress
             return
 
         close: =>
@@ -89,6 +90,25 @@ define ["View"], (View) ->
             @toCloseEl.off "click", @onCloseClicked
             @tl.timeScale(1.6).reverse()
             @element.off "click", @onClicked
+            $(document).unbind "keyup", @onKeyPress
+            return
+
+        onKeyPress: (e)=>
+            code = e.keyCode || e.which
+            switch code
+                when 27 ## esc
+                    @close()
+                    break
+                when 39 ## right
+                    if TweenMax.isTweening @middleContainer then return
+                    @increase()
+                    @tweenItemToIndex()
+                    break
+                when 37 ## left
+                    if TweenMax.isTweening @middleContainer then return
+                    @decrease()
+                    @tweenItemToIndex()
+                    break
             return
 
         updateImgSources: =>

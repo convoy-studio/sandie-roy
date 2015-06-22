@@ -9,7 +9,7 @@ define(["View"], function(View) {
 
     TimelineMenu.prototype.previews = void 0;
 
-    TimelineMenu.prototype.slideDelay = 4;
+    TimelineMenu.prototype.slideDelay = 2;
 
     TimelineMenu.prototype.currentSlide = -1;
 

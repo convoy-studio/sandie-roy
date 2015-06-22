@@ -4,6 +4,10 @@
     },
 
     "routing": {
+        "about": {
+            "files": []
+        },
+        
         "relations-presse": {
             "files": []
         },
@@ -13,10 +17,6 @@
         },
 
         "production": {
-            "files": []
-        },
-
-        "about": {
             "files": []
         },
 

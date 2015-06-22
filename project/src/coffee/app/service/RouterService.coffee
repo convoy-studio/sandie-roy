@@ -52,7 +52,7 @@ define ["hasher"], (hasher) ->
             return
 
         sendToDefault: =>
-            hasher.setHash "about"
+            hasher.setHash "home"
             return
 
         sendTo: (id)=>

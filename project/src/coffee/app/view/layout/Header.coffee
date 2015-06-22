@@ -19,6 +19,7 @@ define ["View"], (View) ->
             for page in previews
                 l = {}
                 l.id = page.id
+                console.log l
                 l.name = page.scope.title
                 l.isLast = false
                 menu.push l

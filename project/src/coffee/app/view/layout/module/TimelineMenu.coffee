@@ -3,7 +3,7 @@ define ["View"], (View) ->
     class TimelineMenu extends View
 
         previews: undefined
-        slideDelay: 4
+        slideDelay: 2
         currentSlide: -1
         firstLoad: true
 

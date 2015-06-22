@@ -75,7 +75,7 @@ define(["hasher"], function(hasher) {
     };
 
     RouterService.prototype.sendToDefault = function() {
-      hasher.setHash("about");
+      hasher.setHash("home");
     };
 
     RouterService.prototype.sendTo = function(id) {

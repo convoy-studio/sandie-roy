@@ -20,6 +20,7 @@ define(["View"], function(View) {
       this.increase = __bind(this.increase, this);
       this.onClicked = __bind(this.onClicked, this);
       this.updateImgSources = __bind(this.updateImgSources, this);
+      this.onKeyPress = __bind(this.onKeyPress, this);
       this.close = __bind(this.close, this);
       this.open = __bind(this.open, this);
       this.toggle = __bind(this.toggle, this);
@@ -131,6 +132,7 @@ define(["View"], function(View) {
       this.tl.timeScale(1.2).play();
       this.tweenItemToIndex(true);
       this.element.on("click", this.onClicked);
+      $(document).bind("keyup", this.onKeyPress);
     };
 
     Slideshow.prototype.close = function() {
@@ -138,6 +140,31 @@ define(["View"], function(View) {
       this.toCloseEl.off("click", this.onCloseClicked);
       this.tl.timeScale(1.6).reverse();
       this.element.off("click", this.onClicked);
+      $(document).unbind("keyup", this.onKeyPress);
+    };
+
+    Slideshow.prototype.onKeyPress = function(e) {
+      var code;
+      code = e.keyCode || e.which;
+      switch (code) {
+        case 27:
+          this.close();
+          break;
+        case 39:
+          if (TweenMax.isTweening(this.middleContainer)) {
+            return;
+          }
+          this.increase();
+          this.tweenItemToIndex();
+          break;
+        case 37:
+          if (TweenMax.isTweening(this.middleContainer)) {
+            return;
+          }
+          this.decrease();
+          this.tweenItemToIndex();
+          break;
+      }
     };
 
     Slideshow.prototype.updateImgSources = function() {
