@@ -27,9 +27,7 @@ define ["View", "signals", "Hammer"], (View, signals, Hammer) ->
 
         ready: =>
             @hammertime = new Hammer(@element.get(0))
-
             @partHolders = @element.find(".part-holder")
-
             $photoParts = @element.find(".part-photo")
             @photoParts = []
             for photoPart, i in $photoParts

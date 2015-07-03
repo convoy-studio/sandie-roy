@@ -9,8 +9,8 @@ define(["PartsPage"], function(PartsPage) {
     __extends(About, _super);
 
     function About(id, scope) {
-      this.destroy = __bind(this.destroy, this);
       this.resize = __bind(this.resize, this);
+      this.positionSandieBlock = __bind(this.positionSandieBlock, this);
       this.positionWrappers = __bind(this.positionWrappers, this);
       this.positionPersons = __bind(this.positionPersons, this);
       this.getPersonScopeByTarget = __bind(this.getPersonScopeByTarget, this);
@@ -20,12 +20,10 @@ define(["PartsPage"], function(PartsPage) {
       this.transitionIn = __bind(this.transitionIn, this);
       this.addAnimations = __bind(this.addAnimations, this);
       this.onPersonClicked = __bind(this.onPersonClicked, this);
-      this.onPersonMouseLeave = __bind(this.onPersonMouseLeave, this);
-      this.onPersonMouseEnter = __bind(this.onPersonMouseEnter, this);
       this.ready = __bind(this.ready, this);
       this.init = __bind(this.init, this);
       this.getPersonHolderHTML = __bind(this.getPersonHolderHTML, this);
-      var i, k, parentId, v, _ref, _ref1;
+      var i, k, parentId, sandie, v, _ref, _ref1;
       scope.pathId = id;
       scope.imagePath = "image/page/" + scope.pathId + "/";
       scope.equipePromo = scope["equipe-promo"];
@@ -48,6 +46,8 @@ define(["PartsPage"], function(PartsPage) {
         v.index = i;
         i += 1;
       }
+      sandie = scope.equipe.sandie;
+      scope.equipePromo.description = sandie.name + ' – ' + sandie.position;
       About.__super__.constructor.call(this, id, scope);
     }
 
@@ -58,15 +58,6 @@ define(["PartsPage"], function(PartsPage) {
                 <div data-parentid="' + parentId + '" id="' + id + '" class="person-holder btn">\
                     <div class="person-visual">\
                         <img lazy-src="' + imgURL + '" src="' + Model.blankImg + '">\
-                        <div class="lines-holder">\
-                            <div class="line left"></div>\
-                            <div class="line top"></div>\
-                            <div class="line right"></div>\
-                            <div class="line bottom"></div>\
-                        </div>\
-                        <div class="info-container centered-text-parent">\
-                            <p class="centered-text-child">' + scope.infos + '</p>\
-                        </div>\
                     </div>\
                     <div class="bottom-titles">\
                         <p><span class="bold">' + scope.name + '</span><br>' + scope.position + '</p>\
@@ -83,11 +74,10 @@ define(["PartsPage"], function(PartsPage) {
     };
 
     About.prototype.ready = function() {
-      var $holder, $img, $infoContainer, $infoP, $lines, $personHolders, holder, id, k, parentId, scope, tl, v, _i, _len, _ref, _ref1;
+      var $description, $holder, $personHolders, $photo, holder, id, k, parentId, photo, scope, v, _i, _j, _len, _len1, _ref, _ref1, _ref2;
       this.holderWrappers = this.element.find(".holder-wrapper");
+      this.sandieBlock = this.element.find(".sandie-block");
       $personHolders = this.element.find(".person-holder");
-      $personHolders.on("mouseenter", this.onPersonMouseEnter);
-      $personHolders.on("mouseleave", this.onPersonMouseLeave);
       $personHolders.on("click", this.onPersonClicked);
       for (_i = 0, _len = $personHolders.length; _i < _len; _i++) {
         holder = $personHolders[_i];
@@ -101,57 +91,6 @@ define(["PartsPage"], function(PartsPage) {
         scope.visualEl = $holder.find(".person-visual");
         scope.width = holder.offsetWidth;
         scope.height = holder.offsetHeight;
-        scope.tl = tl = new TimelineMax();
-        $lines = $holder.find(".lines-holder .line");
-        $infoContainer = $holder.find(".info-container");
-        $infoP = $infoContainer.find("p");
-        $img = $holder.find("img");
-        tl.from($lines[0], 1, {
-          scaleY: 0,
-          opacity: 1,
-          force3D: true,
-          transformOrigin: "50% 100%",
-          ease: Expo.easeInOut
-        }, 0);
-        tl.from($lines[1], 1, {
-          scaleX: 0,
-          opacity: 1,
-          force3D: true,
-          transformOrigin: "0% 50%",
-          ease: Expo.easeInOut
-        }, 0);
-        tl.from($lines[2], 1, {
-          scaleY: 0,
-          opacity: 1,
-          force3D: true,
-          transformOrigin: "50% 0%",
-          ease: Expo.easeInOut
-        }, 0);
-        tl.from($lines[3], 1, {
-          scaleX: 0,
-          opacity: 1,
-          force3D: true,
-          transformOrigin: "100% 50%",
-          ease: Expo.easeInOut
-        }, 0);
-        tl.to($img, 1, {
-          scale: 0.96,
-          opacity: 0,
-          force3D: true,
-          ease: Expo.easeInOut
-        }, 0.1);
-        tl.from($infoContainer, 1, {
-          opacity: 0,
-          force3D: true,
-          ease: Expo.easeInOut
-        }, 0.2);
-        tl.from($infoP, 1, {
-          scale: 1.04,
-          opacity: 0,
-          force3D: true,
-          ease: Expo.easeInOut
-        }, 0.4);
-        tl.pause(0);
       }
       this.mergedScope = {};
       _ref = this.scope.equipe;
@@ -165,18 +104,17 @@ define(["PartsPage"], function(PartsPage) {
         this.mergedScope[k] = v;
       }
       About.__super__.ready.call(this);
-    };
-
-    About.prototype.onPersonMouseEnter = function(e) {
-      var scope;
-      scope = this.getPersonScopeByTarget(e.currentTarget);
-      scope.tl.timeScale(1.4).play();
-    };
-
-    About.prototype.onPersonMouseLeave = function(e) {
-      var scope;
-      scope = this.getPersonScopeByTarget(e.currentTarget);
-      scope.tl.timeScale(1.8).reverse();
+      _ref2 = this.photoParts;
+      for (_j = 0, _len1 = _ref2.length; _j < _len1; _j++) {
+        photo = _ref2[_j];
+        $photo = $(photo.el);
+        $description = $photo.find(".description");
+        if ($photo.hasClass("sandie-block")) {
+          this.sandiePhotoPart = photo;
+          this.sandiePhotoPart.descriptionEl = $description.get()[0];
+          break;
+        }
+      }
     };
 
     About.prototype.onPersonClicked = function(e) {
@@ -224,7 +162,7 @@ define(["PartsPage"], function(PartsPage) {
     };
 
     About.prototype.positionPersons = function() {
-      var alignH, alignV, i, k, margin, personCss, personH, personVisualCss, personW, scale, v, _ref;
+      var alignH, alignV, i, imgScale, k, margin, personCss, personH, personVisualCss, personW, scale, v, _ref;
       scale = (Model.windowW / 1360) * 1;
       scale = Math.max(scale, 0.5);
       personW = this.personBaseSize.w * scale;
@@ -234,9 +172,10 @@ define(["PartsPage"], function(PartsPage) {
       for (k in _ref) {
         v = _ref[k];
         if (v.el != null) {
+          imgScale = v.scale != null ? v.scale : 1;
           personVisualCss = {
-            width: personW,
-            height: personH
+            width: personW * imgScale,
+            height: personH * imgScale
           };
           v.width = personW;
           v.height = personH;
@@ -245,15 +184,17 @@ define(["PartsPage"], function(PartsPage) {
           if (Model.windowW < this.mobile) {
             alignV = (v.height * i) + (i * margin * 2.6);
           } else {
-            alignV = Model.windowH * (parseInt(v.align[1], 10) * 0.01);
+            alignV = Model.windowH * (parseFloat(v.align[1]) * 0.01);
           }
           alignH = Model.windowW < this.mobile ? "center" : v.align[0];
           if (alignH === "left") {
             personCss.left = (Model.windowW >> 1) - (v.width >> 1) - v.width - margin;
           } else if (alignH === "right") {
             personCss.left = (Model.windowW >> 1) + (v.width >> 1) + margin;
-          } else {
+          } else if (alignH === "center") {
             personCss.left = (Model.windowW >> 1) - (v.width >> 1);
+          } else {
+            personCss.left = Model.windowW * (parseFloat(v.align[0]) * 0.01) - (v.width >> 1);
           }
           personCss.top = alignV;
           TweenMax.set(v.visualEl, personVisualCss);
@@ -287,6 +228,42 @@ define(["PartsPage"], function(PartsPage) {
       }
     };
 
+    About.prototype.positionSandieBlock = function() {
+      var bottomVisualPos, descriptionH, descriptionW, descriptionX, descriptionY, moreLines, paragraphFontSize, paragraphH, paragraphLineNum, paragraphY, phoOffset, photo, photoH, photoScale, photoW, scale, titleH, titleY, visualH, visualX, visualY;
+      photoScale = Model.windowH < 900 ? 0.7 : 0.9;
+      scale = (Model.windowH / this.basePhotoW * photoScale) * 1;
+      photo = this.sandiePhotoPart;
+      paragraphH = photo.paragraphEl.clientHeight;
+      titleH = photo.titleEl.clientHeight;
+      descriptionW = photo.descriptionEl.clientWidth;
+      descriptionH = photo.descriptionEl.clientHeight;
+      paragraphFontSize = parseInt($(photo.paragraphEl).css("font-size").replace(/[^-\d\.]/g, ''));
+      paragraphLineNum = parseInt(paragraphH / paragraphFontSize);
+      moreLines = paragraphLineNum - this.baseLineNum;
+      photoH = this.basePhotoH * scale;
+      photoW = this.basePhotoW * scale;
+      phoOffset = this.photoOffset - 50;
+      visualH = photoH;
+      visualX = (Model.windowW >> 1) - (photoW >> 1);
+      visualY = (Model.windowH >> 1) - (photoH >> 1) - phoOffset;
+      titleY = visualY >> 1;
+      descriptionX = (Model.windowW >> 1) - (descriptionW >> 1);
+      descriptionY = visualY + visualH;
+      bottomVisualPos = visualY + photoH;
+      paragraphY = bottomVisualPos + ((Model.windowH - bottomVisualPos) >> 1) - (paragraphH >> 1);
+      TweenMax.set(photo.visualContainerEl, {
+        scale: scale,
+        force3D: true,
+        transformOrigin: "0% 0%"
+      });
+      photo.visualContainerEl.style.left = visualX + "px";
+      photo.visualContainerEl.style.top = visualY + "px";
+      photo.titleEl.style.top = titleY + "px";
+      photo.paragraphEl.style.top = paragraphY + "px";
+      photo.descriptionEl.style.left = descriptionX + "px";
+      photo.descriptionEl.style.top = descriptionY + "px";
+    };
+
     About.prototype.resize = function() {
       this.resizePartsHolder();
       this.positionCurrentSection();
@@ -294,16 +271,7 @@ define(["PartsPage"], function(PartsPage) {
       this.resizePhotoParts();
       this.positionPersons();
       this.positionWrappers();
-    };
-
-    About.prototype.destroy = function() {
-      var k, v, _ref;
-      _ref = this.mergedScope;
-      for (k in _ref) {
-        v = _ref[k];
-        v.tl.clear();
-      }
-      About.__super__.destroy.call(this);
+      this.positionSandieBlock();
     };
 
     return About;

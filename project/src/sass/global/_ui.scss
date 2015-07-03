@@ -98,7 +98,7 @@ img {
 .size6 {
     font-size: 48px;
     line-height: 80px;
-    @include media("<=phone") {
+    @include media("<=tablet") {
         font-size: 26px;
     }
 }
@@ -213,6 +213,9 @@ p.centered-text-child {
         @include nowrap;
         text-align: center;
         color: white;
+        &.black {
+            color: black;
+        }
     }
     .paragraph {
         @extend .size5;
@@ -256,6 +259,7 @@ p.centered-text-child {
     .close-btn {
         $w: 36px;
         width: $w;
+        z-index: 13;
         position: absolute;
         right: $topMargin;
         top: $topMargin;

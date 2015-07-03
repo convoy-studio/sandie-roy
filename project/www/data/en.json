@@ -13,19 +13,19 @@
             },
             "tumblr": {
                 "name": "tumblr",
-                "url": "http://google.com" 
+                "url": "http://sandieroyparis.tumblr.com/" 
             },
             "facebook": {
                 "name": "facebook",
-                "url": "http://google.com" 
+                "url": "https://www.facebook.com/sandieroyparis" 
             },
             "twitter": {
                 "name": "twitter",
-                "url": "http://google.com" 
+                "url": "https://twitter.com/sandieroyparis" 
             },
             "instagram": {
                 "name": "instagram",
-                "url": "http://google.com" 
+                "url": "https://instagram.com/sandie_roy/" 
             }
         },
         "contact": {
@@ -46,13 +46,14 @@
                     "title": "PRODUITS",
                     "paragraph": "L’agence Sandie Roy Paris assure la visibilité des marques via le placement de produits et l’envoi communiqués de presse, lookbooks et infos produit à une base de contacts ciblés."
                 },{
+                    "id": "relation-presse-digitale",
+                    "title": "DIGITALES",
+                    "paragraph": "L’agence Sandie Roy propose un service de communication digitale ciblant les webzines grâce au placement de produits, news, interviews et sagas de marques.",
+                    "color": "black"
+                },{
                     "id": "relation-presse-institutionelle",
                     "title": "INSTITUTIONNELLES",
                     "paragraph": "L’agence Sandie Roy Paris met en œuvre des campagnes de relations presse institutionnelles : sagas de marque, articles de fond, portraits, rendez-vous one-to-one, conférences de presse."
-                },{
-                    "id": "relation-presse-digitale",
-                    "title": "DIGITALES",
-                    "paragraph": "L’agence Sandie Roy propose un service de communication digitale ciblant les webzines grâce au placement de produits, news, interviews et sagas de marques."
                 }
             ]
         },
@@ -67,7 +68,8 @@
                 },{
                     "id": "relation-influencer",
                     "title": "RELATIONS INFLUENCEURS",
-                    "paragraph": "L’agence Sandie Roy Paris fédère autour de ses clients un réseau d’influenceurs, via du placement de produit et des invitations à des évènements ciblés."
+                    "paragraph": "L’agence Sandie Roy Paris fédère autour de ses clients un réseau d’influenceurs, via du placement de produit et des invitations à des évènements ciblés.",
+                    "color": "black"
                 },{
                     "id": "reseaux-sociaux",
                     "title": "RÉSEAUX SOCIAUX",
@@ -87,7 +89,8 @@
                 },{
                     "id": "partenariats",
                     "title": "partenariats",
-                    "paragraph": "Grâce à son réseau mode et grand public, l’agence Sandie Roy Paris croise et mixe la mode à d’autres secteurs pour faire rayonner plus largement l’image et la valeur des marques."
+                    "paragraph": "Grâce à son réseau mode et grand public, l’agence Sandie Roy Paris croise et mixe la mode à d’autres secteurs pour faire rayonner plus largement l’image et la valeur des marques.",
+                    "color": "black"
                 },{
                     "id": "edition",
                     "title": "édition",
@@ -98,7 +101,7 @@
 
         "about": {
             "title": "about",
-            "agence-top-title": "L’agence Sandie Roy Paris est une maison de communication experte en mode luxe et marques grand public, des créateurs émérgents aux marques internationales.",
+            "agence-top-title": "Style, instantanéité, proximité le savoir-faire de Sandie Roy donne de l'énergie aux marques. Véritable « maison de communication », experte en mode et en style de vie, aussi bien dans le domaine du luxe que dans celui du grand public. Forte de ses 15 années de connexion en prise directe avec les acteurs ou influenceurs de la mode et du lifetsyle, made in France ou internationaux, l’agence SRP a pour mission d’énergiser les marques qu’elle représente. Son objectif ? Révéler l’aspect pétillant et unique de chacune d’entre elles. Pour cela l’agence SRP met le conseil personnalisé et sur mesure au cœur de son activité et propose en fonction de leurs objectifs et besoin un panel de services au bénéfice de l’image et de la valeur de marque. Conseil en stratégie de marque, relations presse et digitales relations publiques et production, présence active sur les réseaux sociaux l’agence propose une offre de conseil holistique et décloisonnée a 360°. Agence iconoclaste, Sandie Roy Paris met sa french touch et son réseau d’influenceurs au service des marques qui lui font confiance. Faisant de la complicité, de l’expertise et de l’unicité sa sainte trinité. ",
             "title-b": "L’agence Sandie Roy Paris est une maison de communication experte en mode luxe et marques grand public, des créateurs émérgents aux marques internationales.",
             "small-title-a": "agence",
             "small-title-b": "équipe",
@@ -125,20 +128,29 @@
                 "paragraph": "L’agence est située au cœur de Paris dans le quartier stratégique du réseau media et tendances et dispose d’un vaste showroom dans le cadre exclusif d’un appartement."
             },
             "agence": {
-                "showroom": {
-                    "align": ["center", 20],
-                    "name": "Espace showroom",
+                "meeting": {
+                    "align": [24, 13],
+                    "name": "Meeting room",
                     "position": "",
+                    "scale": 1.4,
                     "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                 },
                 "display": {
-                    "align": ["right", 30],
+                    "align": [41.7, 66],
                     "name": "Display",
                     "position": "",
+                    "scale": 0.8,
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                },
+                "showroom": {
+                    "align": [66, 18],
+                    "name": "Espace showroom",
+                    "position": "",
+                    "scale": 1,
                     "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                 },
                 "entree": {
-                    "align": ["left", 40],
+                    "align": [76, 56],
                     "name": "Entreé privative",
                     "position": "",
                     "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
@@ -174,64 +186,70 @@
                     "position": "Fondatrice et Directrice",
                     "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                 },
+                "marjorie": {
+                    "align": ["center", 20],
+                    "name": "Marjorie Jacquet",
+                    "position": "Directrice clientèle et presse<br>Press director & account manger",
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                },
                 "cristel": {
                     "align": ["center", 20],
                     "name": "Cristel Proust",
-                    "position": "Directrice Marketing & Communication",
+                    "position": "Coordinatrice Communication",
                     "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                 },
                 "cinzia": {
-                    "align": ["left", 40],
+                    "align": ["left", 30],
                     "name": "Cinzia Ricciardi",
-                    "position": "Consultante Presse",
+                    "position": "Responsable département masculin et Directrice de clientèle",
                     "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                 },
                 "lucie": {
-                    "align": ["left", 40],
+                    "align": ["center", 14],
                     "name": "Lucie Chabrillat",
-                    "position": "Consultante Presse",
+                    "position": "Responsable presse et clientèle",
                     "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                 },
                 "nathalie": {
-                    "align": ["right", 30],
+                    "align": ["right", 45],
                     "name": "Nathalie Veigas",
-                    "position": "Consultante Presse",
+                    "position": "Responsable presse et clientèle",
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                },
+                "daphnee": {
+                    "align": ["left", 14],
+                    "name": "Daphnée Davoise",
+                    "position": "Manager événement et production",
                     "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                 },
                 "mimo": {
-                    "align": ["center", 20],
+                    "align": ["center", 46],
                     "name": "Mimo Havstad",
-                    "position": "Digitale Manager",
+                    "position": "Digital Manager",
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                },
+                "yannick": {
+                    "align": ["right", 18],
+                    "name": "Yannick Do",
+                    "position": "Consultant partenariat et influenceurs",
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                },
+                "naima": {
+                    "align": ["left", 45],
+                    "name": "Naima Boutroue",
+                    "position": "Administrative manager",
+                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                },
+                "marie": {
+                    "align": ["center", 14],
+                    "name": "Marie Guy Dussaut",
+                    "position": "Show room manager et assistante presse",
                     "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                 },
                 "romain": {
                     "align": ["right", 30],
                     "name": "Romain Rigault",
-                    "position": "Assistant Presse",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-                },
-                "daphnee": {
-                    "align": ["left", 40],
-                    "name": "Daphnée Davoise",
-                    "position": "Assistante Marketing & Production",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-                },
-                "naima": {
-                    "align": ["left", 40],
-                    "name": "Naima Boutroue",
-                    "position": "Assistante de Direction",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-                },
-                "marie": {
-                    "align": ["center", 20],
-                    "name": "Marie Guy Dussaut",
-                    "position": "Showroom Manager<br>& Assistante Presse",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-                },
-                "yannick": {
-                    "align": ["right", 30],
-                    "name": "Yannick Do",
-                    "position": "Partenariats et<br>Placement de Produits",
+                    "position": "E. pr",
                     "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                 }
             }

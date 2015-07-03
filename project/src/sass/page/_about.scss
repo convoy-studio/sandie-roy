@@ -51,11 +51,20 @@
 				padding: 40px;
 			}
 		}
-		.bottom-titles {
-			text-align: center;
-			font-size: 14px;
-			line-height: 18px;
-			margin-top: 10px;
+	}
+	.bottom-titles {
+		text-align: center;
+		font-size: 14px;
+		line-height: 18px;
+		margin-top: 10px;
+	}
+
+	.sandie-block {
+		.title {
+			color: black;
+		}
+		.description {
+			position: absolute;
 		}
 	}
 
