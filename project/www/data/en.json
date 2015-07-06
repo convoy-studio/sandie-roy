@@ -39,73 +39,75 @@
     "page": {
         "relations-presse": {
             "title": "relations presse",
-            "agence-top-title": "L’agence Sandie Roy Paris assure grâce à son réseau media des retombées produit et institutionnelles nombreuses et qualitatives dans les media print et les webzines.",
+            "agence-top-title": "Grâce à son réseau d’influenceurs médias l’agence Sandie Roy Paris garantit des retombée produits et institutionnelles nombreuses et qualitatives dans les media print et les acteurs digitaux : blogs et Instagram. Une approche mobilisatrice, active et efficace, qui crée l’évènement.",
             "photo-part": [
                 {
                     "id": "relation-presse-produit",
                     "title": "PRODUITS",
-                    "paragraph": "L’agence Sandie Roy Paris assure la visibilité des marques via le placement de produits et l’envoi communiqués de presse, lookbooks et infos produit à une base de contacts ciblés."
+                    "paragraph": "Objectif : visibilité totale. C’est ce que l’agence Sandie Roy Paris assure aux marques. Grace aussi bien aux placements produits, à la gestion des collections qu’à l’envoi de communiqués de presse, de lookbooks ou à la transmission d’infos produits à une base de contacts ciblés."
                 },{
                     "id": "relation-presse-digitale",
                     "title": "DIGITALES",
-                    "paragraph": "L’agence Sandie Roy propose un service de communication digitale ciblant les webzines grâce au placement de produits, news, interviews et sagas de marques.",
+                    "paragraph": "Sensible à l’explosion des nouveaux médias, Sandie Roy Paris adapte et réinvente instantanément ses propositions de communication digitale grâce à un réseau d’intervenants ultra connectés et acteurs forts de la scène numérique.",
                     "color": "black"
                 },{
                     "id": "relation-presse-institutionelle",
                     "title": "INSTITUTIONNELLES",
-                    "paragraph": "L’agence Sandie Roy Paris met en œuvre des campagnes de relations presse institutionnelles : sagas de marque, articles de fond, portraits, rendez-vous one-to-one, conférences de presse."
+                    "paragraph": "Une communication globale et personnalisée, un consulting créatif ; l’agence Sandie Roy Paris met en œuvre des campagnes de relations presse institutionnelles : sagas de marque, articles de fond, portraits, rendez-vous one-to-one, conférences de presse."
                 }
             ]
         },
         "relations-publiques": {
             "title": "relations publiques",
-            "agence-top-title": "L’agence Sandie Roy Paris assure grâce à son reseau media des retombées produit et institutionnelles nombreuses et qualitatives dans les médias print et les webzines. ",
+            "agence-top-title": "Les relations publiques, un service complémentaire aux relations presse pour une stratégie de communication à 360° : connecter et engager les influenceurs et influenceurs digitaux aux marques, imaginer des contenus pertinents et exclusifs, les faire rayonner sur de nouveaux réseaux médiatiques, sont les missions que Sandie Roy Paris met en oeuvre.",
             "photo-part": [
                 {
                     "id": "relation-blogger",
                     "title": "RELATIONS BLOGUEURS",
-                    "paragraph": "L’agence Sandie Roy Paris génère des parutions de qualité sur les blogs influents grâce à des opérations spéciales et partenariats sur-mesure."
+                    "paragraph": "L’agence Sandie Roy Paris génère des parutions de qualité sur les blogs influents grâce à une série d’opérations spéciales: diners et partenariats sur-mesure, dotation personnalisée, voyage, rencontre one to one, opening de boutique."
                 },{
                     "id": "relation-influencer",
                     "title": "RELATIONS INFLUENCEURS",
-                    "paragraph": "L’agence Sandie Roy Paris fédère autour de ses clients un réseau d’influenceurs, via du placement de produit et des invitations à des évènements ciblés.",
+                    "paragraph": "Ainsi connectés influenceurs et marques, décloisonnent et s’enrichissent mutuellement pour former une communauté d’amis de la maison. Fédérer autour de ses clients un réseau d’influenceurs pour créer une communauté forte aux codes définis et indentifiables. Prendre la parole et affirmer les singularités de chaque marque, grâce à des placements de produits et des invitations à des évènements ciblés. Ainsi connectés influenceurs et marques, décloisonnent et s’enrichissent mutuellement pour former une communauté d’amis de la maison.",
                     "color": "black"
                 },{
                     "id": "reseaux-sociaux",
                     "title": "RÉSEAUX SOCIAUX",
-                    "paragraph": "L’agence Sandie Roy Paris obtient une visibilité importante pour ses clients sur les réseaux sociaux via son réseau d’influenceurs, blogueurs et media."
+                    "paragraph": "L’agence Sandie Roy Paris conçoit et produit des contenus adaptés pour chacun de ses clients sur les réseaux sociaux via son réseau sélectif et ciblé d’influenceurs, blogueurs et médias."
                 }
             ]
         },
 
         "production": {
             "title": "production",
-            "agence-top-title": "L’agence Sandie Roy Paris assure grâce à son reseau media des retombées produit et institutionnelles nombreuses et qualitatives dans les médias print et les webzines. ",
+            "agence-top-title": "Agence 3.0, Sandie Roy Paris offre un accompagnement global, sur mesure, novateur et de qualité pour relayer les messages et actualités de marques, autour de différentes propositions de production.",
             "photo-part": [
                 {
                     "id": "evenements",
                     "title": "événements",
-                    "paragraph": "L’agence Sandie Roy Paris conçoit des événements sur mesure dédiés à la presse et aux influenceurs : cocktail parties, présentation presse, dîners presse, voyages de presse, inaugurations boutiques..."
+                    "paragraph": "Créatrice d’expérience, l’agence Sandie Roy Paris conçoit des événements sur mesure dédiés à la presse et aux influenceurs : cocktail, parties, présentation presse, dîners, voyages de presse, opening de boutiques, lancements de collections."
                 },{
                     "id": "partenariats",
                     "title": "partenariats",
-                    "paragraph": "Grâce à son réseau mode et grand public, l’agence Sandie Roy Paris croise et mixe la mode à d’autres secteurs pour faire rayonner plus largement l’image et la valeur des marques.",
+                    "paragraph": "Forte de son puissant réseau mode, luxe et grand public, l’agence Sandie Roy Paris développe une stratégie ciblée, ouverte et décloisonnée qui croise des univers multiples et variés, de la mode au life style en passant par la  culture. Une manière pertinente de faire rayonner plus largement l’image et la valeur des marques.",
                     "color": "black"
                 },{
                     "id": "edition",
                     "title": "édition",
-                    "paragraph": "L’agence Sandie Roy Paris propose à ses clients ses services de conseil, conception et production de lookbooks, catalogues et campagnes de publicité."
+                    "paragraph": "L’agence Sandie Roy Paris met à la disposition de ses clients ses services de conseil, de  conception et production de lookbooks, catalogues et campagnes de publicité."
                 }
             ]
         },
 
         "about": {
             "title": "about",
-            "agence-top-title": "Style, instantanéité, proximité le savoir-faire de Sandie Roy donne de l'énergie aux marques. Véritable « maison de communication », experte en mode et en style de vie, aussi bien dans le domaine du luxe que dans celui du grand public. Forte de ses 15 années de connexion en prise directe avec les acteurs ou influenceurs de la mode et du lifetsyle, made in France ou internationaux, l’agence SRP a pour mission d’énergiser les marques qu’elle représente. Son objectif ? Révéler l’aspect pétillant et unique de chacune d’entre elles. Pour cela l’agence SRP met le conseil personnalisé et sur mesure au cœur de son activité et propose en fonction de leurs objectifs et besoin un panel de services au bénéfice de l’image et de la valeur de marque. Conseil en stratégie de marque, relations presse et digitales relations publiques et production, présence active sur les réseaux sociaux l’agence propose une offre de conseil holistique et décloisonnée a 360°. Agence iconoclaste, Sandie Roy Paris met sa french touch et son réseau d’influenceurs au service des marques qui lui font confiance. Faisant de la complicité, de l’expertise et de l’unicité sa sainte trinité. ",
+            "agence-top-title": "Style, instantanéité, proximité le savoir-faire de Sandie Roy Paris donne de l'énergie aux marques. Véritable « Maison de Communication », experte en mode et en style de vie, aussi bien dans le domaine du luxe que dans celui du grand public.",
+            "agence-sub-title": "Forte de ses 15 années de connexion en prise directe avec les acteurs ou influenceurs de la mode et du lifestyle, made in France ou internationaux, l’agence Sandie Roy Paris a pour mission d’énergiser les marques qu’elle représente. Son objectif ? Révéler l’aspect pétillant et unique de chacune d’entre elles. Pour cela l’agence SRP met le conseil personnalisé et sur mesure au cœur de son activité et propose en fonction de leurs objectifs et besoins un panel de services au bénéfice de l’image et de la valeur de marque. Conseil en stratégie de marque, relations presse, communications digitales,  relations publiques et production, présence active sur les réseaux sociaux l’agence propose une offre de conseil holistique et décloisonnée à 360°. Agence iconoclaste, SRP met sa French touch et son réseau d’influenceurs au service des marques qui lui font confiance. Faisant de la complicité, de l’expertise et de l’unicité sa Sainte Trinité.",
+            "equipe-sub-title": "Organisée par pôles de compétences et accompagnée dans des missions plus spécifiques par des consultants, l’équipe n’hésite pas à prendre la parole et à tracer les lignes d’une scène créative mondiale pop et à l’avant-garde.",
             "title-b": "L’agence Sandie Roy Paris est une maison de communication experte en mode luxe et marques grand public, des créateurs émérgents aux marques internationales.",
             "small-title-a": "agence",
             "small-title-b": "équipe",
-            "small-paragraph-a": "L’agence est située au cœur de Paris dans le quartier stratégique du réseau media et tendances et dispose d’un vaste showroom dans le cadre exclusif d’un appartement.",
+            "small-paragraph-a": "Située Place des Victoires au cœur de Paris, triangle d’or et quartier stratégique du réseau média, l’agence dispose d’un vaste showroom installé dans le cadre cosy d’un loft Parisien",
             "small-paragraph-b": "Sandie Roy a constitué une<br>équipe de personnalités multiples<br>issues du luxe, de la communication,<br>de la culture ou de l’art, dotées de<br>compétences variées et qui travaillent<br>de façon transversale dans l’échange<br>et la pluridisciplinarité. L’équipe est<br>organisée par pôle de compétences et<br>accompagnée dans des missions plus<br>spécifiques par des consultants.",
             "photo-part": [
                 {
@@ -129,128 +131,127 @@
             },
             "agence": {
                 "meeting": {
-                    "align": [24, 13],
+                    "align": [31, 13],
                     "name": "Meeting room",
                     "position": "",
-                    "scale": 1.4,
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    "scale": 1.1
                 },
                 "display": {
-                    "align": [41.7, 66],
+                    "align": [45.8, 68],
                     "name": "Display",
                     "position": "",
-                    "scale": 0.8,
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    "scale": 0.6
                 },
                 "showroom": {
                     "align": [66, 18],
                     "name": "Espace showroom",
                     "position": "",
-                    "scale": 1,
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    "scale": 0.8
                 },
                 "entree": {
-                    "align": [76, 56],
+                    "align": [76, 58.6],
                     "name": "Entreé privative",
                     "position": "",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    "scale": 0.8
                 },
                 "interview": {
                     "align": ["left", 40],
                     "name": "Espace interview",
-                    "position": "",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    "position": ""
                 },
                 "accessoires": {
                     "align": ["right", 30],
                     "name": "Display accessoires",
-                    "position": "",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    "position": ""
                 },
                 "showroom2": {
                     "align": ["center", 20],
                     "name": "Espace showroom",
-                    "position": "",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    "position": ""
                 }
             },
             "equipe-promo": {
                 "id": "sandie",
                 "title": "Équipe",
-                "paragraph": "Sandie Roy a constitué une équipe de personnalités multiples issues du luxe, de la communication, de la culture ou de l’art, dotées de compétences variées et qui travaillent de façon transversale dans l’échange et la pluridisciplinarité. L’équipe est organisée par pôle de compétences et accompagnée dans des missions plus spécifiques par des consultants."
+                "paragraph": "Sandie Roy aime raconter des histoires. Pour cela elle a su constituer une équipe d’experts, une vingtaine au total, ultra performants, rassemblant des personnalités aux profils variés et complémentaires issues du luxe, de la communication, de la culture, des nouvelles technologies ou de l’art.  Dj, influenceurs, attaché de presse, architecte… chaque personnalité, chaque talent a droit de cité. Un mot d’ordre : immédiateté. Une règle : faire du mouvement une source d’idées."
             },
             "equipe": {
                 "sandie": {
                     "align": ["center", 20],
                     "name": "Sandie Roy",
-                    "position": "Fondatrice et Directrice",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    "position": "Fondatrice et Directrice"
                 },
                 "marjorie": {
-                    "align": ["center", 20],
+                    "align": ["center", 44],
                     "name": "Marjorie Jacquet",
-                    "position": "Directrice clientèle et presse<br>Press director & account manger",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-                },
-                "cristel": {
-                    "align": ["center", 20],
-                    "name": "Cristel Proust",
-                    "position": "Coordinatrice Communication",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    "position": "Directrice clientèle et presse"
                 },
                 "cinzia": {
-                    "align": ["left", 30],
+                    "align": ["right", 20],
                     "name": "Cinzia Ricciardi",
-                    "position": "Responsable département masculin et Directrice de clientèle",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    "position": "Responsable département masculin et responsable de clientèle"
                 },
                 "lucie": {
-                    "align": ["center", 14],
+                    "align": ["left", 38],
                     "name": "Lucie Chabrillat",
-                    "position": "Responsable presse et clientèle",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    "position": "Responsable presse et clientèle"
                 },
                 "nathalie": {
-                    "align": ["right", 45],
+                    "align": ["center", 15],
                     "name": "Nathalie Veigas",
-                    "position": "Responsable presse et clientèle",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    "position": "Responsable presse et clientèle"
+                },
+                "annechristine": {
+                    "align": ["right", 30],
+                    "name": "Anne-Christine Fossati",
+                    "position": "Responsable département Art de Vivre et responsable de clientèle"
                 },
                 "daphnee": {
                     "align": ["left", 14],
                     "name": "Daphnée Davoise",
-                    "position": "Manager événement et production",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    "position": "Responsable production"
                 },
                 "mimo": {
                     "align": ["center", 46],
                     "name": "Mimo Havstad",
-                    "position": "Digital Manager",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    "position": "Responsable pôle digital"
                 },
                 "yannick": {
                     "align": ["right", 18],
                     "name": "Yannick Do",
-                    "position": "Consultant partenariat et influenceurs",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    "position": "Consultant partenariats et influenceurs"
                 },
                 "naima": {
                     "align": ["left", 45],
                     "name": "Naima Boutroue",
-                    "position": "Administrative manager",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    "position": "Assistante de direction"
                 },
                 "marie": {
                     "align": ["center", 14],
                     "name": "Marie Guy Dussaut",
-                    "position": "Show room manager et assistante presse",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    "position": "Responsable showroom et assistante presse"
+                }
+            },
+            "references": {
+                "mode-femme": {
+                    "title": "Mode femme",
+                    "body": "· Alain Figaret · April May · Amishboyish · ASOS · Barbour · Brandalley.fr · Bronzette Beachwear · Converse · Denim Studio · Ekyog · Etam . Etam Lingerie · Fellchic.fr · K. Jacques · Kristina TI Lingerie · Lacoste Lingerie · Le Coq Sportif · Le Mont Saint Michel · Lee · Levi’s · Les Prairies de Paris · Lolita Lempicka · Maison Labiche · Marchand Drapier · Morgan · Nelly.com ·  Primark  · Quiksilver Woman · Replay · Roxy · Spring Court · Sonia Rykiel Lingerie · Tara Jarmon · Ted baker · We are Replay"
                 },
-                "romain": {
-                    "align": ["right", 30],
-                    "name": "Romain Rigault",
-                    "position": "E. pr",
-                    "infos": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit euismod tempus. Aenean ornare odio id odio suscipit, vitae faucibus lorem luctus. Nunc ac fermentum nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                "mode-homme": {
+                    "title": "Mode homme",
+                    "body": "· Alain Figaret · Barbour · Converse · Dormeuil · Le Coq Sportif  · Lee · Levi’s · Maison Labiche · Marchand Drapier · Oxbow . Pal Zileri · Quiksilver · Robinson les bains · Serge Blanco · Schmoove · Spring Court · TH Gallery ·  Urban Ourfitters"
+                },
+                "accessoires": {
+                    "title": "Accessoires",
+                    "body": "· Accessorize · Anne Thomas · Atelier Mercadal · Cacharel· Converse · Emma Go · Delsey · Hervé Van der Straeten bijoux · Jérôme Dreyfus · Karine Arabian · Kate Moss for Fred · Les bijoux de Sophie · Léon Flam · Le Sportsac · Louise Damas · Maison Boinet · Marc Deloche · Maloles · March La.b · MySuelly · Monsieur · New Era · Parrallèle · Pedro Garcia · Replay Bijoux · Servane Gaxotte · Toy Watch · Thierry Lasry · Vuarnet ·  What  For"
+                },
+                "art": {
+                    "title": "Art de vivre",
+                    "body": "· Bonneterre · Caviar Kaspia · Coclico · Ekyog · Hotel Muse . Hotel The Source Marrackech · Kenzo parfums · Maison de la truffe · Nissan Micra Lolita Lempicka · Nubio · OrpvhanAid ·Poopoopidou.fr "
+                },
+                "partenariats": {
+                    "title": "Partenariats & insitutionnelles",
+                    "body": "· Ambassade d’Espagne · Bonneterre & Lolita Lempicka · Delsey & Lolita Lempicka  · Daisy Lowe & Morgan · Ekyog & Lolita Lempicka · Dupont de Nemours Lycra ® · Fédération Française du Prêt-à- Porter Féminin · Festival de la mode et de la Photographie de Hyères pour 1.2.3 · Fifi Chachnil pour Etam · Galerie Emmanuel Perrotin &Tara Jarmon · Galerie Emmanuel Perrotin & Peter Zimmermann · Gaspar Yurkievich pour Etam · Lacoste & les Bijoux de Sophie · Kookai Films .Kookaifilms.com · Le Nôtre & Lolita Lempicka · Natalia Vodianova pour Etam · Nissan & Lolita Lempicka · Tsumori Chisato pour Etam · Véronique Leroy pour Etam · Salon Atmosphère · Salon Prêt-à-Porter Paris · Salon Tranoï · Tactel ® · The Train New York"
                 }
             }
         },

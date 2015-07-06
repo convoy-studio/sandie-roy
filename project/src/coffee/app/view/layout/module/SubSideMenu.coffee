@@ -35,7 +35,7 @@ define ["View"], (View) ->
         onItemClicked: (e)=>
             target = e.currentTarget
             id = target.id
-            index = parseInt(id.substr(id.length - 1), 10)
+            index = parseInt(id.split("-")[1])
             @onSideMenuClicked(index)
             @updateMenu index
             return

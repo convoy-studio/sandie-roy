@@ -10,6 +10,7 @@ define(["PartsPage"], function(PartsPage) {
 
     function About(id, scope) {
       this.resize = __bind(this.resize, this);
+      this.resizeAccordion = __bind(this.resizeAccordion, this);
       this.positionSandieBlock = __bind(this.positionSandieBlock, this);
       this.positionWrappers = __bind(this.positionWrappers, this);
       this.positionPersons = __bind(this.positionPersons, this);
@@ -20,6 +21,8 @@ define(["PartsPage"], function(PartsPage) {
       this.transitionIn = __bind(this.transitionIn, this);
       this.addAnimations = __bind(this.addAnimations, this);
       this.onPersonClicked = __bind(this.onPersonClicked, this);
+      this.openAccordion = __bind(this.openAccordion, this);
+      this.onAccordionPartClicked = __bind(this.onAccordionPartClicked, this);
       this.ready = __bind(this.ready, this);
       this.init = __bind(this.init, this);
       this.getPersonHolderHTML = __bind(this.getPersonHolderHTML, this);
@@ -70,11 +73,13 @@ define(["PartsPage"], function(PartsPage) {
     About.prototype.init = function(cb) {
       this.personBaseSize = Model.personBaseSize;
       this.mobile = Model.mobile;
-      return About.__super__.init.call(this, cb);
+      this.accordionIsHere = false;
+      About.__super__.init.call(this, cb);
     };
 
     About.prototype.ready = function() {
-      var $description, $holder, $personHolders, $photo, holder, id, k, parentId, photo, scope, v, _i, _j, _len, _len1, _ref, _ref1, _ref2;
+      var $description, $holder, $personHolders, $photo, holder, id, k, parentId, photo, scope, v, _i, _j, _len, _len1, _ref, _ref1, _ref2,
+        _this = this;
       this.holderWrappers = this.element.find(".holder-wrapper");
       this.sandieBlock = this.element.find(".sandie-block");
       $personHolders = this.element.find(".person-holder");
@@ -115,6 +120,59 @@ define(["PartsPage"], function(PartsPage) {
           break;
         }
       }
+      TweenMax.delayedCall(0, function() {
+        var $accordion, $accordionParts, $body, $title, accordion, part, _k, _len2;
+        _this.accordionWrapper = _this.element.find(".accordion-wrapper");
+        $accordionParts = _this.element.find(".accordion-part");
+        $accordionParts.on("click", _this.onAccordionPartClicked);
+        _this.accordionParts = [];
+        for (_k = 0, _len2 = $accordionParts.length; _k < _len2; _k++) {
+          accordion = $accordionParts[_k];
+          $accordion = $(accordion);
+          $title = $accordion.find(".main-title");
+          $body = $accordion.find(".main-body");
+          part = {};
+          part.el = accordion;
+          part.id = accordion.id;
+          part.title = $title.get(0);
+          part.body = $body.get(0);
+          part.titleH = $title.height();
+          part.bodyH = $body.height();
+          _this.accordionParts.push(part);
+        }
+        _this.accordionIsHere = true;
+        _this.resizeAccordion();
+        return _this.openAccordion("mode-femme");
+      });
+    };
+
+    About.prototype.onAccordionPartClicked = function(e) {
+      var id, target;
+      e.preventDefault();
+      target = e.currentTarget;
+      id = target.id;
+      this.openAccordion(id);
+    };
+
+    About.prototype.openAccordion = function(id) {
+      var accordion, _i, _len, _ref;
+      this.currentAccordionH = 0;
+      _ref = this.accordionParts;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        accordion = _ref[_i];
+        if (accordion.id === id) {
+          this.currentAccordionH += accordion.titleH + accordion.bodyH;
+          TweenMax.set(accordion.el, {
+            height: accordion.titleH + accordion.bodyH
+          });
+        } else {
+          this.currentAccordionH += accordion.titleH;
+          TweenMax.set(accordion.el, {
+            height: accordion.titleH
+          });
+        }
+      }
+      this.resizeAccordion();
     };
 
     About.prototype.onPersonClicked = function(e) {
@@ -129,7 +187,7 @@ define(["PartsPage"], function(PartsPage) {
         item = {};
         item.id = k;
         separator = v.position.length > 1 ? " – " : " ";
-        item.text = "<p>" + v.name + separator + v.position.replace("<br>", " ") + "</p>";
+        item.text = "<p>" + v.name + separator + v.position + "</p>";
         slideshowScope.push(item);
       }
       Signal.slideshowOpen.dispatch(index, slideshowScope, this.scope.imagePath + parentId + "/hd/");
@@ -264,6 +322,14 @@ define(["PartsPage"], function(PartsPage) {
       photo.descriptionEl.style.top = descriptionY + "px";
     };
 
+    About.prototype.resizeAccordion = function() {
+      var accordionCss;
+      accordionCss = {
+        y: (Model.windowH >> 1) - (this.currentAccordionH >> 1) + 20
+      };
+      TweenMax.set(this.accordionWrapper, accordionCss);
+    };
+
     About.prototype.resize = function() {
       this.resizePartsHolder();
       this.positionCurrentSection();
@@ -272,6 +338,9 @@ define(["PartsPage"], function(PartsPage) {
       this.positionPersons();
       this.positionWrappers();
       this.positionSandieBlock();
+      if (this.accordionIsHere) {
+        this.resizeAccordion();
+      }
     };
 
     return About;

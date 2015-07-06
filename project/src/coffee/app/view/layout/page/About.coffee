@@ -48,8 +48,9 @@ define ["PartsPage"], (PartsPage) ->
         init: (cb)=>
             @personBaseSize = Model.personBaseSize
             @mobile = Model.mobile
-
+            @accordionIsHere = false
             super(cb)
+            return
 
         ready: =>
 
@@ -86,6 +87,47 @@ define ["PartsPage"], (PartsPage) ->
                     @sandiePhotoPart.descriptionEl = $description.get()[0]
                     break
 
+            TweenMax.delayedCall 0, =>
+                @accordionWrapper = @element.find(".accordion-wrapper")
+                $accordionParts = @element.find(".accordion-part")
+                $accordionParts.on("click", @onAccordionPartClicked)
+                @accordionParts = []
+                for accordion in $accordionParts
+                    $accordion = $(accordion)
+                    $title = $accordion.find(".main-title")
+                    $body = $accordion.find(".main-body")
+                    part = {}
+                    part.el = accordion
+                    part.id = accordion.id
+                    part.title = $title.get(0)
+                    part.body = $body.get(0)
+                    part.titleH = $title.height()
+                    part.bodyH = $body.height()
+                    @accordionParts.push(part)
+
+                @accordionIsHere = true
+                @resizeAccordion()
+                @openAccordion("mode-femme")
+
+            return
+
+        onAccordionPartClicked: (e)=>
+            e.preventDefault()
+            target = e.currentTarget
+            id = target.id
+            @openAccordion(id)
+            return
+
+        openAccordion: (id)=>
+            @currentAccordionH = 0
+            for accordion in @accordionParts
+                if accordion.id is id
+                    @currentAccordionH += accordion.titleH + accordion.bodyH
+                    TweenMax.set accordion.el, {height: accordion.titleH + accordion.bodyH}
+                else
+                    @currentAccordionH += accordion.titleH
+                    TweenMax.set accordion.el, {height: accordion.titleH}
+            @resizeAccordion()
             return
 
         onPersonClicked: (e)=>
@@ -98,7 +140,7 @@ define ["PartsPage"], (PartsPage) ->
                 item = {}
                 item.id = k
                 separator = if v.position.length > 1 then " – " else " "
-                item.text = "<p>" + v.name + separator + v.position.replace("<br>", " ") + "</p>"
+                item.text = "<p>" + v.name + separator + v.position + "</p>"
                 slideshowScope.push item
 
             Signal.slideshowOpen.dispatch index, slideshowScope, @scope.imagePath + parentId + "/hd/"
@@ -150,6 +192,7 @@ define ["PartsPage"], (PartsPage) ->
 
                     personCss = {}  
                     margin = 20
+                    
                     if Model.windowW < @mobile
                         alignV = (v.height * i) + (i * margin * 2.6)
                     else
@@ -222,6 +265,12 @@ define ["PartsPage"], (PartsPage) ->
             photo.descriptionEl.style.top = descriptionY + "px"
             return
 
+        resizeAccordion: =>
+            accordionCss = 
+                y: (Model.windowH >> 1) - (@currentAccordionH >> 1) + 20
+            TweenMax.set @accordionWrapper, accordionCss
+            return
+
         resize: =>
             @resizePartsHolder()
             @positionCurrentSection()
@@ -230,6 +279,7 @@ define ["PartsPage"], (PartsPage) ->
             @positionPersons()
             @positionWrappers()
             @positionSandieBlock()
+            if @accordionIsHere then @resizeAccordion()
             return
 
     return About

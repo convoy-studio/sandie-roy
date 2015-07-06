@@ -84,11 +84,11 @@ img {
     line-height: 20px;
 }
 .size5 {
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 16px;
+    line-height: 22px;
     @include media("<=tablet") {
-        font-size: 16px;
-        line-height: 20px;
+        font-size: 14px;
+        line-height: 18px;
     }
     @include media("<=phone") {
         font-size: 12px;
@@ -100,6 +100,18 @@ img {
     line-height: 80px;
     @include media("<=tablet") {
         font-size: 26px;
+    }
+}
+.size7 {
+    font-size: 24px;
+    line-height: 40px;
+    @include media(">phone", "<tablet") {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    @include media("<=phone") {
+        font-size: 12px;
+        line-height: 16px;
     }
 }
 a {
@@ -225,8 +237,6 @@ p.centered-text-child {
     .visual-container {
         width: $basePhotoW;
         height: $basePhotoH;
-        // background-position: 50% 50%;
-        // background-repeat: no-repeat;
         position: relative;
     }
 }
@@ -234,7 +244,17 @@ p.centered-text-child {
     width: 100%;
     max-width: $min-middle-width;
     @extend .size2;
-    padding: 20px;
+    padding: 20px 60px 20px 60px;
+    @include media("<=tablet") {
+        padding-top: 80px;
+    }
+}
+
+.sub-paragraph {
+    width: 100%;
+    max-width: $min-middle-width;
+    @extend .size7;
+    padding: 20px 60px 20px 60px;
     @include media("<=tablet") {
         padding-top: 80px;
     }
@@ -358,6 +378,7 @@ p.centered-text-child {
     .down-text {
         font-size: 18px;
         text-align: left;
+        line-height: 23px;
     }
 
     img {
