@@ -20,6 +20,7 @@ require.config(
 
         Stats: "../lib/stats.min"
         GUI: "../lib/dat.gui.min"
+        WheelInerial: "../lib/wheel-inertia"
 
         # Classes start
         # Generated from updateMain.py

@@ -1,4 +1,4 @@
-define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], (Page, signals, wheel, Hammer, SubSideMenu) ->
+define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu", "WheelInerial"], (Page, signals, wheel, Hammer, SubSideMenu, wi) ->
 
     "use strict"
     
@@ -44,7 +44,11 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], (Page, signal
 
             @updateImgSources()
 
+            @inertia = new WheelInertia()
+            @inertia.addCallback(@onWheelInertia)
+
             return
+
 
         transitionIn: =>
             $(window).on 'mousewheel', @onMouseWheel
@@ -85,8 +89,13 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], (Page, signal
 
         onMouseWheel: (e)=>
             e.preventDefault()
+            delta = e.deltaY
+            @inertia.update(delta)
+            return
+
+        onWheelInertia: (direction)=>
             if @transitionRunning then return
-            if e.deltaY < 0 then @increaseSectionIndex() else @decreaseSectionIndex()
+            if direction < 0 then @increaseSectionIndex() else @decreaseSectionIndex()
             @changeSection()
             return
 
@@ -136,7 +145,7 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], (Page, signal
 
         runScrollDelayedCall: =>
             TweenMax.killDelayedCallsTo @activateScroll
-            TweenMax.delayedCall 1.2, @activateScroll
+            TweenMax.delayedCall 0.5, @activateScroll
             return
 
         activateScroll: =>

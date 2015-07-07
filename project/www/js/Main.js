@@ -18,6 +18,7 @@ require.config({
     ThrowPropsPlugin: "../component/greensock/ThrowPropsPlugin.min",
     Stats: "../lib/stats.min",
     GUI: "../lib/dat.gui.min",
+    WheelInerial: "../lib/wheel-inertia",
     Main: "Main",
     App: "app/App",
     Context: "app/context/Context",

@@ -2,7 +2,7 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], function(Page, signals, wheel, Hammer, SubSideMenu) {
+define(["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu", "WheelInerial"], function(Page, signals, wheel, Hammer, SubSideMenu, wi) {
   "use strict";
   var PartsPage;
   PartsPage = (function(_super) {
@@ -32,6 +32,7 @@ define(["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], function(Page
       this.onSideMenuClicked = __bind(this.onSideMenuClicked, this);
       this.updateImgSources = __bind(this.updateImgSources, this);
       this.changeSection = __bind(this.changeSection, this);
+      this.onWheelInertia = __bind(this.onWheelInertia, this);
       this.onMouseWheel = __bind(this.onMouseWheel, this);
       this.decreaseSectionIndex = __bind(this.decreaseSectionIndex, this);
       this.increaseSectionIndex = __bind(this.increaseSectionIndex, this);
@@ -75,6 +76,8 @@ define(["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], function(Page
       this.subSideMenu.onSideMenuClicked = this.onSideMenuClicked;
       this.subSideMenu.init();
       this.updateImgSources();
+      this.inertia = new WheelInertia();
+      this.inertia.addCallback(this.onWheelInertia);
     };
 
     PartsPage.prototype.transitionIn = function() {
@@ -132,11 +135,17 @@ define(["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], function(Page
     };
 
     PartsPage.prototype.onMouseWheel = function(e) {
+      var delta;
       e.preventDefault();
+      delta = e.deltaY;
+      this.inertia.update(delta);
+    };
+
+    PartsPage.prototype.onWheelInertia = function(direction) {
       if (this.transitionRunning) {
         return;
       }
-      if (e.deltaY < 0) {
+      if (direction < 0) {
         this.increaseSectionIndex();
       } else {
         this.decreaseSectionIndex();
@@ -200,7 +209,7 @@ define(["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu"], function(Page
 
     PartsPage.prototype.runScrollDelayedCall = function() {
       TweenMax.killDelayedCallsTo(this.activateScroll);
-      TweenMax.delayedCall(1.2, this.activateScroll);
+      TweenMax.delayedCall(0.5, this.activateScroll);
     };
 
     PartsPage.prototype.activateScroll = function() {
