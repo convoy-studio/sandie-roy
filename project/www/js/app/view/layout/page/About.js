@@ -21,6 +21,7 @@ define(["PartsPage"], function(PartsPage) {
       this.transitionIn = __bind(this.transitionIn, this);
       this.addAnimations = __bind(this.addAnimations, this);
       this.onPersonClicked = __bind(this.onPersonClicked, this);
+      this.updateAccordionInternalHeight = __bind(this.updateAccordionInternalHeight, this);
       this.openAccordion = __bind(this.openAccordion, this);
       this.onAccordionPartClicked = __bind(this.onAccordionPartClicked, this);
       this.ready = __bind(this.ready, this);
@@ -141,8 +142,7 @@ define(["PartsPage"], function(PartsPage) {
           _this.accordionParts.push(part);
         }
         _this.accordionIsHere = true;
-        _this.resizeAccordion();
-        return _this.openAccordion("mode-femme");
+        return _this.openAccordion("mode");
       });
     };
 
@@ -155,12 +155,19 @@ define(["PartsPage"], function(PartsPage) {
     };
 
     About.prototype.openAccordion = function(id) {
+      this.currentOpenAccordion = id;
+      this.updateAccordionInternalHeight();
+    };
+
+    About.prototype.updateAccordionInternalHeight = function() {
       var accordion, _i, _len, _ref;
       this.currentAccordionH = 0;
       _ref = this.accordionParts;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         accordion = _ref[_i];
-        if (accordion.id === id) {
+        accordion.titleH = $(accordion.title).outerHeight(true) + 6;
+        accordion.bodyH = $(accordion.body).outerHeight(true);
+        if (accordion.id === this.currentOpenAccordion) {
           this.currentAccordionH += accordion.titleH + accordion.bodyH;
           TweenMax.set(accordion.el, {
             height: accordion.titleH + accordion.bodyH
@@ -172,6 +179,7 @@ define(["PartsPage"], function(PartsPage) {
           });
         }
       }
+      this.currentAccordionH += 10;
       this.resizeAccordion();
     };
 
@@ -325,7 +333,7 @@ define(["PartsPage"], function(PartsPage) {
     About.prototype.resizeAccordion = function() {
       var accordionCss;
       accordionCss = {
-        y: (Model.windowH >> 1) - (this.currentAccordionH >> 1) + 20
+        y: (Model.windowH >> 1) - (this.currentAccordionH >> 1)
       };
       TweenMax.set(this.accordionWrapper, accordionCss);
     };
@@ -339,7 +347,7 @@ define(["PartsPage"], function(PartsPage) {
       this.positionWrappers();
       this.positionSandieBlock();
       if (this.accordionIsHere) {
-        this.resizeAccordion();
+        this.updateAccordionInternalHeight();
       }
     };
 

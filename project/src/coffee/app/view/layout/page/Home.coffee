@@ -5,11 +5,9 @@ define ["Page", "TimelineMenu"], (Page, TimelineMenu) ->
         constructor: (id, scope) ->
             scope = {}
             scope.previews = Model.routing.slice(0, Model.routing.length-1)
-            console.log scope.previews
             super(id, scope)
 
         ready: =>
-
             @timelineMenu = new TimelineMenu("timeline-menu")
             @element.append @timelineMenu.element
 

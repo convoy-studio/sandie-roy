@@ -23,6 +23,14 @@
    </head>
 
 <body>
+    
+    <?php 
+        if($_GET["lang"] === "en") {
+            echo "<script type=\"text/javascript\">var JS_Lang = 'en';</script>";
+        }else{
+            echo "<script type=\"text/javascript\">var JS_Lang = 'fr';</script>";
+        }
+    ?>
 
    <div id="font-charger">
         <div id="bold">test</div>
@@ -32,8 +40,6 @@
     </div>  
 
    <div id="app-container"></div>
-
-   <script src="http://localhost:35729/livereload.js"></script>
 
 </body>
 </html>

@@ -72,14 +72,12 @@ define(["View"], function(View) {
         item.tl = tl;
         elInTween = TweenMax.from(item.preview.el, 1.4, {
           x: Model.windowW,
-          opacity: 0,
           transformOrigin: "0% 0%",
           force3D: true,
           ease: Power3.easeInOut
         });
         elOutTween = TweenMax.to(item.preview.el, 1.4, {
           x: -Model.windowW,
-          opacity: 0,
           transformOrigin: "0% 100%",
           force3D: true,
           ease: Power3.easeInOut

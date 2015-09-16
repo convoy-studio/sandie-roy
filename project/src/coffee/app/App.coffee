@@ -11,8 +11,7 @@ define ["require", "Context", "Browser", "InitialLoadController", "Detector"], (
             Model.browser = b.browser
             Model.browserVersion = parseInt(b.version, 10)
             Model.isOldBrowser = if Model.browser is "Explorer" and Model.browserVersion is 9 then true else false
-
-            Model.lang = "en"
+            Model.lang = JS_Lang
 
             @init()
             return

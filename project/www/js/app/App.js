@@ -16,7 +16,7 @@ define(["require", "Context", "Browser", "InitialLoadController", "Detector"], f
       Model.browser = b.browser;
       Model.browserVersion = parseInt(b.version, 10);
       Model.isOldBrowser = Model.browser === "Explorer" && Model.browserVersion === 9 ? true : false;
-      Model.lang = "en";
+      Model.lang = JS_Lang;
       this.init();
       return;
     }

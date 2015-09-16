@@ -13,7 +13,6 @@ define(["Page", "TimelineMenu"], function(Page, TimelineMenu) {
       this.ready = __bind(this.ready, this);
       scope = {};
       scope.previews = Model.routing.slice(0, Model.routing.length - 1);
-      console.log(scope.previews);
       Home.__super__.constructor.call(this, id, scope);
     }
 

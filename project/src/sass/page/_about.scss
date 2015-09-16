@@ -1,20 +1,36 @@
 #about.page {
+	
+	.accordion-wrapper-title {
+		position: relative;
+		top: 86px;
+		.title {
+			color: $black;
+		}
+	}
 
 	.accordion-wrapper {
 		text-align: center;
-		@include simpleAnim(0.6s, 0s, $easeInOutCubic);
+		@include simpleAnim(0.5s, 0s, $easeOutCubic);
 	}
 	.accordion-part {
 		overflow: hidden;
-		@include simpleAnim(0.6s, 0s, $easeInOutCubic);
+		@include simpleAnim(0.2s, 0s, $easeOutCubic);
 
 		.main-title {
-			font-size: 42px;
+			font-size: 36px;
 			font-family: "medium";
+
+		    @media screen and (max-height: 800px) {
+				font-size: 30px;
+		    }
 		}
 		.main-body {
-			font-size: 26px;
-			line-height: 40px;
+			font-size: 20px;
+			line-height: 30px;
+			@media screen and (max-height: 800px) {
+				font-size: 16px;
+				line-height: 24px;
+		    }
 		}
 	}
 

@@ -106,8 +106,7 @@ define ["PartsPage"], (PartsPage) ->
                     @accordionParts.push(part)
 
                 @accordionIsHere = true
-                @resizeAccordion()
-                @openAccordion("mode-femme")
+                @openAccordion("mode")
 
             return
 
@@ -119,14 +118,24 @@ define ["PartsPage"], (PartsPage) ->
             return
 
         openAccordion: (id)=>
+            @currentOpenAccordion = id
+            @updateAccordionInternalHeight()
+            return
+
+        updateAccordionInternalHeight: =>
             @currentAccordionH = 0
             for accordion in @accordionParts
-                if accordion.id is id
+                accordion.titleH = $(accordion.title).outerHeight(true) + 6
+                accordion.bodyH = $(accordion.body).outerHeight(true)
+                if accordion.id is @currentOpenAccordion
                     @currentAccordionH += accordion.titleH + accordion.bodyH
                     TweenMax.set accordion.el, {height: accordion.titleH + accordion.bodyH}
                 else
                     @currentAccordionH += accordion.titleH
                     TweenMax.set accordion.el, {height: accordion.titleH}
+
+            @currentAccordionH += 10
+
             @resizeAccordion()
             return
 
@@ -267,7 +276,7 @@ define ["PartsPage"], (PartsPage) ->
 
         resizeAccordion: =>
             accordionCss = 
-                y: (Model.windowH >> 1) - (@currentAccordionH >> 1) + 20
+                y: (Model.windowH >> 1) - (@currentAccordionH >> 1)
             TweenMax.set @accordionWrapper, accordionCss
             return
 
@@ -279,7 +288,7 @@ define ["PartsPage"], (PartsPage) ->
             @positionPersons()
             @positionWrappers()
             @positionSandieBlock()
-            if @accordionIsHere then @resizeAccordion()
+            if @accordionIsHere then @updateAccordionInternalHeight()
             return
 
     return About

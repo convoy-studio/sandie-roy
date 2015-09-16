@@ -1,7 +1,5 @@
 {
     "global": {
-        "header-title": "this is my header",
-        "footer-title": "this is my footer",
         "fr": "fr",
         "en": "en",
         "menu": "menu",
@@ -12,20 +10,16 @@
                 "url": ""
             },
             "tumblr": {
-                "name": "tumblr",
+                "name": "blog",
                 "url": "http://sandieroyparis.tumblr.com/" 
             },
             "facebook": {
                 "name": "facebook",
                 "url": "https://www.facebook.com/sandieroyparis" 
             },
-            "twitter": {
-                "name": "twitter",
-                "url": "https://twitter.com/sandieroyparis" 
-            },
             "instagram": {
                 "name": "instagram",
-                "url": "https://instagram.com/sandie_roy/" 
+                "url": "https://instagram.com/sandieroyparis/" 
             }
         },
         "contact": {
@@ -39,76 +33,76 @@
     "page": {
         "relations-presse": {
             "title": "relations presse",
-            "agence-top-title": "Grâce à son réseau d’influenceurs médias l’agence Sandie Roy Paris garantit des retombée produits et institutionnelles nombreuses et qualitatives dans les media print et les acteurs digitaux : blogs et Instagram. Une approche mobilisatrice, active et efficace, qui crée l’évènement.",
+            "agence-top-title": "Thanks to its network of media opinion leaders, Sandie Roy Paris guarantees extensive and high-quality coverage of products and corporate information in both the print media and among digital players: blogs and social networks. An active, effective and rallying approach that never fails to create a buzz.",
             "photo-part": [
                 {
                     "id": "relation-presse-produit",
-                    "title": "PRODUITS",
-                    "paragraph": "Objectif : visibilité totale. C’est ce que l’agence Sandie Roy Paris assure aux marques. Grace aussi bien aux placements produits, à la gestion des collections qu’à l’envoi de communiqués de presse, de lookbooks ou à la transmission d’infos produits à une base de contacts ciblés."
-                },{
-                    "id": "relation-presse-digitale",
-                    "title": "DIGITALES",
-                    "paragraph": "Sensible à l’explosion des nouveaux médias, Sandie Roy Paris adapte et réinvente instantanément ses propositions de communication digitale grâce à un réseau d’intervenants ultra connectés et acteurs forts de la scène numérique.",
-                    "color": "black"
+                    "title": "PRODUCT-BASED MEDIA RELATIONS",
+                    "paragraph": "Our goal is total visibility and that’s exactly what brands can expect from Sandie Roy Paris thanks to services including product placements and collection management, distribution of press releases, look books and product information to targeted contacts."
                 },{
                     "id": "relation-presse-institutionelle",
-                    "title": "INSTITUTIONNELLES",
-                    "paragraph": "Une communication globale et personnalisée, un consulting créatif ; l’agence Sandie Roy Paris met en œuvre des campagnes de relations presse institutionnelles : sagas de marque, articles de fond, portraits, rendez-vous one-to-one, conférences de presse."
+                    "title": "INSTITUTIONAL MEDIA RELATIONS",
+                    "paragraph": "Sandie Roy Paris offers creative consulting as well as global and customized communication by designing and implementing institutional media relation campaigns featuring brand sagas, in-depth articles, one-to-one interviews and press conferences."
+                },{
+                    "id": "relation-presse-digitale",
+                    "title": "DIGITAL MEDIA RELATIONS",
+                    "paragraph": "Mindful of the on-going growth and development of new media, Sandie Roy Paris instantly adjusts and reinvents its digital communication proposals thanks to a network of ultra-connected, digital key players.",
+                    "color": "black"
                 }
             ]
         },
         "relations-publiques": {
             "title": "relations publiques",
-            "agence-top-title": "Les relations publiques, un service complémentaire aux relations presse pour une stratégie de communication à 360° : connecter et engager les influenceurs et influenceurs digitaux aux marques, imaginer des contenus pertinents et exclusifs, les faire rayonner sur de nouveaux réseaux médiatiques, sont les missions que Sandie Roy Paris met en oeuvre.",
+            "agence-top-title": "Public relations: a service to complement media relations for a 360° communication strategy. SRP connects brands with traditional and digital opinion leaders and ensures a close collaboration, while designing relevant and exclusive content to catch the eye on new media",
             "photo-part": [
                 {
                     "id": "relation-blogger",
-                    "title": "RELATIONS BLOGUEURS",
-                    "paragraph": "L’agence Sandie Roy Paris génère des parutions de qualité sur les blogs influents grâce à une série d’opérations spéciales: diners et partenariats sur-mesure, dotation personnalisée, voyage, rencontre one to one, opening de boutique."
+                    "title": "BLOGGER RELATIONS",
+                    "paragraph": "Sandie Roy Paris delivers high-quality coverage on influential blogs thanks to an assortment of special initiatives: customized partnerships, dinner events, trips, personalized product seeding, one-to-one meetings and store openings. "
                 },{
                     "id": "relation-influencer",
-                    "title": "RELATIONS INFLUENCEURS",
-                    "paragraph": "Ainsi connectés influenceurs et marques, décloisonnent et s’enrichissent mutuellement pour former une communauté d’amis de la maison. Fédérer autour de ses clients un réseau d’influenceurs pour créer une communauté forte aux codes définis et indentifiables. Prendre la parole et affirmer les singularités de chaque marque, grâce à des placements de produits et des invitations à des évènements ciblés. Ainsi connectés influenceurs et marques, décloisonnent et s’enrichissent mutuellement pour former une communauté d’amis de la maison.",
+                    "title": "RELATIONS WITH OPINION LEADERS",
+                    "paragraph": "Once connected, brands and opinion leaders engage in a mutually beneficial relationship, forming a true community with close ties to SRP. We unite a network of opinion leaders around our clients to create a tight-knit community based on clear and established codes. We proclaim the singularity of each brand thanks to product placements and invitations to targeted events.",
                     "color": "black"
                 },{
                     "id": "reseaux-sociaux",
-                    "title": "RÉSEAUX SOCIAUX",
-                    "paragraph": "L’agence Sandie Roy Paris conçoit et produit des contenus adaptés pour chacun de ses clients sur les réseaux sociaux via son réseau sélectif et ciblé d’influenceurs, blogueurs et médias."
+                    "title": "SOCIAL NETWORKS",
+                    "paragraph": "Sandie Roy Paris designs and produces original and unique content intended for the social networks of each of its clients, via its selective network of opinion leaders, bloggers and media outlets."
                 }
             ]
         },
 
         "production": {
             "title": "production",
-            "agence-top-title": "Agence 3.0, Sandie Roy Paris offre un accompagnement global, sur mesure, novateur et de qualité pour relayer les messages et actualités de marques, autour de différentes propositions de production.",
+            "agence-top-title": "An “Agency 3.0,” Sandie Roy Paris offers global, customized and innovative guidance of the finest quality, putting forth various production proposals to convey brands' news and messages.",
             "photo-part": [
                 {
                     "id": "evenements",
-                    "title": "événements",
-                    "paragraph": "Créatrice d’expérience, l’agence Sandie Roy Paris conçoit des événements sur mesure dédiés à la presse et aux influenceurs : cocktail, parties, présentation presse, dîners, voyages de presse, opening de boutiques, lancements de collections."
+                    "title": "EVENTS",
+                    "paragraph": "With a flair for creating experiences, Sandie Roy Paris designs tailor-made events targeting the media and opinion leaders: cocktail receptions, press presentations, dinner parties, press trips, store openings, collection launches."
                 },{
                     "id": "partenariats",
-                    "title": "partenariats",
-                    "paragraph": "Forte de son puissant réseau mode, luxe et grand public, l’agence Sandie Roy Paris développe une stratégie ciblée, ouverte et décloisonnée qui croise des univers multiples et variés, de la mode au life style en passant par la  culture. Une manière pertinente de faire rayonner plus largement l’image et la valeur des marques.",
+                    "title": "PARTNERSHIPS",
+                    "paragraph": "Thanks to its powerful network spanning the worlds of fashion, luxury and the general public, Sandie Roy Paris develops targeted, open and seamless strategies encompassing a variety of sectors, from fashion to lifestyle, not to mention culture. An effective way to heighten a brands’ image and value. ",
                     "color": "black"
                 },{
                     "id": "edition",
-                    "title": "édition",
-                    "paragraph": "L’agence Sandie Roy Paris met à la disposition de ses clients ses services de conseil, de  conception et production de lookbooks, catalogues et campagnes de publicité."
+                    "title": "PUBLISHING",
+                    "paragraph": "Sandie Roy Paris offers its clients consulting, design and production services for lookbooks, catalogues and advertising campaigns."
                 }
             ]
         },
 
         "about": {
             "title": "about",
-            "agence-top-title": "Style, instantanéité, proximité le savoir-faire de Sandie Roy Paris donne de l'énergie aux marques. Véritable « Maison de Communication », experte en mode et en style de vie, aussi bien dans le domaine du luxe que dans celui du grand public.",
-            "agence-sub-title": "Forte de ses 15 années de connexion en prise directe avec les acteurs ou influenceurs de la mode et du lifestyle, made in France ou internationaux, l’agence Sandie Roy Paris a pour mission d’énergiser les marques qu’elle représente. Son objectif ? Révéler l’aspect pétillant et unique de chacune d’entre elles. Pour cela l’agence SRP met le conseil personnalisé et sur mesure au cœur de son activité et propose en fonction de leurs objectifs et besoins un panel de services au bénéfice de l’image et de la valeur de marque. Conseil en stratégie de marque, relations presse, communications digitales,  relations publiques et production, présence active sur les réseaux sociaux l’agence propose une offre de conseil holistique et décloisonnée à 360°. Agence iconoclaste, SRP met sa French touch et son réseau d’influenceurs au service des marques qui lui font confiance. Faisant de la complicité, de l’expertise et de l’unicité sa Sainte Trinité.",
-            "equipe-sub-title": "Organisée par pôles de compétences et accompagnée dans des missions plus spécifiques par des consultants, l’équipe n’hésite pas à prendre la parole et à tracer les lignes d’une scène créative mondiale pop et à l’avant-garde.",
+            "references-title": "references",
+            "agence-top-title": "Style, immediacy, proximity: Sandie Roy’s savoir-faire is to energize brands. A veritable “Communication House” within fashion and lifestyle, the agency caters to both the luxury sector and the general public. For 15 years, Sandie Roy has had the ear of key players and opinion leaders in the fashion and lifestyle industry, both in France and abroad. SRP’s mission is to empower the brands it represents.",
+            "agence-sub-title": "Its missions? To draw out the unique and sparkling spirit of each brand. SRP thus focuses on customized and bespoke guidance, offering a range of services to enhance brands’ image and power, in accordance with their needs and objectives. The agency offers a comprehensive and seamless variety of 360° consulting services: brand strategy, press and digital relations, production, active presence on social networks. Iconoclast agency, Sandie Roy Paris earns brands' trust thanks to its network of opinion leaders and its “French touch”. Partnership, expertise and uniqueness are the words we live by.",
+            "equipe-sub-title": "Organized by skill sets and guided by consultants for specific missions, the team revels in speaking out and leading the way through a worldwide scene of avant-garde and pop culture.",
             "title-b": "L’agence Sandie Roy Paris est une maison de communication experte en mode luxe et marques grand public, des créateurs émérgents aux marques internationales.",
             "small-title-a": "agence",
             "small-title-b": "équipe",
-            "small-paragraph-a": "Située Place des Victoires au cœur de Paris, triangle d’or et quartier stratégique du réseau média, l’agence dispose d’un vaste showroom installé dans le cadre cosy d’un loft Parisien",
-            "small-paragraph-b": "Sandie Roy a constitué une<br>équipe de personnalités multiples<br>issues du luxe, de la communication,<br>de la culture ou de l’art, dotées de<br>compétences variées et qui travaillent<br>de façon transversale dans l’échange<br>et la pluridisciplinarité. L’équipe est<br>organisée par pôle de compétences et<br>accompagnée dans des missions plus<br>spécifiques par des consultants.",
+            "small-paragraph-a": "Située Place des Victoires au cœur de Paris, triangle d’or et quartier stratégique du réseau média, l’agence dispose d’un vaste showroom installé dans le cadre cosy d’un loft Parisien.",
             "photo-part": [
                 {
                     "id": "evenements",
@@ -126,8 +120,8 @@
             ],
             "agence-promo": {
                 "id": "sandie",
-                "title": "Agence",
-                "paragraph": "L’agence est située au cœur de Paris dans le quartier stratégique du réseau media et tendances et dispose d’un vaste showroom dans le cadre exclusif d’un appartement."
+                "title": "Agency",
+                "paragraph": "The agency has a vast showroom in a cozy Parisian loft, located on Place des Victoires, a strategic neighborhood and media hotspot in the heart of the French capital’s Golden Triangle."
             },
             "agence": {
                 "meeting": {
@@ -172,86 +166,86 @@
             },
             "equipe-promo": {
                 "id": "sandie",
-                "title": "Équipe",
-                "paragraph": "Sandie Roy aime raconter des histoires. Pour cela elle a su constituer une équipe d’experts, une vingtaine au total, ultra performants, rassemblant des personnalités aux profils variés et complémentaires issues du luxe, de la communication, de la culture, des nouvelles technologies ou de l’art.  Dj, influenceurs, attaché de presse, architecte… chaque personnalité, chaque talent a droit de cité. Un mot d’ordre : immédiateté. Une règle : faire du mouvement une source d’idées."
+                "title": "Team",
+                "paragraph": "Sandie Roy is a passionate storyteller. To pursue her passion, she assembled a team of twenty top-level experts with varied and complementary profiles from the worlds of luxury, communication, culture, digital technologies and art. DJs, opinion leaders, press managers, architects and more. All characters and all areas of expertise find their niche in this mix. A single battle cry: immediacy. A single rule: turn motion in to a source of ideas."
             },
             "equipe": {
                 "sandie": {
                     "align": ["center", 20],
                     "name": "Sandie Roy",
-                    "position": "Fondatrice et Directrice"
+                    "position": "Founder and Director"
                 },
                 "marjorie": {
                     "align": ["center", 44],
                     "name": "Marjorie Jacquet",
-                    "position": "Directrice clientèle et presse"
+                    "position": "Press director & account manager"
                 },
                 "cinzia": {
                     "align": ["right", 20],
                     "name": "Cinzia Ricciardi",
-                    "position": "Responsable département masculin et responsable de clientèle"
+                    "position": "Mens department manager & account manager"
                 },
                 "lucie": {
                     "align": ["left", 38],
                     "name": "Lucie Chabrillat",
-                    "position": "Responsable presse et clientèle"
+                    "position": "PR manager & account manager"
                 },
                 "nathalie": {
                     "align": ["center", 15],
                     "name": "Nathalie Veigas",
-                    "position": "Responsable presse et clientèle"
+                    "position": "PR manager & account manager"
                 },
                 "annechristine": {
                     "align": ["right", 30],
                     "name": "Anne-Christine Fossati",
-                    "position": "Responsable département Art de Vivre et responsable de clientèle"
+                    "position": "Lifestyle department manager & account manager"
                 },
                 "daphnee": {
                     "align": ["left", 14],
                     "name": "Daphnée Davoise",
-                    "position": "Responsable production"
+                    "position": "Production manager"
                 },
                 "mimo": {
                     "align": ["center", 46],
                     "name": "Mimo Havstad",
-                    "position": "Responsable pôle digital"
+                    "position": "Digital Manager"
                 },
-                "yannick": {
+                "kimmoun": {
                     "align": ["right", 18],
-                    "name": "Yannick Do",
-                    "position": "Consultant partenariats et influenceurs"
+                    "name": "Michael Kimmoun",
+                    "position": "Partnerships & influencers consultant"
                 },
                 "naima": {
                     "align": ["left", 45],
                     "name": "Naima Boutroue",
-                    "position": "Assistante de direction"
+                    "position": "Executive assistant"
                 },
                 "marie": {
                     "align": ["center", 14],
                     "name": "Marie Guy Dussaut",
-                    "position": "Responsable showroom et assistante presse"
+                    "position": "Showroom manager & press assistant"
                 }
             },
             "references": {
                 "mode-femme": {
-                    "title": "Mode femme",
-                    "body": "· Alain Figaret · April May · Amishboyish · ASOS · Barbour · Brandalley.fr · Bronzette Beachwear · Converse · Denim Studio · Ekyog · Etam . Etam Lingerie · Fellchic.fr · K. Jacques · Kristina TI Lingerie · Lacoste Lingerie · Le Coq Sportif · Le Mont Saint Michel · Lee · Levi’s · Les Prairies de Paris · Lolita Lempicka · Maison Labiche · Marchand Drapier · Morgan · Nelly.com ·  Primark  · Quiksilver Woman · Replay · Roxy · Spring Court · Sonia Rykiel Lingerie · Tara Jarmon · Ted baker · We are Replay"
+                    "title": "Accessoires",
+                    "body": "· Paraboot · Cacharel · Faliero Sarti · Herve Van der Straeten Bijoux · Jérome Dreyfus  · Kate Moss pour Fred · K. Jacques · Léon Flam · Les Bijoux de Sophie · Louise Damas · Maison Boinet · Monsieur · My Suelly · New Era · Sensee · Spring Court  · Thierry Lasry · Vuarnet · What For ·"
                 },
                 "mode-homme": {
-                    "title": "Mode homme",
-                    "body": "· Alain Figaret · Barbour · Converse · Dormeuil · Le Coq Sportif  · Lee · Levi’s · Maison Labiche · Marchand Drapier · Oxbow . Pal Zileri · Quiksilver · Robinson les bains · Serge Blanco · Schmoove · Spring Court · TH Gallery ·  Urban Ourfitters"
+                    "title": "Mode",
+                    "body": "· Alain Figaret · Amish Boyish · ASOS · Barbour · Bronzette  · Converse · Etam · Kristina Ti · Maison Labiche · Natalia Vodianova pour Etam · Lacoste Lingerie · Lee · Les Prairies de Paris · Le Coq Sportif · Levi’s · Levi’s Made and Crafted · Levi’s vintage Clothing · Lolita Lempicka · Quiksilver · Tara Jarmon  · Ted Baker · UbanOutiffers · Fédération Française du prêt à Porter Féminin · Festival de la Mode et de la Photographie de Hyères pour 123 · Dupont de Nemours Lycra®"
                 },
                 "accessoires": {
-                    "title": "Accessoires",
-                    "body": "· Accessorize · Anne Thomas · Atelier Mercadal · Cacharel· Converse · Emma Go · Delsey · Hervé Van der Straeten bijoux · Jérôme Dreyfus · Karine Arabian · Kate Moss for Fred · Les bijoux de Sophie · Léon Flam · Le Sportsac · Louise Damas · Maison Boinet · Marc Deloche · Maloles · March La.b · MySuelly · Monsieur · New Era · Parrallèle · Pedro Garcia · Replay Bijoux · Servane Gaxotte · Toy Watch · Thierry Lasry · Vuarnet ·  What  For"
+                    "title": "Art de vivre",
+                    "body": "· Bonneterre · Caviar Kaspia · Hôtel Muse St Tropez · Hôtel The Source Marrakech · Kenzo parfum · Maison de la Truffe · Nissan Micra et Lolita Lempicka · Nubio ·"
                 },
                 "art": {
-                    "title": "Art de vivre",
-                    "body": "· Bonneterre · Caviar Kaspia · Coclico · Ekyog · Hotel Muse . Hotel The Source Marrackech · Kenzo parfums · Maison de la truffe · Nissan Micra Lolita Lempicka · Nubio · OrpvhanAid ·Poopoopidou.fr "
+                    "title": "High Tech",
+                    "body": "· Beats by Dre · Orange · Sosh ·"
                 },
                 "partenariats": {
-                    "title": "Partenariats & insitutionnelles",
-                    "body": "· Ambassade d’Espagne · Bonneterre & Lolita Lempicka · Delsey & Lolita Lempicka  · Daisy Lowe & Morgan · Ekyog & Lolita Lempicka · Dupont de Nemours Lycra ® · Fédération Française du Prêt-à- Porter Féminin · Festival de la mode et de la Photographie de Hyères pour 1.2.3 · Fifi Chachnil pour Etam · Galerie Emmanuel Perrotin &Tara Jarmon · Galerie Emmanuel Perrotin & Peter Zimmermann · Gaspar Yurkievich pour Etam · Lacoste & les Bijoux de Sophie · Kookai Films .Kookaifilms.com · Le Nôtre & Lolita Lempicka · Natalia Vodianova pour Etam · Nissan & Lolita Lempicka · Tsumori Chisato pour Etam · Véronique Leroy pour Etam · Salon Atmosphère · Salon Prêt-à-Porter Paris · Salon Tranoï · Tactel ® · The Train New York"
+                    "title": "Partenariats",
+                    "body": "· Beats x Alexander Wang · Caviar Kaspia x Olympia Le Tan · Caviar Kaspia x Giambattista Valli · Fifi Chachnil x Etam · Kate Moss x Fred · Lacoste x les Bijoux de Sophie · Orange · Peter Zimmerman x Tara Jarmon · Tara Jarmon x la Pâtisserie des Rêves · Martin Martin x Converse ·"
                 }
             }
         },
