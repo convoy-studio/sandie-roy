@@ -36,7 +36,6 @@ define(["View"], function(View) {
         page = previews[_i];
         l = {};
         l.id = page.id;
-        console.log(l);
         l.name = page.scope.title;
         l.isLast = false;
         menu.push(l);
@@ -65,7 +64,7 @@ define(["View"], function(View) {
     };
 
     Header.prototype.ready = function() {
-      var $background, $contact, $langContainer, $lines, $linksName, $linksSeparator, $logoPath, $menuBtn, $menuTxt, $sharerName, backgroundH, burgerDelay, delay, posY,
+      var $background, $contact, $langContainer, $langContainerAA, $lines, $linksName, $linksSeparator, $logoPath, $menuBtn, $menuTxt, $sharerName, backgroundH, burgerDelay, delay, posY,
         _this = this;
       CSSPlugin.defaultTransformPerspective = 600;
       this.linkMenu = this.element.find("ul.link-menu");
@@ -77,6 +76,7 @@ define(["View"], function(View) {
       $lines = this.element.find(".line");
       $logoPath = this.element.find(".logo svg path");
       $langContainer = this.element.find(".lang-container");
+      $langContainerAA = $langContainer.find("a");
       $menuTxt = $menuBtn.find(".menu-txt");
       $linksName = Util.TranformArrayFromMiddleAndOut(this.element.find(".link-menu .name"));
       $linksSeparator = Util.TranformArrayFromMiddleAndOut(this.element.find(".link-menu .separator"));
@@ -168,6 +168,11 @@ define(["View"], function(View) {
         ease: Power2.easeInOut
       }, 0);
       this.stateTl.to($langContainer, 1, {
+        color: "#000",
+        force3D: true,
+        ease: Power2.easeInOut
+      }, 0);
+      this.stateTl.to($langContainerAA, 1, {
         color: "#000",
         force3D: true,
         ease: Power2.easeInOut

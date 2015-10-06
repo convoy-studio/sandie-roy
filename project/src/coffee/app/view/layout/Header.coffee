@@ -19,7 +19,6 @@ define ["View"], (View) ->
             for page in previews
                 l = {}
                 l.id = page.id
-                console.log l
                 l.name = page.scope.title
                 l.isLast = false
                 menu.push l
@@ -62,6 +61,7 @@ define ["View"], (View) ->
             $lines = @element.find(".line")
             $logoPath = @element.find(".logo svg path")
             $langContainer = @element.find(".lang-container")
+            $langContainerAA = $langContainer.find("a")
             $menuTxt = $menuBtn.find(".menu-txt")
             $linksName = Util.TranformArrayFromMiddleAndOut @element.find(".link-menu .name")
             $linksSeparator = Util.TranformArrayFromMiddleAndOut @element.find(".link-menu .separator")
@@ -90,6 +90,7 @@ define ["View"], (View) ->
             @stateTl.to $lines, 1, { backgroundColor: "#000", force3D:true, ease:Power2.easeInOut }, 0
             @stateTl.to $logoPath, 1, { fill: "#000", force3D:true, ease:Power2.easeInOut }, 0
             @stateTl.to $langContainer, 1, { color: "#000", force3D:true, ease:Power2.easeInOut }, 0
+            @stateTl.to $langContainerAA, 1, { color: "#000", force3D:true, ease:Power2.easeInOut }, 0
             @stateTl.pause(0)
 
             $contact = @element.find("li#contact")

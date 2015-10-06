@@ -32,36 +32,36 @@
 
     "page": {
         "relations-presse": {
-            "title": "relations presse",
+            "title": "media relation",
             "agence-top-title": "Thanks to its network of media opinion leaders, Sandie Roy Paris guarantees extensive and high-quality coverage of products and corporate information in both the print media and among digital players: blogs and social networks. An active, effective and rallying approach that never fails to create a buzz.",
             "photo-part": [
                 {
                     "id": "relation-presse-produit",
-                    "title": "PRODUCT-BASED MEDIA RELATIONS",
+                    "title": "PRODUCTS",
                     "paragraph": "Our goal is total visibility and that’s exactly what brands can expect from Sandie Roy Paris thanks to services including product placements and collection management, distribution of press releases, look books and product information to targeted contacts."
                 },{
                     "id": "relation-presse-institutionelle",
-                    "title": "INSTITUTIONAL MEDIA RELATIONS",
+                    "title": "INSTITUTIONAL",
                     "paragraph": "Sandie Roy Paris offers creative consulting as well as global and customized communication by designing and implementing institutional media relation campaigns featuring brand sagas, in-depth articles, one-to-one interviews and press conferences."
                 },{
                     "id": "relation-presse-digitale",
-                    "title": "DIGITAL MEDIA RELATIONS",
+                    "title": "DIGITAL",
                     "paragraph": "Mindful of the on-going growth and development of new media, Sandie Roy Paris instantly adjusts and reinvents its digital communication proposals thanks to a network of ultra-connected, digital key players.",
                     "color": "black"
                 }
             ]
         },
         "relations-publiques": {
-            "title": "relations publiques",
+            "title": "public relations",
             "agence-top-title": "Public relations: a service to complement media relations for a 360° communication strategy. SRP connects brands with traditional and digital opinion leaders and ensures a close collaboration, while designing relevant and exclusive content to catch the eye on new media",
             "photo-part": [
                 {
                     "id": "relation-blogger",
-                    "title": "BLOGGER RELATIONS",
+                    "title": "BLOGGERS",
                     "paragraph": "Sandie Roy Paris delivers high-quality coverage on influential blogs thanks to an assortment of special initiatives: customized partnerships, dinner events, trips, personalized product seeding, one-to-one meetings and store openings. "
                 },{
                     "id": "relation-influencer",
-                    "title": "RELATIONS WITH OPINION LEADERS",
+                    "title": "OPINION LEADERS",
                     "paragraph": "Once connected, brands and opinion leaders engage in a mutually beneficial relationship, forming a true community with close ties to SRP. We unite a network of opinion leaders around our clients to create a tight-knit community based on clear and established codes. We proclaim the singularity of each brand thanks to product placements and invitations to targeted events.",
                     "color": "black"
                 },{
@@ -124,43 +124,34 @@
                 "paragraph": "The agency has a vast showroom in a cozy Parisian loft, located on Place des Victoires, a strategic neighborhood and media hotspot in the heart of the French capital’s Golden Triangle."
             },
             "agence": {
-                "meeting": {
-                    "align": [31, 13],
-                    "name": "Meeting room",
-                    "position": "",
-                    "scale": 1.1
-                },
                 "display": {
-                    "align": [45.8, 68],
+                    "align": ["left", 40],
                     "name": "Display",
-                    "position": "",
-                    "scale": 0.6
+                    "position": ""
                 },
                 "showroom": {
-                    "align": [66, 18],
-                    "name": "Espace showroom",
-                    "position": "",
-                    "scale": 0.8
+                    "align": ["right", 30],
+                    "name": "Showroom space",
+                    "position": ""
                 },
                 "entree": {
-                    "align": [76, 58.6],
-                    "name": "Entreé privative",
-                    "position": "",
-                    "scale": 0.8
+                    "align": ["center", 20],
+                    "name": "Private entry",
+                    "position": ""
                 },
                 "interview": {
                     "align": ["left", 40],
-                    "name": "Espace interview",
+                    "name": "Interview space",
                     "position": ""
                 },
                 "accessoires": {
                     "align": ["right", 30],
-                    "name": "Display accessoires",
+                    "name": "Accessories display",
                     "position": ""
                 },
                 "showroom2": {
                     "align": ["center", 20],
-                    "name": "Espace showroom",
+                    "name": "Showroom space",
                     "position": ""
                 }
             },
@@ -228,23 +219,23 @@
             },
             "references": {
                 "mode-femme": {
-                    "title": "Accessoires",
+                    "title": "Accessories",
                     "body": "· Paraboot · Cacharel · Faliero Sarti · Herve Van der Straeten Bijoux · Jérome Dreyfus  · Kate Moss pour Fred · K. Jacques · Léon Flam · Les Bijoux de Sophie · Louise Damas · Maison Boinet · Monsieur · My Suelly · New Era · Sensee · Spring Court  · Thierry Lasry · Vuarnet · What For ·"
                 },
                 "mode-homme": {
-                    "title": "Mode",
+                    "title": "Fashion",
                     "body": "· Alain Figaret · Amish Boyish · ASOS · Barbour · Bronzette  · Converse · Etam · Kristina Ti · Maison Labiche · Natalia Vodianova pour Etam · Lacoste Lingerie · Lee · Les Prairies de Paris · Le Coq Sportif · Levi’s · Levi’s Made and Crafted · Levi’s vintage Clothing · Lolita Lempicka · Quiksilver · Tara Jarmon  · Ted Baker · UbanOutiffers · Fédération Française du prêt à Porter Féminin · Festival de la Mode et de la Photographie de Hyères pour 123 · Dupont de Nemours Lycra®"
                 },
                 "accessoires": {
-                    "title": "Art de vivre",
+                    "title": "Lifestyle",
                     "body": "· Bonneterre · Caviar Kaspia · Hôtel Muse St Tropez · Hôtel The Source Marrakech · Kenzo parfum · Maison de la Truffe · Nissan Micra et Lolita Lempicka · Nubio ·"
                 },
                 "art": {
-                    "title": "High Tech",
+                    "title": "High-Tech",
                     "body": "· Beats by Dre · Orange · Sosh ·"
                 },
                 "partenariats": {
-                    "title": "Partenariats",
+                    "title": "Partnerships",
                     "body": "· Beats x Alexander Wang · Caviar Kaspia x Olympia Le Tan · Caviar Kaspia x Giambattista Valli · Fifi Chachnil x Etam · Kate Moss x Fred · Lacoste x les Bijoux de Sophie · Orange · Peter Zimmerman x Tara Jarmon · Tara Jarmon x la Pâtisserie des Rêves · Martin Martin x Converse ·"
                 }
             }
