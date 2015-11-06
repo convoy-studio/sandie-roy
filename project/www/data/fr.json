@@ -167,64 +167,68 @@
                     "position": "Fondatrice et Directrice"
                 },
                 "marjorie": {
-                    "align": ["center", 44],
+                    "align": ["center", 16],
                     "name": "Marjorie Jacquet",
                     "position": "Directrice clientèle et presse"
                 },
                 "cinzia": {
-                    "align": ["right", 20],
+                    "align": ["right", 26],
                     "name": "Cinzia Ricciardi",
                     "position": "Responsable département masculin et responsable de clientèle"
                 },
                 "lucie": {
-                    "align": ["left", 38],
+                    "align": ["left", 40],
                     "name": "Lucie Chabrillat",
                     "position": "Responsable presse et clientèle"
                 },
                 "nathalie": {
-                    "align": ["center", 15],
+                    "align": ["center", 40],
                     "name": "Nathalie Veigas",
                     "position": "Responsable presse et clientèle"
                 },
                 "annechristine": {
-                    "align": ["right", 30],
+                    "align": ["right", 28],
                     "name": "Anne-Christine Fossati",
                     "position": "Responsable département Art de Vivre et responsable de clientèle"
                 },
                 "daphnee": {
-                    "align": ["left", 14],
+                    "align": ["left", 18],
                     "name": "Daphnée Davoise",
                     "position": "Responsable production"
                 },
                 "mimo": {
-                    "align": ["center", 46],
+                    "align": [66, 54],
                     "name": "Mimo Havstad",
-                    "position": "Responsable pôle digital"
+                    "position": "Responsable pôle digital",
+                    "scale": "0.7"
                 },
                 "kimmoun": {
-                    "align": ["right", 18],
+                    "align": [88, 20],
                     "name": "Michael Kimmoun",
-                    "position": "Consultant partenariats et influenceurs"
+                    "position": "Consultant partenariats et influenceurs",
+                    "scale": "0.7"
                 },
                 "naima": {
-                    "align": ["left", 45],
+                    "align": ["left", 40],
                     "name": "Naima Boutroue",
-                    "position": "Assistante de direction"
+                    "position": "Assistante de direction",
+                    "scale": "0.7"
                 },
                 "marie": {
-                    "align": ["center", 14],
+                    "align": [45, 14],
                     "name": "Marie Guy Dussaut",
-                    "position": "Responsable showroom et assistante presse"
+                    "position": "Responsable showroom et assistante presse",
+                    "scale": "0.7"
                 }
             },
             "references": {
                 "mode-femme": {
                     "title": "Accessoires",
-                    "body": "· Paraboot · Cacharel · Faliero Sarti · Herve Van der Straeten Bijoux · Jérome Dreyfus  · Kate Moss pour Fred · K. Jacques · Léon Flam · Les Bijoux de Sophie · Louise Damas · Maison Boinet · Monsieur · My Suelly · New Era · Sensee · Spring Court  · Thierry Lasry · Vuarnet · What For ·"
+                    "body": "· Paraboot · Cacharel · Faliero Sarti · Herve Van der Straeten Bijoux · Jérome Dreyfus  · Kate Moss pour Fred · K. Jacques · Léon Flam · Les Bijoux de Sophie · Louise Damas · Maison Boinet · Monsieur · My Suelly · New Era · Sensee · Spring Court  · Thierry Lasry · Vuarnet · What For · Sensee · "
                 },
                 "mode-homme": {
                     "title": "Mode",
-                    "body": "· Alain Figaret · Amish Boyish · ASOS · Barbour · Bronzette  · Converse · Etam · Kristina Ti · Maison Labiche · Natalia Vodianova pour Etam · Lacoste Lingerie · Lee · Les Prairies de Paris · Le Coq Sportif · Levi’s · Levi’s Made and Crafted · Levi’s vintage Clothing · Lolita Lempicka · Quiksilver · Tara Jarmon  · Ted Baker · UbanOutiffers · Fédération Française du prêt à Porter Féminin · Festival de la Mode et de la Photographie de Hyères pour 123 · Dupont de Nemours Lycra®"
+                    "body": "· Alain Figaret · Amish Boyish · ASOS · Barbour · Bronzette  · Converse · Etam · Kristina Ti · Maison Labiche · Natalia Vodianova pour Etam · Lacoste Lingerie · Lee · Les Prairies de Paris · Le Coq Sportif · Levi’s · Levi’s Made and Crafted · Levi’s vintage Clothing · Lolita Lempicka · Quiksilver · Tara Jarmon  · Ted Baker · UbanOutiffers · Fédération Française du prêt à Porter Féminin · Festival de la Mode et de la Photographie de Hyères pour 123 · Dupont de Nemours Lycra® · Farah · G.Kero · Dockers ·"
                 },
                 "accessoires": {
                     "title": "Art de vivre",
@@ -232,7 +236,7 @@
                 },
                 "art": {
                     "title": "High-Tech",
-                    "body": "· Beats by Dre · Orange · Sosh ·"
+                    "body": "· Beats by Dre · Orange · Sosh · Tictail ·"
                 },
                 "partenariats": {
                     "title": "Partenariats",

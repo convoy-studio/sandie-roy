@@ -32,7 +32,7 @@
 
     "page": {
         "relations-presse": {
-            "title": "media relation",
+            "title": "media relations",
             "agence-top-title": "Thanks to its network of media opinion leaders, Sandie Roy Paris guarantees extensive and high-quality coverage of products and corporate information in both the print media and among digital players: blogs and social networks. An active, effective and rallying approach that never fails to create a buzz.",
             "photo-part": [
                 {
@@ -167,64 +167,71 @@
                     "position": "Founder and Director"
                 },
                 "marjorie": {
-                    "align": ["center", 44],
+                    "align": ["center", 16],
                     "name": "Marjorie Jacquet",
-                    "position": "Press director & account manager"
+                    "position": "Press director & account manager",
+                    "scale": "1"
                 },
                 "cinzia": {
-                    "align": ["right", 20],
+                    "align": ["right", 26],
                     "name": "Cinzia Ricciardi",
-                    "position": "Mens department manager & account manager"
+                    "position": "Mens department manager & account manager",
+                    "scale": "1"
                 },
                 "lucie": {
-                    "align": ["left", 38],
+                    "align": ["left", 40],
                     "name": "Lucie Chabrillat",
-                    "position": "PR manager & account manager"
+                    "position": "PR manager & account manager",
+                    "scale": "1"
                 },
                 "nathalie": {
-                    "align": ["center", 15],
+                    "align": ["center", 40],
                     "name": "Nathalie Veigas",
                     "position": "PR manager & account manager"
                 },
                 "annechristine": {
-                    "align": ["right", 30],
+                    "align": ["right", 28],
                     "name": "Anne-Christine Fossati",
                     "position": "Lifestyle department manager & account manager"
                 },
                 "daphnee": {
-                    "align": ["left", 14],
+                    "align": ["left", 18],
                     "name": "Daphnée Davoise",
                     "position": "Production manager"
                 },
                 "mimo": {
-                    "align": ["center", 46],
+                    "align": [66, 54],
                     "name": "Mimo Havstad",
-                    "position": "Digital Manager"
+                    "position": "Digital Manager",
+                    "scale": "0.7"
                 },
                 "kimmoun": {
-                    "align": ["right", 18],
+                    "align": [88, 20],
                     "name": "Michael Kimmoun",
-                    "position": "Partnerships & influencers consultant"
+                    "position": "Partnerships & influencers consultant",
+                    "scale": "0.7"
                 },
                 "naima": {
-                    "align": ["left", 45],
+                    "align": ["left", 40],
                     "name": "Naima Boutroue",
-                    "position": "Executive assistant"
+                    "position": "Executive assistant",
+                    "scale": "0.7"
                 },
                 "marie": {
-                    "align": ["center", 14],
+                    "align": [45, 14],
                     "name": "Marie Guy Dussaut",
-                    "position": "Showroom manager & press assistant"
+                    "position": "Showroom manager & press assistant",
+                    "scale": "0.7"
                 }
             },
             "references": {
                 "mode-femme": {
                     "title": "Accessories",
-                    "body": "· Paraboot · Cacharel · Faliero Sarti · Herve Van der Straeten Bijoux · Jérome Dreyfus  · Kate Moss pour Fred · K. Jacques · Léon Flam · Les Bijoux de Sophie · Louise Damas · Maison Boinet · Monsieur · My Suelly · New Era · Sensee · Spring Court  · Thierry Lasry · Vuarnet · What For ·"
+                    "body": "· Paraboot · Cacharel · Faliero Sarti · Herve Van der Straeten Bijoux · Jérome Dreyfus  · Kate Moss pour Fred · K. Jacques · Léon Flam · Les Bijoux de Sophie · Louise Damas · Maison Boinet · Monsieur · My Suelly · New Era · Sensee · Spring Court  · Thierry Lasry · Vuarnet · What For · Sensee · "
                 },
                 "mode-homme": {
                     "title": "Fashion",
-                    "body": "· Alain Figaret · Amish Boyish · ASOS · Barbour · Bronzette  · Converse · Etam · Kristina Ti · Maison Labiche · Natalia Vodianova pour Etam · Lacoste Lingerie · Lee · Les Prairies de Paris · Le Coq Sportif · Levi’s · Levi’s Made and Crafted · Levi’s vintage Clothing · Lolita Lempicka · Quiksilver · Tara Jarmon  · Ted Baker · UbanOutiffers · Fédération Française du prêt à Porter Féminin · Festival de la Mode et de la Photographie de Hyères pour 123 · Dupont de Nemours Lycra®"
+                    "body": "· Alain Figaret · Amish Boyish · ASOS · Barbour · Bronzette  · Converse · Etam · Kristina Ti · Maison Labiche · Natalia Vodianova pour Etam · Lacoste Lingerie · Lee · Les Prairies de Paris · Le Coq Sportif · Levi’s · Levi’s Made and Crafted · Levi’s vintage Clothing · Lolita Lempicka · Quiksilver · Tara Jarmon  · Ted Baker · UbanOutiffers · Fédération Française du prêt à Porter Féminin · Festival de la Mode et de la Photographie de Hyères pour 123 · Dupont de Nemours Lycra® · Farah · G.Kero · Dockers ·"
                 },
                 "accessoires": {
                     "title": "Lifestyle",
@@ -232,7 +239,7 @@
                 },
                 "art": {
                     "title": "High-Tech",
-                    "body": "· Beats by Dre · Orange · Sosh ·"
+                    "body": "· Beats by Dre · Orange · Sosh · Tictail ·"
                 },
                 "partenariats": {
                     "title": "Partnerships",

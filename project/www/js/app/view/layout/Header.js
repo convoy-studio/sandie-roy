@@ -30,6 +30,7 @@ define(["View"], function(View) {
       scope.fr = Model.content.fr;
       scope.en = Model.content.en;
       scope.menuBtnTxt = Model.content.menu;
+      scope.isDesktop = Model.isDesktop;
       previews = Model.routing.slice(0, Model.routing.length - 1);
       menu = [];
       for (_i = 0, _len = previews.length; _i < _len; _i++) {
@@ -86,95 +87,117 @@ define(["View"], function(View) {
       this.menuTl = new TimelineMax({
         onReverseComplete: this.onMenuReverseComplete
       });
-      this.menuTl.from($background, 1, {
-        y: -backgroundH,
-        force3D: true,
-        ease: Expo.easeInOut
-      }, 0);
-      this.menuTl.staggerFrom($linksName, 1, {
-        y: -20,
-        opacity: 0,
-        rotationX: -90,
-        transformOrigin: "50% 50% -30px",
-        force3D: true,
-        ease: Power2.easeInOut
-      }, 0.02, delay + 0.1);
-      this.menuTl.staggerFrom($linksSeparator, 1, {
-        y: 0,
-        rotationX: -90,
-        transformOrigin: "50% 50% -30px",
-        force3D: true,
-        ease: Power2.easeInOut
-      }, 0.02, delay + 0.1);
-      this.menuTl.staggerFrom($sharerName, 1, {
-        y: -20,
-        rotationX: -90,
-        transformOrigin: "50% 50% -30px",
-        opacity: 0,
-        force3D: true,
-        ease: Power2.easeInOut
-      }, 0.02, delay + 0.1);
+      if (Model.isDesktop) {
+        this.menuTl.from($background, 1, {
+          y: -backgroundH,
+          force3D: true,
+          ease: Expo.easeInOut
+        }, 0);
+        this.menuTl.staggerFrom($linksName, 1, {
+          y: -20,
+          opacity: 0,
+          rotationX: -90,
+          transformOrigin: "50% 50% -30px",
+          force3D: true,
+          ease: Power2.easeInOut
+        }, 0.02, delay + 0.1);
+        this.menuTl.staggerFrom($linksSeparator, 1, {
+          y: 0,
+          rotationX: -90,
+          transformOrigin: "50% 50% -30px",
+          force3D: true,
+          ease: Power2.easeInOut
+        }, 0.02, delay + 0.1);
+        this.menuTl.staggerFrom($sharerName, 1, {
+          y: -20,
+          rotationX: -90,
+          transformOrigin: "50% 50% -30px",
+          opacity: 0,
+          force3D: true,
+          ease: Power2.easeInOut
+        }, 0.02, delay + 0.1);
+      } else {
+        this.menuTl.from($background, 1, {
+          y: -backgroundH,
+          force3D: true,
+          ease: Expo.easeInOut
+        }, 0);
+        this.menuTl.staggerFrom($linksName, 1, {
+          opacity: 0,
+          ease: Power2.easeInOut
+        }, 0.02, delay + 0.1);
+        this.menuTl.staggerFrom($linksSeparator, 1, {
+          opacity: 0,
+          ease: Power2.easeInOut
+        }, 0.02, delay + 0.1);
+        this.menuTl.staggerFrom($sharerName, 1, {
+          opacity: 0,
+          ease: Power2.easeInOut
+        }, 0.02, delay + 0.1);
+      }
       this.menuTl.pause(0);
       burgerDelay = 0.1;
       posY = 8;
       this.burgerTl = new TimelineMax();
-      this.burgerTl.to($lines.first(), 1, {
-        directionalRotation: {
-          rotation: "-135_ccw"
-        },
-        y: posY,
-        force3D: true,
-        transformOrigin: "50% 50%",
-        ease: Expo.easeInOut
-      }, burgerDelay + 0);
-      this.burgerTl.to($lines.last(), 1, {
-        directionalRotation: {
-          rotation: "135_cw"
-        },
-        y: -posY,
-        force3D: true,
-        transformOrigin: "50% 50%",
-        ease: Expo.easeInOut
-      }, burgerDelay + 0);
-      this.burgerTl.to($lines[1], 1, {
-        scaleX: 0,
-        force3D: true,
-        transformOrigin: "50% 50%",
-        ease: Expo.easeInOut
-      }, burgerDelay + 0);
-      this.burgerTl.to($menuTxt, 0.8, {
-        y: -20,
-        opacity: 0,
-        rotationX: -90,
-        transformOrigin: "50% 50% -30px",
-        force3D: true,
-        ease: Expo.easeInOut
-      }, burgerDelay + 0);
+      if (Model.isDesktop) {
+        this.burgerTl.to($lines.first(), 1, {
+          directionalRotation: {
+            rotation: "-135_ccw"
+          },
+          y: posY,
+          force3D: true,
+          transformOrigin: "50% 50%",
+          ease: Expo.easeInOut
+        }, burgerDelay + 0);
+        this.burgerTl.to($lines.last(), 1, {
+          directionalRotation: {
+            rotation: "135_cw"
+          },
+          y: -posY,
+          force3D: true,
+          transformOrigin: "50% 50%",
+          ease: Expo.easeInOut
+        }, burgerDelay + 0);
+        this.burgerTl.to($lines[1], 1, {
+          scaleX: 0,
+          force3D: true,
+          transformOrigin: "50% 50%",
+          ease: Expo.easeInOut
+        }, burgerDelay + 0);
+        this.burgerTl.to($menuTxt, 0.8, {
+          y: -20,
+          opacity: 0,
+          rotationX: -90,
+          transformOrigin: "50% 50% -30px",
+          force3D: true,
+          ease: Expo.easeInOut
+        }, burgerDelay + 0);
+      } else {
+        this.burgerTl.to($menuTxt, 0.8, {
+          opacity: 0,
+          ease: Expo.easeInOut
+        }, burgerDelay + 0);
+      }
       this.burgerTl.pause(0);
       this.stateTl = new TimelineMax();
       this.stateTl.to($menuBtn, 1, {
         color: "#000",
-        force3D: true,
         ease: Power2.easeInOut
       }, 0);
       this.stateTl.to($lines, 1, {
         backgroundColor: "#000",
-        force3D: true,
         ease: Power2.easeInOut
       }, 0);
       this.stateTl.to($logoPath, 1, {
         fill: "#000",
-        force3D: true,
         ease: Power2.easeInOut
       }, 0);
       this.stateTl.to($langContainer, 1, {
         color: "#000",
-        force3D: true,
         ease: Power2.easeInOut
       }, 0);
       this.stateTl.to($langContainerAA, 1, {
         color: "#000",
-        force3D: true,
         ease: Power2.easeInOut
       }, 0);
       this.stateTl.pause(0);

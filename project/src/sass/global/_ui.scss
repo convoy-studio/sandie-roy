@@ -256,6 +256,7 @@ p.centered-text-child {
     @extend .size2;
     padding: 20px 60px 20px 60px;
     @include media("<=tablet") {
+        padding: 10px 40px 10px 40px;
         padding-top: 80px;
     }
 }

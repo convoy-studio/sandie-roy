@@ -28,19 +28,36 @@
 		
 		<ul class="link-menu bold btn">
 			
-			{{#menu}}
-			<li id="{{id}}">
+			{{#isDesktop}}
+
+				{{#menu}}
+				<li id="{{id}}">
+					<a href="#/{{id}}">
+						<div class="name">
+							<div class="name-txt">{{name}}</div>
+							<div class="horiz-line horiz-top"></div>
+						</div>
+						{{^isLast}}
+						<div class="separator"></div>
+						{{/isLast}}
+					</a>
+				</li>
+				{{/menu}}
+
+			{{/isDesktop}}
+
+			{{^isDesktop}}
+				<p>
+				{{#menu}}
 				<a href="#/{{id}}">
 					<div class="name">
 						<div class="name-txt">{{name}}</div>
-						<div class="horiz-line horiz-top"></div>
 					</div>
-					{{^isLast}}
-					<div class="separator"></div>
-					{{/isLast}}
-				</a>
-			</li>
-			{{/menu}}
+				</a><br>
+				{{/menu}}
+				</p>
+
+			{{/isDesktop}}
 
 		</ul>
 

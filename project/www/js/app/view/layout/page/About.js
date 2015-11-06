@@ -94,6 +94,7 @@ define(["PartsPage"], function(PartsPage) {
         scope.parentId = parentId;
         scope.el = holder;
         scope.parentEl = $holder.parent();
+        scope.img = $holder.find('img');
         scope.visualEl = $holder.find(".person-visual");
         scope.width = holder.offsetWidth;
         scope.height = holder.offsetHeight;
@@ -165,7 +166,7 @@ define(["PartsPage"], function(PartsPage) {
       _ref = this.accordionParts;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         accordion = _ref[_i];
-        accordion.titleH = $(accordion.title).outerHeight(true) + 6;
+        accordion.titleH = $(accordion.title).outerHeight(true) + 2;
         accordion.bodyH = $(accordion.body).outerHeight(true);
         if (accordion.id === this.currentOpenAccordion) {
           this.currentAccordionH += accordion.titleH + accordion.bodyH;
@@ -263,6 +264,17 @@ define(["PartsPage"], function(PartsPage) {
             personCss.left = Model.windowW * (parseFloat(v.align[0]) * 0.01) - (v.width >> 1);
           }
           personCss.top = alignV;
+          if (Model.isDesktop === false) {
+            personCss.left = 0;
+            personCss.top = 0;
+            personCss.margin = '40px 0';
+            personCss.position = 'relative';
+            personVisualCss.width = '100%';
+            personVisualCss.height = "auto";
+            v.img.css({
+              position: "relative"
+            });
+          }
           TweenMax.set(v.visualEl, personVisualCss);
           TweenMax.set(v.el, personCss);
           i += 1;
@@ -283,9 +295,11 @@ define(["PartsPage"], function(PartsPage) {
             child = children[_j];
             h += child.offsetHeight;
           }
-          $wrapper.css({
-            top: (Model.windowH >> 1) - (h >> 1)
-          });
+          if (Model.isDesktop === true) {
+            $wrapper.css({
+              top: (Model.windowH >> 1) - (h >> 1)
+            });
+          }
         } else {
           $wrapper.css({
             top: "auto"
@@ -317,31 +331,40 @@ define(["PartsPage"], function(PartsPage) {
       descriptionY = visualY + visualH;
       bottomVisualPos = visualY + photoH;
       paragraphY = bottomVisualPos + ((Model.windowH - bottomVisualPos) >> 1) - (paragraphH >> 1);
-      TweenMax.set(photo.visualContainerEl, {
-        scale: scale,
-        force3D: true,
-        transformOrigin: "0% 0%"
-      });
-      photo.visualContainerEl.style.left = visualX + "px";
-      photo.visualContainerEl.style.top = visualY + "px";
-      photo.titleEl.style.top = titleY + "px";
-      photo.paragraphEl.style.top = paragraphY + "px";
-      photo.descriptionEl.style.left = descriptionX + "px";
-      photo.descriptionEl.style.top = descriptionY + "px";
+      if (Model.isDesktop === true) {
+        TweenMax.set(photo.visualContainerEl, {
+          scale: scale,
+          force3D: true,
+          transformOrigin: "0% 0%"
+        });
+        photo.visualContainerEl.style.left = visualX + "px";
+        photo.visualContainerEl.style.top = visualY + "px";
+        photo.titleEl.style.top = titleY + "px";
+        photo.paragraphEl.style.top = paragraphY + "px";
+        photo.descriptionEl.style.left = descriptionX + "px";
+        photo.descriptionEl.style.top = descriptionY + "px";
+      } else {
+        photo.visualContainerEl.style.width = "100%";
+        photo.visualContainerEl.style.height = "auto";
+      }
     };
 
     About.prototype.resizeAccordion = function() {
       var accordionCss;
-      accordionCss = {
-        y: (Model.windowH >> 1) - (this.currentAccordionH >> 1)
-      };
-      TweenMax.set(this.accordionWrapper, accordionCss);
+      if (Model.isDesktop === true) {
+        accordionCss = {
+          y: (Model.windowH >> 1) - (this.currentAccordionH >> 1)
+        };
+        TweenMax.set(this.accordionWrapper, accordionCss);
+      }
     };
 
     About.prototype.resize = function() {
       this.resizePartsHolder();
       this.positionCurrentSection();
-      this.subSideMenu.resize();
+      if (Model.isDesktop === true) {
+        this.subSideMenu.resize();
+      }
       this.resizePhotoParts();
       this.positionPersons();
       this.positionWrappers();

@@ -1,4 +1,4 @@
-define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu", "WheelInerial"], (Page, signals, wheel, Hammer, SubSideMenu, wi) ->
+define ["Page", "signals", "MouseWheel", "SubSideMenu", "WheelInerial"], (Page, signals, wheel, SubSideMenu, wi) ->
 
     "use strict"
     
@@ -12,9 +12,7 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu", "WheelInerial"
         photoOffset: 60
 
         constructor: (id, scope) ->
-
             scope.blankImg = Model.blankImg
-
             super(id, scope)
 
         init: (cb)=>
@@ -23,11 +21,6 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu", "WheelInerial"
 
         ready: =>
             super()
-            @hammertime.get("swipe").set
-                direction: Hammer.DIRECTION_VERTICAL
-                threshold: 5
-                velocity: 0.5
-            @hammertime.on "swipeup swipedown", @onSwipe
 
             @parts = @element.find(".part-holder")
             @partsTweens = []
@@ -36,22 +29,36 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu", "WheelInerial"
                 o.el = part
                 @partsTweens[i] = o
 
-            subSideScope = {num:@partsTweens.length}
-            @subSideMenu = new SubSideMenu("sub-side-menu", subSideScope)
-            @element.parent().append @subSideMenu.element
-            @subSideMenu.onSideMenuClicked = @onSideMenuClicked
-            @subSideMenu.init()
+            if Model.isDesktop is true
+                subSideScope = {num:@partsTweens.length}
+                @subSideMenu = new SubSideMenu("sub-side-menu", subSideScope)
+                @element.parent().append @subSideMenu.element
+                @subSideMenu.onSideMenuClicked = @onSideMenuClicked
+                @subSideMenu.init()
+
+            @allCenteredHolders = @element.find(".part-holder .centered-holder")
+            @allVisualParents = @element.find(".part-holder .visual-parent")
 
             @updateImgSources()
 
-            @inertia = new WheelInertia()
-            @inertia.addCallback(@onWheelInertia)
+            if Model.isDesktop is true
+                @inertia = new WheelInertia()
+                @inertia.addCallback(@onWheelInertia)
+
+            if Model.isDesktop is false
+                allTitles = @element.find(".part-holder .title")
+                allCenteredParagraph = @element.find(".part-holder.part-photo>div")
+                accordionWrapper = @element.find(".part-holder .accordion-wrapper-title")
+
+                allTitles.css 'color', "black"
+                allCenteredParagraph.css 'position', 'relative'
+                accordionWrapper.css 'top', 0
 
             return
 
-
         transitionIn: =>
             $(window).on 'mousewheel', @onMouseWheel
+            if Model.isDesktop is false then @updateAllImgSources()
             super()
             return
 
@@ -63,20 +70,8 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu", "WheelInerial"
         addAnimations: =>
             @tl.fromTo @element, 0.6, { opacity:0 }, { opacity:1, force3D:true, ease:Expo.easeInOut }, 0
             @tl.fromTo @element, 1, { y:Model.windowH + 10 }, { y:0, force3D:true, ease:Expo.easeInOut }, 0.3
-            @tl.to @subSideMenu.element, 1, { x:40, force3D:true, ease:Expo.easeInOut }, 1
+            if Model.isDesktop is true then @tl.to @subSideMenu.element, 1, { x:40, force3D:true, ease:Expo.easeInOut }, 1
             @tl.pause(0)
-            return
-
-        onSwipe: (e)=>
-            e.preventDefault()
-            switch e.type
-                when "swipeup"
-                    @increaseSectionIndex()
-                    break
-                when "swipedown"
-                    @decreaseSectionIndex()
-                    break
-            @changeSection()    
             return
 
         increaseSectionIndex: =>
@@ -88,13 +83,15 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu", "WheelInerial"
             return
 
         onMouseWheel: (e)=>
+            if @transitionRunning then return
+            if Model.isDesktop is false then return
             e.preventDefault()
             delta = e.deltaY
             @inertia.update(delta)
             return
 
         onWheelInertia: (direction)=>
-            if @transitionRunning then return
+            if Model.isDesktop is false then return
             if direction < 0 then @increaseSectionIndex() else @decreaseSectionIndex()
             @changeSection()
             return
@@ -107,15 +104,13 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu", "WheelInerial"
             if @currentSection < 0
                 @currentSection = 0
                 @launchBounceForceTween(0)
-                @runScrollDelayedCall()
             else if @currentSection > @partsTweens.length-1
                 @currentSection = @partsTweens.length-1
                 @launchBounceForceTween(@currentPageYPos)
-                @runScrollDelayedCall()
             else
-                @runScrollDelayedCall()
                 TweenMax.to @element, 0.8, { y:-Model.windowH * @currentSection, force3D:true, ease:Expo.easeInOut }
 
+            @runScrollDelayedCall()
             @currentPageYPos = -Model.windowH * @currentSection
             @subSideMenu.updateMenu(@currentSection)
 
@@ -132,6 +127,11 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu", "WheelInerial"
             Util.SwitchImgLazySrcs(nextItem)
             return
 
+        updateAllImgSources: =>
+            for part in @parts
+                Util.SwitchImgLazySrcs(part)
+            return 
+
         onSideMenuClicked: (index)=>
             @currentSection = index
             @changeSection()
@@ -145,7 +145,7 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu", "WheelInerial"
 
         runScrollDelayedCall: =>
             TweenMax.killDelayedCallsTo @activateScroll
-            TweenMax.delayedCall 0.5, @activateScroll
+            TweenMax.delayedCall 0.6, @activateScroll
             return
 
         activateScroll: =>
@@ -159,7 +159,28 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu", "WheelInerial"
                     top: Model.windowH * i
                     width: Model.windowW
                     height: Model.windowH
-                $part.css partHolderCss
+
+                if Model.isDesktop is false
+                    $part.css
+                        position: "relative"
+                        overflow: "visible"
+                        margin: "40px 0"
+                else
+                    $part.css partHolderCss
+
+            if Model.isDesktop is false
+                @element.css
+                    position: "relative"
+
+                for holder in @allCenteredHolders
+                    $holder = $(holder)
+                    $holder.css
+                        position: 'relative'
+
+                for visual in @allVisualParents
+                    $visual = $(visual)
+                    $visual.css
+                        position: 'relative'
             return
 
         positionCurrentSection: =>
@@ -185,22 +206,27 @@ define ["Page", "signals", "MouseWheel", "Hammer", "SubSideMenu", "WheelInerial"
                 bottomVisualPos = visualY + photoH
                 paragraphY = bottomVisualPos + ((Model.windowH - bottomVisualPos) >> 1) - (paragraphH >> 1)
 
-                TweenMax.set photo.visualContainerEl, { scale:scale, force3D: true, transformOrigin:"0% 0%" }
-                photo.visualContainerEl.style.left = visualX + "px"
-                photo.visualContainerEl.style.top = visualY + "px"
-                photo.titleEl.style.top = titleY + "px"
-                photo.paragraphEl.style.top = paragraphY + "px"
+                if Model.isDesktop is true
+                    TweenMax.set photo.visualContainerEl, { scale:scale, force3D: true, transformOrigin:"0% 0%" }
+                    photo.visualContainerEl.style.left = visualX + "px"
+                    photo.visualContainerEl.style.top = visualY + "px"
+                    photo.titleEl.style.top = titleY + "px"
+                    photo.paragraphEl.style.top = paragraphY + "px"
+                else
+                    photo.visualContainerEl.style.width = "100%"
+                    photo.visualContainerEl.style.height = "auto"
+
             return
 
         resize: =>
             @resizePartsHolder()
             @positionCurrentSection()
             @resizePhotoParts()
-            @subSideMenu.resize()
+            if Model.isDesktop is true then @subSideMenu.resize()
             return
 
         destroy: =>
-            @subSideMenu.destroy()
+            if Model.isDesktop is true then @subSideMenu.destroy()
             super()
             return
 

@@ -35,22 +35,28 @@ define(["Page", "TimelineMenu"], function(Page, TimelineMenu) {
     };
 
     Home.prototype.resize = function() {
-      var bottomContainerH, elementCss, preview, titleCss, _i, _len, _ref;
+      var bottomContainerH, elementCss,
+        _this = this;
       elementCss = {
         width: Model.windowW,
         height: Model.windowH
       };
       this.element.css(elementCss);
-      this.timelineMenu.onResize();
-      _ref = this.previews;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        preview = _ref[_i];
-        titleCss = {
-          top: (Model.windowH >> 1) - (preview.titleEl.offsetHeight >> 1),
-          left: (Model.windowW >> 1) - (preview.titleEl.offsetWidth >> 1)
-        };
-        TweenMax.set(preview.titleEl, titleCss);
-      }
+      setTimeout(function() {
+        var preview, titleCss, _i, _len, _ref, _results;
+        _this.timelineMenu.onResize();
+        _ref = _this.previews;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          preview = _ref[_i];
+          titleCss = {
+            top: (Model.windowH >> 1) - (preview.titleEl.offsetHeight >> 1),
+            left: (Model.windowW >> 1) - (preview.titleEl.offsetWidth >> 1)
+          };
+          _results.push(TweenMax.set(preview.titleEl, titleCss));
+        }
+        return _results;
+      }, 10);
       bottomContainerH = 0;
       Model.parentEl.css({
         height: bottomContainerH

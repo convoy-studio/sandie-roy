@@ -13,6 +13,7 @@ define ["View"], (View) ->
             scope.fr = Model.content.fr
             scope.en = Model.content.en
             scope.menuBtnTxt = Model.content.menu
+            scope.isDesktop = Model.isDesktop
 
             previews = Model.routing.slice(0, Model.routing.length-1)
             menu = []
@@ -70,27 +71,39 @@ define ["View"], (View) ->
 
             delay = 0.1
             @menuTl = new TimelineMax({onReverseComplete:@onMenuReverseComplete})
-            @menuTl.from $background, 1, { y:-backgroundH, force3D:true, ease:Expo.easeInOut }, 0
-            @menuTl.staggerFrom $linksName, 1, { y:-20, opacity:0, rotationX:-90, transformOrigin: "50% 50% -30px", force3D:true, ease:Power2.easeInOut }, 0.02, delay + 0.1
-            @menuTl.staggerFrom $linksSeparator, 1, { y:0, rotationX:-90, transformOrigin: "50% 50% -30px", force3D:true, ease:Power2.easeInOut }, 0.02, delay + 0.1
-            @menuTl.staggerFrom $sharerName, 1, { y:-20, rotationX:-90, transformOrigin: "50% 50% -30px", opacity:0, force3D:true, ease:Power2.easeInOut }, 0.02, delay + 0.1
+            if Model.isDesktop
+                @menuTl.from $background, 1, { y:-backgroundH, force3D:true, ease:Expo.easeInOut }, 0
+                @menuTl.staggerFrom $linksName, 1, { y:-20, opacity:0, rotationX:-90, transformOrigin: "50% 50% -30px", force3D:true, ease:Power2.easeInOut }, 0.02, delay + 0.1
+                @menuTl.staggerFrom $linksSeparator, 1, { y:0, rotationX:-90, transformOrigin: "50% 50% -30px", force3D:true, ease:Power2.easeInOut }, 0.02, delay + 0.1
+                @menuTl.staggerFrom $sharerName, 1, { y:-20, rotationX:-90, transformOrigin: "50% 50% -30px", opacity:0, force3D:true, ease:Power2.easeInOut }, 0.02, delay + 0.1
+            else
+                @menuTl.from $background, 1, { y:-backgroundH, force3D:true, ease:Expo.easeInOut }, 0
+                @menuTl.staggerFrom $linksName, 1, { opacity:0, ease:Power2.easeInOut }, 0.02, delay + 0.1
+                @menuTl.staggerFrom $linksSeparator, 1, { opacity:0, ease:Power2.easeInOut }, 0.02, delay + 0.1
+                @menuTl.staggerFrom $sharerName, 1, { opacity:0, ease:Power2.easeInOut }, 0.02, delay + 0.1
             @menuTl.pause(0)
 
             burgerDelay = 0.1
             posY = 8
             @burgerTl = new TimelineMax()
-            @burgerTl.to $lines.first(), 1, { directionalRotation:{rotation:"-135_ccw"}, y:posY, force3D: true, transformOrigin: "50% 50%", ease:Expo.easeInOut }, burgerDelay + 0
-            @burgerTl.to $lines.last(), 1, { directionalRotation:{rotation:"135_cw"}, y:-posY, force3D: true, transformOrigin: "50% 50%", ease:Expo.easeInOut }, burgerDelay + 0
-            @burgerTl.to $lines[1], 1, { scaleX:0, force3D:true, transformOrigin: "50% 50%", ease:Expo.easeInOut }, burgerDelay + 0
-            @burgerTl.to $menuTxt, 0.8, { y:-20, opacity:0, rotationX:-90, transformOrigin: "50% 50% -30px", force3D:true, ease:Expo.easeInOut }, burgerDelay + 0
+            if Model.isDesktop
+                @burgerTl.to $lines.first(), 1, { directionalRotation:{rotation:"-135_ccw"}, y:posY, force3D: true, transformOrigin: "50% 50%", ease:Expo.easeInOut }, burgerDelay + 0
+                @burgerTl.to $lines.last(), 1, { directionalRotation:{rotation:"135_cw"}, y:-posY, force3D: true, transformOrigin: "50% 50%", ease:Expo.easeInOut }, burgerDelay + 0
+                @burgerTl.to $lines[1], 1, { scaleX:0, force3D:true, transformOrigin: "50% 50%", ease:Expo.easeInOut }, burgerDelay + 0
+                @burgerTl.to $menuTxt, 0.8, { y:-20, opacity:0, rotationX:-90, transformOrigin: "50% 50% -30px", force3D:true, ease:Expo.easeInOut }, burgerDelay + 0
+            else
+                # @burgerTl.to $lines.first(), 1, { ease:Expo.easeInOut }, burgerDelay + 0
+                # @burgerTl.to $lines.last(), 1, {  ease:Expo.easeInOut }, burgerDelay + 0
+                # @burgerTl.to $lines[1], 1, { scaleX:0, force3D:true, transformOrigin: "50% 50%", ease:Expo.easeInOut }, burgerDelay + 0
+                @burgerTl.to $menuTxt, 0.8, { opacity:0, ease:Expo.easeInOut }, burgerDelay + 0
             @burgerTl.pause(0)
 
             @stateTl = new TimelineMax()
-            @stateTl.to $menuBtn, 1, { color: "#000", force3D:true, ease:Power2.easeInOut }, 0
-            @stateTl.to $lines, 1, { backgroundColor: "#000", force3D:true, ease:Power2.easeInOut }, 0
-            @stateTl.to $logoPath, 1, { fill: "#000", force3D:true, ease:Power2.easeInOut }, 0
-            @stateTl.to $langContainer, 1, { color: "#000", force3D:true, ease:Power2.easeInOut }, 0
-            @stateTl.to $langContainerAA, 1, { color: "#000", force3D:true, ease:Power2.easeInOut }, 0
+            @stateTl.to $menuBtn, 1, { color: "#000", ease:Power2.easeInOut }, 0
+            @stateTl.to $lines, 1, { backgroundColor: "#000", ease:Power2.easeInOut }, 0
+            @stateTl.to $logoPath, 1, { fill: "#000", ease:Power2.easeInOut }, 0
+            @stateTl.to $langContainer, 1, { color: "#000", ease:Power2.easeInOut }, 0
+            @stateTl.to $langContainerAA, 1, { color: "#000", ease:Power2.easeInOut }, 0
             @stateTl.pause(0)
 
             $contact = @element.find("li#contact")

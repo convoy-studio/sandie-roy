@@ -49,6 +49,7 @@ define ["PartsPage"], (PartsPage) ->
             @personBaseSize = Model.personBaseSize
             @mobile = Model.mobile
             @accordionIsHere = false
+
             super(cb)
             return
 
@@ -67,6 +68,7 @@ define ["PartsPage"], (PartsPage) ->
                 scope.parentId = parentId
                 scope.el = holder
                 scope.parentEl = $holder.parent()
+                scope.img = $holder.find('img')
                 scope.visualEl = $holder.find(".person-visual")
                 scope.width = holder.offsetWidth
                 scope.height = holder.offsetHeight
@@ -125,7 +127,7 @@ define ["PartsPage"], (PartsPage) ->
         updateAccordionInternalHeight: =>
             @currentAccordionH = 0
             for accordion in @accordionParts
-                accordion.titleH = $(accordion.title).outerHeight(true) + 6
+                accordion.titleH = $(accordion.title).outerHeight(true) + 2
                 accordion.bodyH = $(accordion.body).outerHeight(true)
                 if accordion.id is @currentOpenAccordion
                     @currentAccordionH += accordion.titleH + accordion.bodyH
@@ -219,6 +221,16 @@ define ["PartsPage"], (PartsPage) ->
 
                     personCss.top = alignV
 
+                    if Model.isDesktop is false
+                        personCss.left = 0
+                        personCss.top = 0
+                        personCss.margin = '40px 0'
+                        personCss.position = 'relative'
+                        personVisualCss.width = '100%'
+                        personVisualCss.height = "auto"
+                        v.img.css
+                            position: "relative"
+
                     TweenMax.set v.visualEl, personVisualCss
                     TweenMax.set v.el, personCss
                     i += 1
@@ -233,8 +245,10 @@ define ["PartsPage"], (PartsPage) ->
                     children = $wrapper.children()
                     for child in children
                         h += child.offsetHeight
-                    $wrapper.css
-                        top: (Model.windowH >> 1) - (h >> 1)
+
+                    if Model.isDesktop is true
+                        $wrapper.css
+                            top: (Model.windowH >> 1) - (h >> 1)
                 else
                     $wrapper.css
                         top: "auto"
@@ -265,25 +279,30 @@ define ["PartsPage"], (PartsPage) ->
             bottomVisualPos = visualY + photoH
             paragraphY = bottomVisualPos + ((Model.windowH - bottomVisualPos) >> 1) - (paragraphH >> 1)
 
-            TweenMax.set photo.visualContainerEl, { scale:scale, force3D: true, transformOrigin:"0% 0%" }
-            photo.visualContainerEl.style.left = visualX + "px"
-            photo.visualContainerEl.style.top = visualY + "px"
-            photo.titleEl.style.top = titleY + "px"
-            photo.paragraphEl.style.top = paragraphY + "px"
-            photo.descriptionEl.style.left = descriptionX + "px"
-            photo.descriptionEl.style.top = descriptionY + "px"
+            if Model.isDesktop is true
+                TweenMax.set photo.visualContainerEl, { scale:scale, force3D: true, transformOrigin:"0% 0%" }
+                photo.visualContainerEl.style.left = visualX + "px"
+                photo.visualContainerEl.style.top = visualY + "px"
+                photo.titleEl.style.top = titleY + "px"
+                photo.paragraphEl.style.top = paragraphY + "px"
+                photo.descriptionEl.style.left = descriptionX + "px"
+                photo.descriptionEl.style.top = descriptionY + "px"
+            else
+                photo.visualContainerEl.style.width = "100%"
+                photo.visualContainerEl.style.height = "auto"
             return
 
         resizeAccordion: =>
-            accordionCss = 
-                y: (Model.windowH >> 1) - (@currentAccordionH >> 1)
-            TweenMax.set @accordionWrapper, accordionCss
+            if Model.isDesktop is true
+                accordionCss = 
+                    y: (Model.windowH >> 1) - (@currentAccordionH >> 1)
+                TweenMax.set @accordionWrapper, accordionCss
             return
 
         resize: =>
             @resizePartsHolder()
             @positionCurrentSection()
-            @subSideMenu.resize()
+            if Model.isDesktop is true then @subSideMenu.resize()
             @resizePhotoParts()
             @positionPersons()
             @positionWrappers()
