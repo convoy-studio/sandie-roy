@@ -122,7 +122,7 @@ define ["View"], (View) ->
             @menuContainer.css
                 "display": "none"
 
-            TweenMax.fromTo @element, 1, {opacity:0, y:-100 }, { opacity:1, y:0, force3D:true, ease:Expo.easeInOut }
+            TweenMax.fromTo @element, 1, {opacity:0 }, { opacity:1, ease:Expo.easeInOut }
             return
 
         onRouteChanged: =>

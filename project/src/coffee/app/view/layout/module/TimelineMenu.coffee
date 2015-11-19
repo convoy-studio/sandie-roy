@@ -6,6 +6,7 @@ define ["View"], (View) ->
         slideDelay: 2
         currentSlide: -1
         firstLoad: true
+        firstReset: true
 
         constructor: (id, scope) ->
             scope = {}
@@ -31,36 +32,32 @@ define ["View"], (View) ->
                 o = {}
                 o.preview = @previews[i]
                 $item = $(item)
-                $titleTop = $item.find(".title-top")
-                titleW = $titleTop.width()
-                titleH = $titleTop.height()
-
                 o.color = o.preview.el.getAttribute("color")
                 o.liEl = item
-                o.titleW = $titleTop.width()
-                o.titleH = $titleTop.height()
-
                 @items[i] = o
-
             
             @addAnimations()
             @changeSlide()
-            # @onResize()
+            @onResize()
 
             return
 
         addAnimations: =>
-
+            if !@items? then return 
+            counter = @items.length-1
             for item, i in @items
+
+                if item.tl? then item.tl.clear()
 
                 tl = new TimelineMax()
                 item.tl = tl
 
-                elInTween = TweenMax.from item.preview.el, 1.8, { x:Model.windowW, transformOrigin:"0% 0%", force3D:true, ease:Power3.easeInOut }
-                elOutTween = TweenMax.to item.preview.el, 1.8, { x:-Model.windowW, transformOrigin:"0% 100%", force3D:true, ease:Power3.easeInOut }
+                elInTween = TweenMax.fromTo item.preview.el, 1.8, { x:Model.windowW, transformOrigin:"0% 0%" }, { x:0, transformOrigin:"0% 0%", force3D:true, ease:Power3.easeInOut }
+                elOutTween = TweenMax.fromTo item.preview.el, 1.8, { x:0, transformOrigin:"0% 100%" }, { x:-Model.windowW, transformOrigin:"0% 100%", force3D:true, ease:Power3.easeInOut }
 
                 item.elInTween = elInTween
                 item.elOutTween = elOutTween
+                item.preview.el.style.zIndex = counter
 
                 tl.add "transition-in"
                 tl.add elInTween, 0
@@ -69,10 +66,9 @@ define ["View"], (View) ->
                 tl.add "transition-finished"
                 tl.pause(0)
 
-            return
+                counter -= 1
 
-        getRect: (top, right, bottom, left)=>
-            return "rect(" + top + "px " + right + "px " + bottom + "px " + left + "px" + ")"
+            return
 
         changeSlide: =>
 
@@ -83,12 +79,8 @@ define ["View"], (View) ->
             previous = @items[@currentSlide-1]
             next = @items[@currentSlide]
 
-
             if !previous?
                 previous = @items[@items.length-1]
-
-            previous.preview.el.style.zIndex = 4
-            next.preview.el.style.zIndex = 5
 
             if @firstLoad
                 previous.tl.pause("transition-finished")
@@ -130,9 +122,16 @@ define ["View"], (View) ->
 
             @element.css elementCss
 
-            # TweenMax.killDelayedCallsTo @addAnimations
-            # TweenMax.delayedCall 0.6, @addAnimations
+
+            TweenMax.killDelayedCallsTo @resetSlides
+            TweenMax.delayedCall 0.1, @resetSlides
+
             return
+
+        resetSlides: =>
+            @currentSlide = 0
+            @addAnimations()
+            return 
 
         destroy: =>
             TweenMax.killDelayedCallsTo @changeSlide

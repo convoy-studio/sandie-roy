@@ -157,13 +157,13 @@ a {
     left:0;
 }
 .centered-holder {
-    width: 100%;
-    max-width: $min-middle-width;
+    width: $min-middle-width;
     position: absolute;
     left: 50%;
     margin-left: -$min-middle-width/2;
 
     @include media("<=middleW") {
+        width: 100%;
         left: auto;
         margin-left: 0;
     }
@@ -195,11 +195,15 @@ p.centered-text-child {
 .logo {
     position: absolute;
     $w: 220px;
+    $h: 60px;
     width: $w;
+    height: $h;
     left: 50%;
     margin-left: -$w/2;
     top: $topMargin - 10px;
     z-index: 1;
+
+    
 
     svg path {
         fill: $white;
@@ -379,12 +383,13 @@ p.centered-text-child {
     .menu-circle {
         $radius: 8px;
         width: $radius;
+        height: $radius;
         position: relative;
         top: 0;
         left: 8px;
     }
     .bottom-circle, .top-circle {
-        @include anim(0.6s, 0s, $easeOutExpo, scale(1, 1), 50%, 50%);
+        @include anim(0.6s, 0s, $easeOutExpo, scale(1, 1), 50%, 100%);
         @include opacity(0.1);
     }
     .circle-wrapper {
@@ -392,7 +397,7 @@ p.centered-text-child {
     }
     .circle-wrapper.active, .circle-wrapper:hover {
         .top-circle {
-            @include anim(0.6s, 0s, $easeOutExpo, scale(1.4, 1.4), 50%, 50%);
+            @include anim(0.6s, 0s, $easeOutExpo, scale(1.4, 1.4), 50%, 100%);
             @include opacity(1);
         }
     }

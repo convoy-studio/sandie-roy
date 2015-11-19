@@ -4,7 +4,7 @@ header#header{
     width: 100%;
     // height: 0;
     $menuH: 250px;
-    
+
     @include opacity(0);
 
     .lang-container {
@@ -63,7 +63,7 @@ header#header{
     		top: 50%;
     		margin-top: -($fontSize/2) + ($topMargin/2);
 
-            @include media("<=tablet") {
+            @include media("<=desktop") {
                 text-align: center;
                 margin-top: -30px;
             }
