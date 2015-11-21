@@ -9,7 +9,7 @@ define(["View"], function(View) {
 
     TimelineMenu.prototype.previews = void 0;
 
-    TimelineMenu.prototype.slideDelay = 2;
+    TimelineMenu.prototype.slideDelay = 4;
 
     TimelineMenu.prototype.currentSlide = -1;
 
@@ -75,7 +75,7 @@ define(["View"], function(View) {
         }
         tl = new TimelineMax();
         item.tl = tl;
-        elInTween = TweenMax.fromTo(item.preview.el, 1.8, {
+        elInTween = TweenMax.fromTo(item.preview.el, 2.6, {
           x: Model.windowW,
           transformOrigin: "0% 0%"
         }, {
@@ -84,7 +84,7 @@ define(["View"], function(View) {
           force3D: true,
           ease: Power3.easeInOut
         });
-        elOutTween = TweenMax.fromTo(item.preview.el, 1.8, {
+        elOutTween = TweenMax.fromTo(item.preview.el, 2.6, {
           x: 0,
           transformOrigin: "0% 100%"
         }, {

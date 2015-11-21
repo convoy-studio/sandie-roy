@@ -5,6 +5,7 @@ define ["require", "Context", "Browser", "InitialLoadController", "Detector"], (
     class App
 
         constructor: () ->
+
             # Browser configs
             b = new Browser().init()
             Model.isDesktop = b.isDesktop
@@ -13,6 +14,7 @@ define ["require", "Context", "Browser", "InitialLoadController", "Detector"], (
             Model.isOldBrowser = if Model.browser is "Explorer" and Model.browserVersion is 9 then true else false
             Model.lang = JS_Lang
 
+            if Model.isDesktop then $('html').addClass('is-desktop') else $('html').addClass('is-mobile')
             # Model.isDesktop = false
 
             @init()

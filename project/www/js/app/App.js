@@ -17,6 +17,11 @@ define(["require", "Context", "Browser", "InitialLoadController", "Detector"], f
       Model.browserVersion = parseInt(b.version, 10);
       Model.isOldBrowser = Model.browser === "Explorer" && Model.browserVersion === 9 ? true : false;
       Model.lang = JS_Lang;
+      if (Model.isDesktop) {
+        $('html').addClass('is-desktop');
+      } else {
+        $('html').addClass('is-mobile');
+      }
       this.init();
       return;
     }

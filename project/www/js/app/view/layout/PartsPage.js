@@ -230,7 +230,7 @@ define(["Page", "signals", "MouseWheel", "SubSideMenu", "WheelInerial"], functio
     };
 
     PartsPage.prototype.resizePartsHolder = function() {
-      var $holder, $part, $visual, holder, i, part, partHolderCss, visual, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2;
+      var $holder, $part, $visual, holder, i, part, partCss, partHolderCss, visual, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2;
       _ref = this.partHolders;
       for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
         part = _ref[i];
@@ -241,11 +241,15 @@ define(["Page", "signals", "MouseWheel", "SubSideMenu", "WheelInerial"], functio
           height: Model.windowH
         };
         if (Model.isDesktop === false) {
-          $part.css({
+          partCss = {
             position: "relative",
             overflow: "visible",
             margin: "40px 0"
-          });
+          };
+          if (i === 0) {
+            partCss['margin-top'] = Model.windowH * 0.2;
+          }
+          $part.css(partCss);
         } else {
           $part.css(partHolderCss);
         }

@@ -161,10 +161,12 @@ define ["Page", "signals", "MouseWheel", "SubSideMenu", "WheelInerial"], (Page, 
                     height: Model.windowH
 
                 if Model.isDesktop is false
-                    $part.css
+                    partCss = 
                         position: "relative"
                         overflow: "visible"
                         margin: "40px 0"
+                    if i is 0 then partCss['margin-top'] = Model.windowH * 0.2
+                    $part.css partCss
                 else
                     $part.css partHolderCss
 
@@ -215,6 +217,9 @@ define ["Page", "signals", "MouseWheel", "SubSideMenu", "WheelInerial"], (Page, 
                 else
                     photo.visualContainerEl.style.width = "100%"
                     photo.visualContainerEl.style.height = "auto"
+
+                    # mobileVisualH = $(photo.visualContainerEl).height()
+                    # photo.titleEl.style.top = (mobileVisualH >> 1) + ($(photo.titleEl).height() >> 1) + "px"
 
             return
 

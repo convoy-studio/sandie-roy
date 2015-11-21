@@ -3,7 +3,7 @@ define ["View"], (View) ->
     class TimelineMenu extends View
 
         previews: undefined
-        slideDelay: 2
+        slideDelay: 4
         currentSlide: -1
         firstLoad: true
         firstReset: true
@@ -52,8 +52,8 @@ define ["View"], (View) ->
                 tl = new TimelineMax()
                 item.tl = tl
 
-                elInTween = TweenMax.fromTo item.preview.el, 1.8, { x:Model.windowW, transformOrigin:"0% 0%" }, { x:0, transformOrigin:"0% 0%", force3D:true, ease:Power3.easeInOut }
-                elOutTween = TweenMax.fromTo item.preview.el, 1.8, { x:0, transformOrigin:"0% 100%" }, { x:-Model.windowW, transformOrigin:"0% 100%", force3D:true, ease:Power3.easeInOut }
+                elInTween = TweenMax.fromTo item.preview.el, 2.6, { x:Model.windowW, transformOrigin:"0% 0%" }, { x:0, transformOrigin:"0% 0%", force3D:true, ease:Power3.easeInOut }
+                elOutTween = TweenMax.fromTo item.preview.el, 2.6, { x:0, transformOrigin:"0% 100%" }, { x:-Model.windowW, transformOrigin:"0% 100%", force3D:true, ease:Power3.easeInOut }
 
                 item.elInTween = elInTween
                 item.elOutTween = elOutTween
