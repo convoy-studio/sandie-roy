@@ -178,50 +178,41 @@
                     "position": "Mens department manager & account manager",
                     "scale": "1"
                 },
-                "lucie": {
+                "marie": {
                     "align": ["left", 40],
-                    "name": "Lucie Chabrillat",
+                    "name": "Marie Guy Dussaut",
                     "position": "PR manager & account manager",
                     "scale": "1"
                 },
-                "nathalie": {
-                    "align": ["center", 40],
-                    "name": "Nathalie Veigas",
-                    "position": "PR manager & account manager"
-                },
-                "annechristine": {
-                    "align": ["right", 28],
-                    "name": "Anne-Christine Fossati",
-                    "position": "Lifestyle department manager & account manager"
-                },
                 "daphnee": {
-                    "align": ["left", 18],
+                    "align": ["center", 16],
                     "name": "Daphnée Davoise",
-                    "position": "Production manager"
+                    "position": "Production manager",
+                    "scale": "1"
                 },
-                "mimo": {
-                    "align": [66, 54],
-                    "name": "Mimo Havstad",
+                "amaury": {
+                    "align": ["left", 40],
+                    "name": "Amaury Martin",
                     "position": "Digital Manager",
-                    "scale": "0.7"
+                    "scale": "1"
+                },
+                "lea": {
+                    "align": ["right", 26],
+                    "name": "Léa Mazeaud",
+                    "position": "Showroom manager",
+                    "scale": "1"
                 },
                 "kimmoun": {
-                    "align": [88, 20],
+                    "align": ["right", 26],
                     "name": "Michael Kimmoun",
                     "position": "Partnerships & influencers consultant",
-                    "scale": "0.7"
+                    "scale": "1"
                 },
                 "naima": {
                     "align": ["left", 40],
                     "name": "Naima Boutroue",
                     "position": "Executive assistant",
-                    "scale": "0.7"
-                },
-                "marie": {
-                    "align": [45, 14],
-                    "name": "Marie Guy Dussaut",
-                    "position": "Showroom manager & press assistant",
-                    "scale": "0.7"
+                    "scale": "1"
                 }
             },
             "references": {
@@ -231,7 +222,7 @@
                 },
                 "mode-homme": {
                     "title": "Fashion",
-                    "body": "· Alain Figaret · Amish Boyish · ASOS · Barbour · Bronzette  · Converse · Etam · Kristina Ti · Maison Labiche · Natalia Vodianova pour Etam · Lacoste Lingerie · Lee · Les Prairies de Paris · Le Coq Sportif · Levi’s · Levi’s Made and Crafted · Levi’s vintage Clothing · Lolita Lempicka · Quiksilver · Tara Jarmon  · Ted Baker · UbanOutiffers · Fédération Française du prêt à Porter Féminin · Festival de la Mode et de la Photographie de Hyères pour 123 · Dupont de Nemours Lycra® · Farah · G.Kero · Dockers ·"
+                    "body": "· Alain Figaret · Amish Boyish · ASOS · Barbour · Bronzette  · Converse · Etam · Kristina Ti · Maison Labiche · Natalia Vodianova pour Etam · Lacoste Lingerie · Lee · Les Prairies de Paris · Le Coq Sportif · Levi’s · Levi’s Made and Crafted · Levi’s vintage Clothing · Lolita Lempicka · Quiksilver · Tara Jarmon  · Ted Baker · Urban Outfitters · Fédération Française du prêt à Porter Féminin · Festival de la Mode et de la Photographie de Hyères pour 123 · Dupont de Nemours Lycra® · Farah · G.Kero · Dockers ·"
                 },
                 "accessoires": {
                     "title": "Lifestyle",

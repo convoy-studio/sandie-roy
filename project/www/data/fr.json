@@ -176,49 +176,41 @@
                     "name": "Cinzia Ricciardi",
                     "position": "Responsable département masculin et responsable de clientèle"
                 },
-                "lucie": {
+                "marie": {
                     "align": ["left", 40],
-                    "name": "Lucie Chabrillat",
-                    "position": "Responsable presse et clientèle"
-                },
-                "nathalie": {
-                    "align": ["center", 40],
-                    "name": "Nathalie Veigas",
-                    "position": "Responsable presse et clientèle"
-                },
-                "annechristine": {
-                    "align": ["right", 28],
-                    "name": "Anne-Christine Fossati",
-                    "position": "Responsable département Art de Vivre et responsable de clientèle"
+                    "name": "Marie Guy Dussaut",
+                    "position": "Responsable Presse et Clientèle",
+                    "scale": "1"
                 },
                 "daphnee": {
-                    "align": ["left", 18],
+                    "align": ["center", 16],
                     "name": "Daphnée Davoise",
-                    "position": "Responsable production"
+                    "position": "Responsable production",
+                    "scale": "1"
                 },
-                "mimo": {
-                    "align": [66, 54],
-                    "name": "Mimo Havstad",
+                "amaury": {
+                    "align": ["left", 40],
+                    "name": "Amaury Martin",
                     "position": "Responsable pôle digital",
-                    "scale": "0.7"
+                    "scale": "1"
+                },
+                "lea": {
+                    "align": ["right", 26],
+                    "name": "Léa Mazeaud",
+                    "position": "Responsable Showroom",
+                    "scale": "1"
                 },
                 "kimmoun": {
-                    "align": [88, 20],
+                    "align": ["right", 26],
                     "name": "Michael Kimmoun",
                     "position": "Consultant partenariats et influenceurs",
-                    "scale": "0.7"
+                    "scale": "1"
                 },
                 "naima": {
                     "align": ["left", 40],
                     "name": "Naima Boutroue",
                     "position": "Assistante de direction",
-                    "scale": "0.7"
-                },
-                "marie": {
-                    "align": [45, 14],
-                    "name": "Marie Guy Dussaut",
-                    "position": "Responsable showroom et assistante presse",
-                    "scale": "0.7"
+                    "scale": "1"
                 }
             },
             "references": {
@@ -228,7 +220,7 @@
                 },
                 "mode-homme": {
                     "title": "Mode",
-                    "body": "· Alain Figaret · Amish Boyish · ASOS · Barbour · Bronzette  · Converse · Etam · Kristina Ti · Maison Labiche · Natalia Vodianova pour Etam · Lacoste Lingerie · Lee · Les Prairies de Paris · Le Coq Sportif · Levi’s · Levi’s Made and Crafted · Levi’s vintage Clothing · Lolita Lempicka · Quiksilver · Tara Jarmon  · Ted Baker · UbanOutiffers · Fédération Française du prêt à Porter Féminin · Festival de la Mode et de la Photographie de Hyères pour 123 · Dupont de Nemours Lycra® · Farah · G.Kero · Dockers ·"
+                    "body": "· Alain Figaret · Amish Boyish · ASOS · Barbour · Bronzette  · Converse · Etam · Kristina Ti · Maison Labiche · Natalia Vodianova pour Etam · Lacoste Lingerie · Lee · Les Prairies de Paris · Le Coq Sportif · Levi’s · Levi’s Made and Crafted · Levi’s vintage Clothing · Lolita Lempicka · Quiksilver · Tara Jarmon  · Ted Baker · Urban Outfitters · Fédération Française du prêt à Porter Féminin · Festival de la Mode et de la Photographie de Hyères pour 123 · Dupont de Nemours Lycra® · Farah · G.Kero · Dockers ·"
                 },
                 "accessoires": {
                     "title": "Art de vivre",
