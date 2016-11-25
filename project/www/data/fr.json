@@ -211,20 +211,26 @@
                     "name": "Naima Boutroue",
                     "position": "Assistante de direction",
                     "scale": "1"
+                },
+                "elsa": {
+                    "align": ["center", 16],
+                    "name": "Elsa Salmon",
+                    "position": "Responsable Presse et Clientèle",
+                    "scale": "1"
                 }
             },
             "references": {
                 "mode-femme": {
                     "title": "Accessoires",
-                    "body": "· Paraboot · Cacharel · Faliero Sarti · Herve Van der Straeten Bijoux · Jérome Dreyfus  · Kate Moss pour Fred · K. Jacques · Léon Flam · Les Bijoux de Sophie · Louise Damas · Maison Boinet · Monsieur · My Suelly · New Era · Sensee · Spring Court  · Thierry Lasry · Vuarnet · What For ·"
+                    "body": "· Paraboot · Cacharel · Faliero Sarti · Herve Van der Straeten Bijoux · Jérome Dreyfus  · Kate Moss pour Fred · K. Jacques · Léon Flam · Les Bijoux de Sophie · Louise Damas · Maison Boinet · Monsieur · My Suelly · New Era · Sensee · Spring Court · Thierry Lasry · Vuarnet · What For · Harc · Kapten & Son · l’Aiglon · Nixon ·"
                 },
                 "mode-homme": {
                     "title": "Mode",
-                    "body": "· Alain Figaret · Amish Boyish · ASOS · Barbour · Bronzette  · Converse · Etam · Kristina Ti · Maison Labiche · Natalia Vodianova pour Etam · Lacoste Lingerie · Lee · Les Prairies de Paris · Le Coq Sportif · Levi’s · Levi’s Made and Crafted · Levi’s vintage Clothing · Lolita Lempicka · Quiksilver · Tara Jarmon  · Ted Baker · Urban Outfitters · Fédération Française du prêt à Porter Féminin · Festival de la Mode et de la Photographie de Hyères pour 123 · Dupont de Nemours Lycra® · Farah · G.Kero · Dockers ·"
+                    "body": "· Alain Figaret · Amish Boyish · ASOS · Barbour · Bronzette  · Converse · Etam · Kristina Ti · Maison Labiche · Natalia Vodianova pour Etam · Lacoste Lingerie · Lee · Les Prairies de Paris · Le Coq Sportif · Levi’s · Levi’s Made and Crafted · Levi’s vintage Clothing · Lolita Lempicka · Quiksilver · Tara Jarmon  · Ted Baker · Urban Outfitters · Fédération Française du prêt à Porter Féminin · Festival de la Mode et de la Photographie de Hyères pour 123 · Dupont de Nemours Lycra® · Farah · G.Kero · Dockers · You Must Create ·"
                 },
                 "accessoires": {
                     "title": "Art de vivre",
-                    "body": "· Bonneterre · Caviar Kaspia · Hôtel Muse St Tropez · Hôtel The Source Marrakech · Kenzo parfum · Maison de la Truffe · Nissan Micra et Lolita Lempicka · Nubio ·"
+                    "body": "· Bonneterre · Caviar Kaspia · Hôtel Muse St Tropez · Hôtel The Source Marrakech · Kenzo parfum · Maison de la Truffe · Nissan Micra et Lolita Lempicka · Nubio · Juice it ·"
                 },
                 "art": {
                     "title": "High-Tech",
