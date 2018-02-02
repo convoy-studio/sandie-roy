@@ -171,21 +171,16 @@
                     "name": "Caroline Charrier",
                     "position": "Responsable Presse et Clientèle"
                 },
-                "cinzia": {
-                    "align": ["right", 26],
-                    "name": "Cinzia Ricciardi",
-                    "position": "Responsable département masculin et responsable de clientèle"
-                },
                 "marie": {
                     "align": ["left", 40],
-                    "name": "Marie Guy Dussaut",
-                    "position": "Responsable Presse et Clientèle",
+                    "name": "Naima Boutroue",
+                    "position": "Assistante de direction",
                     "scale": "1"
                 },
                 "daphnee": {
                     "align": ["center", 16],
                     "name": "Daphnée Davoise",
-                    "position": "Responsable production",
+                    "position": "Responsable production & directrice artistique",
                     "scale": "1"
                 },
                 "amaury": {
@@ -197,32 +192,20 @@
                 "lea": {
                     "align": ["right", 26],
                     "name": "Léa Mazeaud",
-                    "position": "Responsable Showroom",
-                    "scale": "1"
-                },
-                "kimmoun": {
-                    "align": ["right", 26],
-                    "name": "Michael Kimmoun",
-                    "position": "Consultant partenariats et influenceurs",
-                    "scale": "1"
-                },
-                "naima": {
-                    "align": ["left", 40],
-                    "name": "Naima Boutroue",
-                    "position": "Assistante de direction",
+                    "position": "Assistante production",
                     "scale": "1"
                 },
                 "elsa": {
                     "align": ["center", 16],
                     "name": "Elsa Salmon",
-                    "position": "Responsable Presse et Clientèle",
+                    "position": "Consultante partenariats et infuenceurs",
                     "scale": "1"
                 }
             },
             "references": {
                 "mode-femme": {
                     "title": "Accessoires",
-                    "body": "· Paraboot · Cacharel · Faliero Sarti · Herve Van der Straeten Bijoux · Jérome Dreyfus  · Kate Moss pour Fred · K. Jacques · Léon Flam · Les Bijoux de Sophie · Louise Damas · Maison Boinet · Monsieur · My Suelly · New Era · Sensee · Spring Court · Thierry Lasry · Vuarnet · What For · Harc · Kapten & Son · l’Aiglon · Nixon ·"
+                    "body": "· Paraboot · Cacharel · Faliero Sarti · Herve Van der Straeten Bijoux · Jérome Dreyfus  · Kate Moss pour Fred · K. Jacques · Léon Flam · Les Bijoux de Sophie · Louise Damas · Maison Boinet · Monsieur · My Suelly · New Era · Sensee · Spring Court · Thierry Lasry · Vuarnet · What For · Harc · Kapten & Son · l’Aiglon · Nixon · Wrangler · Sergio Tacchini · Florette Paquerette · Cyrillus ·"
                 },
                 "mode-homme": {
                     "title": "Mode",
@@ -230,7 +213,7 @@
                 },
                 "accessoires": {
                     "title": "Art de vivre",
-                    "body": "· Bonneterre · Caviar Kaspia · Hôtel Muse St Tropez · Hôtel The Source Marrakech · Kenzo parfum · Maison de la Truffe · Nissan Micra et Lolita Lempicka · Nubio · Juice it ·"
+                    "body": "· Bonneterre · Caviar Kaspia · Hôtel Muse St Tropez · Hôtel The Source Marrakech · Kenzo parfum · Maison de la Truffe · Nissan Micra et Lolita Lempicka · Nubio · Juice it · Cyrillus ·"
                 },
                 "art": {
                     "title": "High-Tech",
@@ -238,7 +221,7 @@
                 },
                 "partenariats": {
                     "title": "Partenariats",
-                    "body": "· Beats x Alexander Wang · Caviar Kaspia x Olympia Le Tan · Caviar Kaspia x Giambattista Valli · Fifi Chachnil x Etam · Kate Moss x Fred · Lacoste x les Bijoux de Sophie · Orange · Peter Zimmerman x Tara Jarmon · Tara Jarmon x la Pâtisserie des Rêves · Martin Margiella x Converse ·"
+                    "body": "· Beats x Alexander Wang · Caviar Kaspia x Olympia Le Tan · Caviar Kaspia x Giambattista Valli · Fifi Chachnil x Etam · Kate Moss x Fred · Lacoste x les Bijoux de Sophie · Orange · Peter Zimmerman x Tara Jarmon · Tara Jarmon x la Pâtisserie des Rêves · Martin Margiella x Converse · Converse x Avoc ·"
                 }
             }
         },
