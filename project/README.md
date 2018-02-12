@@ -1,3 +1,5 @@
+# NODE 6* !!!!
+
 # npm + bower + gems
 <code>npm install && bower install</code><br>
 <code>sudo gem install compass-rgbapng</code><br>
