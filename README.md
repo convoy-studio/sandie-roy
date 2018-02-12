@@ -1,3 +1,4 @@
+# NODE 6 required!
 # npm + bower
 <code>npm install && bower install</code><br>
 
