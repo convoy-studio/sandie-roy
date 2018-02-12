@@ -2,6 +2,12 @@ define(["signals"], function(signals) {
   "use strict";
   var Signal;
   Signal = (function() {
+    class Signal {
+      constructor() {}
+
+    };
+
+    // Notifications
     Signal.prototype.onResize = new signals.Signal();
 
     Signal.prototype.onRouteChanged = new signals.Signal();
@@ -20,10 +26,8 @@ define(["signals"], function(signals) {
 
     Signal.prototype.slideshowClose = new signals.Signal();
 
-    function Signal() {}
-
     return Signal;
 
-  })();
+  }).call(this);
   return Signal;
 });

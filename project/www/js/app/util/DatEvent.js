@@ -1,9 +1,23 @@
-var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
 define([], function() {
   "use strict";
   var DatEvent;
   DatEvent = (function() {
+    class DatEvent {
+      constructor(p, id, c, parentId) {
+        this.onChanged = this.onChanged.bind(this);
+        this.param = p;
+        this.call = c;
+        this.id = id;
+        this.parentId = parentId;
+        this.param.onChange(this.onChanged);
+      }
+
+      onChanged(value) {
+        return this.call(this.id, value, this.parentId);
+      }
+
+    };
+
     DatEvent.prototype.param = void 0;
 
     DatEvent.prototype.call = void 0;
@@ -12,21 +26,8 @@ define([], function() {
 
     DatEvent.prototype.parentId = void 0;
 
-    function DatEvent(p, id, c, parentId) {
-      this.onChanged = __bind(this.onChanged, this);
-      this.param = p;
-      this.call = c;
-      this.id = id;
-      this.parentId = parentId;
-      this.param.onChange(this.onChanged);
-    }
-
-    DatEvent.prototype.onChanged = function(value) {
-      return this.call(this.id, value, this.parentId);
-    };
-
     return DatEvent;
 
-  })();
+  }).call(this);
   return DatEvent;
 });

@@ -1,22 +1,18 @@
-var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
 define([], function() {
   "use strict";
   var RendererService;
-  RendererService = (function() {
-    function RendererService() {
-      this.resize = __bind(this.resize, this);
-      this.init = __bind(this.init, this);
+  RendererService = class RendererService {
+    constructor() {
+      this.init = this.init.bind(this);
+      this.resize = this.resize.bind(this);
     }
 
-    RendererService.prototype.init = function() {
+    init() {
       this.resize();
-    };
+    }
 
-    RendererService.prototype.resize = function() {};
+    resize() {}
 
-    return RendererService;
-
-  })();
+  };
   return RendererService;
 });

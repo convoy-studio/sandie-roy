@@ -1,8 +1,8 @@
-var _this = this;
-
+// Require Config
 require.config({
   waitSeconds: 200,
   paths: {
+    // Components
     jquery: "../component/jquery/dist/jquery.min",
     signals: "../component/js-signals/dist/signals.min",
     hasher: "../component/hasher/dist/js/hasher.min",
@@ -19,43 +19,46 @@ require.config({
     Stats: "../lib/stats.min",
     GUI: "../lib/dat.gui.min",
     WheelInerial: "../lib/wheel-inertia",
+    // Classes start
+    // Generated from updateMain.py
     Main: "Main",
     App: "app/App",
     Context: "app/context/Context",
-    GlobalController: "app/controller/GlobalController",
-    InitialLoadController: "app/controller/InitialLoadController",
-    DebugManager: "app/debug/DebugManager",
-    SceneHelper: "app/debug/SceneHelper",
-    SoundHelper: "app/debug/SoundHelper",
-    GlobalEvents: "app/event/GlobalEvents",
-    GlobalModel: "app/model/GlobalModel",
-    LoaderService: "app/service/LoaderService",
-    RendererService: "app/service/RendererService",
-    RouterService: "app/service/RouterService",
-    SwitcherService: "app/service/SwitcherService",
-    Signal: "app/signal/Signal",
-    BinLoader: "app/util/BinLoader",
-    Browser: "app/util/Browser",
-    DatEvent: "app/util/DatEvent",
-    DatParser: "app/util/DatParser",
-    Detector: "app/util/Detector",
     Util: "app/util/Util",
-    Page: "app/view/Page",
+    DatEvent: "app/util/DatEvent",
+    Detector: "app/util/Detector",
+    Browser: "app/util/Browser",
+    DatParser: "app/util/DatParser",
+    BinLoader: "app/util/BinLoader",
+    InitialLoadController: "app/controller/InitialLoadController",
+    GlobalController: "app/controller/GlobalController",
+    GlobalModel: "app/model/GlobalModel",
     View: "app/view/View",
+    Page: "app/view/Page",
     Footer: "app/view/layout/Footer",
-    Header: "app/view/layout/Header",
     PartsPage: "app/view/layout/PartsPage",
-    Contact: "app/view/layout/module/Contact",
-    Slideshow: "app/view/layout/module/Slideshow",
-    SubSideMenu: "app/view/layout/module/SubSideMenu",
-    TimelineMenu: "app/view/layout/module/TimelineMenu",
-    VideoLayer: "app/view/layout/module/VideoLayer",
+    Header: "app/view/layout/Header",
     About: "app/view/layout/page/About",
+    RelationsPubliques: "app/view/layout/page/RelationsPubliques",
+    RelationsPresse: "app/view/layout/page/RelationsPresse",
     Home: "app/view/layout/page/Home",
     Production: "app/view/layout/page/Production",
-    RelationsPresse: "app/view/layout/page/RelationsPresse",
-    RelationsPubliques: "app/view/layout/page/RelationsPubliques"
+    SubSideMenu: "app/view/layout/module/SubSideMenu",
+    VideoLayer: "app/view/layout/module/VideoLayer",
+    Contact: "app/view/layout/module/Contact",
+    Slideshow: "app/view/layout/module/Slideshow",
+    TimelineMenu: "app/view/layout/module/TimelineMenu",
+    LoaderService: "app/service/LoaderService",
+    SwitcherService: "app/service/SwitcherService",
+    RouterService: "app/service/RouterService",
+    RendererService: "app/service/RendererService",
+    GlobalEvents: "app/event/GlobalEvents",
+    Signal: "app/signal/Signal",
+    SoundHelper: "app/debug/SoundHelper",
+    DebugManager: "app/debug/DebugManager",
+    SceneHelper: "app/debug/SceneHelper"
   },
+  // Classes end
   shim: {
     TimelineMax: {
       deps: ["TweenMax"],
@@ -97,21 +100,23 @@ require.config({
   }
 });
 
-require(["jquery", "App", "LoaderService", "RouterService", "GlobalModel", "GlobalController", "Signal", "Util", "GlobalEvents", "TweenMax", "RendererService", "SwitcherService"], function(jquery, App, LoaderService, RouterService, GlobalModel, GlobalController, Signal, Util, GlobalEvents, TweenMax, RendererService, SwitcherService) {
+require(["jquery", "App", "LoaderService", "RouterService", "GlobalModel", "GlobalController", "Signal", "Util", "GlobalEvents", "TweenMax", "RendererService", "SwitcherService"], (jquery, App, LoaderService, RouterService, GlobalModel, GlobalController, Signal, Util, GlobalEvents, TweenMax, RendererService, SwitcherService) => {
   var events;
+  // Jquery Namespace
   window.jQuery = window.$ = jquery;
   (function() {
-    var browserRaf, canceled, targetTime, vendor, w, _i, _len, _ref;
+    var browserRaf, canceled, i, len, ref, targetTime, vendor, w;
     w = window;
-    _ref = ['ms', 'moz', 'webkit', 'o'];
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      vendor = _ref[_i];
+    ref = ['ms', 'moz', 'webkit', 'o'];
+    for (i = 0, len = ref.length; i < len; i++) {
+      vendor = ref[i];
       if (w.requestAnimationFrame) {
         break;
       }
-      w.requestAnimationFrame = w["" + vendor + "RequestAnimationFrame"];
-      w.cancelAnimationFrame = w["" + vendor + "CancelAnimationFrame"] || w["" + vendor + "CancelRequestAnimationFrame"];
+      w.requestAnimationFrame = w[`${vendor}RequestAnimationFrame`];
+      w.cancelAnimationFrame = w[`${vendor}CancelAnimationFrame`] || w[`${vendor}CancelRequestAnimationFrame`];
     }
+    // deal with the case where rAF is built in but cAF is not.
     if (w.requestAnimationFrame) {
       if (w.cancelAnimationFrame) {
         return;
@@ -132,6 +137,7 @@ require(["jquery", "App", "LoaderService", "RouterService", "GlobalModel", "Glob
         return canceled[id] = true;
       };
     } else {
+      // handle legacy browsers which don’t implement rAF
       targetTime = 0;
       w.requestAnimationFrame = function(callback) {
         var currentTime;
@@ -145,6 +151,8 @@ require(["jquery", "App", "LoaderService", "RouterService", "GlobalModel", "Glob
       };
     }
   })();
+  // Construct Services and Globals
+  // Are 'Singletons' (not exactly) with access from everywhere
   window.Loader = new LoaderService();
   window.Router = new RouterService();
   window.Model = new GlobalModel();
@@ -154,7 +162,8 @@ require(["jquery", "App", "LoaderService", "RouterService", "GlobalModel", "Glob
   window.Renderer = new RendererService();
   window.Switcher = new SwitcherService();
   events = new GlobalEvents().init();
-  return $(function() {
+  // Starts Application
+  return $(() => {
     return new App();
   });
 });

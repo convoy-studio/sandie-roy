@@ -1,12 +1,124 @@
-var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var boundMethodCheck = function(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new Error('Bound instance method accessed before binding'); } };
 
 define(["View", "signals", "Hammer"], function(View, signals, Hammer) {
   "use strict";
   var Page;
-  Page = (function(_super) {
-    __extends(Page, _super);
+  Page = (function() {
+    class Page extends View {
+      constructor(id, scope) {
+        super(id, scope);
+        this.init = this.init.bind(this);
+        this.ready = this.ready.bind(this);
+        this.addAnimations = this.addAnimations.bind(this);
+        this.transitionIn = this.transitionIn.bind(this);
+        this.transitionOut = this.transitionOut.bind(this);
+        this.continueToTransitionOut = this.continueToTransitionOut.bind(this);
+        this.transitionInCompleted = this.transitionInCompleted.bind(this);
+        this.transitionOutCompleted = this.transitionOutCompleted.bind(this);
+        this.resize = this.resize.bind(this);
+        this.destroy = this.destroy.bind(this);
+      }
+
+      init(cb) {
+        boundMethodCheck(this, Page);
+        this.initCb = cb;
+        Signal.onResize.add(this.resize);
+        this.tl = new TimelineMax({
+          onComplete: this.transitionInCompleted,
+          onReverseComplete: this.transitionOutCompleted
+        });
+        this.transitionInComplete = new signals.Signal();
+        this.transitionOutComplete = new signals.Signal();
+        TweenMax.delayedCall(0, this.ready);
+      }
+
+      ready() {
+        var $photoPart, $photoParts, i, j, len, p, photoPart;
+        boundMethodCheck(this, Page);
+        this.hammertime = new Hammer(this.element.get(0));
+        this.partHolders = this.element.find(".part-holder");
+        $photoParts = this.element.find(".part-photo");
+        this.photoParts = [];
+        for (i = j = 0, len = $photoParts.length; j < len; i = ++j) {
+          photoPart = $photoParts[i];
+          $photoPart = $(photoPart);
+          p = {};
+          p.el = $photoPart.get(0);
+          p.align = Util.IsEven(i) ? "left" : "right";
+          $photoPart.addClass(p.align);
+          p.titleEl = $photoPart.find(".title").parent().get(0);
+          p.visualContainerEl = $photoPart.find(".visual-container").get(0);
+          p.paragraphEl = $photoPart.find(".paragraph").parent().get(0);
+          this.photoParts.push(p);
+        }
+        this.centeredHolder = this.element.find(".centered-holder");
+        this.initCb();
+      }
+
+      addAnimations() {
+        boundMethodCheck(this, Page);
+        this.tl.fromTo(this.element, 1, {
+          opacity: 0
+        }, {
+          opacity: 1,
+          ease: Expo.easeInOut
+        }, 0);
+        this.tl.pause(0);
+      }
+
+      transitionIn() {
+        boundMethodCheck(this, Page);
+        this.tl.timeScale(1.2);
+        this.tl.tweenTo(this.tl.duration());
+      }
+
+      transitionOut() {
+        boundMethodCheck(this, Page);
+        this.continueToTransitionOut();
+      }
+
+      continueToTransitionOut() {
+        boundMethodCheck(this, Page);
+        this.tl.timeScale(1.6);
+        this.tl.tweenTo(0);
+      }
+
+      transitionInCompleted() {
+        boundMethodCheck(this, Page);
+        this.transitionInComplete.dispatch();
+      }
+
+      transitionOutCompleted() {
+        boundMethodCheck(this, Page);
+        this.transitionOutComplete.dispatch();
+      }
+
+      resize() {
+        boundMethodCheck(this, Page);
+        if (Model.windowW > 901) {
+          this.centeredHolder.css({
+            "margin-left": -(this.centeredHolder.width() >> 1)
+          });
+        } else {
+          this.centeredHolder.css({
+            "margin-left": 0
+          });
+        }
+      }
+
+      destroy() {
+        boundMethodCheck(this, Page);
+        super.destroy();
+        Signal.onResize.remove(this.resize);
+        this.transitionInComplete.removeAll();
+        this.transitionOutComplete.removeAll();
+        this.transitionInComplete = null;
+        this.transitionOutComplete = null;
+        this.tl.clear();
+        this.tl = null;
+      }
+
+    };
 
     Page.prototype.transitionInComplete = void 0;
 
@@ -16,111 +128,8 @@ define(["View", "signals", "Hammer"], function(View, signals, Hammer) {
 
     Page.prototype.initCb = void 0;
 
-    function Page(id, scope) {
-      this.destroy = __bind(this.destroy, this);
-      this.resize = __bind(this.resize, this);
-      this.transitionOutCompleted = __bind(this.transitionOutCompleted, this);
-      this.transitionInCompleted = __bind(this.transitionInCompleted, this);
-      this.continueToTransitionOut = __bind(this.continueToTransitionOut, this);
-      this.transitionOut = __bind(this.transitionOut, this);
-      this.transitionIn = __bind(this.transitionIn, this);
-      this.addAnimations = __bind(this.addAnimations, this);
-      this.ready = __bind(this.ready, this);
-      this.init = __bind(this.init, this);
-      Page.__super__.constructor.call(this, id, scope);
-    }
-
-    Page.prototype.init = function(cb) {
-      this.initCb = cb;
-      Signal.onResize.add(this.resize);
-      this.tl = new TimelineMax({
-        onComplete: this.transitionInCompleted,
-        onReverseComplete: this.transitionOutCompleted
-      });
-      this.transitionInComplete = new signals.Signal();
-      this.transitionOutComplete = new signals.Signal();
-      TweenMax.delayedCall(0, this.ready);
-    };
-
-    Page.prototype.ready = function() {
-      var $photoPart, $photoParts, i, p, photoPart, _i, _len;
-      this.hammertime = new Hammer(this.element.get(0));
-      this.partHolders = this.element.find(".part-holder");
-      $photoParts = this.element.find(".part-photo");
-      this.photoParts = [];
-      for (i = _i = 0, _len = $photoParts.length; _i < _len; i = ++_i) {
-        photoPart = $photoParts[i];
-        $photoPart = $(photoPart);
-        p = {};
-        p.el = $photoPart.get(0);
-        p.align = Util.IsEven(i) ? "left" : "right";
-        $photoPart.addClass(p.align);
-        p.titleEl = $photoPart.find(".title").parent().get(0);
-        p.visualContainerEl = $photoPart.find(".visual-container").get(0);
-        p.paragraphEl = $photoPart.find(".paragraph").parent().get(0);
-        this.photoParts.push(p);
-      }
-      this.centeredHolder = this.element.find(".centered-holder");
-      this.initCb();
-    };
-
-    Page.prototype.addAnimations = function() {
-      this.tl.fromTo(this.element, 1, {
-        opacity: 0
-      }, {
-        opacity: 1,
-        ease: Expo.easeInOut
-      }, 0);
-      this.tl.pause(0);
-    };
-
-    Page.prototype.transitionIn = function() {
-      this.tl.timeScale(1.2);
-      this.tl.tweenTo(this.tl.duration());
-    };
-
-    Page.prototype.transitionOut = function() {
-      this.continueToTransitionOut();
-    };
-
-    Page.prototype.continueToTransitionOut = function() {
-      this.tl.timeScale(1.6);
-      this.tl.tweenTo(0);
-    };
-
-    Page.prototype.transitionInCompleted = function() {
-      this.transitionInComplete.dispatch();
-    };
-
-    Page.prototype.transitionOutCompleted = function() {
-      this.transitionOutComplete.dispatch();
-    };
-
-    Page.prototype.resize = function() {
-      if (Model.windowW > 901) {
-        this.centeredHolder.css({
-          "margin-left": -(this.centeredHolder.width() >> 1)
-        });
-      } else {
-        this.centeredHolder.css({
-          "margin-left": 0
-        });
-      }
-    };
-
-    Page.prototype.destroy = function() {
-      Page.__super__.destroy.call(this);
-      Signal.onResize.remove(this.resize);
-      this.transitionInComplete.removeAll();
-      this.transitionOutComplete.removeAll();
-      this.transitionInComplete = null;
-      this.transitionOutComplete = null;
-      this.tl.clear();
-      this.tl = null;
-    };
-
     return Page;
 
-  })(View);
+  }).call(this);
   return Page;
 });

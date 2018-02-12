@@ -1,97 +1,104 @@
-var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var boundMethodCheck = function(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new Error('Bound instance method accessed before binding'); } };
 
 define(["View"], function(View) {
   var SubSideMenu;
-  SubSideMenu = (function(_super) {
-    __extends(SubSideMenu, _super);
+  SubSideMenu = (function() {
+    class SubSideMenu extends View {
+      constructor(id, scope) {
+        var i, j, m, menu, ref;
+        menu = [];
+        for (i = j = 0, ref = scope.num - 1; undefined !== 0 && (0 <= ref ? 0 <= j && j <= ref : 0 >= j && j >= ref); i = 0 <= ref ? ++j : --j) {
+          m = {};
+          m.id = "m-" + i;
+          menu.push(m);
+        }
+        scope.circle = Loader.getSvg("circle");
+        scope.menu = menu;
+        super(id, scope);
+        this.init = this.init.bind(this);
+        this.ready = this.ready.bind(this);
+        this.onItemClicked = this.onItemClicked.bind(this);
+        this.updateMenu = this.updateMenu.bind(this);
+        this.resetAllItems = this.resetAllItems.bind(this);
+        this.getItemByIndex = this.getItemByIndex.bind(this);
+        this.resize = this.resize.bind(this);
+        this.destroy = this.destroy.bind(this);
+      }
+
+      init() {
+        boundMethodCheck(this, SubSideMenu);
+        this.ready();
+      }
+
+      ready() {
+        var c, i, item, j, len, ref;
+        boundMethodCheck(this, SubSideMenu);
+        this.circleWrappers = this.element.find(".circle-wrapper");
+        this.circleWrappers.on("click", this.onItemClicked);
+        ref = this.circleWrappers;
+        for (i = j = 0, len = ref.length; j < len; i = ++j) {
+          item = ref[i];
+          c = {};
+          c.id = item.id;
+          this.scope.menu[i].el = item;
+        }
+        this.updateMenu(0);
+      }
+
+      onItemClicked(e) {
+        var id, index, target;
+        boundMethodCheck(this, SubSideMenu);
+        target = e.currentTarget;
+        id = target.id;
+        index = parseInt(id.split("-")[1]);
+        this.onSideMenuClicked(index);
+        this.updateMenu(index);
+      }
+
+      updateMenu(index) {
+        var item;
+        boundMethodCheck(this, SubSideMenu);
+        item = this.getItemByIndex(index);
+        this.resetAllItems();
+        item.el.classList.add("active");
+      }
+
+      resetAllItems() {
+        var j, len, m, ref;
+        boundMethodCheck(this, SubSideMenu);
+        ref = this.scope.menu;
+        for (j = 0, len = ref.length; j < len; j++) {
+          m = ref[j];
+          m.el.classList.remove("active");
+        }
+      }
+
+      getItemByIndex(index) {
+        boundMethodCheck(this, SubSideMenu);
+        return this.scope.menu[index];
+      }
+
+      resize() {
+        var elementCss;
+        boundMethodCheck(this, SubSideMenu);
+        elementCss = {
+          top: (Model.windowH >> 1) - (this.element.height() >> 1) - 20
+        };
+        this.element.css(elementCss);
+      }
+
+      destroy() {
+        boundMethodCheck(this, SubSideMenu);
+        super.destroy();
+        this.circleWrappers.off("click", this.onItemClicked);
+      }
+
+    };
 
     SubSideMenu.prototype.onSideMenuClicked = void 0;
 
-    function SubSideMenu(id, scope) {
-      this.destroy = __bind(this.destroy, this);
-      this.resize = __bind(this.resize, this);
-      this.getItemByIndex = __bind(this.getItemByIndex, this);
-      this.resetAllItems = __bind(this.resetAllItems, this);
-      this.updateMenu = __bind(this.updateMenu, this);
-      this.onItemClicked = __bind(this.onItemClicked, this);
-      this.ready = __bind(this.ready, this);
-      this.init = __bind(this.init, this);
-      var i, m, menu, _i, _ref;
-      menu = [];
-      for (i = _i = 0, _ref = scope.num - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
-        m = {};
-        m.id = "m-" + i;
-        menu.push(m);
-      }
-      scope.circle = Loader.getSvg("circle");
-      scope.menu = menu;
-      SubSideMenu.__super__.constructor.call(this, id, scope);
-    }
-
-    SubSideMenu.prototype.init = function() {
-      this.ready();
-    };
-
-    SubSideMenu.prototype.ready = function() {
-      var c, i, item, _i, _len, _ref;
-      this.circleWrappers = this.element.find(".circle-wrapper");
-      this.circleWrappers.on("click", this.onItemClicked);
-      _ref = this.circleWrappers;
-      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
-        item = _ref[i];
-        c = {};
-        c.id = item.id;
-        this.scope.menu[i].el = item;
-      }
-      this.updateMenu(0);
-    };
-
-    SubSideMenu.prototype.onItemClicked = function(e) {
-      var id, index, target;
-      target = e.currentTarget;
-      id = target.id;
-      index = parseInt(id.split("-")[1]);
-      this.onSideMenuClicked(index);
-      this.updateMenu(index);
-    };
-
-    SubSideMenu.prototype.updateMenu = function(index) {
-      var item;
-      item = this.getItemByIndex(index);
-      this.resetAllItems();
-      item.el.classList.add("active");
-    };
-
-    SubSideMenu.prototype.resetAllItems = function() {
-      var m, _i, _len, _ref;
-      _ref = this.scope.menu;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        m = _ref[_i];
-        m.el.classList.remove("active");
-      }
-    };
-
-    SubSideMenu.prototype.getItemByIndex = function(index) {
-      return this.scope.menu[index];
-    };
-
-    SubSideMenu.prototype.resize = function() {
-      var elementCss;
-      elementCss = {
-        top: (Model.windowH >> 1) - (this.element.height() >> 1) - 20
-      };
-      this.element.css(elementCss);
-    };
-
-    SubSideMenu.prototype.destroy = function() {
-      SubSideMenu.__super__.destroy.call(this);
-      this.circleWrappers.off("click", this.onItemClicked);
-    };
-
     return SubSideMenu;
 
-  })(View);
+  }).call(this);
   return SubSideMenu;
 });

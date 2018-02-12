@@ -1,29 +1,26 @@
-var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var boundMethodCheck = function(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new Error('Bound instance method accessed before binding'); } };
 
 define(["Page", "TimelineMenu"], function(Page, TimelineMenu) {
   var Home;
-  Home = (function(_super) {
-    __extends(Home, _super);
-
-    function Home(id, scope) {
-      this.destroy = __bind(this.destroy, this);
-      this.resize = __bind(this.resize, this);
-      this.ready = __bind(this.ready, this);
+  Home = class Home extends Page {
+    constructor(id, scope) {
       scope = {};
       scope.previews = Model.routing.slice(0, Model.routing.length - 1);
-      Home.__super__.constructor.call(this, id, scope);
+      super(id, scope);
+      this.ready = this.ready.bind(this);
+      this.resize = this.resize.bind(this);
+      this.destroy = this.destroy.bind(this);
     }
 
-    Home.prototype.ready = function() {
-      var $previewContainers, p, preview, _i, _len;
+    ready() {
+      var $previewContainers, i, len, p, preview;
+      boundMethodCheck(this, Home);
       this.timelineMenu = new TimelineMenu("timeline-menu");
       this.element.append(this.timelineMenu.element);
       this.previews = [];
       $previewContainers = this.element.find(".preview-container");
-      for (_i = 0, _len = $previewContainers.length; _i < _len; _i++) {
-        preview = $previewContainers[_i];
+      for (i = 0, len = $previewContainers.length; i < len; i++) {
+        preview = $previewContainers[i];
         p = {};
         p.el = preview;
         p.titleEl = $(preview).find(".title").get(0);
@@ -31,45 +28,44 @@ define(["Page", "TimelineMenu"], function(Page, TimelineMenu) {
       }
       this.timelineMenu.previews = this.previews;
       this.timelineMenu.init();
-      Home.__super__.ready.call(this);
-    };
+      super.ready();
+    }
 
-    Home.prototype.resize = function() {
-      var bottomContainerH, elementCss,
-        _this = this;
+    resize() {
+      var bottomContainerH, elementCss;
+      boundMethodCheck(this, Home);
       elementCss = {
         width: Model.windowW,
         height: Model.windowH
       };
       this.element.css(elementCss);
-      setTimeout(function() {
-        var preview, titleCss, _i, _len, _ref, _results;
-        _this.timelineMenu.onResize();
-        _ref = _this.previews;
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          preview = _ref[_i];
+      setTimeout(() => {
+        var i, len, preview, ref, results, titleCss;
+        this.timelineMenu.onResize();
+        ref = this.previews;
+        results = [];
+        for (i = 0, len = ref.length; i < len; i++) {
+          preview = ref[i];
           titleCss = {
             top: (Model.windowH >> 1) - (preview.titleEl.offsetHeight >> 1),
             left: (Model.windowW >> 1) - (preview.titleEl.offsetWidth >> 1)
           };
-          _results.push(TweenMax.set(preview.titleEl, titleCss));
+          results.push(TweenMax.set(preview.titleEl, titleCss));
         }
-        return _results;
+        return results;
       }, 10);
       bottomContainerH = 0;
       Model.parentEl.css({
         height: bottomContainerH
       });
-    };
+    }
 
-    Home.prototype.destroy = function() {
+    destroy() {
+      boundMethodCheck(this, Home);
       this.timelineMenu.destroy();
-      Home.__super__.destroy.call(this);
-    };
+      super.destroy();
+    }
 
-    return Home;
-
-  })(Page);
+  };
   return Home;
 });

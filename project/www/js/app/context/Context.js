@@ -1,24 +1,24 @@
-var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
 define([], function() {
   "use strict";
   var Context;
-  Context = (function() {
-    function Context() {
-      this.launchApp = __bind(this.launchApp, this);
+  Context = class Context {
+    constructor() {
+      this.launchApp = this.launchApp.bind(this);
       this.launchApp();
     }
 
-    Context.prototype.launchApp = function() {
+    launchApp() {
       Switcher.init();
       Router.setupRouting();
+      
+      // Init DOM
       Controller.setupViews();
+      // Setup Global 3D Objects
       Controller.setupRenderer();
+      // Routing
       Controller.startRouting();
-    };
+    }
 
-    return Context;
-
-  })();
+  };
   return Context;
 });

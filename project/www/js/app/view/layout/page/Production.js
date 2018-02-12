@@ -1,65 +1,68 @@
-var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var boundMethodCheck = function(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new Error('Bound instance method accessed before binding'); } };
 
 define(["PartsPage"], function(PartsPage) {
   "use strict";
   var Production;
-  Production = (function(_super) {
-    __extends(Production, _super);
-
-    function Production(id, scope) {
-      this.destroy = __bind(this.destroy, this);
-      this.resize = __bind(this.resize, this);
-      this.transitionOutCompleted = __bind(this.transitionOutCompleted, this);
-      this.transitionInCompleted = __bind(this.transitionInCompleted, this);
-      this.transitionOut = __bind(this.transitionOut, this);
-      this.transitionIn = __bind(this.transitionIn, this);
-      this.addAnimations = __bind(this.addAnimations, this);
-      this.ready = __bind(this.ready, this);
-      this.init = __bind(this.init, this);
+  Production = class Production extends PartsPage {
+    constructor(id, scope) {
       scope.pathId = id;
-      Production.__super__.constructor.call(this, id, scope);
+      super(id, scope);
+      this.init = this.init.bind(this);
+      this.ready = this.ready.bind(this);
+      this.addAnimations = this.addAnimations.bind(this);
+      this.transitionIn = this.transitionIn.bind(this);
+      this.transitionOut = this.transitionOut.bind(this);
+      this.transitionInCompleted = this.transitionInCompleted.bind(this);
+      this.transitionOutCompleted = this.transitionOutCompleted.bind(this);
+      this.resize = this.resize.bind(this);
+      this.destroy = this.destroy.bind(this);
     }
 
-    Production.prototype.init = function(cb) {
-      return Production.__super__.init.call(this, cb);
-    };
+    init(cb) {
+      boundMethodCheck(this, Production);
+      return super.init(cb);
+    }
 
-    Production.prototype.ready = function() {
-      Production.__super__.ready.call(this);
-    };
+    ready() {
+      boundMethodCheck(this, Production);
+      super.ready();
+    }
 
-    Production.prototype.addAnimations = function() {
-      Production.__super__.addAnimations.call(this);
-    };
+    addAnimations() {
+      boundMethodCheck(this, Production);
+      super.addAnimations();
+    }
 
-    Production.prototype.transitionIn = function() {
-      Production.__super__.transitionIn.call(this);
-    };
+    transitionIn() {
+      boundMethodCheck(this, Production);
+      super.transitionIn();
+    }
 
-    Production.prototype.transitionOut = function() {
-      Production.__super__.transitionOut.call(this);
-    };
+    transitionOut() {
+      boundMethodCheck(this, Production);
+      super.transitionOut();
+    }
 
-    Production.prototype.transitionInCompleted = function() {
-      Production.__super__.transitionInCompleted.call(this);
-    };
+    transitionInCompleted() {
+      boundMethodCheck(this, Production);
+      super.transitionInCompleted();
+    }
 
-    Production.prototype.transitionOutCompleted = function() {
-      Production.__super__.transitionOutCompleted.call(this);
-    };
+    transitionOutCompleted() {
+      boundMethodCheck(this, Production);
+      super.transitionOutCompleted();
+    }
 
-    Production.prototype.resize = function() {
-      Production.__super__.resize.call(this);
-    };
+    resize() {
+      boundMethodCheck(this, Production);
+      super.resize();
+    }
 
-    Production.prototype.destroy = function() {
-      Production.__super__.destroy.call(this);
-    };
+    destroy() {
+      boundMethodCheck(this, Production);
+      super.destroy();
+    }
 
-    return Production;
-
-  })(PartsPage);
+  };
   return Production;
 });

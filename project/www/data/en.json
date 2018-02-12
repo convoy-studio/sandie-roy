@@ -197,10 +197,10 @@
                     "scale": "1"
                 },
                 "elsa": {
-                    "align": ["center", 16],
+                    "align": ["right", 30],
                     "name": "Elsa Salmon",
                     "position": "Partnerships & Infuencers manager",
-                    "scale": "1"
+                    "scale": "0.9"
                 }
             },
             "references": {

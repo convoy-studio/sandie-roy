@@ -1,16 +1,15 @@
-var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
 define(["require", "Context", "Browser", "InitialLoadController", "Detector"], function(require, Context, Browser, InitialLoadController, Detector) {
   "use strict";
   var App;
-  App = (function() {
-    function App() {
-      this.appDataCompleted = __bind(this.appDataCompleted, this);
-      this.loadAppData = __bind(this.loadAppData, this);
-      this.dataCompleted = __bind(this.dataCompleted, this);
-      this.loadInitialData = __bind(this.loadInitialData, this);
-      this.init = __bind(this.init, this);
+  App = class App {
+    constructor() {
       var b;
+      this.init = this.init.bind(this);
+      this.loadInitialData = this.loadInitialData.bind(this);
+      this.dataCompleted = this.dataCompleted.bind(this);
+      this.loadAppData = this.loadAppData.bind(this);
+      this.appDataCompleted = this.appDataCompleted.bind(this);
+      // Browser configs
       b = new Browser().init();
       Model.isDesktop = b.isDesktop;
       Model.browser = b.browser;
@@ -22,15 +21,16 @@ define(["require", "Context", "Browser", "InitialLoadController", "Detector"], f
       } else {
         $('html').addClass('is-mobile');
       }
+      // Model.isDesktop = false
       this.init();
       return;
     }
 
-    App.prototype.init = function() {
+    init() {
       this.loadInitialData();
-    };
+    }
 
-    App.prototype.loadInitialData = function() {
+    loadInitialData() {
       var contentUrl, manifest;
       contentUrl = Model.lang + ".json";
       manifest = [
@@ -38,17 +38,19 @@ define(["require", "Context", "Browser", "InitialLoadController", "Detector"], f
           id: "data",
           src: "data/data.json",
           type: createjs.LoadQueue.JSON
-        }, {
+        },
+        {
           id: "content",
           src: "data/" + contentUrl,
           type: createjs.LoadQueue.JSON
         }
       ];
       Loader.load(manifest, this.dataCompleted);
-    };
+    }
 
-    App.prototype.dataCompleted = function(e) {
+    dataCompleted(e) {
       var c, content, data, pageScope;
+      // Global Content
       data = Loader.queue.getResult("data");
       c = Loader.queue.getResult("content");
       content = c.global;
@@ -58,20 +60,18 @@ define(["require", "Context", "Browser", "InitialLoadController", "Detector"], f
       Model.parentEl = $(data.initialData.app_parent);
       Model.routing = data.routing;
       this.loadAppData();
-    };
+    }
 
-    App.prototype.loadAppData = function() {
+    loadAppData() {
       var loadController;
       loadController = new InitialLoadController(this.appDataCompleted);
-    };
+    }
 
-    App.prototype.appDataCompleted = function() {
+    appDataCompleted() {
       var context;
       context = new Context();
-    };
+    }
 
-    return App;
-
-  })();
+  };
   return App;
 });

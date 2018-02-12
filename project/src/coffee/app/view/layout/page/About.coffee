@@ -12,17 +12,31 @@ define ["PartsPage"], (PartsPage) ->
             scope.equipePromo = scope["equipe-promo"]
             scope.agencePromo = scope["agence-promo"]
 
+            getPersonHolderHTML = (id, scope, imagePath, parentId) ->
+                imgURL = imagePath + parentId + "/nd/" + id + ".jpg"
+                html = '
+                    <div data-parentid="' + parentId + '" id="' + id + '" class="person-holder btn">
+                        <div class="person-visual">
+                            <img lazy-src="' + imgURL + '" src="' + Model.blankImg + '">
+                        </div>
+                        <div class="bottom-titles">
+                            <p><span class="bold">' + scope.name + '</span><br>' + scope.position + '</p>
+                        </div>
+                    </div>
+                '
+                return html
+
             i = 0
             for k, v of scope.equipe
                 parentId = "equipe"
-                v.rawEl = @getPersonHolderHTML(k, v, scope.imagePath, parentId)
+                v.rawEl = getPersonHolderHTML(k, v, scope.imagePath, parentId)
                 v.index = i
                 i += 1
 
             i = 0
             for k, v of scope.agence
                 parentId = "agence"
-                v.rawEl = @getPersonHolderHTML(k, v, scope.imagePath, parentId)
+                v.rawEl = getPersonHolderHTML(k, v, scope.imagePath, parentId)
                 v.index = i
                 i += 1
 
@@ -30,20 +44,6 @@ define ["PartsPage"], (PartsPage) ->
             scope.equipePromo.description = sandie.name + ' – ' + sandie.position
 
             super(id, scope)
-
-        getPersonHolderHTML: (id, scope, imagePath, parentId)=>
-            imgURL = imagePath + parentId + "/nd/" + id + ".jpg"
-            html = '
-                <div data-parentid="' + parentId + '" id="' + id + '" class="person-holder btn">
-                    <div class="person-visual">
-                        <img lazy-src="' + imgURL + '" src="' + Model.blankImg + '">
-                    </div>
-                    <div class="bottom-titles">
-                        <p><span class="bold">' + scope.name + '</span><br>' + scope.position + '</p>
-                    </div>
-                </div>
-            '
-            return html
 
         init: (cb)=>
             @personBaseSize = Model.personBaseSize

@@ -1,21 +1,21 @@
-var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
+// Define start - generated content
 define(["RelationsPresse", "RelationsPubliques", "About", "Production", "Home"], function(RelationsPresse, RelationsPubliques, About, Production, Home) {
   var SwitcherService;
-  SwitcherService = (function() {
-    function SwitcherService() {
-      this.destroyViews = __bind(this.destroyViews, this);
-      this.createView = __bind(this.createView, this);
-      this.pageLoaderTransitionOutCompleted = __bind(this.pageLoaderTransitionOutCompleted, this);
-      this.continueNewViewTransition = __bind(this.continueNewViewTransition, this);
-      this.startTransition = __bind(this.startTransition, this);
-      this.onViewInitialized = __bind(this.onViewInitialized, this);
-      this.pageFilesLoaded = __bind(this.pageFilesLoaded, this);
-      this.pageLoaderTransitionInCompleted = __bind(this.pageLoaderTransitionInCompleted, this);
-      this.prepareView = __bind(this.prepareView, this);
-      this.prepareManifest = __bind(this.prepareManifest, this);
-      this.onRouteChanged = __bind(this.onRouteChanged, this);
-      this.init = __bind(this.init, this);
+  // Define end - generated content
+  SwitcherService = class SwitcherService {
+    constructor() {
+      this.init = this.init.bind(this);
+      this.onRouteChanged = this.onRouteChanged.bind(this);
+      this.prepareManifest = this.prepareManifest.bind(this);
+      this.prepareView = this.prepareView.bind(this);
+      this.pageLoaderTransitionInCompleted = this.pageLoaderTransitionInCompleted.bind(this);
+      this.pageFilesLoaded = this.pageFilesLoaded.bind(this);
+      this.onViewInitialized = this.onViewInitialized.bind(this);
+      this.startTransition = this.startTransition.bind(this);
+      this.continueNewViewTransition = this.continueNewViewTransition.bind(this);
+      this.pageLoaderTransitionOutCompleted = this.pageLoaderTransitionOutCompleted.bind(this);
+      this.createView = this.createView.bind(this);
+      this.destroyViews = this.destroyViews.bind(this);
       ({
         newPage: void 0,
         newView: void 0,
@@ -24,26 +24,26 @@ define(["RelationsPresse", "RelationsPubliques", "About", "Production", "Home"],
       });
     }
 
-    SwitcherService.prototype.init = function() {
+    init() {
       this.hist = [];
       Signal.onRouteChanged.add(this.onRouteChanged);
-    };
+    }
 
-    SwitcherService.prototype.onRouteChanged = function() {
+    onRouteChanged() {
       this.prepareManifest();
-    };
+    }
 
-    SwitcherService.prototype.prepareManifest = function() {
+    prepareManifest() {
       this.newPage = Router.getNewViewFromRoute(Model.newHash);
       this.prepareView();
-    };
+    }
 
-    SwitcherService.prototype.prepareView = function() {
+    prepareView() {
       this.pageLoaderTransitionInCompleted();
-    };
+    }
 
-    SwitcherService.prototype.pageLoaderTransitionInCompleted = function() {
-      var f, file, files, i, id, manifest, name, paths, type, url, _i, _len;
+    pageLoaderTransitionInCompleted() {
+      var f, file, files, i, id, j, len, manifest, name, paths, type, url;
       files = this.newPage.files;
       if (files.length < 1) {
         this.pageFilesLoaded();
@@ -51,7 +51,7 @@ define(["RelationsPresse", "RelationsPubliques", "About", "Production", "Home"],
       }
       manifest = [];
       id = this.newPage.id;
-      for (i = _i = 0, _len = files.length; _i < _len; i = ++_i) {
+      for (i = j = 0, len = files.length; j < len; i = ++j) {
         file = files[i];
         url = file;
         paths = file.split("/");
@@ -64,27 +64,30 @@ define(["RelationsPresse", "RelationsPubliques", "About", "Production", "Home"],
         };
       }
       Loader.load(manifest, this.pageFilesLoaded);
-    };
+    }
 
-    SwitcherService.prototype.pageFilesLoaded = function() {
+    pageFilesLoaded() {
       var Class, parent;
       parent = Model.mainEl;
+      // Create Class from hash id 
       Class = require(this.newPage.clazz);
+      // Update old view
       if (this.newView != null) {
         this.oldView = this.newView;
       }
+      // Create view
       this.newView = this.createView(this.newPage.id, Class, this.newPage.scope);
       parent.append(this.newView.element);
       this.newView.init(this.onViewInitialized);
-    };
+    }
 
-    SwitcherService.prototype.onViewInitialized = function() {
+    onViewInitialized() {
       TweenMax.delayedCall(0, this.newView.resize);
       TweenMax.delayedCall(0, this.newView.addAnimations);
       TweenMax.delayedCall(0, this.startTransition);
-    };
+    }
 
-    SwitcherService.prototype.startTransition = function() {
+    startTransition() {
       if (this.oldView != null) {
         if (this.oldView.transitionOutComplete != null) {
           this.oldView.transitionOutComplete.addOnce(this.continueNewViewTransition, this);
@@ -95,38 +98,36 @@ define(["RelationsPresse", "RelationsPubliques", "About", "Production", "Home"],
       } else {
         this.continueNewViewTransition();
       }
-    };
+    }
 
-    SwitcherService.prototype.continueNewViewTransition = function() {
+    continueNewViewTransition() {
       this.pageLoaderTransitionOutCompleted();
-    };
+    }
 
-    SwitcherService.prototype.pageLoaderTransitionOutCompleted = function() {
+    pageLoaderTransitionOutCompleted() {
       this.newView.transitionIn();
       this.destroyViews();
-    };
+    }
 
-    SwitcherService.prototype.createView = function(id, Class, scope, assetsReadyCallback) {
+    createView(id, Class, scope, assetsReadyCallback) {
       var view;
       view = new Class(id, scope, assetsReadyCallback);
       this.hist.push(view);
       return view;
-    };
+    }
 
-    SwitcherService.prototype.destroyViews = function() {
-      var destroyArray, i, view, _i, _ref;
+    destroyViews() {
+      var destroyArray, i, j, ref, view;
       destroyArray = this.hist.splice(0, this.hist.length - 1);
-      for (i = _i = 0, _ref = destroyArray.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+      for (i = j = 0, ref = destroyArray.length - 1; undefined !== 0 && (0 <= ref ? 0 <= j && j <= ref : 0 >= j && j >= ref); i = 0 <= ref ? ++j : --j) {
         view = destroyArray[i];
         if (view != null) {
           view.destroy();
           view.element.remove();
         }
       }
-    };
+    }
 
-    return SwitcherService;
-
-  })();
+  };
   return SwitcherService;
 });

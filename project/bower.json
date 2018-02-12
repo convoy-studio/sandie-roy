@@ -18,15 +18,15 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "",
-    "signals": "",
-    "hasher": "",
-    "createjs-preloadjs": "",
-    "greensock": "",
-    "mustache.js": "",
-    "jquery-mousewheel": "~3.1.12",
-    "requirejs-plugins": "~1.0.2",
-    "hammer.js": "~2.0.4",
-    "include-media": "~1.1.2"
+    "jquery": "^3.3.1",
+    "js-signals": "signals#^1.0.0",
+    "hasher": "^1.2.0",
+    "PreloadJS": "createjs-preloadjs#^1.0.1",
+    "gsap": "greensock#^1.20.3",
+    "mustache.js": "^2.3.0",
+    "jquery-mousewheel": "^3.1.13",
+    "requirejs-plugins": "^1.0.3",
+    "hammerjs": "hammer.js#^2.0.8",
+    "include-media": "^1.4.9"
   }
 }

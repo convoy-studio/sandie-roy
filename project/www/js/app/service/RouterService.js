@@ -1,30 +1,28 @@
-var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
 define(["hasher"], function(hasher) {
   "use strict";
   var RouterService;
-  RouterService = (function() {
-    function RouterService() {
-      this.getNewViewFromRoute = __bind(this.getNewViewFromRoute, this);
-      this.getBaseURL = __bind(this.getBaseURL, this);
-      this.sendTo = __bind(this.sendTo, this);
-      this.sendToDefault = __bind(this.sendToDefault, this);
-      this.pageChanged = __bind(this.pageChanged, this);
-      this.onRouteChanged = __bind(this.onRouteChanged, this);
-      this.configHasher = __bind(this.configHasher, this);
-      this.createRoute = __bind(this.createRoute, this);
-      this.setupRouting = __bind(this.setupRouting, this);
+  RouterService = class RouterService {
+    constructor() {
+      this.setupRouting = this.setupRouting.bind(this);
+      this.createRoute = this.createRoute.bind(this);
+      this.configHasher = this.configHasher.bind(this);
+      this.onRouteChanged = this.onRouteChanged.bind(this);
+      this.pageChanged = this.pageChanged.bind(this);
+      this.sendToDefault = this.sendToDefault.bind(this);
+      this.sendTo = this.sendTo.bind(this);
+      this.getBaseURL = this.getBaseURL.bind(this);
+      this.getNewViewFromRoute = this.getNewViewFromRoute.bind(this);
     }
 
-    RouterService.prototype.setupRouting = function() {
-      var k, ks, routes, scope, v, vs, _ref, _ref1;
+    setupRouting() {
+      var k, ks, ref, ref1, routes, scope, v, vs;
       routes = [];
-      _ref = Model.routing;
-      for (k in _ref) {
-        v = _ref[k];
-        _ref1 = Model.pageScope;
-        for (ks in _ref1) {
-          vs = _ref1[ks];
+      ref = Model.routing;
+      for (k in ref) {
+        v = ref[k];
+        ref1 = Model.pageScope;
+        for (ks in ref1) {
+          vs = ref1[ks];
           if (k === ks) {
             scope = vs;
           }
@@ -32,9 +30,9 @@ define(["hasher"], function(hasher) {
         routes.push(this.createRoute(k, k, scope, v.files));
       }
       Model.routing = routes;
-    };
+    }
 
-    RouterService.prototype.createRoute = function(id, route, scope, files) {
+    createRoute(id, route, scope, files) {
       var r;
       r = {};
       r.id = id;
@@ -43,22 +41,22 @@ define(["hasher"], function(hasher) {
       r.scope = scope;
       r.files = files;
       return r;
-    };
+    }
 
-    RouterService.prototype.configHasher = function() {
+    configHasher() {
       hasher.prependHash = '/';
       hasher.changed.add(this.onRouteChanged);
       hasher.initialized.add(this.onRouteChanged);
       hasher.init();
-    };
+    }
 
-    RouterService.prototype.onRouteChanged = function(newHash) {
-      var newHashFounded, r, _i, _len, _ref;
+    onRouteChanged(newHash) {
+      var i, len, newHashFounded, r, ref;
       Model.gallery = void 0;
       newHashFounded = false;
-      _ref = Model.routing;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        r = _ref[_i];
+      ref = Model.routing;
+      for (i = 0, len = ref.length; i < len; i++) {
+        r = ref[i];
         if (newHash === r.route) {
           Model.newHash = r.route;
           newHashFounded = true;
@@ -68,40 +66,38 @@ define(["hasher"], function(hasher) {
       if (!newHashFounded) {
         this.sendToDefault();
       }
-    };
+    }
 
-    RouterService.prototype.pageChanged = function() {
+    pageChanged() {
       Signal.onRouteChanged.dispatch();
-    };
+    }
 
-    RouterService.prototype.sendToDefault = function() {
+    sendToDefault() {
       hasher.setHash("home");
-    };
+    }
 
-    RouterService.prototype.sendTo = function(id) {
+    sendTo(id) {
       hasher.setHash(id);
-    };
+    }
 
-    RouterService.prototype.getBaseURL = function() {
+    getBaseURL() {
       return document.URL.split("#")[0];
-    };
+    }
 
-    RouterService.prototype.getNewViewFromRoute = function(newHash) {
-      var r, view, _i, _len, _ref;
+    getNewViewFromRoute(newHash) {
+      var i, len, r, ref, view;
       view = void 0;
-      _ref = Model.routing;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        r = _ref[_i];
+      ref = Model.routing;
+      for (i = 0, len = ref.length; i < len; i++) {
+        r = ref[i];
         if (r.route === newHash) {
           view = r;
           return view;
           break;
         }
       }
-    };
+    }
 
-    return RouterService;
-
-  })();
+  };
   return RouterService;
 });

@@ -1,64 +1,77 @@
-var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var boundMethodCheck = function(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new Error('Bound instance method accessed before binding'); } };
 
 define(["PartsPage"], function(PartsPage) {
   var RelationsPubliques;
-  RelationsPubliques = (function(_super) {
-    __extends(RelationsPubliques, _super);
-
-    function RelationsPubliques(id, scope) {
-      this.destroy = __bind(this.destroy, this);
-      this.resize = __bind(this.resize, this);
-      this.transitionOutCompleted = __bind(this.transitionOutCompleted, this);
-      this.transitionInCompleted = __bind(this.transitionInCompleted, this);
-      this.transitionOut = __bind(this.transitionOut, this);
-      this.transitionIn = __bind(this.transitionIn, this);
-      this.addAnimations = __bind(this.addAnimations, this);
-      this.ready = __bind(this.ready, this);
-      this.init = __bind(this.init, this);
+  RelationsPubliques = class RelationsPubliques extends PartsPage {
+    constructor(id, scope) {
+      // scope.logoSimple = Loader.getSvg "logo-simple"
+      // scope.progressArc = Loader.getSvg "progress-arc"
+      // scope.titleBox = Loader.getSvg "title-box"
+      // scope.heart = Loader.getSvg "heart"
+      // scope.pictureIcon = Loader.getSvg "picture-icon"
+      // scope.blankImg = Loader.getImageURL "blank-image"
+      // scope.downloadIcon = Loader.getSvg "download-circle-icon"
+      // scope.twitterIcon = Loader.getSvg "twitter-circle-icon"
+      // scope.facebookIcon = Loader.getSvg "facebook-circle-icon"
+      // scope.emailIcon = Loader.getSvg "email-circle-icon"
       scope.pathId = id;
-      RelationsPubliques.__super__.constructor.call(this, id, scope);
+      super(id, scope);
+      this.init = this.init.bind(this);
+      this.ready = this.ready.bind(this);
+      this.addAnimations = this.addAnimations.bind(this);
+      this.transitionIn = this.transitionIn.bind(this);
+      this.transitionOut = this.transitionOut.bind(this);
+      this.transitionInCompleted = this.transitionInCompleted.bind(this);
+      this.transitionOutCompleted = this.transitionOutCompleted.bind(this);
+      this.resize = this.resize.bind(this);
+      this.destroy = this.destroy.bind(this);
     }
 
-    RelationsPubliques.prototype.init = function(cb) {
-      return RelationsPubliques.__super__.init.call(this, cb);
-    };
+    init(cb) {
+      boundMethodCheck(this, RelationsPubliques);
+      return super.init(cb);
+    }
 
-    RelationsPubliques.prototype.ready = function() {
-      RelationsPubliques.__super__.ready.call(this);
-    };
+    ready() {
+      boundMethodCheck(this, RelationsPubliques);
+      super.ready();
+    }
 
-    RelationsPubliques.prototype.addAnimations = function() {
-      RelationsPubliques.__super__.addAnimations.call(this);
-    };
+    addAnimations() {
+      boundMethodCheck(this, RelationsPubliques);
+      super.addAnimations();
+    }
 
-    RelationsPubliques.prototype.transitionIn = function() {
-      RelationsPubliques.__super__.transitionIn.call(this);
-    };
+    transitionIn() {
+      boundMethodCheck(this, RelationsPubliques);
+      super.transitionIn();
+    }
 
-    RelationsPubliques.prototype.transitionOut = function() {
-      RelationsPubliques.__super__.transitionOut.call(this);
-    };
+    transitionOut() {
+      boundMethodCheck(this, RelationsPubliques);
+      super.transitionOut();
+    }
 
-    RelationsPubliques.prototype.transitionInCompleted = function() {
-      RelationsPubliques.__super__.transitionInCompleted.call(this);
-    };
+    transitionInCompleted() {
+      boundMethodCheck(this, RelationsPubliques);
+      super.transitionInCompleted();
+    }
 
-    RelationsPubliques.prototype.transitionOutCompleted = function() {
-      RelationsPubliques.__super__.transitionOutCompleted.call(this);
-    };
+    transitionOutCompleted() {
+      boundMethodCheck(this, RelationsPubliques);
+      super.transitionOutCompleted();
+    }
 
-    RelationsPubliques.prototype.resize = function() {
-      RelationsPubliques.__super__.resize.call(this);
-    };
+    resize() {
+      boundMethodCheck(this, RelationsPubliques);
+      super.resize();
+    }
 
-    RelationsPubliques.prototype.destroy = function() {
-      RelationsPubliques.__super__.destroy.call(this);
-    };
+    destroy() {
+      boundMethodCheck(this, RelationsPubliques);
+      super.destroy();
+    }
 
-    return RelationsPubliques;
-
-  })(PartsPage);
+  };
   return RelationsPubliques;
 });

@@ -1,65 +1,64 @@
-var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
 define([], function() {
   "use strict";
   var Util;
-  Util = (function() {
-    function Util() {
-      this.ExitFullscreen = __bind(this.ExitFullscreen, this);
-      this.LaunchIntoFullscreen = __bind(this.LaunchIntoFullscreen, this);
-      this.GetCanvas = __bind(this.GetCanvas, this);
-      this.GetCookie = __bind(this.GetCookie, this);
-      this.SetCookie = __bind(this.SetCookie, this);
-      this.GetUrlVars = __bind(this.GetUrlVars, this);
-      this.IsEven = __bind(this.IsEven, this);
-      this.Rand = __bind(this.Rand, this);
-      this.GetImgNativeSize = __bind(this.GetImgNativeSize, this);
-      this.SecondsToMinutes = __bind(this.SecondsToMinutes, this);
-      this.SwitchImgLazySrcs = __bind(this.SwitchImgLazySrcs, this);
-      this.ToFixed = __bind(this.ToFixed, this);
-      this.Norm = __bind(this.Norm, this);
-      this.Lerp = __bind(this.Lerp, this);
-      this.Map = __bind(this.Map, this);
-      this.ComponentToHex = __bind(this.ComponentToHex, this);
-      this.RgbToHex = __bind(this.RgbToHex, this);
-      this.HexToRgb = __bind(this.HexToRgb, this);
-      this.guid = __bind(this.guid, this);
-      this.HexString = __bind(this.HexString, this);
-      this.UnitToRGB = __bind(this.UnitToRGB, this);
-      this.RGBtoUnit = __bind(this.RGBtoUnit, this);
-      this.ToType = __bind(this.ToType, this);
-      this.IsInt = __bind(this.IsInt, this);
-      this.ValidateEmail = __bind(this.ValidateEmail, this);
-      this.ConvertToClassName = __bind(this.ConvertToClassName, this);
-      this.Limit = __bind(this.Limit, this);
-      this.RandomInt = __bind(this.RandomInt, this);
-      this.ConvertToSlug = __bind(this.ConvertToSlug, this);
-      this.ToggleVisibility = __bind(this.ToggleVisibility, this);
-      this.RadiansToDegrees = __bind(this.RadiansToDegrees, this);
-      this.TranformArrayFromMiddleAndOut = __bind(this.TranformArrayFromMiddleAndOut, this);
-      this.DegreesToRadians = __bind(this.DegreesToRadians, this);
-      this.JqueryObjToString = __bind(this.JqueryObjToString, this);
-      this.RenderPartial = __bind(this.RenderPartial, this);
-      this.CapitalizeFirstLetter = __bind(this.CapitalizeFirstLetter, this);
+  Util = class Util {
+    constructor() {
+      this.CapitalizeFirstLetter = this.CapitalizeFirstLetter.bind(this);
+      this.RenderPartial = this.RenderPartial.bind(this);
+      this.JqueryObjToString = this.JqueryObjToString.bind(this);
+      this.DegreesToRadians = this.DegreesToRadians.bind(this);
+      this.TranformArrayFromMiddleAndOut = this.TranformArrayFromMiddleAndOut.bind(this);
+      this.RadiansToDegrees = this.RadiansToDegrees.bind(this);
+      this.ToggleVisibility = this.ToggleVisibility.bind(this);
+      this.ConvertToSlug = this.ConvertToSlug.bind(this);
+      this.RandomInt = this.RandomInt.bind(this);
+      this.Limit = this.Limit.bind(this);
+      this.ConvertToClassName = this.ConvertToClassName.bind(this);
+      this.ValidateEmail = this.ValidateEmail.bind(this);
+      this.IsInt = this.IsInt.bind(this);
+      this.ToType = this.ToType.bind(this);
+      this.RGBtoUnit = this.RGBtoUnit.bind(this);
+      this.UnitToRGB = this.UnitToRGB.bind(this);
+      this.HexString = this.HexString.bind(this);
+      this.guid = this.guid.bind(this);
+      this.HexToRgb = this.HexToRgb.bind(this);
+      this.RgbToHex = this.RgbToHex.bind(this);
+      this.ComponentToHex = this.ComponentToHex.bind(this);
+      this.Map = this.Map.bind(this);
+      this.Lerp = this.Lerp.bind(this);
+      this.Norm = this.Norm.bind(this);
+      // Not safe always (be careful with that)
+      this.ToFixed = this.ToFixed.bind(this);
+      this.SwitchImgLazySrcs = this.SwitchImgLazySrcs.bind(this);
+      this.SecondsToMinutes = this.SecondsToMinutes.bind(this);
+      this.GetImgNativeSize = this.GetImgNativeSize.bind(this);
+      this.Rand = this.Rand.bind(this);
+      this.IsEven = this.IsEven.bind(this);
+      this.GetUrlVars = this.GetUrlVars.bind(this);
+      this.SetCookie = this.SetCookie.bind(this);
+      this.GetCookie = this.GetCookie.bind(this);
+      this.GetCanvas = this.GetCanvas.bind(this);
+      this.LaunchIntoFullscreen = this.LaunchIntoFullscreen.bind(this);
+      this.ExitFullscreen = this.ExitFullscreen.bind(this);
     }
 
-    Util.prototype.CapitalizeFirstLetter = function(string) {
+    CapitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
-    };
+    }
 
-    Util.prototype.RenderPartial = function(rawPartial, contentData) {
+    RenderPartial(rawPartial, contentData) {
       return $(Mustache.render(rawPartial, contentData));
-    };
+    }
 
-    Util.prototype.JqueryObjToString = function(jobj) {
+    JqueryObjToString(jobj) {
       return $('<div>').append($(jobj).clone()).html();
-    };
+    }
 
-    Util.prototype.DegreesToRadians = function(degrees) {
+    DegreesToRadians(degrees) {
       return degrees * (Math.PI / 180);
-    };
+    }
 
-    Util.prototype.TranformArrayFromMiddleAndOut = function(array) {
+    TranformArrayFromMiddleAndOut(array) {
       var i, j, newArray;
       newArray = [];
       i = Math.ceil(array.length / 2);
@@ -71,90 +70,86 @@ define([], function() {
         }
       }
       return newArray;
-    };
+    }
 
-    Util.prototype.RadiansToDegrees = function(radians) {
+    RadiansToDegrees(radians) {
       return radians * (180 / Math.PI);
-    };
+    }
 
-    Util.prototype.ToggleVisibility = function(object3D, visible) {
-      var _this = this;
-      return object3D.traverse(function(object) {
+    ToggleVisibility(object3D, visible) {
+      return object3D.traverse((object) => {
         return object.visible = visible;
       });
-    };
+    }
 
-    Util.prototype.ConvertToSlug = function(text, separator) {
+    ConvertToSlug(text, separator) {
       separator = separator != null ? separator : "-";
       return text.toLowerCase().replace(/[^\w ]+/g, "").replace(RegExp(" +", "g"), separator);
-    };
+    }
 
-    Util.prototype.RandomInt = function(multiplier) {
-      if (multiplier == null) {
-        multiplier = 10000000;
-      }
+    RandomInt(multiplier = 10000000) {
       if (multiplier != null) {
         multiplier;
       } else {
         10000000;
       }
       return Math.round(Math.random() * multiplier) + 1;
-    };
+    }
 
-    Util.prototype.Limit = function(min, max, value) {
+    Limit(min, max, value) {
       return Math.max(min, Math.min(max, value));
-    };
+    }
 
-    Util.prototype.ConvertToClassName = function(text) {
-      var t, tArray, txt, _i, _len;
+    ConvertToClassName(text) {
+      var k, len, t, tArray, txt;
       tArray = text.split("-");
       txt = "";
       if (tArray.length > 1) {
-        for (_i = 0, _len = tArray.length; _i < _len; _i++) {
-          t = tArray[_i];
+        for (k = 0, len = tArray.length; k < len; k++) {
+          t = tArray[k];
           txt += this.CapitalizeFirstLetter(t);
         }
       } else {
         txt = this.CapitalizeFirstLetter(tArray[0]);
       }
       return txt;
-    };
+    }
 
-    Util.prototype.ValidateEmail = function(email) {
+    ValidateEmail(email) {
       var re;
       re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
-    };
+    }
 
-    Util.prototype.IsInt = function(n) {
+    IsInt(n) {
       return n % 1 === 0;
-    };
+    }
 
-    Util.prototype.ToType = function(obj) {
+    ToType(obj) {
       return {}.toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
-    };
+    }
 
-    Util.prototype.RGBtoUnit = function(value) {
+    RGBtoUnit(value) {
       return (value / 255) * 1;
-    };
+    }
 
-    Util.prototype.UnitToRGB = function(value) {
+    UnitToRGB(value) {
       return (value / 1) * 255;
-    };
+    }
 
-    Util.prototype.HexString = function(hex) {
+    HexString(hex) {
       return ('000000' + hex.toString(16)).slice(-6);
-    };
+    }
 
-    Util.prototype.guid = function() {
+    guid() {
       var s4;
       s4 = function() {
         return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
       };
       return s4() + s4();
-    };
+    }
 
-    Util.prototype.HexToRgb = function(hex, unit) {
+    HexToRgb(hex, unit) {
       var b, g, r, result;
       unit = unit != null ? unit : false;
       result = hex.charAt(0) === "#" ? hex.substring(1, 7) : hex;
@@ -171,13 +166,13 @@ define([], function() {
         g: g,
         b: b
       };
-    };
+    }
 
-    Util.prototype.RgbToHex = function(r, g, b) {
+    RgbToHex(r, g, b) {
       return "#" + this.ComponentToHex(r) + this.ComponentToHex(g) + this.ComponentToHex(b);
-    };
+    }
 
-    Util.prototype.ComponentToHex = function(c) {
+    ComponentToHex(c) {
       var hex;
       hex = c.toString(16);
       if (hex.length === 1) {
@@ -185,39 +180,39 @@ define([], function() {
       } else {
         return hex;
       }
-    };
+    }
 
-    Util.prototype.Map = function(value, min1, max1, min2, max2) {
+    Map(value, min1, max1, min2, max2) {
       return this.Lerp(min2, max2, this.Norm(value, min1, max1));
-    };
+    }
 
-    Util.prototype.Lerp = function(min, max, amt) {
+    Lerp(min, max, amt) {
       return min + (max - min) * amt;
-    };
+    }
 
-    Util.prototype.Norm = function(value, min, max) {
+    Norm(value, min, max) {
       return (value - min) / (max - min);
-    };
+    }
 
-    Util.prototype.ToFixed = function(number, factor) {
+    ToFixed(number, factor) {
       return Math.round(number * factor) / factor;
-    };
+    }
 
-    Util.prototype.SwitchImgLazySrcs = function(item) {
-      var $imgSrcs, $part, imgSrc, src, _i, _len;
+    SwitchImgLazySrcs(item) {
+      var $imgSrcs, $part, imgSrc, k, len, src;
       if (item == null) {
         return;
       }
       $part = $(item);
       $imgSrcs = $part.find("img[lazy-src]");
-      for (_i = 0, _len = $imgSrcs.length; _i < _len; _i++) {
-        imgSrc = $imgSrcs[_i];
+      for (k = 0, len = $imgSrcs.length; k < len; k++) {
+        imgSrc = $imgSrcs[k];
         src = imgSrc.getAttribute("lazy-src");
         imgSrc.setAttribute("src", src);
       }
-    };
+    }
 
-    Util.prototype.SecondsToMinutes = function(time) {
+    SecondsToMinutes(time) {
       var minutes, seconds;
       minutes = Math.floor(time / 60);
       seconds = Math.round(time - minutes * 60);
@@ -230,9 +225,9 @@ define([], function() {
         seconds = "0" + seconds;
       }
       return minutes + ":" + seconds;
-    };
+    }
 
-    Util.prototype.GetImgNativeSize = function(url) {
+    GetImgNativeSize(url) {
       var img;
       img = new Image();
       img.src = url;
@@ -240,9 +235,9 @@ define([], function() {
         width: img.width,
         height: img.height
       };
-    };
+    }
 
-    Util.prototype.Rand = function(max, min, decimals) {
+    Rand(max, min, decimals) {
       var d, randomNum;
       if (min > max) {
         void 0;
@@ -250,17 +245,17 @@ define([], function() {
       randomNum = Math.random() * (max - min) + min;
       d = Math.pow(10, decimals);
       return ~~((d * randomNum) + 0.5) / d;
-    };
+    }
 
-    Util.prototype.IsEven = function(value) {
+    IsEven(value) {
       if ((value % 2) === 0) {
         return true;
       } else {
         return false;
       }
-    };
+    }
 
-    Util.prototype.GetUrlVars = function(key) {
+    GetUrlVars(key) {
       var parts, vars;
       vars = {};
       parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/g, function(m, key, value) {
@@ -273,13 +268,13 @@ define([], function() {
         vars[key] = cleanVal;
       });
       return vars;
-    };
+    }
 
-    Util.prototype.SetCookie = function(cname, cvalue) {
+    SetCookie(cname, cvalue) {
       return document.cookie = cname + "=" + cvalue;
-    };
+    }
 
-    Util.prototype.GetCookie = function(cname) {
+    GetCookie(cname) {
       var c, ca, cookie, i, name;
       name = cname + "=";
       ca = document.cookie.split(';');
@@ -293,17 +288,17 @@ define([], function() {
         i++;
       }
       return cookie;
-    };
+    }
 
-    Util.prototype.GetCanvas = function(width, height) {
+    GetCanvas(width, height) {
       var canvas;
       canvas = document.createElement('canvas');
       canvas.width = width;
       canvas.height = height;
       return canvas;
-    };
+    }
 
-    Util.prototype.LaunchIntoFullscreen = function(element) {
+    LaunchIntoFullscreen(element) {
       if (element.requestFullscreen) {
         return element.requestFullscreen();
       } else if (element.mozRequestFullScreen) {
@@ -313,9 +308,9 @@ define([], function() {
       } else if (element.msRequestFullscreen) {
         return element.msRequestFullscreen();
       }
-    };
+    }
 
-    Util.prototype.ExitFullscreen = function() {
+    ExitFullscreen() {
       if (document.exitFullscreen) {
         return document.exitFullscreen();
       } else if (document.mozCancelFullScreen) {
@@ -323,10 +318,8 @@ define([], function() {
       } else if (document.webkitExitFullscreen) {
         return document.webkitExitFullscreen();
       }
-    };
+    }
 
-    return Util;
-
-  })();
+  };
   return Util;
 });

@@ -1,17 +1,16 @@
-var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
 define(["Header", "hasher", "Contact", "Slideshow"], function(Header, hasher, Contact, Slideshow) {
   "use strict";
   var GlobalController;
-  GlobalController = (function() {
-    function GlobalController() {
-      this.startRouting = __bind(this.startRouting, this);
-      this.setupRenderer = __bind(this.setupRenderer, this);
-      this.setupViews = __bind(this.setupViews, this);
+  GlobalController = class GlobalController {
+    constructor() {
+      this.setupViews = this.setupViews.bind(this);
+      this.setupRenderer = this.setupRenderer.bind(this);
+      this.startRouting = this.startRouting.bind(this);
     }
 
-    GlobalController.prototype.setupViews = function() {
+    setupViews() {
       var contact, header, slideshow;
+      // Header
       header = new Header("header");
       Model.parentEl.append(header.element);
       header.init();
@@ -23,18 +22,17 @@ define(["Header", "hasher", "Contact", "Slideshow"], function(Header, hasher, Co
       slideshow = new Slideshow("slideshow");
       Model.parentEl.append(slideshow.element);
       slideshow.init();
-    };
+    }
 
-    GlobalController.prototype.setupRenderer = function() {
+    setupRenderer() {
       Renderer.init();
-    };
+    }
 
-    GlobalController.prototype.startRouting = function() {
+    startRouting() {
+      // All ready for routing
       Router.configHasher();
-    };
+    }
 
-    return GlobalController;
-
-  })();
+  };
   return GlobalController;
 });

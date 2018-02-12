@@ -2,6 +2,11 @@ define([], function() {
   "use strict";
   var GlobalModel;
   GlobalModel = (function() {
+    class GlobalModel {
+      constructor() {}
+
+    };
+
     GlobalModel.prototype.routing = void 0;
 
     GlobalModel.prototype.isDesktop = void 0;
@@ -49,10 +54,8 @@ define([], function() {
 
     GlobalModel.prototype.mobile = 750;
 
-    function GlobalModel() {}
-
     return GlobalModel;
 
-  })();
+  }).call(this);
   return GlobalModel;
 });

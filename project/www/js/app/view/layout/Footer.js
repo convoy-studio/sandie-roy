@@ -1,24 +1,20 @@
-var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var boundMethodCheck = function(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new Error('Bound instance method accessed before binding'); } };
 
 define(["View"], function(View) {
   "use strict";
   var Footer;
-  Footer = (function(_super) {
-    __extends(Footer, _super);
-
-    function Footer(id, scope) {
-      this.init = __bind(this.init, this);
+  Footer = class Footer extends View {
+    constructor(id, scope) {
       scope = {};
       scope.footerTitle = Model.content["footer-title"];
-      Footer.__super__.constructor.call(this, id, scope);
+      super(id, scope);
+      this.init = this.init.bind(this);
     }
 
-    Footer.prototype.init = function() {};
+    init() {
+      boundMethodCheck(this, Footer);
+    }
 
-    return Footer;
-
-  })(View);
+  };
   return Footer;
 });
